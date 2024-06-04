@@ -1,6 +1,4 @@
-﻿using System.Reflection.Emit;
-
-namespace UOGumpEditor
+﻿namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
