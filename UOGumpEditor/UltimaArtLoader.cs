@@ -146,15 +146,32 @@ namespace UOGumpEditor
 
         public static bool SearchArtByID(int id, bool isGump, out List<ArtEntity> list)
         {
+            int range = UOSettings.Default.DisplayMax / 2;
+
+            if (id - range < 0)
+            {
+                range = id;
+            }
+
             if (isGump)
             {
-                var gumpList = GumpArtDict.Values.Where(a => a.ID < id + 20 && a.ID > id - 20).ToList();
+                if (id + range >= GumpArtDict.Count)
+                {
+                    range = Math.Abs(GumpArtDict.Count - id);
+                }
+
+                var gumpList = GumpArtDict.Values.Where(a => a.ID <= id + range && a.ID >= id - range).ToList();
 
                 return LoadList(gumpList, out list);
             }
             else
             {
-                var itemList = ItemArtDict.Values.Where(a => a.ID < id + 20 && a.ID > id - 20).ToList();
+                if (id + range >= ItemArtDict.Count)
+                {
+                    range = Math.Abs(ItemArtDict.Count - id);
+                }
+
+                var itemList = ItemArtDict.Values.Where(a => a.ID < id + range && a.ID > id - range).ToList();
 
                 return LoadList(itemList, out list);
             }
@@ -192,15 +209,13 @@ namespace UOGumpEditor
             }
         }
 
-        private const int MaxLoad = 40;
-
         private static bool LoadList(List<ArtEntity> itemList, out List<ArtEntity> list )
         {
             if (itemList != null && itemList.Count > 0)
             {
-                if (itemList.Count > MaxLoad)
+                if (itemList.Count > UOSettings.Default.DisplayMax)
                 {
-                    list = itemList.GetRange(0, MaxLoad);
+                    list = itemList.GetRange(0, UOSettings.Default.DisplayMax);
                 }
                 else
                 {

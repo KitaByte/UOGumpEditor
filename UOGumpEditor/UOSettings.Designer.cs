@@ -34,5 +34,17 @@ namespace UOGumpEditor {
                 this["UO_Folder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int DisplayMax {
+            get {
+                return ((int)(this["DisplayMax"]));
+            }
+            set {
+                this["DisplayMax"] = value;
+            }
+        }
     }
 }

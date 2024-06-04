@@ -1,8 +1,27 @@
-﻿namespace UOGumpEditor
+﻿using System.Reflection.Emit;
+
+namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
         public static UltimaArtLoader? ArtLoader { get; private set; }
+
+        public static string? FindDataFile(string dataPath, string search)
+        {
+            var fullName = Path.Combine(dataPath, search);
+
+            if (File.Exists(fullName))
+            {
+                return fullName;
+            }
+
+            foreach (var file in Directory.EnumerateFiles(dataPath, search, SearchOption.AllDirectories))
+            {
+                return file;
+            }
+
+            return null;
+        }
 
         public static void LoadArt()
         {
@@ -42,23 +61,6 @@
 
             btnOff.BackColor = Color.RoyalBlue;
             btnOff.ForeColor = Color.Black;
-        }
-
-        public static string? FindDataFile(string dataPath, string search)
-        {
-            var fullName = Path.Combine(dataPath, search);
-
-            if (File.Exists(fullName))
-            {
-                return fullName;
-            }
-
-            foreach (var file in Directory.EnumerateFiles(dataPath, search, SearchOption.AllDirectories))
-            {
-                return file;
-            }
-
-            return null;
         }
     }
 }
