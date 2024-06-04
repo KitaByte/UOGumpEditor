@@ -35,17 +35,19 @@ namespace UOGumpEditor
         {
             SetLoadingState(true);
 
-            GumpInfoLabel.Text = "Loading Art ...";
+            GumpInfoLabel.Text = "Loading Gump Assets ...";
 
             await UltimaArtLoader.LoadAllGumpArtAsync();
 
             UOProgressBar.Value = 50;
 
+            GumpInfoLabel.Text = "Loading Art Assets ...";
+
             await UltimaArtLoader.LoadAllItemArtAsync();
 
-            SetLoadingState(false);
-
             UOEditorCore.ReLoadArt();
+
+            SetLoadingState(false);
 
             DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
         }
@@ -98,6 +100,8 @@ namespace UOGumpEditor
             // Set Language
 
             // Edit Gump Names List
+
+            // Search Display Max
 
             UOSettings.Default.Reset();
 
