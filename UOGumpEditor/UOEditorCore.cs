@@ -9,6 +9,13 @@
             ArtLoader = new UltimaArtLoader();
         }
 
+        internal static void ReLoadArt()
+        {
+            ArtLoader?.ClearArt();
+
+            LoadArt();
+        }
+
         public static void SetImageRenderer(PictureBox pb, ArtEntity entity, ToolStripLabel label)
         {
             if (entity != null)

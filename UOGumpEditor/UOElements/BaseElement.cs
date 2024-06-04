@@ -1,6 +1,9 @@
 ﻿namespace UOGumpEditor.UOElements
 {
-    internal class BaseElement
+    internal class BaseElement : Button
     {
+        public BaseElement()
+        {
+        }
     }
 }

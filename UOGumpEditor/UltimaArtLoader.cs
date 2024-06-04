@@ -24,6 +24,11 @@ namespace UOGumpEditor
             }
         }
 
+        public void ClearArt()
+        {
+            AssetData.Clear();
+        }
+
         public static async Task LoadAllGumpArtAsync()
         {
             if (IsLoaded && AssetData.Gumps != null)
@@ -42,6 +47,10 @@ namespace UOGumpEditor
                             {
                                 GumpArtDict[i] = new ArtEntity(i, GetGumpName(i), gump.Width, gump.Height, true);
                             }
+
+                            gump.Dispose();
+
+                            gump = null;
                         }
                         else
                         {
@@ -75,6 +84,10 @@ namespace UOGumpEditor
                             {
                                 ItemArtDict[i] = new ArtEntity(i, GetItemName(i), maxX - minX, maxY - minY, false);
                             }
+
+                            item.Dispose();
+
+                            item = null;
                         }
                         else
                         {

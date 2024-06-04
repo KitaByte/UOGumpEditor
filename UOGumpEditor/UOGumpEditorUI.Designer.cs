@@ -49,7 +49,7 @@
             ItemArtButton = new Button();
             GumpArtButton = new Button();
             SearchFlowPanel = new FlowLayoutPanel();
-            toolStrip1 = new ToolStrip();
+            TopMenuStrip = new ToolStrip();
             NewButton = new ToolStripButton();
             SaveButton = new ToolStripButton();
             LoadButton = new ToolStripButton();
@@ -61,7 +61,7 @@
             ArtPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
             ArtSelectPanel.SuspendLayout();
-            toolStrip1.SuspendLayout();
+            TopMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -217,12 +217,12 @@
             resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
             SearchFlowPanel.Name = "SearchFlowPanel";
             // 
-            // toolStrip1
+            // TopMenuStrip
             // 
-            toolStrip1.BackColor = Color.WhiteSmoke;
-            resources.ApplyResources(toolStrip1, "toolStrip1");
-            toolStrip1.Items.AddRange(new ToolStripItem[] { NewButton, SaveButton, LoadButton, SettingsButton, GetHelpButton, ExportButton });
-            toolStrip1.Name = "toolStrip1";
+            TopMenuStrip.BackColor = Color.WhiteSmoke;
+            resources.ApplyResources(TopMenuStrip, "TopMenuStrip");
+            TopMenuStrip.Items.AddRange(new ToolStripItem[] { NewButton, SaveButton, LoadButton, SettingsButton, GetHelpButton, ExportButton });
+            TopMenuStrip.Name = "TopMenuStrip";
             // 
             // NewButton
             // 
@@ -289,7 +289,7 @@
             Controls.Add(SearchFlowPanel);
             Controls.Add(ArtPanel);
             Controls.Add(BottomStatusStrip);
-            Controls.Add(toolStrip1);
+            Controls.Add(TopMenuStrip);
             DoubleBuffered = true;
             ForeColor = Color.WhiteSmoke;
             Name = "UOGumpEditorUI";
@@ -301,8 +301,8 @@
             ArtPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).EndInit();
             ArtSelectPanel.ResumeLayout(false);
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            TopMenuStrip.ResumeLayout(false);
+            TopMenuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -327,7 +327,7 @@
         private TextBox ArtSizeSearchBox;
         private TextBox ArtNameSearchBox;
         private FlowLayoutPanel SearchFlowPanel;
-        private ToolStrip toolStrip1;
+        private ToolStrip TopMenuStrip;
         private ToolStripButton NewButton;
         private ToolStripButton SaveButton;
         private ToolStripButton LoadButton;

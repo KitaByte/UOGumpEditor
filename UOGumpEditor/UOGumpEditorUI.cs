@@ -1,4 +1,7 @@
-﻿namespace UOGumpEditor
+﻿using System.Collections;
+using UOGumpEditor.UOElements;
+
+namespace UOGumpEditor
 {
     public partial class UOGumpEditorUI : Form
     {
@@ -42,6 +45,8 @@
 
             SetLoadingState(false);
 
+            UOEditorCore.ReLoadArt();
+
             ArtIDSearchBox.Text = "0";
         }
 
@@ -56,7 +61,26 @@
 
         private void NewButton_Click(object sender, EventArgs e)
         {
+            ArrayList elements = [];
 
+            foreach (var control in Controls)
+            {
+                if (control is BaseElement)
+                {
+                    elements.Add(control);
+                }
+            }
+
+            if (elements.Count > 0)
+            {
+                foreach (var element in elements)
+                {
+                    if (element is Control c)
+                    {
+                        Controls.Remove(c);
+                    }
+                }
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -72,6 +96,8 @@
         private void Settings_Click(object sender, EventArgs e)
         {
             // Set Language
+
+            // Edit Gump Names List
 
             UOSettings.Default.Reset();
 
