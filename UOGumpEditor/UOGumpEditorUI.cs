@@ -13,7 +13,7 @@
             {
                 UOEditorCore.LoadArt();
 
-                ArtIDSearchBox.Text = "0";
+                LoadArtAsync();
             }
             else
             {
@@ -26,6 +26,32 @@
                     UOSettings.Default.Save();
                 }
             }
+        }
+
+        private async void LoadArtAsync()
+        {
+            SetLoadingState(true);
+
+            GumpInfoLabel.Text = "Loading Art ...";
+
+            await UltimaArtLoader.LoadAllGumpArtAsync();
+
+            UOProgressBar.Value = 50;
+
+            await UltimaArtLoader.LoadAllItemArtAsync();
+
+            SetLoadingState(false);
+
+            ArtIDSearchBox.Text = "0";
+        }
+
+        private void SetLoadingState(bool isLoading)
+        {
+            ArtIDSearchBox.Enabled = !isLoading;
+            ArtNameSearchBox.Enabled = !isLoading;
+            ArtSizeSearchBox.Enabled = !isLoading;
+
+            UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
         private void NewButton_Click(object sender, EventArgs e)
@@ -192,7 +218,7 @@
                 {
                     var picBox = new PictureBox
                     {
-                        Image = entity.Image,
+                        Image = entity.GetImage(),
                         Size = new Size(100, 100),
                         SizeMode = entity.Width > 100 || entity.Height > 100 ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.Normal,
                         Tag = entity

@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UOGumpEditorUI));
             BottomStatusStrip = new StatusStrip();
-            ProgressBar = new ToolStripProgressBar();
+            UOProgressBar = new ToolStripProgressBar();
             GumpInfoLabel = new ToolStripStatusLabel();
             ElementStrip = new ContextMenuStrip(components);
             AddLabelButton = new ToolStripMenuItem();
@@ -51,11 +51,11 @@
             SearchFlowPanel = new FlowLayoutPanel();
             toolStrip1 = new ToolStrip();
             NewButton = new ToolStripButton();
-            SettingsButton = new ToolStripButton();
-            LoadButton = new ToolStripButton();
             SaveButton = new ToolStripButton();
-            ExportButton = new ToolStripButton();
+            LoadButton = new ToolStripButton();
+            SettingsButton = new ToolStripButton();
             GetHelpButton = new ToolStripButton();
+            ExportButton = new ToolStripButton();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -68,13 +68,13 @@
             // 
             resources.ApplyResources(BottomStatusStrip, "BottomStatusStrip");
             BottomStatusStrip.GripMargin = new Padding(0);
-            BottomStatusStrip.Items.AddRange(new ToolStripItem[] { ProgressBar, GumpInfoLabel });
+            BottomStatusStrip.Items.AddRange(new ToolStripItem[] { UOProgressBar, GumpInfoLabel });
             BottomStatusStrip.Name = "BottomStatusStrip";
             // 
-            // ProgressBar
+            // UOProgressBar
             // 
-            ProgressBar.Name = "ProgressBar";
-            resources.ApplyResources(ProgressBar, "ProgressBar");
+            UOProgressBar.Name = "UOProgressBar";
+            resources.ApplyResources(UOProgressBar, "UOProgressBar");
             // 
             // GumpInfoLabel
             // 
@@ -233,14 +233,14 @@
             NewButton.Name = "NewButton";
             NewButton.Click += NewButton_Click;
             // 
-            // SettingsButton
+            // SaveButton
             // 
-            resources.ApplyResources(SettingsButton, "SettingsButton");
-            SettingsButton.BackColor = Color.Goldenrod;
-            SettingsButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            SettingsButton.Margin = new Padding(0, 2, 0, 2);
-            SettingsButton.Name = "SettingsButton";
-            SettingsButton.Click += Settings_Click;
+            resources.ApplyResources(SaveButton, "SaveButton");
+            SaveButton.BackColor = Color.SteelBlue;
+            SaveButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            SaveButton.Margin = new Padding(0, 2, 2, 2);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Click += SaveButton_Click;
             // 
             // LoadButton
             // 
@@ -251,24 +251,14 @@
             LoadButton.Name = "LoadButton";
             LoadButton.Click += LoadButton_Click;
             // 
-            // SaveButton
+            // SettingsButton
             // 
-            resources.ApplyResources(SaveButton, "SaveButton");
-            SaveButton.BackColor = Color.SteelBlue;
-            SaveButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            SaveButton.Margin = new Padding(0, 2, 2, 2);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Click += SaveButton_Click;
-            // 
-            // ExportButton
-            // 
-            ExportButton.Alignment = ToolStripItemAlignment.Right;
-            resources.ApplyResources(ExportButton, "ExportButton");
-            ExportButton.BackColor = Color.MediumPurple;
-            ExportButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            ExportButton.Margin = new Padding(0, 2, 1, 2);
-            ExportButton.Name = "ExportButton";
-            ExportButton.Click += ExportButton_Click;
+            resources.ApplyResources(SettingsButton, "SettingsButton");
+            SettingsButton.BackColor = Color.Goldenrod;
+            SettingsButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            SettingsButton.Margin = new Padding(0, 2, 0, 2);
+            SettingsButton.Name = "SettingsButton";
+            SettingsButton.Click += Settings_Click;
             // 
             // GetHelpButton
             // 
@@ -279,6 +269,16 @@
             GetHelpButton.Margin = new Padding(1, 2, 5, 2);
             GetHelpButton.Name = "GetHelpButton";
             GetHelpButton.Click += EditorHelpButton_Click;
+            // 
+            // ExportButton
+            // 
+            ExportButton.Alignment = ToolStripItemAlignment.Right;
+            resources.ApplyResources(ExportButton, "ExportButton");
+            ExportButton.BackColor = Color.MediumPurple;
+            ExportButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ExportButton.Margin = new Padding(0, 2, 1, 2);
+            ExportButton.Name = "ExportButton";
+            ExportButton.Click += ExportButton_Click;
             // 
             // UOGumpEditorUI
             // 
@@ -310,7 +310,7 @@
         #endregion
         private StatusStrip BottomStatusStrip;
         private ToolStripStatusLabel GumpInfoLabel;
-        private ToolStripProgressBar ProgressBar;
+        private ToolStripProgressBar UOProgressBar;
         private ContextMenuStrip ElementStrip;
         private ToolStripMenuItem AddLabelButton;
         private ToolStripMenuItem AddTextBoxButton;

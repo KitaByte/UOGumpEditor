@@ -24,32 +24,67 @@ namespace UOGumpEditor
             }
         }
 
-        public static ArtEntity? LoadGumpArt(int gumpID)
+        public static async Task LoadAllGumpArtAsync()
         {
             if (IsLoaded && AssetData.Gumps != null)
             {
-                if (GumpArtDict.Count == 0)
+                await Task.Run(() =>
                 {
+                    Bitmap? gump;
+
                     for (int i = 0; i < AssetData.Gumps.Length; i++)
                     {
-                        Bitmap? gump = AssetData.Gumps.GetGump(i);
+                        gump = AssetData.Gumps.GetGump(i);
 
                         if (gump != null)
                         {
-                            GumpArtDict.Add(i, new ArtEntity(i, GetGumpName(i), gump, gump.Width, gump.Height));
+                            lock (GumpArtDict)
+                            {
+                                GumpArtDict[i] = new ArtEntity(i, GetGumpName(i), gump.Width, gump.Height, true);
+                            }
                         }
                         else
                         {
-                            GumpArtDict.Add(i, new ArtEntity(i, "FREE_SLOT", null));
+                            lock (GumpArtDict)
+                            {
+                                GumpArtDict[i] = new ArtEntity(i, "FREE_SLOT", 0, 0, true);
+                            }
                         }
                     }
-                }
-
-                return GumpArtDict[gumpID];
+                });
             }
-            else
+        }
+
+        public static async Task LoadAllItemArtAsync()
+        {
+            if (IsLoaded && AssetData.Art != null)
             {
-                return null;
+                await Task.Run(() =>
+                {
+                    Bitmap? item;
+
+                    for (int i = 0; i < AssetData.Art.MaxItemID; i++)
+                    {
+                        item = AssetData.Art.GetStatic(i);
+
+                        if (item != null)
+                        {
+                            AssetData.Art.Measure(item, out int minX, out int minY, out int maxX, out int maxY);
+
+                            lock (ItemArtDict)
+                            {
+                                ItemArtDict[i] = new ArtEntity(i, GetItemName(i), maxX - minX, maxY - minY, false);
+                            }
+                        }
+                        else
+                        {
+                            lock (ItemArtDict)
+                            {
+                                ItemArtDict[i] = new ArtEntity(i, "FREE_SLOT", 0, 0, false);
+                            }
+                        }
+                    }
+                });
             }
         }
 
@@ -60,50 +95,44 @@ namespace UOGumpEditor
             return $"Gump_{i}";
         }
 
-        public static ArtEntity? LoadItemArt(int itemID)
-        {
-            try
-            {
-                if (IsLoaded && itemID < AssetData.Art.MaxItemID)
-                {
-                    if (ItemArtDict.Count == 0)
-                    {
-                        for (int i = 0; i < AssetData.Art.MaxItemID; i++)
-                        {
-                            Bitmap? itemBitmap = AssetData.Art.GetStatic(i);
-
-                            if (itemBitmap != null)
-                            {
-                                AssetData.Art.Measure(itemBitmap, out int minX, out int minY, out int maxX, out int maxY);
-
-                                ItemArtDict.Add(i, new ArtEntity(i, GetItemName(i), itemBitmap, maxX - minX, maxY - minY));
-                            }
-                            else
-                            {
-                                ItemArtDict.Add(i, new ArtEntity(i, "FREE_SLOT", null));
-                            }
-                        }
-                    }
-
-                    return ItemArtDict[itemID];
-                }
-            }
-            catch
-            {
-                // do nothing!
-            }
-
-            if (ItemArtDict.Count > 0)
-            {
-                return ItemArtDict[0];
-            }
-
-            return null;
-        }
+        private static string cachedName = "";
 
         private static string GetItemName(int i)
         {
-            return AssetData.Tiles.ItemTable[i].Name;
+            cachedName = AssetData.Tiles.ItemTable[i].Name;
+
+            if (string.IsNullOrEmpty(cachedName))
+            {
+                return "NO_NAME";
+            }
+            else
+            {
+                return cachedName;
+            }
+        }
+
+        public static ArtEntity? LoadGumpArt(int gumpID)
+        {
+            if (IsLoaded && GumpArtDict.TryGetValue(gumpID, out ArtEntity? value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static ArtEntity? LoadItemArt(int itemID)
+        {
+            if (IsLoaded && ItemArtDict.TryGetValue(itemID, out ArtEntity? value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static ArtEntity GetArtByID(int id, bool isGump)
@@ -123,7 +152,7 @@ namespace UOGumpEditor
                 }
             }
 
-            return new ArtEntity(id, "BAD_ART", null);
+            return new ArtEntity(id, "BAD_ART", 0, 0, isGump);
         }
 
         public static bool SearchArtByName(string name, bool isGump, out List<ArtEntity> list)

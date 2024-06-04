@@ -13,7 +13,7 @@
         {
             if (entity != null)
             {
-                pb.Image = entity.Image;
+                pb.Image = entity.GetImage();
 
                 if (entity.Width > pb.Width || entity.Height > pb.Height)
                 {
@@ -24,7 +24,7 @@
                     pb.SizeMode = PictureBoxSizeMode.CenterImage;
                 }
 
-                label.Text = $"{entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
+                label.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
             }
         }
 
