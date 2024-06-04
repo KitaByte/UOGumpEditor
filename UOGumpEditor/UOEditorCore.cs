@@ -11,7 +11,7 @@
 
         internal static void ReLoadArt()
         {
-            ArtLoader?.ClearArt();
+            UltimaArtLoader.ClearArt();
 
             LoadArt();
         }

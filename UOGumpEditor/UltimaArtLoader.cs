@@ -10,6 +10,26 @@ namespace UOGumpEditor
 
         private static readonly Dictionary<int, ArtEntity> ItemArtDict = [];
 
+        public static ArtEntity GetArtEntity(int id, bool isGump)
+        {
+            if (isGump)
+            {
+                if (GumpArtDict.TryGetValue(id, out ArtEntity? entity))
+                {
+                    return entity;
+                }
+            }
+            else
+            {
+                if (ItemArtDict.TryGetValue(id, out ArtEntity? entity))
+                {
+                    return entity;
+                }
+            }
+
+            return new ArtEntity(0, "BAD_ART", 0, 0, isGump);
+        }
+
         public UltimaArtLoader()
         {
             if (!string.IsNullOrEmpty(UOSettings.Default.UO_Folder))
@@ -24,7 +44,7 @@ namespace UOGumpEditor
             }
         }
 
-        public void ClearArt()
+        public static void ClearArt()
         {
             AssetData.Clear();
         }
@@ -124,48 +144,20 @@ namespace UOGumpEditor
             }
         }
 
-        public static ArtEntity? LoadGumpArt(int gumpID)
-        {
-            if (IsLoaded && GumpArtDict.TryGetValue(gumpID, out ArtEntity? value))
-            {
-                return value;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static ArtEntity? LoadItemArt(int itemID)
-        {
-            if (IsLoaded && ItemArtDict.TryGetValue(itemID, out ArtEntity? value))
-            {
-                return value;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static ArtEntity GetArtByID(int id, bool isGump)
+        public static bool SearchArtByID(int id, bool isGump, out List<ArtEntity> list)
         {
             if (isGump)
             {
-                if (GumpArtDict.TryGetValue(id, out var entity))
-                {
-                    return entity;
-                }
+                var gumpList = GumpArtDict.Values.Where(a => a.ID < id + 20 && a.ID > id - 20).ToList();
+
+                return LoadList(gumpList, out list);
             }
             else
             {
-                if (ItemArtDict.TryGetValue(id, out var entity))
-                {
-                    return entity;
-                }
-            }
+                var itemList = ItemArtDict.Values.Where(a => a.ID < id + 20 && a.ID > id - 20).ToList();
 
-            return new ArtEntity(id, "BAD_ART", 0, 0, isGump);
+                return LoadList(itemList, out list);
+            }
         }
 
         public static bool SearchArtByName(string name, bool isGump, out List<ArtEntity> list)
