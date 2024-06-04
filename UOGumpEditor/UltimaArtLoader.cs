@@ -14,7 +14,7 @@ namespace UOGumpEditor
         {
             if (!string.IsNullOrEmpty(UOSettings.Default.UO_Folder))
             {
-                AssetData.Load(UOSettings.Default.UO_Folder, "enu", false);
+                AssetData.Load(UOSettings.Default.UO_Folder, "enu", true);
 
                 IsLoaded = true;
             }

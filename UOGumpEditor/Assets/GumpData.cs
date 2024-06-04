@@ -57,7 +57,7 @@ namespace UOGumpEditor.Assets
                 {
                     Directory = directoryPath;
 
-                    _FileIndex = new FileIndex(uopPath, 65535, ".tga", false);
+                    _FileIndex = new FileIndex(uopPath, 65535, ".tga", true);
 
                     UOP = true;
                 }

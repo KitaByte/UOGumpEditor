@@ -66,14 +66,14 @@
         {
             UOEditorCore.SwapButtonOn(GumpArtButton, ItemArtButton);
 
-            ResetIDSearch();
+            ResetIDSearch(0);
         }
 
         private void ItemArtButton_Click(object sender, EventArgs e)
         {
             UOEditorCore.SwapButtonOn(ItemArtButton, GumpArtButton);
 
-            ResetIDSearch();
+            ResetIDSearch(0);
         }
 
         private bool IsGump()
@@ -110,7 +110,7 @@
                 }
                 else
                 {
-                    ResetIDSearch();
+                    ResetIDSearch(0);
                 }
             }
         }
@@ -127,7 +127,7 @@
                     }
                     else
                     {
-                        ResetIDSearch();
+                        ResetIDSearch(0);
                     }
                 }
                 else
@@ -147,7 +147,7 @@
             HistoryListbox.Items.Clear();
         }
 
-        private void ResetIDSearch()
+        private void ResetIDSearch(int id)
         {
             ArtIDSearchBox.Clear();
 
@@ -157,7 +157,9 @@
 
             SearchFlowPanel.Visible = false;
 
-            ArtIDSearchBox.Text = "0";
+            ArtIDSearchBox.Text = $"{id}";
+
+            ArtIDSearchBox.Focus();
         }
 
         private void GetGump(int id)
@@ -211,6 +213,8 @@
             {
                 if (picBox.Tag is ArtEntity entity)
                 {
+                    ResetIDSearch(entity.ID);
+
                     UOEditorCore.SetImageRenderer(ArtPicturebox, entity, GumpInfoLabel);
                 }
             }
