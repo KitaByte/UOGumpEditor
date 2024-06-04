@@ -182,6 +182,7 @@
             // 
             ArtPicturebox.BackColor = Color.White;
             resources.ApplyResources(ArtPicturebox, "ArtPicturebox");
+            ArtPicturebox.BorderStyle = BorderStyle.FixedSingle;
             ArtPicturebox.Name = "ArtPicturebox";
             ArtPicturebox.TabStop = false;
             // 

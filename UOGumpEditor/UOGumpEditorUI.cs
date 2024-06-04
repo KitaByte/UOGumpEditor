@@ -205,15 +205,37 @@ namespace UOGumpEditor
             {
                 SearchFlowPanel.Controls.Clear();
 
+                Color color = Color.Black;
+
+                Image? image;
+
                 foreach (var entity in results)
                 {
+                    if (results.Count > 0 && results[results.Count/2] == entity)
+                    {
+                        color = Color.WhiteSmoke;
+                    }
+
+                    image = entity.GetImage();
+
+                    if (image == null)
+                    {
+                        color = Color.Red;
+                    }
+
                     var picBox = new PictureBox
                     {
-                        Image = entity.GetImage(),
+                        BorderStyle = BorderStyle.Fixed3D,
+                        BackColor = color,
+                        Image = image,
                         Size = new Size(100, 100),
-                        SizeMode = entity.Width > 100 || entity.Height > 100 ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.Normal,
+                        SizeMode = entity.Width > 100 || entity.Height > 100 ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage,
                         Tag = entity
                     };
+
+                    color = Color.Black;
+
+                    image = null;
 
                     picBox.Click += PicBox_Click;
 
