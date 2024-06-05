@@ -74,26 +74,9 @@ namespace UOGumpEditor
 
         private void NewButton_Click(object sender, EventArgs e)
         {
-            ArrayList elements = [];
+            CanvasPanel.Controls.Clear();
 
-            foreach (var control in Controls)
-            {
-                if (control is ImageElement)
-                {
-                    elements.Add(control);
-                }
-            }
-
-            if (elements.Count > 0)
-            {
-                foreach (var element in elements)
-                {
-                    if (element is Control c)
-                    {
-                        Controls.Remove(c);
-                    }
-                }
-            }
+            HistoryListbox.Items.Clear();
 
             UOEditorCore.ResetGumpElements();
         }
@@ -245,7 +228,10 @@ namespace UOGumpEditor
 
         private void HistoryListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (HistoryListbox.SelectedItem != null && HistoryListbox.SelectedItem is ArtEntity ae)
+            {
+                DisplayArt(ae);
+            }
         }
 
         private void ClearHistoryButton_Click(object sender, EventArgs e)
