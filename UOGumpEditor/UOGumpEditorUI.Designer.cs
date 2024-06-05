@@ -41,7 +41,7 @@
             ClearHistoryButton = new Button();
             HistoryListbox = new ListBox();
             HistoryLabel = new Label();
-            ArtSizeSearchBox = new TextBox();
+            ArtWidthSearchBox = new TextBox();
             ArtNameSearchBox = new TextBox();
             ArtIDSearchBox = new TextBox();
             ArtPicturebox = new PictureBox();
@@ -56,12 +56,15 @@
             SettingsButton = new ToolStripButton();
             GetHelpButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
+            SizePanel = new Panel();
+            ArtHeightSearchBox = new TextBox();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
             ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
+            SizePanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -118,7 +121,7 @@
             ArtPanel.Controls.Add(ClearHistoryButton);
             ArtPanel.Controls.Add(HistoryListbox);
             ArtPanel.Controls.Add(HistoryLabel);
-            ArtPanel.Controls.Add(ArtSizeSearchBox);
+            ArtPanel.Controls.Add(SizePanel);
             ArtPanel.Controls.Add(ArtNameSearchBox);
             ArtPanel.Controls.Add(ArtIDSearchBox);
             ArtPanel.Controls.Add(ArtPicturebox);
@@ -151,14 +154,14 @@
             HistoryLabel.ForeColor = Color.Gold;
             HistoryLabel.Name = "HistoryLabel";
             // 
-            // ArtSizeSearchBox
+            // ArtWidthSearchBox
             // 
-            ArtSizeSearchBox.BackColor = Color.Goldenrod;
-            ArtSizeSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtSizeSearchBox, "ArtSizeSearchBox");
-            ArtSizeSearchBox.ForeColor = Color.Black;
-            ArtSizeSearchBox.Name = "ArtSizeSearchBox";
-            ArtSizeSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
+            ArtWidthSearchBox.BackColor = Color.Goldenrod;
+            ArtWidthSearchBox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(ArtWidthSearchBox, "ArtWidthSearchBox");
+            ArtWidthSearchBox.ForeColor = Color.Black;
+            ArtWidthSearchBox.Name = "ArtWidthSearchBox";
+            ArtWidthSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
             // 
             // ArtNameSearchBox
             // 
@@ -281,6 +284,22 @@
             ExportButton.Name = "ExportButton";
             ExportButton.Click += ExportButton_Click;
             // 
+            // SizePanel
+            // 
+            SizePanel.Controls.Add(ArtHeightSearchBox);
+            SizePanel.Controls.Add(ArtWidthSearchBox);
+            resources.ApplyResources(SizePanel, "SizePanel");
+            SizePanel.Name = "SizePanel";
+            // 
+            // ArtHeightSearchBox
+            // 
+            ArtHeightSearchBox.BackColor = Color.Goldenrod;
+            ArtHeightSearchBox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
+            ArtHeightSearchBox.ForeColor = Color.Black;
+            ArtHeightSearchBox.Name = "ArtHeightSearchBox";
+            ArtHeightSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
+            // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
@@ -304,6 +323,8 @@
             ArtSelectPanel.ResumeLayout(false);
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
+            SizePanel.ResumeLayout(false);
+            SizePanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,7 +346,7 @@
         private Button ItemArtButton;
         private Button GumpArtButton;
         private Button ClearHistoryButton;
-        private TextBox ArtSizeSearchBox;
+        private TextBox ArtWidthSearchBox;
         private TextBox ArtNameSearchBox;
         private FlowLayoutPanel SearchFlowPanel;
         private ToolStrip TopMenuStrip;
@@ -335,5 +356,7 @@
         private ToolStripButton SettingsButton;
         private ToolStripButton GetHelpButton;
         private ToolStripButton ExportButton;
+        private Panel SizePanel;
+        private TextBox ArtHeightSearchBox;
     }
 }

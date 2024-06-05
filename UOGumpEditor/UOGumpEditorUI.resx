@@ -304,40 +304,103 @@
   <data name="&gt;&gt;HistoryLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="ArtSizeSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="ArtHeightSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="ArtSizeSearchBox.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="ArtHeightSearchBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="ArtSizeSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 287</value>
+  <data name="ArtHeightSearchBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 0</value>
   </data>
-  <data name="ArtSizeSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="ArtHeightSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="ArtSizeSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Search Size</value>
+  <data name="ArtHeightSearchBox.PlaceholderText" xml:space="preserve">
+    <value>Height</value>
   </data>
-  <data name="ArtSizeSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 25</value>
+  <data name="ArtHeightSearchBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 25</value>
   </data>
-  <data name="ArtSizeSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="ArtHeightSearchBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="ArtSizeSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="ArtHeightSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
-  <data name="&gt;&gt;ArtSizeSearchBox.Name" xml:space="preserve">
-    <value>ArtSizeSearchBox</value>
+  <data name="&gt;&gt;ArtHeightSearchBox.Name" xml:space="preserve">
+    <value>ArtHeightSearchBox</value>
   </data>
-  <data name="&gt;&gt;ArtSizeSearchBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;ArtHeightSearchBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ArtSizeSearchBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ArtHeightSearchBox.Parent" xml:space="preserve">
+    <value>SizePanel</value>
+  </data>
+  <data name="&gt;&gt;ArtHeightSearchBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ArtWidthSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="ArtWidthSearchBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="ArtWidthSearchBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ArtWidthSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ArtWidthSearchBox.PlaceholderText" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="ArtWidthSearchBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 25</value>
+  </data>
+  <data name="ArtWidthSearchBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="ArtWidthSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;ArtWidthSearchBox.Name" xml:space="preserve">
+    <value>ArtWidthSearchBox</value>
+  </data>
+  <data name="&gt;&gt;ArtWidthSearchBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ArtWidthSearchBox.Parent" xml:space="preserve">
+    <value>SizePanel</value>
+  </data>
+  <data name="&gt;&gt;ArtWidthSearchBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SizePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="SizePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 287</value>
+  </data>
+  <data name="SizePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="SizePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 25</value>
+  </data>
+  <data name="SizePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;SizePanel.Name" xml:space="preserve">
+    <value>SizePanel</value>
+  </data>
+  <data name="&gt;&gt;SizePanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SizePanel.Parent" xml:space="preserve">
     <value>ArtPanel</value>
   </data>
-  <data name="&gt;&gt;ArtSizeSearchBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;SizePanel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="ArtNameSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -353,7 +416,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="ArtNameSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Search Name</value>
+    <value>Name</value>
   </data>
   <data name="ArtNameSearchBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 25</value>
@@ -389,7 +452,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="ArtIDSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Search ID</value>
+    <value>ID</value>
   </data>
   <data name="ArtIDSearchBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 25</value>

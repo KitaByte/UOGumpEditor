@@ -56,7 +56,7 @@ namespace UOGumpEditor
         {
             ArtIDSearchBox.Enabled = !isLoading;
             ArtNameSearchBox.Enabled = !isLoading;
-            ArtSizeSearchBox.Enabled = !isLoading;
+            ArtWidthSearchBox.Enabled = !isLoading;
 
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
@@ -173,22 +173,46 @@ namespace UOGumpEditor
 
         private void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ArtSizeSearchBox.Text))
+            if (sender == ArtWidthSearchBox)
             {
-                if (int.TryParse(ArtSizeSearchBox.Text, out int size) && size > 0)
+                if (!string.IsNullOrEmpty(ArtWidthSearchBox.Text))
                 {
-                    if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results))
+                    if (int.TryParse(ArtWidthSearchBox.Text, out int size) && size > 0)
                     {
-                        DisplaySearchResults(results);
+                        if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, true))
+                        {
+                            DisplaySearchResults(results);
+                        }
+                        else
+                        {
+                            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                        }
                     }
                     else
                     {
-                        DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                        ArtWidthSearchBox.Clear();
                     }
                 }
-                else
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(ArtHeightSearchBox.Text))
                 {
-                    ArtSizeSearchBox.Clear();
+                    if (int.TryParse(ArtHeightSearchBox.Text, out int size) && size > 0)
+                    {
+                        if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, false))
+                        {
+                            DisplaySearchResults(results);
+                        }
+                        else
+                        {
+                            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                        }
+                    }
+                    else
+                    {
+                        ArtHeightSearchBox.Clear();
+                    }
                 }
             }
         }
@@ -276,7 +300,7 @@ namespace UOGumpEditor
 
             ArtNameSearchBox.Clear();
 
-            ArtSizeSearchBox.Clear();
+            ArtWidthSearchBox.Clear();
 
             SearchFlowPanel.Visible = false;
 
