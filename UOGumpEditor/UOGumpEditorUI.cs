@@ -355,37 +355,91 @@ namespace UOGumpEditor
 
         private void CanvasPanel_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data != null && e.Data.GetDataPresent(typeof(ArtEntity)))
+            if (e.Data != null)
             {
-                if (e.Data.GetData(typeof(ArtEntity)) is ArtEntity entity)
+                if (e.Data.GetDataPresent(typeof(ArtEntity)))
                 {
-                    var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
-
-                    ImageElement element = new();
-
-                    if (IsGump())
+                    if (e.Data.GetData(typeof(ArtEntity)) is ArtEntity entity)
                     {
-                        // Smart select art based on gump name
+                        var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
+
+                        ImageElement element = new() 
+                        {
+                            Tag = entity
+                        };
+
+                        if (IsGump())
+                        {
+                            // Smart select art based on gump name
+                        }
+                        else
+                        {
+                            element.ElementType = ElementTypes.Item;
+                        }
+
+                        element.SetElement(entity);
+
+                        AddArtToCanvas(element, dropLocation);
                     }
-                    else
-                    {
-                        element.ElementType = ElementTypes.Item;
-                    }
-
-                    element.SetElement(entity);
-
-                    element.Tag = entity;
-
-                    AddArtToCanvas(element, dropLocation);
                 }
             }
         }
 
-        private void AddArtToCanvas(ImageElement element, Point location)
+        private void AddLabelButton_Click(object sender, EventArgs e)
+        {
+            OpenTextEntry();
+        }
+
+        private UOTextEntry? entry;
+
+        public void OpenTextEntry(TextElement? element = null)
+        {
+            if (entry != null && entry.Visible)
+            {
+                return;
+            }
+
+            if (element != null)
+            {
+                entry = new(this, element);
+            }
+            else
+            {
+                entry = new(this);
+            }
+
+            entry.Show();
+        }
+
+        public void AddTextElement(string text, int hue)
+        {
+            TextElement element = new()
+            {
+                ElementType = ElementTypes.Label,
+
+                Tag = hue
+            };
+
+            element.SetText(text, hue);
+
+            AddArtToCanvas(element, new(50, 50));
+        }
+
+        private void AddArtToCanvas(Control element, Point location)
         {
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
+        }
+
+        public void RemoveFromCanvas(Control element)
+        {
+            UOEditorCore.Z_Layer.Remove(element);
+
+            if (CanvasPanel.Controls.Contains(element))
+            {
+                CanvasPanel.Controls.Remove(element);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace UOGumpEditor.UOElements
+﻿using UOGumpEditor.Assets;
+
+namespace UOGumpEditor.UOElements
 {
-    public class ImageElement : TransparentControl
+    public class TextElement : Label
     {
         public ElementTypes ElementType { get; set; }
 
@@ -20,9 +22,13 @@
             }
         }
 
-        public ImageElement()
+        public TextElement()
         {
             BackColor = Color.Transparent;
+
+            FlatStyle = FlatStyle.Flat;
+
+            BorderStyle = BorderStyle.None;
 
             UOEditorCore.Z_Layer.Add(this);
 
@@ -35,11 +41,6 @@
             MouseDoubleClick += ImageElement_MouseDoubleClick;
         }
 
-        private static void MakeTransparent(Bitmap bitmap)
-        {
-            bitmap.MakeTransparent(Color.Black);
-        }
-
         private void BaseElement_MouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -48,7 +49,7 @@
 
                 _isDragging = true;
 
-                BringToFront(); 
+                BringToFront();
             }
         }
 
@@ -72,23 +73,34 @@
 
         private void ImageElement_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            // Open Element Editor
+            if (Form.ActiveForm != null && Form.ActiveForm is UOGumpEditorUI ui)
+            {
+                ui.OpenTextEntry(this);
+            }
         }
 
-        public void SetElement(ArtEntity entity)
+        public void SetText(string text, int hue = 0)
         {
-            Bitmap? tempBitmap = entity.GetImage();
+            Text = text;
 
-            if (tempBitmap != null)
+            Font = new Font(FontFamily.GenericSerif, 9.75f, FontStyle.Bold);
+
+            if (hue > 0)
             {
-                MakeTransparent(tempBitmap);
+                var color = AssetData.Hues.GetHue(hue);
 
-                Image = tempBitmap;
-
-                Width = entity.Width;
-
-                Height = entity.Height;
+                ForeColor = AssetData.Hues.Entries[53].Colors.First();
             }
+            else
+            {
+                ForeColor = Color.White;
+            }
+
+            Size size = UOEditorCore.GetTextSize(text, Font);
+
+            Width = size.Width;
+
+            Height = size.Height;
         }
 
         public (int X, int Y) GetLocation()
@@ -103,9 +115,9 @@
             }
         }
 
-        public Image? GetImage()
+        public string? GetText()
         {
-            return Image;
+            return Text;
         }
     }
 }

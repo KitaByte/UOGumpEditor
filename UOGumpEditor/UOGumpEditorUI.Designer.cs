@@ -104,6 +104,7 @@
             AddLabelButton.ForeColor = Color.WhiteSmoke;
             AddLabelButton.Name = "AddLabelButton";
             resources.ApplyResources(AddLabelButton, "AddLabelButton");
+            AddLabelButton.Click += AddLabelButton_Click;
             // 
             // AddTextBoxButton
             // 

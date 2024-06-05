@@ -6,13 +6,16 @@ namespace UOGumpEditor
     {
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
-        public static readonly List<ImageElement> Z_Layer = [];
+        public static readonly List<Control> Z_Layer = [];
 
         public static void ReorderZLayers()
         {
             for (int i = 0; i < Z_Layer.Count; i++)
             {
-                Z_Layer[i].SendToBack();
+                if (Z_Layer[i] is ImageElement)
+                {
+                    Z_Layer[i].SendToBack();
+                }
             }
 
             Z_Layer[0].Parent?.Invalidate();
