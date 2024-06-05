@@ -58,6 +58,7 @@
             SettingsButton = new ToolStripButton();
             GetHelpButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
+            CanvasPanel = new Panel();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
             ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
+            CanvasPanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -235,6 +237,7 @@
             // SearchFlowPanel
             // 
             resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
+            SearchFlowPanel.BackColor = Color.FromArgb(32, 32, 32);
             SearchFlowPanel.Name = "SearchFlowPanel";
             // 
             // TopMenuStrip
@@ -300,13 +303,19 @@
             ExportButton.Name = "ExportButton";
             ExportButton.Click += ExportButton_Click;
             // 
+            // CanvasPanel
+            // 
+            resources.ApplyResources(CanvasPanel, "CanvasPanel");
+            CanvasPanel.Controls.Add(SearchFlowPanel);
+            CanvasPanel.Name = "CanvasPanel";
+            // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Black;
             ContextMenuStrip = ElementStrip;
-            Controls.Add(SearchFlowPanel);
+            Controls.Add(CanvasPanel);
             Controls.Add(ArtPanel);
             Controls.Add(BottomStatusStrip);
             Controls.Add(TopMenuStrip);
@@ -325,6 +334,7 @@
             ArtSelectPanel.ResumeLayout(false);
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
+            CanvasPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -358,5 +368,6 @@
         private ToolStripButton ExportButton;
         private Panel SizePanel;
         private TextBox ArtHeightSearchBox;
+        private Panel CanvasPanel;
     }
 }

@@ -62,9 +62,9 @@
 
         public (int X, int Y) GetLocation()
         {
-            if (Parent != null && Parent is FlowLayoutPanel flp)
+            if (Parent != null && Parent is Panel panel)
             {
-                return (Location.X + flp.Location.X, Location.Y + flp.Location.Y);
+                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y);
             }
             else
             {
