@@ -86,6 +86,8 @@ namespace UOGumpEditor
                     }
                 }
             }
+
+            BaseElement.ResetGumpElements();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

@@ -2,8 +2,6 @@
 {
     public class TransparentControl : Control
     {
-        private readonly System.Windows.Forms.Timer refresher;
-
         private Image? _image;
 
         public TransparentControl()
@@ -11,16 +9,6 @@
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
             BackColor = Color.Transparent;
-
-            refresher = new System.Windows.Forms.Timer();
-
-            refresher.Tick += TimerOnTick;
-
-            refresher.Interval = 50;
-
-            refresher.Enabled = true;
-
-            refresher.Start();
         }
 
         protected override CreateParams CreateParams
@@ -37,7 +25,7 @@
 
         protected override void OnMove(EventArgs e)
         {
-            RecreateHandle();
+            Invalidate();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -53,19 +41,6 @@
             // Do not paint background
         }
 
-        // Hack
-        public void Redraw()
-        {
-            RecreateHandle();
-        }
-
-        private void TimerOnTick(object? source, EventArgs e)
-        {
-            RecreateHandle();
-
-            refresher.Stop();
-        }
-
         public Image? Image
         {
             get
@@ -76,7 +51,7 @@
             {
                 _image = value;
 
-                RecreateHandle();
+                Invalidate();
             }
         }
     }

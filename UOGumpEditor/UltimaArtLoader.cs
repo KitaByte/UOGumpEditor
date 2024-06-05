@@ -100,7 +100,13 @@ namespace UOGumpEditor
                         {
                             lock (ItemArtDict)
                             {
-                                ItemArtDict[i] = new ArtEntity(i, GetItemName(i), item.Width, item.Height, false);
+                                ArtEntity entity = new(i, GetItemName(i), item.Width, item.Height, false);
+
+                                AssetData.Art.Measure(item, out int minX, out int maxX, out int minY, out int maxY);
+
+                                entity.SetRawSizes(maxX - minX, maxY - minY);
+
+                                ItemArtDict[i] = entity;
                             }
 
                             item.Dispose();

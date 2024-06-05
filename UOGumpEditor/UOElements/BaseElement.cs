@@ -23,6 +23,11 @@
 
         private static readonly List<BaseElement> Z_Layer = [];
 
+        public static void ResetGumpElements()
+        {
+            Z_Layer.Clear();
+        }
+
         private int _TextMaxChar = -1;
 
         private Point _dragStartPoint;
