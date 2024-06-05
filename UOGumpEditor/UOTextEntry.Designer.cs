@@ -105,6 +105,7 @@
             // 
             // UOTextEntry
             // 
+            AcceptButton = OKButton;
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
@@ -123,10 +124,9 @@
             MinimizeBox = false;
             MinimumSize = new Size(300, 150);
             Name = "UOTextEntry";
-            Opacity = 0.9D;
             Padding = new Padding(10);
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Text Entry";
             TopMost = true;
             Load += UOTextEntry_Load;

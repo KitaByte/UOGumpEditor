@@ -24,9 +24,9 @@ namespace UOGumpEditor
             if (!string.IsNullOrEmpty(TextEntryBox.Text))
             {
                 UOEditorCore.MainUI?.AddTextElement(TextEntryBox.Text, HUE);
-
-                Close();
             }
+
+            Close();
         }
 
         private void HueButton_Click(object sender, EventArgs e)

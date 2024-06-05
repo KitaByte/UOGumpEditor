@@ -56,6 +56,7 @@ namespace UOGumpEditor
 
         private void SetLoadingState(bool isLoading)
         {
+            NewButton.Enabled = !isLoading;
             SaveButton.Enabled = !isLoading;
             LoadButton.Enabled = !isLoading;
             SettingsButton.Enabled = !isLoading;
@@ -162,15 +163,14 @@ namespace UOGumpEditor
 
         private void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && int.TryParse(ArtIDSearchBox.Text, out int val))
+            if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && ArtIDSearchBox.Text.Length < 6)
             {
-                if (UltimaArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
+                if (int.TryParse(ArtIDSearchBox.Text, out int val))
                 {
-                    DisplaySearchResults(results);
-                }
-                else
-                {
-                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                    if (UltimaArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
+                    {
+                        DisplaySearchResults(results);
+                    }
                 }
             }
             else
@@ -181,15 +181,11 @@ namespace UOGumpEditor
 
         private void ArtNameSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(ArtNameSearchBox.Text))
+            if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
             {
                 if (UltimaArtLoader.SearchArtByName(ArtNameSearchBox.Text, IsGump(), out List<ArtEntity> results))
                 {
                     DisplaySearchResults(results);
-                }
-                else
-                {
-                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                 }
             }
             else
@@ -200,54 +196,41 @@ namespace UOGumpEditor
 
         private void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
         {
-            if (sender == ArtWidthSearchBox)
+            if (sender is TextBox tb)
             {
-                if (!string.IsNullOrEmpty(ArtWidthSearchBox.Text))
+                if (tb.Name == nameof(ArtWidthSearchBox))
                 {
-                    if (int.TryParse(ArtWidthSearchBox.Text, out int size) && size > 0)
+                    if (!string.IsNullOrEmpty(ArtWidthSearchBox.Text) && ArtWidthSearchBox.Text.Length < 6)
                     {
-                        if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, true))
+                        if (int.TryParse(ArtWidthSearchBox.Text, out int size) && size > 0)
                         {
-                            DisplaySearchResults(results);
-                        }
-                        else
-                        {
-                            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                            if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, true))
+                            {
+                                DisplaySearchResults(results);
+                            }
                         }
                     }
                     else
                     {
-                        ArtWidthSearchBox.Clear();
+                        DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                     }
                 }
-                else
+                else if (tb.Name == nameof(ArtHeightSearchBox))
                 {
-                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(ArtHeightSearchBox.Text))
-                {
-                    if (int.TryParse(ArtHeightSearchBox.Text, out int size) && size > 0)
+                    if (!string.IsNullOrEmpty(ArtHeightSearchBox.Text) && ArtHeightSearchBox.Text.Length < 6)
                     {
-                        if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, false))
+                        if (int.TryParse(ArtHeightSearchBox.Text, out int size) && size > 0)
                         {
-                            DisplaySearchResults(results);
-                        }
-                        else
-                        {
-                            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                            if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, false))
+                            {
+                                DisplaySearchResults(results);
+                            }
                         }
                     }
                     else
                     {
-                        ArtHeightSearchBox.Clear();
+                        DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                     }
-                }
-                else
-                {
-                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                 }
             }
         }
@@ -344,6 +327,8 @@ namespace UOGumpEditor
             ArtNameSearchBox.Clear();
 
             ArtWidthSearchBox.Clear();
+
+            ArtHeightSearchBox.Clear();
 
             SearchFlowPanel.Visible = false;
         }

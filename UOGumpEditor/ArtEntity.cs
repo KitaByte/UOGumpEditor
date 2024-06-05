@@ -9,8 +9,6 @@ namespace UOGumpEditor
         public string Name { get; init; } = name;
         public int Width { get; init; } = w;
         public int Height { get; init; } = h;
-        public int RawWidth { get; private set; } = 0;
-        public int RawHeight { get; private set; } = 0;
 
         public Bitmap? GetImage()
         {
@@ -22,13 +20,6 @@ namespace UOGumpEditor
             {
                 return AssetData.Art.GetStatic(ID);
             }
-        }
-
-        public void SetRawSizes(int width, int height)
-        {
-            RawWidth = width;
-
-            RawHeight = height;
         }
 
         public override string ToString()

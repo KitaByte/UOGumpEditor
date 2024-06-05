@@ -100,13 +100,7 @@ namespace UOGumpEditor
                         {
                             lock (ItemArtDict)
                             {
-                                ArtEntity entity = new(i, GetItemName(i), item.Width, item.Height, false);
-
-                                AssetData.Art.Measure(item, out int minX, out int maxX, out int minY, out int maxY);
-
-                                entity.SetRawSizes(maxX - minX, maxY - minY);
-
-                                ItemArtDict[i] = entity;
+                                ItemArtDict[i] = new(i, GetItemName(i), item.Width, item.Height, false);
                             }
 
                             item.Dispose();
@@ -218,11 +212,11 @@ namespace UOGumpEditor
             {
                 if (isWidth)
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.RawWidth == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Width == size).ToList();
                 }
                 else
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.RawHeight == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Height == size).ToList();
                 }
 
                 return LoadList(tempEntityList, out list);

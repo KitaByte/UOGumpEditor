@@ -78,7 +78,7 @@ namespace UOGumpEditor.UOElements
         {
             Text = text;
 
-            Font = new Font(FontFamily.GenericSerif, 9.75f, FontStyle.Bold);
+            Font = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
 
             if (hue > 0)
             {
