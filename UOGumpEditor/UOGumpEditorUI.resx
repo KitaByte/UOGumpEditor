@@ -221,7 +221,7 @@
     <value>192, 221</value>
   </data>
   <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;HistoryListbox.Name" xml:space="preserve">
     <value>HistoryListbox</value>
@@ -254,7 +254,7 @@
     <value>192, 40</value>
   </data>
   <data name="ClearHistoryButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="ClearHistoryButton.Text" xml:space="preserve">
     <value>Clear History</value>
@@ -284,7 +284,7 @@
     <value>192, 35</value>
   </data>
   <data name="HistoryLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="HistoryLabel.Text" xml:space="preserve">
     <value>History</value>
@@ -395,7 +395,7 @@
     <value>192, 25</value>
   </data>
   <data name="SizePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;SizePanel.Name" xml:space="preserve">
     <value>SizePanel</value>
@@ -431,7 +431,7 @@
     <value>192, 25</value>
   </data>
   <data name="ArtNameSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="ArtNameSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -470,7 +470,7 @@
     <value>192, 25</value>
   </data>
   <data name="ArtIDSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="ArtIDSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -608,7 +608,7 @@
     <value>192, 42</value>
   </data>
   <data name="ArtSelectPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;ArtSelectPanel.Name" xml:space="preserve">
     <value>ArtSelectPanel</value>
@@ -638,7 +638,7 @@
     <value>202, 613</value>
   </data>
   <data name="ArtPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;ArtPanel.Name" xml:space="preserve">
     <value>ArtPanel</value>
@@ -878,7 +878,7 @@
     <value>884, 26</value>
   </data>
   <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="TopMenuStrip.Text" xml:space="preserve">
     <value>MainMenuStrip</value>
