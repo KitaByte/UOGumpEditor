@@ -153,7 +153,7 @@ namespace UOGumpEditor
             }
             else
             {
-                ArtPicturebox.Image = null;
+                DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
             }
         }
 
@@ -169,6 +169,10 @@ namespace UOGumpEditor
                 {
                     DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                 }
+            }
+            else
+            {
+                DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
             }
         }
 
@@ -194,6 +198,10 @@ namespace UOGumpEditor
                         ArtWidthSearchBox.Clear();
                     }
                 }
+                else
+                {
+                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                }
             }
             else
             {
@@ -214,6 +222,10 @@ namespace UOGumpEditor
                     {
                         ArtHeightSearchBox.Clear();
                     }
+                }
+                else
+                {
+                    DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                 }
             }
         }
@@ -304,8 +316,14 @@ namespace UOGumpEditor
             ArtWidthSearchBox.Clear();
 
             SearchFlowPanel.Visible = false;
+        }
 
-            ArtIDSearchBox.Focus();
+        private void ArtSearchBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (sender is TextBox box && box.Text.Length == 0)
+            {
+                ResetIDSearch();
+            }
         }
     }
 }

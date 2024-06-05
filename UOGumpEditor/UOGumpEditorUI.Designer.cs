@@ -170,6 +170,7 @@
             resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
             ArtHeightSearchBox.ForeColor = Color.Black;
             ArtHeightSearchBox.Name = "ArtHeightSearchBox";
+            ArtHeightSearchBox.MouseClick += ArtSearchBox_MouseClick;
             ArtHeightSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
             // 
             // ArtWidthSearchBox
@@ -179,6 +180,7 @@
             resources.ApplyResources(ArtWidthSearchBox, "ArtWidthSearchBox");
             ArtWidthSearchBox.ForeColor = Color.Black;
             ArtWidthSearchBox.Name = "ArtWidthSearchBox";
+            ArtWidthSearchBox.MouseClick += ArtSearchBox_MouseClick;
             ArtWidthSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
             // 
             // ArtNameSearchBox
@@ -188,6 +190,7 @@
             resources.ApplyResources(ArtNameSearchBox, "ArtNameSearchBox");
             ArtNameSearchBox.ForeColor = Color.Black;
             ArtNameSearchBox.Name = "ArtNameSearchBox";
+            ArtNameSearchBox.MouseClick += ArtSearchBox_MouseClick;
             ArtNameSearchBox.TextChanged += ArtNameSearchBox_TextChanged;
             // 
             // ArtIDSearchBox
@@ -197,6 +200,7 @@
             resources.ApplyResources(ArtIDSearchBox, "ArtIDSearchBox");
             ArtIDSearchBox.ForeColor = Color.Black;
             ArtIDSearchBox.Name = "ArtIDSearchBox";
+            ArtIDSearchBox.MouseClick += ArtSearchBox_MouseClick;
             ArtIDSearchBox.TextChanged += ArtIDSearchBox_TextChanged;
             // 
             // ArtPicturebox
