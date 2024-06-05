@@ -57,6 +57,7 @@ namespace UOGumpEditor
             ArtIDSearchBox.Enabled = !isLoading;
             ArtNameSearchBox.Enabled = !isLoading;
             ArtWidthSearchBox.Enabled = !isLoading;
+            ArtHeightSearchBox.Enabled = !isLoading;
 
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
