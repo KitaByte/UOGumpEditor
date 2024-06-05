@@ -4,17 +4,13 @@ namespace UOGumpEditor
 {
     public partial class UOTextEntry : Form
     {
-        private readonly UOGumpEditorUI UI;
-
         private readonly TextElement? ELEMENT;
 
         private int HUE = 0;
 
-        public UOTextEntry(UOGumpEditorUI ui, TextElement? element = null)
+        public UOTextEntry(TextElement? element = null)
         {
             InitializeComponent();
-
-            UI = ui;
 
             ELEMENT = element;
         }
@@ -27,7 +23,7 @@ namespace UOGumpEditor
         {
             if (!string.IsNullOrEmpty(TextEntryBox.Text))
             {
-                UI.AddTextElement(TextEntryBox.Text, HUE);
+                UOEditorCore.MainUI?.AddTextElement(TextEntryBox.Text, HUE);
 
                 Close();
             }
@@ -42,7 +38,7 @@ namespace UOGumpEditor
         {
             if (ELEMENT != null && UOEditorCore.Z_Layer.Contains(ELEMENT))
             {
-                UI.RemoveFromCanvas(ELEMENT);
+                UOEditorCore.MainUI?.RemoveFromCanvas(ELEMENT);
             }
         }
     }

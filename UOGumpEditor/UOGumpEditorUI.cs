@@ -8,6 +8,8 @@ namespace UOGumpEditor
         public UOGumpEditorUI()
         {
             InitializeComponent();
+
+            UOEditorCore.MainUI = this;
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -54,6 +56,11 @@ namespace UOGumpEditor
 
         private void SetLoadingState(bool isLoading)
         {
+            SaveButton.Enabled = !isLoading;
+            LoadButton.Enabled = !isLoading;
+            SettingsButton.Enabled = !isLoading;
+            ExportButton.Enabled = !isLoading;
+            ElementStrip.Enabled = !isLoading;
             GumpArtButton.Enabled = !isLoading;
             ItemArtButton.Enabled = !isLoading;
             ArtIDSearchBox.Enabled = !isLoading;
@@ -368,6 +375,8 @@ namespace UOGumpEditor
                             Tag = entity
                         };
 
+                        UOEditorCore.AddElement(element);
+
                         if (IsGump())
                         {
                             // Smart select art based on gump name
@@ -401,11 +410,11 @@ namespace UOGumpEditor
 
             if (element != null)
             {
-                entry = new(this, element);
+                entry = new(element);
             }
             else
             {
-                entry = new(this);
+                entry = new();
             }
 
             entry.Show();
@@ -419,6 +428,8 @@ namespace UOGumpEditor
 
                 Tag = hue
             };
+
+            UOEditorCore.AddElement(this);
 
             element.SetText(text, hue);
 
@@ -440,6 +451,13 @@ namespace UOGumpEditor
             {
                 CanvasPanel.Controls.Remove(element);
             }
+        }
+
+        internal void AddToHistory(ArtEntity entity)
+        {
+            HistoryListbox.Items.Add(entity);
+
+            HistoryListbox.Invalidate();
         }
     }
 }

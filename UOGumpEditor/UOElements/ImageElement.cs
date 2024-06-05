@@ -24,8 +24,6 @@
         {
             BackColor = Color.Transparent;
 
-            UOEditorCore.Z_Layer.Add(this);
-
             MouseDown += BaseElement_MouseDown;
 
             MouseMove += BaseElement_MouseMove;

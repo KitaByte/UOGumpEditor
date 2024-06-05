@@ -4,6 +4,8 @@ namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
+        public static UOGumpEditorUI? MainUI;
+
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
         public static readonly List<Control> Z_Layer = [];
@@ -19,6 +21,19 @@ namespace UOGumpEditor
             }
 
             Z_Layer[0].Parent?.Invalidate();
+        }
+
+        public static void AddElement(Control control)
+        {
+            if (!Z_Layer.Contains(control))
+            {
+                Z_Layer.Add(control);
+
+                if (control is ImageElement ie && ie.Tag != null && ie.Tag is ArtEntity ae)
+                {
+                    MainUI?.AddToHistory(ae);
+                }
+            }
         }
 
         public static void ResetGumpElements()

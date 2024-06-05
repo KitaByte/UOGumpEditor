@@ -30,5 +30,10 @@ namespace UOGumpEditor
 
             RawHeight = height;
         }
+
+        public override string ToString()
+        {
+            return $"{(IsGump ? "Gump" : "Item")} : {ID}";
+        }
     }
 }

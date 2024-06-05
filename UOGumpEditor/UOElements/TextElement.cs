@@ -30,8 +30,6 @@ namespace UOGumpEditor.UOElements
 
             BorderStyle = BorderStyle.None;
 
-            UOEditorCore.Z_Layer.Add(this);
-
             MouseDown += BaseElement_MouseDown;
 
             MouseMove += BaseElement_MouseMove;
@@ -73,10 +71,7 @@ namespace UOGumpEditor.UOElements
 
         private void ImageElement_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            if (Form.ActiveForm != null && Form.ActiveForm is UOGumpEditorUI ui)
-            {
-                ui.OpenTextEntry(this);
-            }
+            UOEditorCore.MainUI?.OpenTextEntry(this);
         }
 
         public void SetText(string text, int hue = 0)
