@@ -37,6 +37,8 @@
         {
             if (entity != null)
             {
+                pb.Tag = entity;
+
                 pb.Image = entity.GetImage();
 
                 if (entity.Width > pb.Width || entity.Height > pb.Height)

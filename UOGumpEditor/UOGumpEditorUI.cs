@@ -133,6 +133,17 @@ namespace UOGumpEditor
             DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
         }
 
+        private void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (sender is PictureBox picBox)
+            {
+                if (picBox.Tag is ArtEntity entity && e.Button == MouseButtons.Left)
+                {
+                    picBox.DoDragDrop(entity, DragDropEffects.Copy);
+                }
+            }
+        }
+
         private bool IsGump()
         {
             return GumpArtButton.BackColor == Color.DodgerBlue;
@@ -230,6 +241,14 @@ namespace UOGumpEditor
             }
         }
 
+        private void ArtSearchBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (sender is TextBox box && box.Text.Length == 0)
+            {
+                ResetIDSearch();
+            }
+        }
+
         private void HistoryListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -318,12 +337,42 @@ namespace UOGumpEditor
             SearchFlowPanel.Visible = false;
         }
 
-        private void ArtSearchBox_MouseClick(object sender, MouseEventArgs e)
+        private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
         {
-            if (sender is TextBox box && box.Text.Length == 0)
+            if (e.Data != null && e.Data.GetDataPresent(typeof(ArtEntity)))
             {
-                ResetIDSearch();
+                e.Effect = DragDropEffects.Copy;
             }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void CanvasPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data != null && e.Data.GetDataPresent(typeof(ArtEntity)))
+            {
+                if (e.Data.GetData(typeof(ArtEntity)) is ArtEntity entity)
+                {
+                    var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
+
+                    BaseElement element = new();
+
+                    element.SetElement(entity);
+
+                    element.Tag = entity;
+
+                    AddArtToCanvas(element, dropLocation);
+                }
+            }
+        }
+
+        private void AddArtToCanvas(BaseElement element, Point location)
+        {
+            element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
+
+            CanvasPanel.Controls.Add(element);
         }
     }
 }

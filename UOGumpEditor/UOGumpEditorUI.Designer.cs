@@ -210,6 +210,7 @@
             ArtPicturebox.BorderStyle = BorderStyle.FixedSingle;
             ArtPicturebox.Name = "ArtPicturebox";
             ArtPicturebox.TabStop = false;
+            ArtPicturebox.MouseDown += ArtPicturebox_MouseDown;
             // 
             // ArtSelectPanel
             // 
@@ -309,15 +310,19 @@
             // 
             // CanvasPanel
             // 
+            CanvasPanel.AllowDrop = true;
+            CanvasPanel.BackColor = Color.Black;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
             CanvasPanel.Controls.Add(SearchFlowPanel);
             CanvasPanel.Name = "CanvasPanel";
+            CanvasPanel.DragDrop += CanvasPanel_DragDrop;
+            CanvasPanel.DragEnter += CanvasPanel_DragEnter;
             // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.Black;
+            BackColor = Color.White;
             ContextMenuStrip = ElementStrip;
             Controls.Add(CanvasPanel);
             Controls.Add(ArtPanel);

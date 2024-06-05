@@ -17,13 +17,17 @@
         LabelCropped
     }
 
-    public class BaseElement : Button
+    public class BaseElement : TransparentControl
     {
         public ElementTypes ElementType { get; set; }
 
-        private static List<BaseElement> Z_Layer = [];
+        private static readonly List<BaseElement> Z_Layer = [];
 
         private int _TextMaxChar = -1;
+
+        private Point _dragStartPoint;
+
+        private bool _isDragging;
 
         public int GetLayer()
         {
@@ -32,23 +36,81 @@
 
         public BaseElement()
         {
+            BackColor = Color.Transparent;
+
             Z_Layer.Add(this);
+
+            MouseDown += BaseElement_MouseDown;
+
+            MouseMove += BaseElement_MouseMove;
+
+            MouseUp += BaseElement_MouseUp;
+        }
+
+        private static void MakeTransparent(Bitmap bitmap)
+        {
+            bitmap.MakeTransparent(Color.Black);
+        }
+
+        private void BaseElement_MouseDown(object? sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _dragStartPoint = e.Location;
+
+                _isDragging = true;
+
+                BringToFront(); 
+            }
+        }
+
+        private void BaseElement_MouseMove(object? sender, MouseEventArgs e)
+        {
+            if (_isDragging)
+            {
+                Location = new((Left + e.X - _dragStartPoint.X), (Top + e.Y - _dragStartPoint.Y));
+            }
+        }
+
+        private void BaseElement_MouseUp(object? sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _isDragging = false;
+
+                ReorderZLayers();
+            }
+        }
+
+        private static void ReorderZLayers()
+        {
+            for (int i = 0; i < Z_Layer.Count; i++)
+            {
+                Z_Layer[i].SendToBack();
+            }
+
+            Z_Layer[0].Parent?.Invalidate();
         }
 
         public void SetElement(ArtEntity entity)
         {
-            BackgroundImage = entity.GetImage();
+            Bitmap? tempBitmap = entity.GetImage();
 
-            Width = entity.Width;
+            if (tempBitmap != null)
+            {
+                MakeTransparent(tempBitmap);
 
-            Height = entity.Height;
+                Image = tempBitmap;
+
+                Width = entity.Width;
+
+                Height = entity.Height;
+            }
         }
 
         public void SetTextElement(string text, int max = -1)
         {
             Text = text;
-
-            TextAlign = ContentAlignment.MiddleCenter;
 
             Width = text.Length * 3;
 
@@ -74,7 +136,7 @@
 
         public Image? GetImage()
         {
-            return BackgroundImage;
+            return Image;
         }
     }
 }
