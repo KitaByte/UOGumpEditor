@@ -1,8 +1,27 @@
-﻿namespace UOGumpEditor
+﻿using UOGumpEditor.UOElements;
+
+namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
         public static UltimaArtLoader? ArtLoader { get; private set; }
+
+        public static readonly List<ImageElement> Z_Layer = [];
+
+        public static void ReorderZLayers()
+        {
+            for (int i = 0; i < Z_Layer.Count; i++)
+            {
+                Z_Layer[i].SendToBack();
+            }
+
+            Z_Layer[0].Parent?.Invalidate();
+        }
+
+        public static void ResetGumpElements()
+        {
+            Z_Layer.Clear();
+        }
 
         public static string? FindDataFile(string dataPath, string search)
         {
@@ -61,6 +80,11 @@
 
             btnOff.BackColor = Color.RoyalBlue;
             btnOff.ForeColor = Color.Black;
+        }
+
+        public static Size GetTextSize(string text, Font font)
+        {
+            return TextRenderer.MeasureText(text, font);
         }
     }
 }

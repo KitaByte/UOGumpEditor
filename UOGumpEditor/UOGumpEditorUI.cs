@@ -70,7 +70,7 @@ namespace UOGumpEditor
 
             foreach (var control in Controls)
             {
-                if (control is BaseElement)
+                if (control is ImageElement)
                 {
                     elements.Add(control);
                 }
@@ -87,7 +87,7 @@ namespace UOGumpEditor
                 }
             }
 
-            BaseElement.ResetGumpElements();
+            UOEditorCore.ResetGumpElements();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -361,7 +361,16 @@ namespace UOGumpEditor
                 {
                     var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
 
-                    BaseElement element = new();
+                    ImageElement element = new();
+
+                    if (IsGump())
+                    {
+                        // Smart select art based on gump name
+                    }
+                    else
+                    {
+                        element.ElementType = ElementTypes.Item;
+                    }
 
                     element.SetElement(entity);
 
@@ -372,7 +381,7 @@ namespace UOGumpEditor
             }
         }
 
-        private void AddArtToCanvas(BaseElement element, Point location)
+        private void AddArtToCanvas(ImageElement element, Point location)
         {
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 

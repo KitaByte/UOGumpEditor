@@ -1,34 +1,8 @@
 ﻿namespace UOGumpEditor.UOElements
 {
-    public enum ElementTypes
-    {
-        AlphaRegion,
-        Background,
-        Image,
-        TiledImage,
-        Item,
-        Button,
-        RadioButton,
-        CheckBox,
-        TextEntry,
-        TextEntryLimited,
-        Html,
-        Label,
-        LabelCropped
-    }
-
-    public class BaseElement : TransparentControl
+    public class ImageElement : TransparentControl
     {
         public ElementTypes ElementType { get; set; }
-
-        private static readonly List<BaseElement> Z_Layer = [];
-
-        public static void ResetGumpElements()
-        {
-            Z_Layer.Clear();
-        }
-
-        private int _TextMaxChar = -1;
 
         private Point _dragStartPoint;
 
@@ -36,14 +10,21 @@
 
         public int GetLayer()
         {
-            return Z_Layer.IndexOf(this);
+            if (UOEditorCore.Z_Layer.Contains(this))
+            {
+                return UOEditorCore.Z_Layer.IndexOf(this);
+            }
+            else
+            {
+                return 0;
+            }
         }
 
-        public BaseElement()
+        public ImageElement()
         {
             BackColor = Color.Transparent;
 
-            Z_Layer.Add(this);
+            UOEditorCore.Z_Layer.Add(this);
 
             MouseDown += BaseElement_MouseDown;
 
@@ -83,18 +64,8 @@
             {
                 _isDragging = false;
 
-                ReorderZLayers();
+                UOEditorCore.ReorderZLayers();
             }
-        }
-
-        private static void ReorderZLayers()
-        {
-            for (int i = 0; i < Z_Layer.Count; i++)
-            {
-                Z_Layer[i].SendToBack();
-            }
-
-            Z_Layer[0].Parent?.Invalidate();
         }
 
         public void SetElement(ArtEntity entity)
@@ -113,20 +84,6 @@
             }
         }
 
-        public void SetTextElement(string text, int max = -1)
-        {
-            Text = text;
-
-            Width = text.Length * 3;
-
-            Height = 16;
-
-            if (max > -1)
-            {
-                _TextMaxChar = max;
-            }
-        }
-
         public (int X, int Y) GetLocation()
         {
             if (Parent != null && Parent is Panel panel)
@@ -135,7 +92,7 @@
             }
             else
             {
-                return (Location.X + 5, Location.Y + 50);
+                return (Location.X, Location.Y + 26);
             }
         }
 
