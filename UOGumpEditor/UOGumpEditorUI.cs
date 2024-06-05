@@ -54,6 +54,8 @@ namespace UOGumpEditor
 
         private void SetLoadingState(bool isLoading)
         {
+            GumpArtButton.Enabled = !isLoading;
+            ItemArtButton.Enabled = !isLoading;
             ArtIDSearchBox.Enabled = !isLoading;
             ArtNameSearchBox.Enabled = !isLoading;
             ArtWidthSearchBox.Enabled = !isLoading;

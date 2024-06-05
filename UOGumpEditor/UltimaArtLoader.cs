@@ -98,11 +98,9 @@ namespace UOGumpEditor
 
                         if (item != null)
                         {
-                            AssetData.Art.Measure(item, out int minX, out int minY, out int maxX, out int maxY);
-
                             lock (ItemArtDict)
                             {
-                                ItemArtDict[i] = new ArtEntity(i, GetItemName(i), maxX - minX, maxY - minY, false);
+                                ItemArtDict[i] = new ArtEntity(i, GetItemName(i), item.Width, item.Height, false);
                             }
 
                             item.Dispose();
