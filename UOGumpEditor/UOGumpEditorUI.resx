@@ -311,7 +311,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="ArtHeightSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 0</value>
+    <value>96, 0</value>
   </data>
   <data name="ArtHeightSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -320,7 +320,7 @@
     <value>Height</value>
   </data>
   <data name="ArtHeightSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 25</value>
+    <value>96, 25</value>
   </data>
   <data name="ArtHeightSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -356,7 +356,7 @@
     <value>Width</value>
   </data>
   <data name="ArtWidthSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 25</value>
+    <value>96, 25</value>
   </data>
   <data name="ArtWidthSearchBox.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>

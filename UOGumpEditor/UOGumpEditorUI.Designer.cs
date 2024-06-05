@@ -163,7 +163,7 @@
             // 
             // ArtHeightSearchBox
             // 
-            ArtHeightSearchBox.BackColor = Color.Goldenrod;
+            ArtHeightSearchBox.BackColor = Color.Khaki;
             ArtHeightSearchBox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
             ArtHeightSearchBox.ForeColor = Color.Black;
@@ -172,7 +172,7 @@
             // 
             // ArtWidthSearchBox
             // 
-            ArtWidthSearchBox.BackColor = Color.Goldenrod;
+            ArtWidthSearchBox.BackColor = Color.Khaki;
             ArtWidthSearchBox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(ArtWidthSearchBox, "ArtWidthSearchBox");
             ArtWidthSearchBox.ForeColor = Color.Black;
@@ -181,7 +181,7 @@
             // 
             // ArtNameSearchBox
             // 
-            ArtNameSearchBox.BackColor = Color.Gold;
+            ArtNameSearchBox.BackColor = Color.PaleGoldenrod;
             ArtNameSearchBox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(ArtNameSearchBox, "ArtNameSearchBox");
             ArtNameSearchBox.ForeColor = Color.Black;
@@ -190,7 +190,7 @@
             // 
             // ArtIDSearchBox
             // 
-            ArtIDSearchBox.BackColor = Color.Khaki;
+            ArtIDSearchBox.BackColor = Color.LightGoldenrodYellow;
             ArtIDSearchBox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(ArtIDSearchBox, "ArtIDSearchBox");
             ArtIDSearchBox.ForeColor = Color.Black;

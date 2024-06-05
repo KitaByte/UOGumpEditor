@@ -240,7 +240,7 @@ namespace UOGumpEditor
 
                 foreach (var entity in results)
                 {
-                    if (results.Count > 0 && results[results.Count/2] == entity)
+                    if (results.Count > 0 && results[results.Count / 2] == entity)
                     {
                         color = Color.WhiteSmoke;
                     }
