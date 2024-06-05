@@ -25,7 +25,7 @@
 
         protected override void OnMove(EventArgs e)
         {
-            Invalidate();
+            Update();
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -51,7 +51,7 @@
             {
                 _image = value;
 
-                Invalidate();
+                Update();
             }
         }
     }
