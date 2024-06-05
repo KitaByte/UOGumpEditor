@@ -151,7 +151,7 @@
     <value>5, 0, 5, 0</value>
   </data>
   <data name="BottomStatusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>984, 22</value>
+    <value>884, 22</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="BottomStatusStrip.TabIndex" type="System.Int32, mscorlib">
@@ -181,15 +181,6 @@
   <data name="ElementStrip.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 70</value>
-  </data>
-  <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
-    <value>ElementStrip</value>
-  </data>
-  <data name="&gt;&gt;ElementStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
   </data>
@@ -208,8 +199,44 @@
   <data name="AddHTMLButton.Text" xml:space="preserve">
     <value>HTML</value>
   </data>
-  <data name="ClearHistoryButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 70</value>
+  </data>
+  <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
+    <value>ElementStrip</value>
+  </data>
+  <data name="&gt;&gt;ElementStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="HistoryListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="HistoryListbox.ItemHeight" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="HistoryListbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 347</value>
+  </data>
+  <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 221</value>
+  </data>
+  <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;HistoryListbox.Name" xml:space="preserve">
+    <value>HistoryListbox</value>
+  </data>
+  <data name="&gt;&gt;HistoryListbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HistoryListbox.Parent" xml:space="preserve">
+    <value>ArtPanel</value>
+  </data>
+  <data name="&gt;&gt;HistoryListbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ClearHistoryButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
   <data name="ClearHistoryButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -242,33 +269,6 @@
     <value>ArtPanel</value>
   </data>
   <data name="&gt;&gt;ClearHistoryButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="HistoryListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="HistoryListbox.ItemHeight" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="HistoryListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 347</value>
-  </data>
-  <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 221</value>
-  </data>
-  <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Name" xml:space="preserve">
-    <value>HistoryListbox</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="HistoryLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -508,90 +508,6 @@
   <data name="&gt;&gt;ArtPicturebox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;ItemArtButton.Name" xml:space="preserve">
-    <value>ItemArtButton</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Name" xml:space="preserve">
-    <value>GumpArtButton</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ArtSelectPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ArtSelectPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="ArtSelectPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtSelectPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 5, 0, 5</value>
-  </data>
-  <data name="ArtSelectPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 42</value>
-  </data>
-  <data name="ArtSelectPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Name" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ArtPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="ArtPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>782, 26</value>
-  </data>
-  <data name="ArtPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="ArtPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 613</value>
-  </data>
-  <data name="ArtPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Name" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="ItemArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
@@ -664,6 +580,66 @@
   <data name="&gt;&gt;GumpArtButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="ArtSelectPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ArtSelectPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="ArtSelectPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ArtSelectPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 5, 0, 5</value>
+  </data>
+  <data name="ArtSelectPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 42</value>
+  </data>
+  <data name="ArtSelectPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ArtSelectPanel.Name" xml:space="preserve">
+    <value>ArtSelectPanel</value>
+  </data>
+  <data name="&gt;&gt;ArtSelectPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ArtSelectPanel.Parent" xml:space="preserve">
+    <value>ArtPanel</value>
+  </data>
+  <data name="&gt;&gt;ArtSelectPanel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ArtPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="ArtPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>682, 26</value>
+  </data>
+  <data name="ArtPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ArtPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="ArtPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 613</value>
+  </data>
+  <data name="ArtPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ArtPanel.Name" xml:space="preserve">
+    <value>ArtPanel</value>
+  </data>
+  <data name="&gt;&gt;ArtPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ArtPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ArtPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="SearchFlowPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -677,7 +653,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>782, 613</value>
+    <value>682, 613</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -702,30 +678,6 @@
   </metadata>
   <data name="TopMenuStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="TopMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="TopMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>984, 26</value>
-  </data>
-  <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="TopMenuStrip.Text" xml:space="preserve">
-    <value>MainMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Name" xml:space="preserve">
-    <value>TopMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="NewButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -907,6 +859,30 @@
   <data name="ExportButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>TextAboveImage</value>
   </data>
+  <data name="TopMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="TopMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>884, 26</value>
+  </data>
+  <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="TopMenuStrip.Text" xml:space="preserve">
+    <value>MainMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;TopMenuStrip.Name" xml:space="preserve">
+    <value>TopMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;TopMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TopMenuStrip.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -914,7 +890,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>984, 661</value>
+    <value>884, 661</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt</value>
@@ -2657,7 +2633,7 @@
 </value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 250</value>
+    <value>900, 700</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>UO Gump Editor</value>

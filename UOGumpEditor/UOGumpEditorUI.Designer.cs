@@ -38,9 +38,11 @@
             AddTextBoxButton = new ToolStripMenuItem();
             AddHTMLButton = new ToolStripMenuItem();
             ArtPanel = new Panel();
-            ClearHistoryButton = new Button();
             HistoryListbox = new ListBox();
+            ClearHistoryButton = new Button();
             HistoryLabel = new Label();
+            SizePanel = new Panel();
+            ArtHeightSearchBox = new TextBox();
             ArtWidthSearchBox = new TextBox();
             ArtNameSearchBox = new TextBox();
             ArtIDSearchBox = new TextBox();
@@ -56,15 +58,13 @@
             SettingsButton = new ToolStripButton();
             GetHelpButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
-            SizePanel = new Panel();
-            ArtHeightSearchBox = new TextBox();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
+            SizePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
             ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
-            SizePanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -118,8 +118,8 @@
             // ArtPanel
             // 
             ArtPanel.BackColor = Color.FromArgb(64, 64, 64);
-            ArtPanel.Controls.Add(ClearHistoryButton);
             ArtPanel.Controls.Add(HistoryListbox);
+            ArtPanel.Controls.Add(ClearHistoryButton);
             ArtPanel.Controls.Add(HistoryLabel);
             ArtPanel.Controls.Add(SizePanel);
             ArtPanel.Controls.Add(ArtNameSearchBox);
@@ -128,6 +128,16 @@
             ArtPanel.Controls.Add(ArtSelectPanel);
             resources.ApplyResources(ArtPanel, "ArtPanel");
             ArtPanel.Name = "ArtPanel";
+            // 
+            // HistoryListbox
+            // 
+            HistoryListbox.BackColor = Color.Gainsboro;
+            HistoryListbox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(HistoryListbox, "HistoryListbox");
+            HistoryListbox.ForeColor = Color.Black;
+            HistoryListbox.FormattingEnabled = true;
+            HistoryListbox.Name = "HistoryListbox";
+            HistoryListbox.SelectedIndexChanged += HistoryListbox_SelectedIndexChanged;
             // 
             // ClearHistoryButton
             // 
@@ -138,21 +148,27 @@
             ClearHistoryButton.UseVisualStyleBackColor = false;
             ClearHistoryButton.Click += ClearHistoryButton_Click;
             // 
-            // HistoryListbox
-            // 
-            HistoryListbox.BackColor = Color.Gainsboro;
-            HistoryListbox.BorderStyle = BorderStyle.None;
-            resources.ApplyResources(HistoryListbox, "HistoryListbox");
-            HistoryListbox.ForeColor = Color.Black;
-            HistoryListbox.FormattingEnabled = true;
-            HistoryListbox.Name = "HistoryListbox";
-            HistoryListbox.SelectedIndexChanged += HistoryListbox_SelectedIndexChanged;
-            // 
             // HistoryLabel
             // 
             resources.ApplyResources(HistoryLabel, "HistoryLabel");
             HistoryLabel.ForeColor = Color.Gold;
             HistoryLabel.Name = "HistoryLabel";
+            // 
+            // SizePanel
+            // 
+            SizePanel.Controls.Add(ArtHeightSearchBox);
+            SizePanel.Controls.Add(ArtWidthSearchBox);
+            resources.ApplyResources(SizePanel, "SizePanel");
+            SizePanel.Name = "SizePanel";
+            // 
+            // ArtHeightSearchBox
+            // 
+            ArtHeightSearchBox.BackColor = Color.Goldenrod;
+            ArtHeightSearchBox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
+            ArtHeightSearchBox.ForeColor = Color.Black;
+            ArtHeightSearchBox.Name = "ArtHeightSearchBox";
+            ArtHeightSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
             // 
             // ArtWidthSearchBox
             // 
@@ -284,22 +300,6 @@
             ExportButton.Name = "ExportButton";
             ExportButton.Click += ExportButton_Click;
             // 
-            // SizePanel
-            // 
-            SizePanel.Controls.Add(ArtHeightSearchBox);
-            SizePanel.Controls.Add(ArtWidthSearchBox);
-            resources.ApplyResources(SizePanel, "SizePanel");
-            SizePanel.Name = "SizePanel";
-            // 
-            // ArtHeightSearchBox
-            // 
-            ArtHeightSearchBox.BackColor = Color.Goldenrod;
-            ArtHeightSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
-            ArtHeightSearchBox.ForeColor = Color.Black;
-            ArtHeightSearchBox.Name = "ArtHeightSearchBox";
-            ArtHeightSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
-            // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
@@ -319,12 +319,12 @@
             ElementStrip.ResumeLayout(false);
             ArtPanel.ResumeLayout(false);
             ArtPanel.PerformLayout();
+            SizePanel.ResumeLayout(false);
+            SizePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).EndInit();
             ArtSelectPanel.ResumeLayout(false);
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
-            SizePanel.ResumeLayout(false);
-            SizePanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
