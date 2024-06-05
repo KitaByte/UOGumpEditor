@@ -218,11 +218,11 @@ namespace UOGumpEditor
             {
                 if (isWidth)
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Width == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.RawWidth == size).ToList();
                 }
                 else
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Height == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.RawHeight == size).ToList();
                 }
 
                 return LoadList(tempEntityList, out list);
