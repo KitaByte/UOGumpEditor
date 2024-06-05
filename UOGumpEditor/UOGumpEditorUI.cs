@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UOGumpEditor.UOElements;
+﻿using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
