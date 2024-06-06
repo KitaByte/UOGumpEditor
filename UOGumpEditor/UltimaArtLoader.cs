@@ -17,8 +17,6 @@ namespace UOGumpEditor
 
         private static readonly Dictionary<int, string> GumpNameList = [];
 
-
-
         public static ArtEntity GetArtEntity(int id, bool isGump)
         {
             if (isGump)

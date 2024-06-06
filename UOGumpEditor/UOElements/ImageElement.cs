@@ -70,7 +70,7 @@
 
         private void ImageElement_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            // Open Element Editor
+            UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
         }
 
         public void SetElement(ArtEntity entity)

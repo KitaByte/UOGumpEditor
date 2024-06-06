@@ -441,6 +441,27 @@ namespace UOGumpEditor
             OpenTextEntry(ElementTypes.Html);
         }
 
+        private UOImageEditor? editor;
+
+        internal void OpenImageEditor(ElementTypes element, ImageElement imageElement)
+        {
+            if (editor != null && editor.Visible)
+            {
+                return;
+            }
+
+            if (imageElement != null)
+            {
+                editor = new(element, imageElement);
+            }
+            else
+            {
+                editor = new(element);
+            }
+
+            editor.Show();
+        }
+
         private UOTextEntry? entry;
 
         public void OpenTextEntry(ElementTypes element, TextElement? textElement = null)
