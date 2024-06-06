@@ -36,6 +36,8 @@
             ElementStrip = new ContextMenuStrip(components);
             AddLabelButton = new ToolStripMenuItem();
             AddHTMLButton = new ToolStripMenuItem();
+            RaiseLayerButton = new ToolStripMenuItem();
+            LowerLayerButton = new ToolStripMenuItem();
             ArtPanel = new Panel();
             HistoryListbox = new ListBox();
             ClearHistoryButton = new Button();
@@ -61,6 +63,7 @@
             CanvasPanel = new Panel();
             NextButton = new Button();
             PreviousButton = new Button();
+            SearchPanel = new Panel();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -68,7 +71,7 @@
             ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
             ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
-            CanvasPanel.SuspendLayout();
+            SearchPanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -98,7 +101,7 @@
             ElementStrip.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(ElementStrip, "ElementStrip");
             ElementStrip.DropShadowEnabled = false;
-            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton });
+            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton, RaiseLayerButton, LowerLayerButton });
             ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
             ElementStrip.Name = "ElementStrip";
             ElementStrip.ShowItemToolTips = false;
@@ -118,6 +121,22 @@
             AddHTMLButton.Image = GumpRes.MenuOpenIcon;
             AddHTMLButton.Name = "AddHTMLButton";
             AddHTMLButton.Click += AddHTMLButton_Click;
+            // 
+            // RaiseLayerButton
+            // 
+            resources.ApplyResources(RaiseLayerButton, "RaiseLayerButton");
+            RaiseLayerButton.ForeColor = Color.WhiteSmoke;
+            RaiseLayerButton.Image = GumpRes.Add;
+            RaiseLayerButton.Name = "RaiseLayerButton";
+            RaiseLayerButton.Click += RaiseLayerButton_Click;
+            // 
+            // LowerLayerButton
+            // 
+            resources.ApplyResources(LowerLayerButton, "LowerLayerButton");
+            LowerLayerButton.ForeColor = Color.WhiteSmoke;
+            LowerLayerButton.Image = GumpRes.Minus;
+            LowerLayerButton.Name = "LowerLayerButton";
+            LowerLayerButton.Click += LowerLayerButton_Click;
             // 
             // ArtPanel
             // 
@@ -335,9 +354,6 @@
             CanvasPanel.AllowDrop = true;
             CanvasPanel.BackColor = Color.Black;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
-            CanvasPanel.Controls.Add(SearchFlowPanel);
-            CanvasPanel.Controls.Add(NextButton);
-            CanvasPanel.Controls.Add(PreviousButton);
             CanvasPanel.Name = "CanvasPanel";
             CanvasPanel.DragDrop += CanvasPanel_DragDrop;
             CanvasPanel.DragEnter += CanvasPanel_DragEnter;
@@ -362,6 +378,15 @@
             PreviousButton.UseVisualStyleBackColor = false;
             PreviousButton.Click += PreviousButton_Click;
             // 
+            // SearchPanel
+            // 
+            SearchPanel.BackColor = Color.Black;
+            SearchPanel.Controls.Add(SearchFlowPanel);
+            SearchPanel.Controls.Add(PreviousButton);
+            SearchPanel.Controls.Add(NextButton);
+            resources.ApplyResources(SearchPanel, "SearchPanel");
+            SearchPanel.Name = "SearchPanel";
+            // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
@@ -369,6 +394,7 @@
             BackColor = Color.White;
             BackgroundImage = GumpRes.UOScreen;
             ContextMenuStrip = ElementStrip;
+            Controls.Add(SearchPanel);
             Controls.Add(CanvasPanel);
             Controls.Add(ArtPanel);
             Controls.Add(BottomStatusStrip);
@@ -389,7 +415,7 @@
             ArtSelectPanel.ResumeLayout(false);
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
-            CanvasPanel.ResumeLayout(false);
+            SearchPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -426,5 +452,8 @@
         private ToolStripMenuItem AddHTMLButton;
         private Button PreviousButton;
         private Button NextButton;
+        private ToolStripMenuItem RaiseLayerButton;
+        private ToolStripMenuItem LowerLayerButton;
+        private Panel SearchPanel;
     }
 }

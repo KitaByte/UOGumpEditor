@@ -286,7 +286,20 @@ namespace UOGumpEditor
                 }
 
                 DisplaySearchResults(results);
+
+                SetMainDisplay(SearchPanel);
             }
+        }
+
+        private void SetMainDisplay(Panel panel)
+        {
+            CanvasPanel.Dock = DockStyle.None;
+
+            SearchPanel.Dock = DockStyle.None;
+
+            panel.Dock = DockStyle.Fill;
+
+            panel.BringToFront();
         }
 
         private void DisplaySearchResults(List<ArtEntity> results)
@@ -371,6 +384,8 @@ namespace UOGumpEditor
             ResetIDSearch();
 
             UOEditorCore.SetImageRenderer(ArtPicturebox, entity);
+
+            SetMainDisplay(CanvasPanel);
         }
 
         private void PreviousButton_Click(object sender, EventArgs e)
@@ -617,6 +632,16 @@ namespace UOGumpEditor
             {
                 DisplayArtWindow();
             }
+        }
+
+        private void RaiseLayerButton_Click(object sender, EventArgs e)
+        {
+            UOEditorCore.MoveLayerUp();
+        }
+
+        private void LowerLayerButton_Click(object sender, EventArgs e)
+        {
+            UOEditorCore.MoveLayerDown();
         }
     }
 }

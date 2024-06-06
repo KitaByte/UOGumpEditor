@@ -1,8 +1,6 @@
-﻿using UOGumpEditor.Assets;
-
-namespace UOGumpEditor.UOElements
+﻿namespace UOGumpEditor.UOElements
 {
-    public class TextElement : Label
+    public class TextElement : Label, IElement
     {
         public ElementTypes ElementType { get; set; }
 
@@ -41,6 +39,8 @@ namespace UOGumpEditor.UOElements
 
         private void BaseElement_MouseDown(object? sender, MouseEventArgs e)
         {
+            UOEditorCore.UpdateElementMove(this);
+
             if (e.Button == MouseButtons.Left)
             {
                 _dragStartPoint = e.Location;
@@ -66,6 +66,8 @@ namespace UOGumpEditor.UOElements
                 _isDragging = false;
 
                 UOEditorCore.ReorderZLayers();
+
+                BringToFront();
             }
         }
 

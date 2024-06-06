@@ -8,19 +8,68 @@ namespace UOGumpEditor
 
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
+        public static IElement? LastElementControl { get; private set; }
+
+        public static void UpdateElementMove(IElement element)
+        {
+            LastElementControl = element;
+        }
+
         public static readonly List<Control> Z_Layer = [];
 
         public static void ReorderZLayers()
         {
-            for (int i = 0; i < Z_Layer.Count; i++)
+            if (Z_Layer.Count > 0 && Z_Layer[0].Parent != null && Z_Layer[0].Parent is Panel panel)
             {
-                if (Z_Layer[i] is ImageElement)
+                for (int i = 0; i < Z_Layer.Count; i++)
                 {
-                    Z_Layer[i].SendToBack();
+                    Z_Layer[i].Parent?.Controls.SetChildIndex(Z_Layer[i], i);
+                }
+
+                foreach (var control in panel.Controls)
+                {
+                    if (control is TextElement te)
+                    {
+                        te.BringToFront();
+                    }
+                }
+
+                panel.Invalidate();
+            }
+        }
+
+        public static void MoveLayerUp()
+        {
+            if (LastElementControl is Control control && Z_Layer.Contains(control))
+            {
+                int currentIndex = Z_Layer.IndexOf(control);
+
+                if (currentIndex > 0)
+                {
+                    Z_Layer.RemoveAt(currentIndex);
+
+                    Z_Layer.Insert(currentIndex - 1, control);
+
+                    ReorderZLayers();
                 }
             }
+        }
 
-            Z_Layer[0].Parent?.Invalidate();
+        public static void MoveLayerDown()
+        {
+            if (LastElementControl is Control control && Z_Layer.Contains(control))
+            {
+                int currentIndex = Z_Layer.IndexOf(control);
+
+                if (currentIndex < Z_Layer.Count - 1)
+                {
+                    Z_Layer.RemoveAt(currentIndex);
+
+                    Z_Layer.Insert(currentIndex + 1, control);
+
+                    ReorderZLayers();
+                }
+            }
         }
 
         public static void AddElement(Control control)

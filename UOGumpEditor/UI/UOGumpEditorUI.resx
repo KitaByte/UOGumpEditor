@@ -170,7 +170,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BottomStatusStrip.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <metadata name="ElementStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>295, 17</value>
@@ -188,7 +188,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 22</value>
+    <value>141, 22</value>
   </data>
   <data name="AddLabelButton.Text" xml:space="preserve">
     <value>Label</value>
@@ -200,13 +200,37 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 22</value>
+    <value>141, 22</value>
   </data>
   <data name="AddHTMLButton.Text" xml:space="preserve">
     <value>HTML</value>
   </data>
+  <data name="RaiseLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="RaiseLayerButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="RaiseLayerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 22</value>
+  </data>
+  <data name="RaiseLayerButton.Text" xml:space="preserve">
+    <value>Raise Last</value>
+  </data>
+  <data name="LowerLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="LowerLayerButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="LowerLayerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 22</value>
+  </data>
+  <data name="LowerLayerButton.Text" xml:space="preserve">
+    <value>Lower Last</value>
+  </data>
   <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 48</value>
+    <value>142, 92</value>
   </data>
   <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
     <value>ElementStrip</value>
@@ -656,7 +680,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ArtPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="SearchFlowPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -671,7 +695,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 524</value>
+    <value>662, 212</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -686,7 +710,7 @@
     <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;SearchFlowPanel.Parent" xml:space="preserve">
-    <value>CanvasPanel</value>
+    <value>SearchPanel</value>
   </data>
   <data name="&gt;&gt;SearchFlowPanel.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -842,10 +866,37 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="CanvasPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="CanvasPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="CanvasPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="CanvasPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>10, 10, 10, 10</value>
+  </data>
+  <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>682, 312</value>
+  </data>
+  <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;CanvasPanel.Name" xml:space="preserve">
+    <value>CanvasPanel</value>
+  </data>
+  <data name="&gt;&gt;CanvasPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CanvasPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CanvasPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="NextButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -860,7 +911,7 @@
     <value>NoControl</value>
   </data>
   <data name="NextButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 569</value>
+    <value>10, 257</value>
   </data>
   <data name="NextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -884,10 +935,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NextButton.Parent" xml:space="preserve">
-    <value>CanvasPanel</value>
+    <value>SearchPanel</value>
   </data>
   <data name="&gt;&gt;NextButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="PreviousButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -926,40 +977,37 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PreviousButton.Parent" xml:space="preserve">
-    <value>CanvasPanel</value>
+    <value>SearchPanel</value>
   </data>
   <data name="&gt;&gt;PreviousButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
-  <data name="CanvasPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="SearchPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 337</value>
   </data>
-  <data name="CanvasPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="CanvasPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="SearchPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="CanvasPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="SearchPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>10, 10, 10, 10</value>
   </data>
-  <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 614</value>
+  <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>682, 302</value>
   </data>
-  <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.Name" xml:space="preserve">
-    <value>CanvasPanel</value>
+  <data name="&gt;&gt;SearchPanel.Name" xml:space="preserve">
+    <value>SearchPanel</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;SearchPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;SearchPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -2744,6 +2792,18 @@
     <value>AddHTMLButton</value>
   </data>
   <data name="&gt;&gt;AddHTMLButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RaiseLayerButton.Name" xml:space="preserve">
+    <value>RaiseLayerButton</value>
+  </data>
+  <data name="&gt;&gt;RaiseLayerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LowerLayerButton.Name" xml:space="preserve">
+    <value>LowerLayerButton</value>
+  </data>
+  <data name="&gt;&gt;LowerLayerButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NewButton.Name" xml:space="preserve">

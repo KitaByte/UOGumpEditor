@@ -1,7 +1,7 @@
 ﻿
 namespace UOGumpEditor.UOElements
 {
-    public class ImageElement : TransparentControl
+    public class ImageElement : TransparentControl, IElement
     {
         public ElementTypes ElementType { get; set; }
 
@@ -31,7 +31,7 @@ namespace UOGumpEditor.UOElements
 
             MouseUp += BaseElement_MouseUp;
 
-            MouseClick += ImageElement_MouseClick;
+            MouseHover += ImageElement_MouseHover;
 
             MouseDoubleClick += ImageElement_MouseDoubleClick;
         }
@@ -43,6 +43,8 @@ namespace UOGumpEditor.UOElements
 
         private void BaseElement_MouseDown(object? sender, MouseEventArgs e)
         {
+            UOEditorCore.UpdateElementMove(this);
+
             if (e.Button == MouseButtons.Left)
             {
                 _dragStartPoint = e.Location;
@@ -71,7 +73,7 @@ namespace UOGumpEditor.UOElements
             }
         }
 
-        private void ImageElement_MouseClick(object? sender, MouseEventArgs e)
+        private void ImageElement_MouseHover(object? sender, EventArgs e)
         {
             if (Tag is ArtEntity ae)
             {
