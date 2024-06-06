@@ -1,4 +1,5 @@
-﻿namespace UOGumpEditor.UOElements
+﻿
+namespace UOGumpEditor.UOElements
 {
     public class ImageElement : TransparentControl
     {
@@ -29,6 +30,8 @@
             MouseMove += BaseElement_MouseMove;
 
             MouseUp += BaseElement_MouseUp;
+
+            MouseClick += ImageElement_MouseClick;
 
             MouseDoubleClick += ImageElement_MouseDoubleClick;
         }
@@ -65,6 +68,14 @@
                 _isDragging = false;
 
                 UOEditorCore.ReorderZLayers();
+            }
+        }
+
+        private void ImageElement_MouseClick(object? sender, MouseEventArgs e)
+        {
+            if (Tag is ArtEntity ae)
+            {
+                UOEditorCore.MainUI?.UpdateElementInfo(ae);
             }
         }
 

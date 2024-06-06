@@ -63,14 +63,16 @@ namespace UOGumpEditor
             ArtLoader = new UltimaArtLoader();
         }
 
-        internal static void ReLoadArt()
+        public static void ReLoadArt()
         {
             UltimaArtLoader.ClearArt();
 
             LoadArt();
         }
 
-        public static void SetImageRenderer(PictureBox pb, ArtEntity entity, ToolStripLabel label)
+        public static ArtEntity? CurrentArtDisplayed { get; private set; }
+
+        public static void SetImageRenderer(PictureBox pb, ArtEntity entity)
         {
             if (entity != null)
             {
@@ -87,7 +89,9 @@ namespace UOGumpEditor
                     pb.SizeMode = PictureBoxSizeMode.CenterImage;
                 }
 
-                label.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
+                CurrentArtDisplayed = entity;
+
+                MainUI?.UpdateElementInfo(entity);
             }
         }
 

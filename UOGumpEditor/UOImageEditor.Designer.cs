@@ -54,7 +54,7 @@
             PropertyTextBox.Margin = new Padding(0);
             PropertyTextBox.MaxLength = 100;
             PropertyTextBox.Name = "PropertyTextBox";
-            PropertyTextBox.PlaceholderText = "< Enter Value Here >";
+            PropertyTextBox.PlaceholderText = "< Enter Value >";
             PropertyTextBox.Size = new Size(264, 25);
             PropertyTextBox.TabIndex = 1;
             PropertyTextBox.TextAlign = HorizontalAlignment.Center;

@@ -4,6 +4,8 @@ namespace UOGumpEditor
 {
     public partial class UOGumpEditorUI : Form
     {
+        private ArtCache? _artCache;
+
         public UOGumpEditorUI()
         {
             InitializeComponent();
@@ -145,6 +147,11 @@ namespace UOGumpEditor
 
         private void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
         {
+            if (UOEditorCore.CurrentArtDisplayed != null)
+            {
+                UpdateElementInfo(UOEditorCore.CurrentArtDisplayed);
+            }
+
             if (sender is PictureBox picBox)
             {
                 if (picBox.Tag is ArtEntity entity && e.Button == MouseButtons.Left)
@@ -167,7 +174,9 @@ namespace UOGumpEditor
                 {
                     if (UltimaArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
                     {
-                        DisplaySearchResults(results);
+                        _artCache = new ArtCache(results);
+
+                        DisplayArtWindow();
                     }
                 }
             }
@@ -183,7 +192,9 @@ namespace UOGumpEditor
             {
                 if (UltimaArtLoader.SearchArtByName(ArtNameSearchBox.Text, IsGump(), out List<ArtEntity> results))
                 {
-                    DisplaySearchResults(results);
+                    _artCache = new ArtCache(results);
+
+                    DisplayArtWindow();
                 }
             }
             else
@@ -204,7 +215,9 @@ namespace UOGumpEditor
                         {
                             if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, true))
                             {
-                                DisplaySearchResults(results);
+                                _artCache = new ArtCache(results);
+
+                                DisplayArtWindow();
                             }
                         }
                     }
@@ -221,7 +234,9 @@ namespace UOGumpEditor
                         {
                             if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, false))
                             {
-                                DisplaySearchResults(results);
+                                _artCache = new ArtCache(results);
+
+                                DisplayArtWindow();
                             }
                         }
                     }
@@ -252,6 +267,42 @@ namespace UOGumpEditor
         private void ClearHistoryButton_Click(object sender, EventArgs e)
         {
             HistoryListbox.Items.Clear();
+        }
+
+        private void SearchFlowPanel_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (_artCache != null && sender is FlowLayoutPanel panel)
+            {
+                if (e.Type == ScrollEventType.SmallDecrement)
+                {
+                    if (_artCache.CanScrollPrev())
+                    {
+                        _artCache.ScrollPrev();
+
+                        DisplayArtWindow();
+                    }
+                }
+
+                if (e.Type == ScrollEventType.SmallIncrement)
+                {
+                    if (_artCache.CanScrollNext())
+                    {
+                        _artCache.ScrollNext();
+
+                        DisplayArtWindow();
+                    }
+                }
+            }
+        }
+
+        private void DisplayArtWindow()
+        {
+            if (_artCache != null)
+            {
+                var results = _artCache.GetCurrentWindow();
+
+                DisplaySearchResults(results);
+            }
         }
 
         private void DisplaySearchResults(List<ArtEntity> results)
@@ -294,6 +345,8 @@ namespace UOGumpEditor
 
                     picBox.Click += PicBox_Click;
 
+                    picBox.MouseHover += PicBox_MouseHover;
+
                     SearchFlowPanel.Controls.Add(picBox);
                 }
 
@@ -314,11 +367,22 @@ namespace UOGumpEditor
             SearchFlowPanel.Visible = false;
         }
 
+        private void PicBox_MouseHover(object? sender, EventArgs e)
+        {
+            if (sender != null && sender is PictureBox picBox)
+            {
+                if (picBox.Tag is ArtEntity entity)
+                {
+                    UpdateElementInfo(entity);
+                }
+            }
+        }
+
         private void DisplayArt(ArtEntity entity)
         {
             ResetIDSearch();
 
-            UOEditorCore.SetImageRenderer(ArtPicturebox, entity, GumpInfoLabel);
+            UOEditorCore.SetImageRenderer(ArtPicturebox, entity);
         }
 
         private void ResetIDSearch()
@@ -523,11 +587,16 @@ namespace UOGumpEditor
             }
         }
 
-        internal void AddToHistory(ArtEntity entity)
+        public void AddToHistory(ArtEntity entity)
         {
             HistoryListbox.Items.Add(entity);
 
             HistoryListbox.Invalidate();
+        }
+
+        public void UpdateElementInfo(ArtEntity entity)
+        {
+            GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
         }
     }
 }

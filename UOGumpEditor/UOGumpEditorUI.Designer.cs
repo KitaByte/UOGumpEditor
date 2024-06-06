@@ -244,6 +244,7 @@
             resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
             SearchFlowPanel.BackColor = Color.FromArgb(32, 32, 32);
             SearchFlowPanel.Name = "SearchFlowPanel";
+            SearchFlowPanel.Scroll += SearchFlowPanel_Scroll;
             // 
             // TopMenuStrip
             // 

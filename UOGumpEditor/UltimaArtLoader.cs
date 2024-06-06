@@ -293,14 +293,7 @@ namespace UOGumpEditor
         {
             if (itemList != null && itemList.Count > 0)
             {
-                if (itemList.Count > UOSettings.Default.DisplayMax)
-                {
-                    list = itemList.GetRange(0, UOSettings.Default.DisplayMax);
-                }
-                else
-                {
-                    list = itemList;
-                }
+                list = itemList;
 
                 return true;
             }

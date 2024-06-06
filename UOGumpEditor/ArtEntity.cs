@@ -25,7 +25,7 @@ namespace UOGumpEditor
 
         public override string ToString()
         {
-            return $"{(IsGump ? "Gump" : "Item")} : {ID}";
+            return $"{ID} : {(IsGump ? $"G-{Name}" : $"I-{Name}")}";
         }
 
         public int CompareTo(ArtEntity? other)

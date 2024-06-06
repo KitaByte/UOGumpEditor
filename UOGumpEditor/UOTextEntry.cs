@@ -67,7 +67,10 @@ namespace UOGumpEditor
         {
             if (TEXTELEMENT != null && UOEditorCore.Z_Layer.Contains(TEXTELEMENT))
             {
-                UOEditorCore.MainUI?.RemoveFromCanvas(TEXTELEMENT);
+                if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    UOEditorCore.MainUI?.RemoveFromCanvas(TEXTELEMENT);
+                }
             }
         }
     }
