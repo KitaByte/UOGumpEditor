@@ -665,13 +665,13 @@
     <value>Fill</value>
   </data>
   <data name="SearchFlowPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 10</value>
+    <value>10, 45</value>
   </data>
   <data name="SearchFlowPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 554</value>
+    <value>662, 524</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -847,47 +847,89 @@
   <data name="CanvasPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="FlowBackButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="NextButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
-  <data name="FlowBackButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="NextButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="FlowBackButton.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="NextButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="FlowBackButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="NextButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="FlowBackButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 564</value>
+  <data name="NextButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 569</value>
   </data>
-  <data name="FlowBackButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="NextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="FlowBackButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 40</value>
+  <data name="NextButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 35</value>
   </data>
-  <data name="FlowBackButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="NextButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="FlowBackButton.Text" xml:space="preserve">
-    <value>Previous Page</value>
+  <data name="NextButton.Text" xml:space="preserve">
+    <value>Next Page</value>
   </data>
-  <data name="FlowBackButton.Visible" type="System.Boolean, mscorlib">
+  <data name="NextButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;FlowBackButton.Name" xml:space="preserve">
-    <value>FlowBackButton</value>
+  <data name="&gt;&gt;NextButton.Name" xml:space="preserve">
+    <value>NextButton</value>
   </data>
-  <data name="&gt;&gt;FlowBackButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;NextButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;FlowBackButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;NextButton.Parent" xml:space="preserve">
     <value>CanvasPanel</value>
   </data>
-  <data name="&gt;&gt;FlowBackButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;NextButton.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="PreviousButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="PreviousButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="PreviousButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="PreviousButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PreviousButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 10</value>
+  </data>
+  <data name="PreviousButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="PreviousButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 35</value>
+  </data>
+  <data name="PreviousButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="PreviousButton.Text" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="PreviousButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;PreviousButton.Name" xml:space="preserve">
+    <value>PreviousButton</value>
+  </data>
+  <data name="&gt;&gt;PreviousButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PreviousButton.Parent" xml:space="preserve">
+    <value>CanvasPanel</value>
+  </data>
+  <data name="&gt;&gt;PreviousButton.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="CanvasPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

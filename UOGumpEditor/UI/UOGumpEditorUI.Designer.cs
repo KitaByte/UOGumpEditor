@@ -59,7 +59,8 @@
             ExportButton = new ToolStripButton();
             ModeButton = new ToolStripButton();
             CanvasPanel = new Panel();
-            FlowBackButton = new Button();
+            NextButton = new Button();
+            PreviousButton = new Button();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -245,7 +246,6 @@
             resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
             SearchFlowPanel.BackColor = Color.FromArgb(32, 32, 32);
             SearchFlowPanel.Name = "SearchFlowPanel";
-            SearchFlowPanel.Scroll += SearchFlowPanel_Scroll;
             // 
             // TopMenuStrip
             // 
@@ -336,19 +336,31 @@
             CanvasPanel.BackColor = Color.Black;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
             CanvasPanel.Controls.Add(SearchFlowPanel);
-            CanvasPanel.Controls.Add(FlowBackButton);
+            CanvasPanel.Controls.Add(NextButton);
+            CanvasPanel.Controls.Add(PreviousButton);
             CanvasPanel.Name = "CanvasPanel";
             CanvasPanel.DragDrop += CanvasPanel_DragDrop;
             CanvasPanel.DragEnter += CanvasPanel_DragEnter;
             // 
-            // FlowBackButton
+            // NextButton
             // 
-            FlowBackButton.BackColor = Color.Brown;
-            resources.ApplyResources(FlowBackButton, "FlowBackButton");
-            FlowBackButton.FlatAppearance.BorderSize = 0;
-            FlowBackButton.Name = "FlowBackButton";
-            FlowBackButton.UseVisualStyleBackColor = false;
-            FlowBackButton.Click += FlowBackButton_Click;
+            NextButton.BackColor = Color.WhiteSmoke;
+            resources.ApplyResources(NextButton, "NextButton");
+            NextButton.FlatAppearance.BorderSize = 0;
+            NextButton.ForeColor = Color.Black;
+            NextButton.Name = "NextButton";
+            NextButton.UseVisualStyleBackColor = false;
+            NextButton.Click += NextButton_Click;
+            // 
+            // PreviousButton
+            // 
+            PreviousButton.BackColor = Color.WhiteSmoke;
+            resources.ApplyResources(PreviousButton, "PreviousButton");
+            PreviousButton.FlatAppearance.BorderSize = 0;
+            PreviousButton.ForeColor = Color.Black;
+            PreviousButton.Name = "PreviousButton";
+            PreviousButton.UseVisualStyleBackColor = false;
+            PreviousButton.Click += PreviousButton_Click;
             // 
             // UOGumpEditorUI
             // 
@@ -365,6 +377,7 @@
             ForeColor = Color.WhiteSmoke;
             Name = "UOGumpEditorUI";
             Load += UOGumpEditorUI_Load;
+            Resize += UOGumpEditorUI_Resize;
             BottomStatusStrip.ResumeLayout(false);
             BottomStatusStrip.PerformLayout();
             ElementStrip.ResumeLayout(false);
@@ -411,6 +424,7 @@
         private Panel CanvasPanel;
         private ToolStripButton ModeButton;
         private ToolStripMenuItem AddHTMLButton;
-        private Button FlowBackButton;
+        private Button PreviousButton;
+        private Button NextButton;
     }
 }

@@ -269,41 +269,20 @@ namespace UOGumpEditor
             HistoryListbox.Items.Clear();
         }
 
-        private void SearchFlowPanel_Scroll(object sender, ScrollEventArgs e)
-        {
-            if (_artCache != null && sender is FlowLayoutPanel)
-            {
-                if (e.Type == ScrollEventType.SmallDecrement)
-                {
-                    if (_artCache.CanScrollPrev())
-                    {
-                        _artCache.ScrollPrev();
-
-                        DisplayArtWindow();
-                    }
-                }
-
-                if (e.Type == ScrollEventType.SmallIncrement)
-                {
-                    if (_artCache.CanScrollNext())
-                    {
-                        _artCache.ScrollNext();
-
-                        DisplayArtWindow();
-                    }
-                }
-            }
-        }
-
         private void DisplayArtWindow()
         {
             if (_artCache != null)
             {
-                var results = _artCache.GetCurrentWindow();
+                var results = _artCache.GetCurrentWindow(SearchFlowPanel);
 
-                if (results.Count < UOSettings.Default.DisplayMax && _artCache.CanScrollPrev())
+                if (_artCache.CanScrollPrev())
                 {
-                    FlowBackButton.Visible = true;
+                    PreviousButton.Visible = true;
+                }
+
+                if (_artCache.CanScrollNext())
+                {
+                    NextButton.Visible = true;
                 }
 
                 DisplaySearchResults(results);
@@ -371,7 +350,9 @@ namespace UOGumpEditor
 
             SearchFlowPanel.Visible = false;
 
-            FlowBackButton.Visible = false;
+            PreviousButton.Visible = false;
+
+            NextButton.Visible = false;
         }
 
         private void PicBox_MouseHover(object? sender, EventArgs e)
@@ -392,13 +373,25 @@ namespace UOGumpEditor
             UOEditorCore.SetImageRenderer(ArtPicturebox, entity);
         }
 
-        private void FlowBackButton_Click(object sender, EventArgs e)
+        private void PreviousButton_Click(object sender, EventArgs e)
         {
-            FlowBackButton.Visible = false;
+            PreviousButton.Visible = false;
 
             if (_artCache != null && _artCache.CanScrollPrev())
             {
                 _artCache.ScrollPrev();
+
+                DisplayArtWindow();
+            }
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            NextButton.Visible = false;
+
+            if (_artCache != null && _artCache.CanScrollNext())
+            {
+                _artCache.ScrollNext();
 
                 DisplayArtWindow();
             }
@@ -616,6 +609,14 @@ namespace UOGumpEditor
         public void UpdateElementInfo(ArtEntity entity)
         {
             GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
+        }
+
+        private void UOGumpEditorUI_Resize(object sender, EventArgs e)
+        {
+            if (SearchFlowPanel.Visible)
+            {
+                DisplayArtWindow();
+            }
         }
     }
 }

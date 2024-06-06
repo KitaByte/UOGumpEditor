@@ -37,7 +37,7 @@ namespace UOGumpEditor {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        [global::System.Configuration.DefaultSettingValueAttribute("160")]
         public int DisplayMax {
             get {
                 return ((int)(this["DisplayMax"]));
