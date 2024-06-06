@@ -271,7 +271,7 @@ namespace UOGumpEditor
 
         private void SearchFlowPanel_Scroll(object sender, ScrollEventArgs e)
         {
-            if (_artCache != null && sender is FlowLayoutPanel panel)
+            if (_artCache != null && sender is FlowLayoutPanel)
             {
                 if (e.Type == ScrollEventType.SmallDecrement)
                 {
@@ -300,6 +300,11 @@ namespace UOGumpEditor
             if (_artCache != null)
             {
                 var results = _artCache.GetCurrentWindow();
+
+                if (results.Count < UOSettings.Default.DisplayMax)
+                {
+                    FlowBackButton.Visible = true;
+                }
 
                 DisplaySearchResults(results);
             }
@@ -365,6 +370,8 @@ namespace UOGumpEditor
             }
 
             SearchFlowPanel.Visible = false;
+
+            FlowBackButton.Visible = false;
         }
 
         private void PicBox_MouseHover(object? sender, EventArgs e)
@@ -383,6 +390,18 @@ namespace UOGumpEditor
             ResetIDSearch();
 
             UOEditorCore.SetImageRenderer(ArtPicturebox, entity);
+        }
+
+        private void FlowBackButton_Click(object sender, EventArgs e)
+        {
+            FlowBackButton.Visible = false;
+
+            if (_artCache != null && _artCache.CanScrollPrev())
+            {
+                _artCache.ScrollPrev();
+
+                DisplayArtWindow();
+            }
         }
 
         private void ResetIDSearch()

@@ -671,7 +671,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 594</value>
+    <value>662, 554</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -846,6 +846,48 @@
   </data>
   <data name="CanvasPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="FlowBackButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="FlowBackButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="FlowBackButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="FlowBackButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FlowBackButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 564</value>
+  </data>
+  <data name="FlowBackButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="FlowBackButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 40</value>
+  </data>
+  <data name="FlowBackButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="FlowBackButton.Text" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="FlowBackButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;FlowBackButton.Name" xml:space="preserve">
+    <value>FlowBackButton</value>
+  </data>
+  <data name="&gt;&gt;FlowBackButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FlowBackButton.Parent" xml:space="preserve">
+    <value>CanvasPanel</value>
+  </data>
+  <data name="&gt;&gt;FlowBackButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="CanvasPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

@@ -59,6 +59,7 @@
             ExportButton = new ToolStripButton();
             ModeButton = new ToolStripButton();
             CanvasPanel = new Panel();
+            FlowBackButton = new Button();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -335,9 +336,19 @@
             CanvasPanel.BackColor = Color.Black;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
             CanvasPanel.Controls.Add(SearchFlowPanel);
+            CanvasPanel.Controls.Add(FlowBackButton);
             CanvasPanel.Name = "CanvasPanel";
             CanvasPanel.DragDrop += CanvasPanel_DragDrop;
             CanvasPanel.DragEnter += CanvasPanel_DragEnter;
+            // 
+            // FlowBackButton
+            // 
+            FlowBackButton.BackColor = Color.Brown;
+            resources.ApplyResources(FlowBackButton, "FlowBackButton");
+            FlowBackButton.FlatAppearance.BorderSize = 0;
+            FlowBackButton.Name = "FlowBackButton";
+            FlowBackButton.UseVisualStyleBackColor = false;
+            FlowBackButton.Click += FlowBackButton_Click;
             // 
             // UOGumpEditorUI
             // 
@@ -400,5 +411,6 @@
         private Panel CanvasPanel;
         private ToolStripButton ModeButton;
         private ToolStripMenuItem AddHTMLButton;
+        private Button FlowBackButton;
     }
 }
