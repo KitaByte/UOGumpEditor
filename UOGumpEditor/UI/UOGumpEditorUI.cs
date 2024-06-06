@@ -301,7 +301,7 @@ namespace UOGumpEditor
             {
                 var results = _artCache.GetCurrentWindow();
 
-                if (results.Count < UOSettings.Default.DisplayMax)
+                if (results.Count < UOSettings.Default.DisplayMax && _artCache.CanScrollPrev())
                 {
                     FlowBackButton.Visible = true;
                 }
