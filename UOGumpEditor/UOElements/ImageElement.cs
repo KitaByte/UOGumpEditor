@@ -73,9 +73,11 @@
             UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
         }
 
+        Bitmap? tempBitmap;
+
         public void SetElement(ArtEntity entity)
         {
-            Bitmap? tempBitmap = entity.GetImage();
+            tempBitmap = entity.GetImage();
 
             if (tempBitmap != null)
             {
@@ -87,6 +89,8 @@
 
                 Height = entity.Height;
             }
+
+            Invalidate();
         }
 
         public (int X, int Y) GetLocation()

@@ -415,6 +415,13 @@ namespace UOGumpEditor
 
                                             break;
                                         }
+
+                                    default:
+                                        {
+                                            element.ElementType = ElementTypes.Image;
+
+                                            break;
+                                        }
                                 }
                             }
                         }
