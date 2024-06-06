@@ -35,6 +35,7 @@
             GumpInfoLabel = new ToolStripStatusLabel();
             ElementStrip = new ContextMenuStrip(components);
             AddLabelButton = new ToolStripMenuItem();
+            AddHTMLButton = new ToolStripMenuItem();
             ArtPanel = new Panel();
             HistoryListbox = new ListBox();
             ClearHistoryButton = new Button();
@@ -92,11 +93,13 @@
             // 
             // ElementStrip
             // 
-            ElementStrip.BackColor = Color.DimGray;
+            ElementStrip.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(ElementStrip, "ElementStrip");
-            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton });
+            ElementStrip.DropShadowEnabled = false;
+            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton });
             ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
             ElementStrip.Name = "ElementStrip";
+            ElementStrip.ShowItemToolTips = false;
             // 
             // AddLabelButton
             // 
@@ -105,6 +108,14 @@
             AddLabelButton.Image = GumpRes.MenuIcon;
             AddLabelButton.Name = "AddLabelButton";
             AddLabelButton.Click += AddLabelButton_Click;
+            // 
+            // AddHTMLButton
+            // 
+            resources.ApplyResources(AddHTMLButton, "AddHTMLButton");
+            AddHTMLButton.ForeColor = Color.WhiteSmoke;
+            AddHTMLButton.Image = GumpRes.MenuOpenIcon;
+            AddHTMLButton.Name = "AddHTMLButton";
+            AddHTMLButton.Click += AddHTMLButton_Click;
             // 
             // ArtPanel
             // 
@@ -194,7 +205,7 @@
             // 
             // ArtPicturebox
             // 
-            ArtPicturebox.BackColor = Color.White;
+            ArtPicturebox.BackColor = Color.Black;
             resources.ApplyResources(ArtPicturebox, "ArtPicturebox");
             ArtPicturebox.BorderStyle = BorderStyle.FixedSingle;
             ArtPicturebox.Name = "ArtPicturebox";
@@ -387,5 +398,6 @@
         private TextBox ArtHeightSearchBox;
         private Panel CanvasPanel;
         private ToolStripButton ModeButton;
+        private ToolStripMenuItem AddHTMLButton;
     }
 }

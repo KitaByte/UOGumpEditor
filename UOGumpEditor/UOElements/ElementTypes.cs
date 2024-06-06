@@ -4,16 +4,15 @@
     {
         AlphaRegion,
         Background,
-        Image,
-        TiledImage,
-        Item,
         Button,
-        RadioButton,
         CheckBox,
+        Html,
+        Image,
+        Item,
+        Label,
+        RadioButton,
         TextEntry,
         TextEntryLimited,
-        Html,
-        Label,
-        LabelCropped
+        TiledImage
     }
 }

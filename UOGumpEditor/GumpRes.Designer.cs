@@ -136,6 +136,16 @@ namespace UOGumpEditor {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MenuOpenIcon {
+            get {
+                object obj = ResourceManager.GetObject("MenuOpenIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ProductIcon {
             get {
                 object obj = ResourceManager.GetObject("ProductIcon", resourceCulture);

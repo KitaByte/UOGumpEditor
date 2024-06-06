@@ -28,6 +28,10 @@ namespace UOGumpEditor
                     UOSettings.Default.UO_Folder = dlg.SelectedPath;
 
                     UOSettings.Default.Save();
+
+                    UOEditorCore.LoadArt();
+
+                    LoadArtAsync();
                 }
             }
         }
@@ -58,8 +62,9 @@ namespace UOGumpEditor
             NewButton.Enabled = !isLoading;
             SaveButton.Enabled = !isLoading;
             LoadButton.Enabled = !isLoading;
-            SettingsButton.Enabled = !isLoading;
             ExportButton.Enabled = !isLoading;
+            ModeButton.Enabled = !isLoading;
+            SettingsButton.Enabled = !isLoading;
             ElementStrip.Enabled = !isLoading;
             GumpArtButton.Enabled = !isLoading;
             ItemArtButton.Enabled = !isLoading;
@@ -109,6 +114,10 @@ namespace UOGumpEditor
             // Search Display Max
 
             // Background Image
+
+            // Art Viewer Background Color
+
+            // Font Size
 
             UOSettings.Default.Reset();
 
@@ -424,31 +433,36 @@ namespace UOGumpEditor
 
         private void AddLabelButton_Click(object sender, EventArgs e)
         {
-            OpenTextEntry();
+            OpenTextEntry(ElementTypes.Label);
+        }
+
+        private void AddHTMLButton_Click(object sender, EventArgs e)
+        {
+            OpenTextEntry(ElementTypes.Html);
         }
 
         private UOTextEntry? entry;
 
-        public void OpenTextEntry(TextElement? element = null)
+        public void OpenTextEntry(ElementTypes element, TextElement? textElement = null)
         {
             if (entry != null && entry.Visible)
             {
                 return;
             }
 
-            if (element != null)
+            if (textElement != null)
             {
-                entry = new(element);
+                entry = new(element, textElement);
             }
             else
             {
-                entry = new();
+                entry = new(element);
             }
 
             entry.Show();
         }
 
-        public void AddTextElement(string text, int hue)
+        public void AddTextElement(string text, Color hue)
         {
             TextElement element = new()
             {

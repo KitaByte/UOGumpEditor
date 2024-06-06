@@ -122,7 +122,7 @@
             MaximizeBox = false;
             MaximumSize = new Size(300, 150);
             MinimizeBox = false;
-            MinimumSize = new Size(300, 150);
+            MinimumSize = new Size(300, 116);
             Name = "UOTextEntry";
             Padding = new Padding(10);
             ShowInTaskbar = false;

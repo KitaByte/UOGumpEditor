@@ -106,7 +106,7 @@
             return Image;
         }
 
-        private List<ArtEntity> BackgroundArt;
+        private List<ArtEntity>? BackgroundArt;
 
         public void LoadBackground()
         {
@@ -132,7 +132,7 @@
             }
         }
 
-        private List<ArtEntity> ButtonArt;
+        private List<ArtEntity>? ButtonArt;
 
         public void LoadButton()
         {

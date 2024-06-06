@@ -181,17 +181,32 @@
   <data name="ElementStrip.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
+  <data name="AddLabelButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
   <data name="AddLabelButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 22</value>
+    <value>112, 22</value>
   </data>
   <data name="AddLabelButton.Text" xml:space="preserve">
     <value>Label</value>
   </data>
+  <data name="AddHTMLButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="AddHTMLButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 22</value>
+  </data>
+  <data name="AddHTMLButton.Text" xml:space="preserve">
+    <value>HTML</value>
+  </data>
   <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 26</value>
+    <value>113, 48</value>
   </data>
   <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
     <value>ElementStrip</value>
@@ -2639,6 +2654,12 @@
     <value>AddLabelButton</value>
   </data>
   <data name="&gt;&gt;AddLabelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddHTMLButton.Name" xml:space="preserve">
+    <value>AddHTMLButton</value>
+  </data>
+  <data name="&gt;&gt;AddHTMLButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NewButton.Name" xml:space="preserve">

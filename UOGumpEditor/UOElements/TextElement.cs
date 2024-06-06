@@ -71,25 +71,16 @@ namespace UOGumpEditor.UOElements
 
         private void ImageElement_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.MainUI?.OpenTextEntry(this);
+            UOEditorCore.MainUI?.OpenTextEntry(ElementType, this);
         }
 
-        public void SetText(string text, int hue = 0)
+        public void SetText(string text, Color hue)
         {
             Text = text;
 
             Font = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
 
-            if (hue > 0)
-            {
-                var color = AssetData.Hues.GetHue(hue);
-
-                ForeColor = AssetData.Hues.Entries[53].Colors.First();
-            }
-            else
-            {
-                ForeColor = Color.White;
-            }
+            ForeColor = hue;
 
             Size size = UOEditorCore.GetTextSize(text, Font);
 
