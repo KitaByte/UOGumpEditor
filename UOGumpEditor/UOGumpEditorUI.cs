@@ -356,7 +356,58 @@ namespace UOGumpEditor
 
                         if (IsGump())
                         {
-                            // Smart select art based on gump name
+                            if (entity.Name.StartsWith("Background"))
+                            {
+                                element.ElementType = ElementTypes.Background;
+
+                                element.LoadBackground();
+                            }
+                            else
+                            {
+                                switch (entity.Name)
+                                {
+                                    case "Button":
+                                        {
+                                            element.ElementType = ElementTypes.Button;
+
+                                            element.LoadButton();
+
+                                            break;
+                                        }
+
+                                    case "Radio":
+                                        {
+                                            element.ElementType = ElementTypes.RadioButton;
+
+                                            element.LoadButton();
+
+                                            break;
+                                        }
+
+                                    case "Check":
+                                        {
+                                            element.ElementType = ElementTypes.CheckBox;
+
+                                            element.LoadButton();
+
+                                            break;
+                                        }
+
+                                    case "TextEntry":
+                                        {
+                                            element.ElementType = ElementTypes.TextEntry;
+
+                                            break;
+                                        }
+
+                                    case "AlphaRegion":
+                                        {
+                                            element.ElementType = ElementTypes.AlphaRegion;
+
+                                            break;
+                                        }
+                                }
+                            }
                         }
                         else
                         {

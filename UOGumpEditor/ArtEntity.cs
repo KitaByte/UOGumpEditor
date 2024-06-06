@@ -1,8 +1,9 @@
-﻿using UOGumpEditor.Assets;
+﻿using System.Text.RegularExpressions;
+using UOGumpEditor.Assets;
 
 namespace UOGumpEditor
 {
-    public class ArtEntity(int id, string name, int w, int h, bool isGump)
+    public class ArtEntity(int id, string name, int w, int h, bool isGump) : IComparable<ArtEntity>
     {
         public bool IsGump { get; init; } = isGump;
         public int ID { get; init; } = id;
@@ -25,6 +26,42 @@ namespace UOGumpEditor
         public override string ToString()
         {
             return $"{(IsGump ? "Gump" : "Item")} : {ID}";
+        }
+
+        public int CompareTo(ArtEntity? other)
+        {
+            if (other == null) return 1;
+
+            var nameX = GetAlphabeticPart(Name);
+
+            var nameY = GetAlphabeticPart(other.Name);
+
+            var result = string.Compare(nameX, nameY, StringComparison.Ordinal);
+
+            if (result == 0)
+            {
+                var numberX = GetNumericPart(Name);
+
+                var numberY = GetNumericPart(other.Name);
+
+                result = numberX.CompareTo(numberY);
+            }
+
+            return result;
+        }
+
+        private static string GetAlphabeticPart(string name)
+        {
+            var match = Regex.Match(name, @"^[a-zA-Z]+");
+
+            return match.Value;
+        }
+
+        private static int GetNumericPart(string name)
+        {
+            var match = Regex.Match(name, @"\d+$");
+
+            return match.Success ? int.Parse(match.Value) : 0;
         }
     }
 }

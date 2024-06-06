@@ -17,6 +17,8 @@ namespace UOGumpEditor
 
         private static readonly Dictionary<int, string> GumpNameList = [];
 
+
+
         public static ArtEntity GetArtEntity(int id, bool isGump)
         {
             if (isGump)
@@ -90,7 +92,7 @@ namespace UOGumpEditor
             }
         }
 
-        public static void DaveGumpNames()
+        public static void SaveGumpNames()
         {
             if (GumpNameList.Count > 0)
             {

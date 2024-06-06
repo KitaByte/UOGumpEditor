@@ -105,5 +105,45 @@
         {
             return Image;
         }
+
+        private List<ArtEntity> BackgroundArt;
+
+        public void LoadBackground()
+        {
+            BackgroundArt = [];
+
+            if (Tag != null && Tag is ArtEntity ae)
+            {
+                if (UltimaArtLoader.SearchArtByName(ae.Name[..^1], true, out List<ArtEntity> searchList))
+                {
+                    if (searchList.Count > 0)
+                    {
+                        foreach (ArtEntity entity in searchList)
+                        {
+                            BackgroundArt.Add(entity);
+                        }
+
+                        if (BackgroundArt.Count > 0)
+                        {
+                            BackgroundArt.Sort();
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<ArtEntity> ButtonArt;
+
+        public void LoadButton()
+        {
+            ButtonArt = [];
+
+            if (Tag != null && Tag is ArtEntity ae)
+            {
+                ButtonArt.Add(ae);
+
+                ButtonArt.Add(UltimaArtLoader.GetArtEntity(ae.ID + 1, true));
+            }
+        }
     }
 }
