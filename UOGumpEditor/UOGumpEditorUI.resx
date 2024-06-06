@@ -181,26 +181,17 @@
   <data name="ElementStrip.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt, style=Bold</value>
   </data>
+  <data name="AddLabelButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
   <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>108, 22</value>
   </data>
   <data name="AddLabelButton.Text" xml:space="preserve">
     <value>Label</value>
   </data>
-  <data name="AddTextBoxButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="AddTextBoxButton.Text" xml:space="preserve">
-    <value>Textbox</value>
-  </data>
-  <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
-  </data>
-  <data name="AddHTMLButton.Text" xml:space="preserve">
-    <value>HTML</value>
-  </data>
   <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 70</value>
+    <value>109, 26</value>
   </data>
   <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
     <value>ElementStrip</value>
@@ -218,7 +209,7 @@
     <value>5, 347</value>
   </data>
   <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 221</value>
+    <value>192, 222</value>
   </data>
   <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -245,7 +236,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="ClearHistoryButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 568</value>
+    <value>5, 569</value>
   </data>
   <data name="ClearHistoryButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -626,7 +617,7 @@
     <value>Right</value>
   </data>
   <data name="ArtPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>682, 26</value>
+    <value>682, 25</value>
   </data>
   <data name="ArtPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -635,7 +626,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="ArtPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 613</value>
+    <value>202, 614</value>
   </data>
   <data name="ArtPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -665,7 +656,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 593</value>
+    <value>662, 594</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -691,38 +682,23 @@
   <data name="TopMenuStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="NewButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="NewButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="NewButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="NewButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="NewButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="NewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="NewButton.Text" xml:space="preserve">
-    <value>NEW</value>
+    <value>23, 21</value>
   </data>
   <data name="NewButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
+    <value>Overlay</value>
   </data>
-  <data name="SaveButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="NewButton.ToolTipText" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="SaveButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -730,29 +706,17 @@
   <data name="SaveButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="SaveButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="SaveButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="SaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="SaveButton.Text" xml:space="preserve">
-    <value>SAVE</value>
+    <value>23, 21</value>
   </data>
   <data name="SaveButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
+    <value>Overlay</value>
   </data>
-  <data name="LoadButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="SaveButton.ToolTipText" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="LoadButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -760,59 +724,17 @@
   <data name="LoadButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="LoadButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="LoadButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="LoadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="LoadButton.Text" xml:space="preserve">
-    <value>LOAD</value>
+    <value>23, 21</value>
   </data>
   <data name="LoadButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
+    <value>Overlay</value>
   </data>
-  <data name="SettingsButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="SettingsButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="SettingsButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="SettingsButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="SettingsButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="SettingsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="SettingsButton.Text" xml:space="preserve">
-    <value>SETTINGS</value>
-  </data>
-  <data name="SettingsButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
-  </data>
-  <data name="GetHelpButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="LoadButton.ToolTipText" xml:space="preserve">
+    <value>Load</value>
   </data>
   <data name="GetHelpButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -820,29 +742,35 @@
   <data name="GetHelpButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="GetHelpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="GetHelpButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="GetHelpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 22</value>
-  </data>
-  <data name="GetHelpButton.Text" xml:space="preserve">
-    <value>HELP</value>
+    <value>23, 21</value>
   </data>
   <data name="GetHelpButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
+    <value>Overlay</value>
   </data>
-  <data name="ExportButton.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="GetHelpButton.ToolTipText" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="SettingsButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="SettingsButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="SettingsButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="SettingsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 21</value>
+  </data>
+  <data name="SettingsButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>Overlay</value>
+  </data>
+  <data name="SettingsButton.ToolTipText" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="ExportButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -850,32 +778,38 @@
   <data name="ExportButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="ExportButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACRSURBVDhPY/j27dt/SjDYACcnJ7IwigEf3n8kCZNswPNb
-        J/+f6DYF0yA+yQac6Db5f6hWCmwIiE+mC0wIu2DS2Vf/F1x6DefjwlgNyNr34r/0wkdgTMgQDAOQNRNj
-        CIoBOg0rMTTDMLIhIHbriZeYBmDTiIxBGkEYxge5liQDsGGQqykyAISpZwAlmIEywMAAAAc1/Jwvt6sN
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="ExportButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="ExportButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 22</value>
-  </data>
-  <data name="ExportButton.Text" xml:space="preserve">
-    <value>EXPORT</value>
+    <value>23, 21</value>
   </data>
   <data name="ExportButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>TextAboveImage</value>
+    <value>Overlay</value>
+  </data>
+  <data name="ExportButton.ToolTipText" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ModeButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="ModeButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="ModeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="ModeButton.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>Overlay</value>
+  </data>
+  <data name="ModeButton.ToolTipText" xml:space="preserve">
+    <value>Canvas Mode</value>
   </data>
   <data name="TopMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="TopMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 26</value>
+    <value>884, 25</value>
   </data>
   <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -902,7 +836,7 @@
     <value>Fill</value>
   </data>
   <data name="CanvasPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 26</value>
+    <value>0, 25</value>
   </data>
   <data name="CanvasPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -911,7 +845,7 @@
     <value>10, 10, 10, 10</value>
   </data>
   <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 613</value>
+    <value>682, 614</value>
   </data>
   <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -933,6 +867,9 @@
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
+  </data>
+  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 661</value>
@@ -2704,18 +2641,6 @@
   <data name="&gt;&gt;AddLabelButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;AddTextBoxButton.Name" xml:space="preserve">
-    <value>AddTextBoxButton</value>
-  </data>
-  <data name="&gt;&gt;AddTextBoxButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;AddHTMLButton.Name" xml:space="preserve">
-    <value>AddHTMLButton</value>
-  </data>
-  <data name="&gt;&gt;AddHTMLButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;NewButton.Name" xml:space="preserve">
     <value>NewButton</value>
   </data>
@@ -2734,22 +2659,28 @@
   <data name="&gt;&gt;LoadButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SettingsButton.Name" xml:space="preserve">
-    <value>SettingsButton</value>
-  </data>
-  <data name="&gt;&gt;SettingsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;GetHelpButton.Name" xml:space="preserve">
     <value>GetHelpButton</value>
   </data>
   <data name="&gt;&gt;GetHelpButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;SettingsButton.Name" xml:space="preserve">
+    <value>SettingsButton</value>
+  </data>
+  <data name="&gt;&gt;SettingsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ExportButton.Name" xml:space="preserve">
     <value>ExportButton</value>
   </data>
   <data name="&gt;&gt;ExportButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ModeButton.Name" xml:space="preserve">
+    <value>ModeButton</value>
+  </data>
+  <data name="&gt;&gt;ModeButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

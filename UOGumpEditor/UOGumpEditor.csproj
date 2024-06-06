@@ -12,15 +12,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\GumpNames.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="BBIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="GumpRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GumpRes.resx</DependentUpon>
+    </Compile>
     <Compile Update="UOSettings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>UOSettings.settings</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="GumpRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GumpRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

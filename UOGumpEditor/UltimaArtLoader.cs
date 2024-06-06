@@ -1,14 +1,21 @@
-﻿using UOGumpEditor.Assets;
+﻿using System.Text;
+using UOGumpEditor.Assets;
 
 namespace UOGumpEditor
 {
     public class UltimaArtLoader
     {
+        private static readonly string DataFolder = Path.Combine(Directory.GetCurrentDirectory(), "DataFiles");
+
+        private static readonly string GumpNameFile = Path.Combine(DataFolder, "GumpNames.txt");
+
         public static bool IsLoaded { get; private set; } = false;
 
         private static readonly Dictionary<int, ArtEntity> GumpArtDict = [];
 
         private static readonly Dictionary<int, ArtEntity> ItemArtDict = [];
+
+        private static readonly Dictionary<int, string> GumpNameList = [];
 
         public static ArtEntity GetArtEntity(int id, bool isGump)
         {
@@ -49,12 +56,66 @@ namespace UOGumpEditor
             AssetData.Clear();
         }
 
+        private static void LoadGumpNames()
+        {
+            if (!Directory.Exists(DataFolder))
+            {
+                Directory.CreateDirectory(DataFolder);
+            }
+
+            if (!File.Exists(GumpNameFile))
+            {
+                File.WriteAllText(GumpNameFile, GumpRes.GumpNames);
+            }
+
+            if (GumpNameList.Count == 0)
+            {
+                var names = File.ReadAllLines(GumpNameFile);
+
+                if (names.Length > 0)
+                {
+                    foreach (var name in names)
+                    {
+                        var keyValPair = name.Split(':');
+
+                        if (int.TryParse(keyValPair[0], out int key) && keyValPair.Length == 2)
+                        {
+                            if (!GumpNameList.ContainsKey(key))
+                            {
+                                GumpNameList.Add(key, keyValPair[1]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void DaveGumpNames()
+        {
+            if (GumpNameList.Count > 0)
+            {
+                StringBuilder sb = new();
+
+                foreach (var name in GumpNameList)
+                {
+                    sb.AppendLine($"{name.Key}:{name.Value}");
+                }
+
+                if (sb.Length > 0)
+                {
+                    File.WriteAllText(GumpNameFile, sb.ToString());
+                }
+            }
+        }
+
         public static async Task LoadAllGumpArtAsync()
         {
             if (IsLoaded && AssetData.Gumps != null)
             {
                 await Task.Run(() =>
                 {
+                    LoadGumpNames();
+
                     Bitmap? gump;
 
                     for (int i = 0; i < AssetData.Gumps.Length; i++)
@@ -121,9 +182,14 @@ namespace UOGumpEditor
 
         private static string GetGumpName(int i)
         {
-            // Get Element Name for Art : ie: Button
-
-            return $"Gump_{i}";
+            if (GumpNameList.TryGetValue(i, out string? value))
+            {
+                return value;
+            }
+            else
+            {
+                return $"Image";
+            }
         }
 
         private static string cachedName = "";

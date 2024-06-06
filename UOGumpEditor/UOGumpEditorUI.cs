@@ -90,6 +90,16 @@ namespace UOGumpEditor
 
         }
 
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModeButton_Click(object sender, EventArgs e)
+        {
+            CanvasPanel.BackColor = CanvasPanel.BackColor == Color.Black ? Color.Transparent : Color.Black;
+        }
+
         private void Settings_Click(object sender, EventArgs e)
         {
             // Set Language
@@ -98,14 +108,11 @@ namespace UOGumpEditor
 
             // Search Display Max
 
+            // Background Image
+
             UOSettings.Default.Reset();
 
             UOSettings.Default.Save();
-        }
-
-        private void ExportButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void EditorHelpButton_Click(object sender, EventArgs e)
@@ -340,7 +347,7 @@ namespace UOGumpEditor
                     {
                         var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
 
-                        ImageElement element = new() 
+                        ImageElement element = new()
                         {
                             Tag = entity
                         };

@@ -35,8 +35,6 @@
             GumpInfoLabel = new ToolStripStatusLabel();
             ElementStrip = new ContextMenuStrip(components);
             AddLabelButton = new ToolStripMenuItem();
-            AddTextBoxButton = new ToolStripMenuItem();
-            AddHTMLButton = new ToolStripMenuItem();
             ArtPanel = new Panel();
             HistoryListbox = new ListBox();
             ClearHistoryButton = new Button();
@@ -55,9 +53,10 @@
             NewButton = new ToolStripButton();
             SaveButton = new ToolStripButton();
             LoadButton = new ToolStripButton();
-            SettingsButton = new ToolStripButton();
             GetHelpButton = new ToolStripButton();
+            SettingsButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
+            ModeButton = new ToolStripButton();
             CanvasPanel = new Panel();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
@@ -95,32 +94,21 @@
             // 
             ElementStrip.BackColor = Color.DimGray;
             resources.ApplyResources(ElementStrip, "ElementStrip");
-            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddTextBoxButton, AddHTMLButton });
+            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton });
             ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
             ElementStrip.Name = "ElementStrip";
             // 
             // AddLabelButton
             // 
-            AddLabelButton.ForeColor = Color.WhiteSmoke;
-            AddLabelButton.Name = "AddLabelButton";
             resources.ApplyResources(AddLabelButton, "AddLabelButton");
+            AddLabelButton.ForeColor = Color.WhiteSmoke;
+            AddLabelButton.Image = GumpRes.MenuIcon;
+            AddLabelButton.Name = "AddLabelButton";
             AddLabelButton.Click += AddLabelButton_Click;
-            // 
-            // AddTextBoxButton
-            // 
-            AddTextBoxButton.ForeColor = Color.WhiteSmoke;
-            AddTextBoxButton.Name = "AddTextBoxButton";
-            resources.ApplyResources(AddTextBoxButton, "AddTextBoxButton");
-            // 
-            // AddHTMLButton
-            // 
-            AddHTMLButton.ForeColor = Color.WhiteSmoke;
-            AddHTMLButton.Name = "AddHTMLButton";
-            resources.ApplyResources(AddHTMLButton, "AddHTMLButton");
             // 
             // ArtPanel
             // 
-            ArtPanel.BackColor = Color.FromArgb(64, 64, 64);
+            ArtPanel.BackColor = Color.FromArgb(32, 32, 32);
             ArtPanel.Controls.Add(HistoryListbox);
             ArtPanel.Controls.Add(ClearHistoryButton);
             ArtPanel.Controls.Add(HistoryLabel);
@@ -250,64 +238,84 @@
             // 
             TopMenuStrip.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(TopMenuStrip, "TopMenuStrip");
-            TopMenuStrip.Items.AddRange(new ToolStripItem[] { NewButton, SaveButton, LoadButton, SettingsButton, GetHelpButton, ExportButton });
+            TopMenuStrip.Items.AddRange(new ToolStripItem[] { NewButton, SaveButton, LoadButton, GetHelpButton, SettingsButton, ExportButton, ModeButton });
             TopMenuStrip.Name = "TopMenuStrip";
             // 
             // NewButton
             // 
+            NewButton.AutoToolTip = false;
+            NewButton.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(NewButton, "NewButton");
-            NewButton.BackColor = Color.ForestGreen;
-            NewButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            NewButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            NewButton.Image = GumpRes.RefreshIcon;
             NewButton.Margin = new Padding(0, 2, 2, 2);
             NewButton.Name = "NewButton";
             NewButton.Click += NewButton_Click;
             // 
             // SaveButton
             // 
+            SaveButton.AutoToolTip = false;
+            SaveButton.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(SaveButton, "SaveButton");
-            SaveButton.BackColor = Color.SteelBlue;
-            SaveButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            SaveButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            SaveButton.Image = GumpRes.Save;
             SaveButton.Margin = new Padding(0, 2, 2, 2);
             SaveButton.Name = "SaveButton";
             SaveButton.Click += SaveButton_Click;
             // 
             // LoadButton
             // 
+            LoadButton.AutoToolTip = false;
+            LoadButton.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(LoadButton, "LoadButton");
-            LoadButton.BackColor = Color.RoyalBlue;
-            LoadButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            LoadButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            LoadButton.Image = GumpRes.Load;
             LoadButton.Margin = new Padding(0, 2, 2, 2);
             LoadButton.Name = "LoadButton";
             LoadButton.Click += LoadButton_Click;
             // 
-            // SettingsButton
-            // 
-            resources.ApplyResources(SettingsButton, "SettingsButton");
-            SettingsButton.BackColor = Color.Goldenrod;
-            SettingsButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            SettingsButton.Margin = new Padding(0, 2, 0, 2);
-            SettingsButton.Name = "SettingsButton";
-            SettingsButton.Click += Settings_Click;
-            // 
             // GetHelpButton
             // 
             GetHelpButton.Alignment = ToolStripItemAlignment.Right;
+            GetHelpButton.AutoToolTip = false;
+            GetHelpButton.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(GetHelpButton, "GetHelpButton");
-            GetHelpButton.BackColor = Color.Goldenrod;
-            GetHelpButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            GetHelpButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            GetHelpButton.Image = GumpRes.HelpIcon;
             GetHelpButton.Margin = new Padding(1, 2, 5, 2);
             GetHelpButton.Name = "GetHelpButton";
             GetHelpButton.Click += EditorHelpButton_Click;
             // 
+            // SettingsButton
+            // 
+            SettingsButton.Alignment = ToolStripItemAlignment.Right;
+            SettingsButton.AutoToolTip = false;
+            SettingsButton.BackColor = Color.WhiteSmoke;
+            resources.ApplyResources(SettingsButton, "SettingsButton");
+            SettingsButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            SettingsButton.Image = GumpRes.ToolIcon;
+            SettingsButton.Margin = new Padding(0, 2, 0, 2);
+            SettingsButton.Name = "SettingsButton";
+            SettingsButton.Click += Settings_Click;
+            // 
             // ExportButton
             // 
-            ExportButton.Alignment = ToolStripItemAlignment.Right;
+            ExportButton.AutoToolTip = false;
+            ExportButton.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(ExportButton, "ExportButton");
-            ExportButton.BackColor = Color.MediumPurple;
-            ExportButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ExportButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            ExportButton.Image = GumpRes.ProductIcon;
             ExportButton.Margin = new Padding(0, 2, 1, 2);
             ExportButton.Name = "ExportButton";
             ExportButton.Click += ExportButton_Click;
+            // 
+            // ModeButton
+            // 
+            resources.ApplyResources(ModeButton, "ModeButton");
+            ModeButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            ModeButton.Image = GumpRes.SplitDisplayIcon;
+            ModeButton.Name = "ModeButton";
+            ModeButton.Click += ModeButton_Click;
             // 
             // CanvasPanel
             // 
@@ -324,6 +332,7 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
+            BackgroundImage = GumpRes.UOScreen;
             ContextMenuStrip = ElementStrip;
             Controls.Add(CanvasPanel);
             Controls.Add(ArtPanel);
@@ -355,8 +364,6 @@
         private ToolStripProgressBar UOProgressBar;
         private ContextMenuStrip ElementStrip;
         private ToolStripMenuItem AddLabelButton;
-        private ToolStripMenuItem AddTextBoxButton;
-        private ToolStripMenuItem AddHTMLButton;
         private Panel ArtPanel;
         private PictureBox ArtPicturebox;
         private TextBox ArtIDSearchBox;
@@ -379,5 +386,6 @@
         private Panel SizePanel;
         private TextBox ArtHeightSearchBox;
         private Panel CanvasPanel;
+        private ToolStripButton ModeButton;
     }
 }
