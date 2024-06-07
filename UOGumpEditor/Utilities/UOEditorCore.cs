@@ -13,11 +13,21 @@ namespace UOGumpEditor
 
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
-        public static BaseElement? LastElementControl { get; private set; }
+        public static BaseElement? CurrentEleControl { get; private set; }
 
         public static void UpdateElementMove(BaseElement element)
         {
-            LastElementControl = element;
+            CurrentEleControl = element;
+        }
+
+        public static void MoveElement(int dx, int dy)
+        {
+            if (CurrentEleControl != null && MainUI != null)
+            {
+                CurrentEleControl.Location = new Point(CurrentEleControl.Location.X + dx, CurrentEleControl.Location.Y + dy);
+
+                MainUI.CanvasPanel.Invalidate();
+            }
         }
 
         public static readonly List<Control> Z_Layer = [];
@@ -37,7 +47,7 @@ namespace UOGumpEditor
 
         public static void MoveLayerUp()
         {
-            if (LastElementControl is Control control && Z_Layer.Contains(control))
+            if (CurrentEleControl is Control control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 
@@ -54,7 +64,7 @@ namespace UOGumpEditor
 
         public static void MoveLayerDown()
         {
-            if (LastElementControl is Control control && Z_Layer.Contains(control))
+            if (CurrentEleControl is Control control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 

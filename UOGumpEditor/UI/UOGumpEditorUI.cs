@@ -11,6 +11,8 @@ namespace UOGumpEditor
             InitializeComponent();
 
             UOEditorCore.SetMainHandle(this);
+
+            KeyPreview = true;
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -36,6 +38,8 @@ namespace UOGumpEditor
                     LoadArtAsync();
                 }
             }
+
+            LayerListbox.DisplayMember = "ToString";
         }
 
         private async void LoadArtAsync()
@@ -78,11 +82,36 @@ namespace UOGumpEditor
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (UOEditorCore.CurrentEleControl != null)
+            {
+                switch (keyData)
+                {
+                    case Keys.Up:
+                        UOEditorCore.MoveElement(0, -1);
+                        return true;
+                    case Keys.Down:
+                        UOEditorCore.MoveElement(0, 1);
+                        return true;
+                    case Keys.Left:
+                        UOEditorCore.MoveElement(-1, 0);
+                        return true;
+                    case Keys.Right:
+                        UOEditorCore.MoveElement(1, 0);
+                        return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void NewButton_Click(object sender, EventArgs e)
         {
             CanvasPanel.Controls.Clear();
 
             HistoryListbox.Items.Clear();
+
+            LayerListbox.Items.Clear();
 
             UOEditorCore.ResetGumpElements();
         }
@@ -299,6 +328,8 @@ namespace UOGumpEditor
 
             panel.Dock = DockStyle.Fill;
 
+            FocusPanel.Visible = CanvasPanel.Dock == DockStyle.Fill;
+
             panel.BringToFront();
         }
 
@@ -423,6 +454,14 @@ namespace UOGumpEditor
             ArtHeightSearchBox.Clear();
 
             SearchFlowPanel.Visible = false;
+        }
+
+        private void LayerListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LayerListbox.SelectedItem is ElementEntity entity)
+            {
+                UOEditorCore.UpdateElementMove(entity.Element);
+            }
         }
 
         private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
@@ -600,6 +639,11 @@ namespace UOGumpEditor
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
+
+            if (element is BaseElement be)
+            {
+                UpdateLayerList(be, true);
+            }
         }
 
         public void RemoveFromCanvas(Control element)
@@ -609,7 +653,43 @@ namespace UOGumpEditor
             if (CanvasPanel.Controls.Contains(element))
             {
                 CanvasPanel.Controls.Remove(element);
+
+                if (element is BaseElement be)
+                {
+                    UpdateLayerList(be, false);
+                }
             }
+        }
+
+        // Add Method to reorder LayerList
+
+        private void UpdateLayerList(BaseElement element, bool add)
+        {
+            if (!add)
+            {
+                ElementEntity? entity = null;
+
+                foreach (var item in LayerListbox.Items)
+                {
+                    if (item is ElementEntity ee && ee.Element == element)
+                    {
+                        entity = ee;
+
+                        break;
+                    }
+                }
+
+                if (entity != null)
+                {
+                    LayerListbox.Items.Remove(entity);
+                }
+            }
+            else
+            {
+                LayerListbox.Items.Add(new ElementEntity(element));
+            }
+
+            LayerListbox.Invalidate();
         }
 
         public void AddToHistory(ArtEntity entity)
@@ -629,6 +709,10 @@ namespace UOGumpEditor
             if (SearchFlowPanel.Visible)
             {
                 DisplayArtWindow();
+            }
+            else
+            {
+                SetMainDisplay(CanvasPanel);
             }
         }
 

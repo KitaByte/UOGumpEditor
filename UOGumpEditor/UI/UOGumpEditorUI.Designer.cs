@@ -64,6 +64,9 @@
             NextButton = new Button();
             PreviousButton = new Button();
             SearchPanel = new Panel();
+            FocusPanel = new Panel();
+            LayerListbox = new ListBox();
+            LayerLabel = new Label();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -72,6 +75,7 @@
             ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
             SearchPanel.SuspendLayout();
+            FocusPanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -387,6 +391,29 @@
             resources.ApplyResources(SearchPanel, "SearchPanel");
             SearchPanel.Name = "SearchPanel";
             // 
+            // FocusPanel
+            // 
+            FocusPanel.BackColor = Color.Black;
+            resources.ApplyResources(FocusPanel, "FocusPanel");
+            FocusPanel.Controls.Add(LayerListbox);
+            FocusPanel.Controls.Add(LayerLabel);
+            FocusPanel.Name = "FocusPanel";
+            // 
+            // LayerListbox
+            // 
+            LayerListbox.BackColor = Color.FromArgb(64, 64, 64);
+            LayerListbox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(LayerListbox, "LayerListbox");
+            LayerListbox.ForeColor = Color.Gold;
+            LayerListbox.FormattingEnabled = true;
+            LayerListbox.Name = "LayerListbox";
+            LayerListbox.SelectedIndexChanged += LayerListbox_SelectedIndexChanged;
+            // 
+            // LayerLabel
+            // 
+            resources.ApplyResources(LayerLabel, "LayerLabel");
+            LayerLabel.Name = "LayerLabel";
+            // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
@@ -394,6 +421,7 @@
             BackColor = Color.White;
             BackgroundImage = GumpRes.UOScreen;
             ContextMenuStrip = ElementStrip;
+            Controls.Add(FocusPanel);
             Controls.Add(SearchPanel);
             Controls.Add(CanvasPanel);
             Controls.Add(ArtPanel);
@@ -416,6 +444,7 @@
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
             SearchPanel.ResumeLayout(false);
+            FocusPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -455,5 +484,8 @@
         private ToolStripMenuItem LowerLayerButton;
         private Panel SearchPanel;
         internal Panel CanvasPanel;
+        private Panel FocusPanel;
+        private Label LayerLabel;
+        private ListBox LayerListbox;
     }
 }

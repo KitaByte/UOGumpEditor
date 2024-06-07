@@ -170,7 +170,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BottomStatusStrip.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="ElementStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>295, 17</value>
@@ -246,6 +246,9 @@
   </data>
   <data name="HistoryListbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 347</value>
+  </data>
+  <data name="HistoryListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 222</value>
@@ -680,7 +683,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ArtPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="SearchFlowPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -695,7 +698,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 212</value>
+    <value>562, 212</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -866,7 +869,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="CanvasPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -881,7 +884,7 @@
     <value>10, 10, 10, 10</value>
   </data>
   <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 312</value>
+    <value>582, 312</value>
   </data>
   <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -896,7 +899,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CanvasPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="NextButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -917,7 +920,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="NextButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 35</value>
+    <value>562, 35</value>
   </data>
   <data name="NextButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -959,7 +962,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="PreviousButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>662, 35</value>
+    <value>562, 35</value>
   </data>
   <data name="PreviousButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -992,7 +995,7 @@
     <value>10, 10, 10, 10</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 302</value>
+    <value>582, 302</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1007,6 +1010,105 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="FocusPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="LayerListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="LayerListbox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt</value>
+  </data>
+  <data name="LayerListbox.ItemHeight" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="LayerListbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 42</value>
+  </data>
+  <data name="LayerListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="LayerListbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 567</value>
+  </data>
+  <data name="LayerListbox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LayerListbox.Name" xml:space="preserve">
+    <value>LayerListbox</value>
+  </data>
+  <data name="&gt;&gt;LayerListbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LayerListbox.Parent" xml:space="preserve">
+    <value>FocusPanel</value>
+  </data>
+  <data name="&gt;&gt;LayerListbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LayerLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="LayerLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="LayerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="LayerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 37</value>
+  </data>
+  <data name="LayerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="LayerLabel.Text" xml:space="preserve">
+    <value>LAYERS</value>
+  </data>
+  <data name="LayerLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;LayerLabel.Name" xml:space="preserve">
+    <value>LayerLabel</value>
+  </data>
+  <data name="&gt;&gt;LayerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LayerLabel.Parent" xml:space="preserve">
+    <value>FocusPanel</value>
+  </data>
+  <data name="&gt;&gt;LayerLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FocusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="FocusPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>582, 25</value>
+  </data>
+  <data name="FocusPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="FocusPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
+  <data name="FocusPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 614</value>
+  </data>
+  <data name="FocusPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;FocusPanel.Name" xml:space="preserve">
+    <value>FocusPanel</value>
+  </data>
+  <data name="&gt;&gt;FocusPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FocusPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FocusPanel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
