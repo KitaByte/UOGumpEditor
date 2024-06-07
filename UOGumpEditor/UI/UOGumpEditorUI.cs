@@ -10,7 +10,7 @@ namespace UOGumpEditor
         {
             InitializeComponent();
 
-            UOEditorCore.MainUI = this;
+            UOEditorCore.SetMainHandle(this);
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -447,7 +447,7 @@ namespace UOGumpEditor
                     {
                         var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
 
-                        ImageElement element = new()
+                        BaseElement element = new()
                         {
                             Tag = entity
                         };
@@ -521,7 +521,7 @@ namespace UOGumpEditor
                             element.ElementType = ElementTypes.Item;
                         }
 
-                        element.SetElement(entity);
+                        element.SetImage(entity);
 
                         AddArtToCanvas(element, dropLocation);
                     }
@@ -541,7 +541,7 @@ namespace UOGumpEditor
 
         private UOImageEditor? editor;
 
-        internal void OpenImageEditor(ElementTypes element, ImageElement imageElement)
+        internal void OpenImageEditor(ElementTypes element, BaseElement imageElement)
         {
             if (editor != null && editor.Visible)
             {
@@ -562,7 +562,7 @@ namespace UOGumpEditor
 
         private UOTextEntry? entry;
 
-        public void OpenTextEntry(ElementTypes element, TextElement? textElement = null)
+        public void OpenTextEntry(ElementTypes element, BaseElement? textElement = null)
         {
             if (entry != null && entry.Visible)
             {
@@ -583,14 +583,12 @@ namespace UOGumpEditor
 
         public void AddTextElement(string text, Color hue)
         {
-            TextElement element = new()
+            BaseElement element = new()
             {
-                ElementType = ElementTypes.Label,
-
-                Tag = hue
+                ElementType = ElementTypes.Label
             };
 
-            UOEditorCore.AddElement(this);
+            UOEditorCore.AddElement(element);
 
             element.SetText(text, hue);
 

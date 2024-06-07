@@ -1,7 +1,7 @@
 ﻿
 namespace UOGumpEditor.UOElements
 {
-    public class ImageElement : TransparentControl, IElement
+    public class BaseElement : TransparentControl
     {
         public ElementTypes ElementType { get; set; }
 
@@ -21,19 +21,17 @@ namespace UOGumpEditor.UOElements
             }
         }
 
-        public ImageElement()
+        public BaseElement()
         {
-            BackColor = Color.Transparent;
-
             MouseDown += BaseElement_MouseDown;
 
             MouseMove += BaseElement_MouseMove;
 
             MouseUp += BaseElement_MouseUp;
 
-            MouseHover += ImageElement_MouseHover;
+            MouseHover += BaseElement_MouseHover;
 
-            MouseDoubleClick += ImageElement_MouseDoubleClick;
+            MouseDoubleClick += BaseElement_MouseDoubleClick;
         }
 
         private static void MakeTransparent(Bitmap bitmap)
@@ -51,7 +49,7 @@ namespace UOGumpEditor.UOElements
 
                 _isDragging = true;
 
-                BringToFront(); 
+                BringToFront();
             }
         }
 
@@ -73,7 +71,7 @@ namespace UOGumpEditor.UOElements
             }
         }
 
-        private void ImageElement_MouseHover(object? sender, EventArgs e)
+        private void BaseElement_MouseHover(object? sender, EventArgs e)
         {
             if (Tag is ArtEntity ae)
             {
@@ -81,14 +79,21 @@ namespace UOGumpEditor.UOElements
             }
         }
 
-        private void ImageElement_MouseDoubleClick(object? sender, MouseEventArgs e)
+        private void BaseElement_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
+            if (ElementType == ElementTypes.Label || ElementType == ElementTypes.Html)
+            {
+                UOEditorCore.MainUI?.OpenTextEntry(ElementType, this);
+            }
+            else
+            {
+                UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
+            }
         }
 
         Bitmap? tempBitmap;
 
-        public void SetElement(ArtEntity entity)
+        public void SetImage(ArtEntity entity)
         {
             tempBitmap = entity.GetImage();
 
@@ -104,6 +109,21 @@ namespace UOGumpEditor.UOElements
             }
 
             Invalidate();
+        }
+
+        public void SetText(string text, Color hue)
+        {
+            Text = text;
+
+            Font = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
+
+            ForeColor = hue;
+
+            Size size = UOEditorCore.GetTextSize(text, Font);
+
+            Width = size.Width;
+
+            Height = size.Height;
         }
 
         public (int X, int Y) GetLocation()

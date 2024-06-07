@@ -4,13 +4,13 @@ namespace UOGumpEditor
 {
     public partial class UOTextEntry : Form
     {
-        private readonly TextElement? TEXTELEMENT;
+        private readonly BaseElement? TEXTELEMENT;
 
         private readonly ElementTypes ELEMENT;
 
         private Color HUE = Color.White;
 
-        public UOTextEntry(ElementTypes element, TextElement? textElement = null)
+        public UOTextEntry(ElementTypes element, BaseElement? textElement = null)
         {
             InitializeComponent();
 

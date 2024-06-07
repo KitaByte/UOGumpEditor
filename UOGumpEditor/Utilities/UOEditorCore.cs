@@ -4,13 +4,18 @@ namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
-        public static UOGumpEditorUI? MainUI;
+        public static UOGumpEditorUI? MainUI { get; private set; }
+
+        internal static void SetMainHandle(UOGumpEditorUI ui)
+        {
+            MainUI = ui;
+        }
 
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
-        public static IElement? LastElementControl { get; private set; }
+        public static BaseElement? LastElementControl { get; private set; }
 
-        public static void UpdateElementMove(IElement element)
+        public static void UpdateElementMove(BaseElement element)
         {
             LastElementControl = element;
         }
@@ -19,22 +24,14 @@ namespace UOGumpEditor
 
         public static void ReorderZLayers()
         {
-            if (Z_Layer.Count > 0 && Z_Layer[0].Parent != null && Z_Layer[0].Parent is Panel panel)
+            if (Z_Layer.Count > 0 && MainUI?.CanvasPanel != null)
             {
                 for (int i = 0; i < Z_Layer.Count; i++)
                 {
-                    Z_Layer[i].Parent?.Controls.SetChildIndex(Z_Layer[i], i);
+                    MainUI.CanvasPanel.Controls.SetChildIndex(Z_Layer[i], Z_Layer.Count - 1 - i);
                 }
 
-                foreach (var control in panel.Controls)
-                {
-                    if (control is TextElement te)
-                    {
-                        te.BringToFront();
-                    }
-                }
-
-                panel.Invalidate();
+                MainUI.CanvasPanel.Invalidate();
             }
         }
 
@@ -76,9 +73,9 @@ namespace UOGumpEditor
         {
             if (!Z_Layer.Contains(control))
             {
-                Z_Layer.Add(control);
+                Z_Layer.Insert(0, control);
 
-                if (control is ImageElement ie && ie.Tag != null && ie.Tag is ArtEntity ae)
+                if (control is BaseElement ie && ie.Tag != null && ie.Tag is ArtEntity ae)
                 {
                     MainUI?.AddToHistory(ae);
                 }

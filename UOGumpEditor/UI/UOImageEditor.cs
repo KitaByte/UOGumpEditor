@@ -5,13 +5,13 @@ namespace UOGumpEditor
 {
     public partial class UOImageEditor : Form
     {
-        private readonly ImageElement? IMAGEELEMENT;
+        private readonly BaseElement? IMAGEELEMENT;
 
         private readonly ElementTypes ELEMENT;
 
         private int MaxTextLength = 0;
 
-        public UOImageEditor(ElementTypes element, ImageElement? imageElement = null)
+        public UOImageEditor(ElementTypes element, BaseElement? imageElement = null)
         {
             InitializeComponent();
 
@@ -93,7 +93,7 @@ namespace UOGumpEditor
 
                     if (IMAGEELEMENT.Tag is ArtEntity nae)
                     {
-                        IMAGEELEMENT.SetElement(nae);
+                        IMAGEELEMENT.SetImage(nae);
                     }
                 }
             }

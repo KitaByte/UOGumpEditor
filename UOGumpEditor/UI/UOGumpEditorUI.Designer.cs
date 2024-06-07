@@ -447,7 +447,6 @@
         private ToolStripButton ExportButton;
         private Panel SizePanel;
         private TextBox ArtHeightSearchBox;
-        private Panel CanvasPanel;
         private ToolStripButton ModeButton;
         private ToolStripMenuItem AddHTMLButton;
         private Button PreviousButton;
@@ -455,5 +454,6 @@
         private ToolStripMenuItem RaiseLayerButton;
         private ToolStripMenuItem LowerLayerButton;
         private Panel SearchPanel;
+        internal Panel CanvasPanel;
     }
 }
