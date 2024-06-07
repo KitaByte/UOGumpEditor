@@ -66,6 +66,7 @@
             SearchPanel = new Panel();
             FocusPanel = new Panel();
             LayerListbox = new ListBox();
+            ClearSelectedButton = new Button();
             LayerLabel = new Label();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
@@ -398,6 +399,7 @@
             FocusPanel.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(FocusPanel, "FocusPanel");
             FocusPanel.Controls.Add(LayerListbox);
+            FocusPanel.Controls.Add(ClearSelectedButton);
             FocusPanel.Controls.Add(LayerLabel);
             FocusPanel.Name = "FocusPanel";
             // 
@@ -411,6 +413,15 @@
             LayerListbox.Name = "LayerListbox";
             LayerListbox.SelectionMode = SelectionMode.MultiSimple;
             LayerListbox.SelectedIndexChanged += LayerListbox_SelectedIndexChanged;
+            // 
+            // ClearSelectedButton
+            // 
+            ClearSelectedButton.BackColor = Color.Brown;
+            resources.ApplyResources(ClearSelectedButton, "ClearSelectedButton");
+            ClearSelectedButton.FlatAppearance.BorderSize = 0;
+            ClearSelectedButton.Name = "ClearSelectedButton";
+            ClearSelectedButton.UseVisualStyleBackColor = false;
+            ClearSelectedButton.Click += ClearSelectedButton_Click;
             // 
             // LayerLabel
             // 
@@ -491,5 +502,6 @@
         private Panel FocusPanel;
         private Label LayerLabel;
         private ListBox LayerListbox;
+        private Button ClearSelectedButton;
     }
 }

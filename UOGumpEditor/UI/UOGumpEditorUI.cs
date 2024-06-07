@@ -25,11 +25,11 @@ namespace UOGumpEditor
             }
             else
             {
-                using var dlg = new FolderBrowserDialog() { Description = "Select UO Folder!" };
+                using FolderBrowserDialog dialog = new() { Description = "Select UO Folder!" };
 
-                if (dlg.ShowDialog() == DialogResult.OK)
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    UOSettings.Default.UO_Folder = dlg.SelectedPath;
+                    UOSettings.Default.UO_Folder = dialog.SelectedPath;
 
                     UOSettings.Default.Save();
 
@@ -38,29 +38,29 @@ namespace UOGumpEditor
                     LoadArtAsync();
                 }
             }
-
-            LayerListbox.DisplayMember = "ToString";
         }
 
         private async void LoadArtAsync()
         {
+            SetMainDisplay(CanvasPanel);
+
             SetLoadingState(true);
 
             GumpInfoLabel.Text = "Loading Gump Assets ...";
 
-            await UltimaArtLoader.LoadAllGumpArtAsync();
+            await UOArtLoader.LoadAllGumpArtAsync();
 
             UOProgressBar.Value = 50;
 
             GumpInfoLabel.Text = "Loading Art Assets ...";
 
-            await UltimaArtLoader.LoadAllItemArtAsync();
+            await UOArtLoader.LoadAllItemArtAsync();
 
             UOEditorCore.ReLoadArt();
 
             SetLoadingState(false);
 
-            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
         }
 
         private void SetLoadingState(bool isLoading)
@@ -150,6 +150,10 @@ namespace UOGumpEditor
 
             // Font Size
 
+            // Profile settings
+
+
+            // Reset UO Folder
             UOSettings.Default.Reset();
 
             UOSettings.Default.Save();
@@ -160,18 +164,23 @@ namespace UOGumpEditor
 
         }
 
+        private bool IsGump()
+        {
+            return GumpArtButton.BackColor == Color.DodgerBlue;
+        }
+
         private void GumpArtButton_Click(object sender, EventArgs e)
         {
             UOEditorCore.SwapButtonOn(GumpArtButton, ItemArtButton);
 
-            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
         }
 
         private void ItemArtButton_Click(object sender, EventArgs e)
         {
             UOEditorCore.SwapButtonOn(ItemArtButton, GumpArtButton);
 
-            DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
         }
 
         private void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
@@ -181,18 +190,13 @@ namespace UOGumpEditor
                 UpdateElementInfo(UOEditorCore.CurrentArtDisplayed);
             }
 
-            if (sender is PictureBox picBox)
+            if (sender == ArtPicturebox)
             {
-                if (picBox.Tag is ArtEntity entity && e.Button == MouseButtons.Left)
+                if (e.Button == MouseButtons.Left && ArtPicturebox.Tag is ArtEntity entity)
                 {
-                    picBox.DoDragDrop(entity, DragDropEffects.Copy);
+                    ArtPicturebox.DoDragDrop(entity, DragDropEffects.Copy);
                 }
             }
-        }
-
-        private bool IsGump()
-        {
-            return GumpArtButton.BackColor == Color.DodgerBlue;
         }
 
         private void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
@@ -201,7 +205,7 @@ namespace UOGumpEditor
             {
                 if (int.TryParse(ArtIDSearchBox.Text, out int val))
                 {
-                    if (UltimaArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
+                    if (UOArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
                     {
                         _artCache = new ArtCache(results);
 
@@ -211,7 +215,7 @@ namespace UOGumpEditor
             }
             else
             {
-                DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
             }
         }
 
@@ -219,7 +223,7 @@ namespace UOGumpEditor
         {
             if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
             {
-                if (UltimaArtLoader.SearchArtByName(ArtNameSearchBox.Text, IsGump(), out List<ArtEntity> results))
+                if (UOArtLoader.SearchArtByName(ArtNameSearchBox.Text, IsGump(), out List<ArtEntity> results))
                 {
                     _artCache = new ArtCache(results);
 
@@ -228,7 +232,7 @@ namespace UOGumpEditor
             }
             else
             {
-                DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
+                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
             }
         }
 
@@ -236,43 +240,21 @@ namespace UOGumpEditor
         {
             if (sender is TextBox tb)
             {
-                if (tb.Name == nameof(ArtWidthSearchBox))
+                if (!string.IsNullOrEmpty(tb.Text) && tb.Text.Length < 6)
                 {
-                    if (!string.IsNullOrEmpty(ArtWidthSearchBox.Text) && ArtWidthSearchBox.Text.Length < 6)
+                    if (int.TryParse(tb.Text, out int size) && size > 0)
                     {
-                        if (int.TryParse(ArtWidthSearchBox.Text, out int size) && size > 0)
+                        if (UOArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, sender == ArtWidthSearchBox))
                         {
-                            if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, true))
-                            {
-                                _artCache = new ArtCache(results);
+                            _artCache = new ArtCache(results);
 
-                                DisplayArtWindow();
-                            }
+                            DisplayArtWindow();
                         }
-                    }
-                    else
-                    {
-                        DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
                     }
                 }
-                else if (tb.Name == nameof(ArtHeightSearchBox))
+                else
                 {
-                    if (!string.IsNullOrEmpty(ArtHeightSearchBox.Text) && ArtHeightSearchBox.Text.Length < 6)
-                    {
-                        if (int.TryParse(ArtHeightSearchBox.Text, out int size) && size > 0)
-                        {
-                            if (UltimaArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, false))
-                            {
-                                _artCache = new ArtCache(results);
-
-                                DisplayArtWindow();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        DisplayArt(UltimaArtLoader.GetArtEntity(0, IsGump()));
-                    }
+                    DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
                 }
             }
         }
@@ -287,9 +269,9 @@ namespace UOGumpEditor
 
         private void HistoryListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (HistoryListbox.SelectedItem != null && HistoryListbox.SelectedItem is ArtEntity ae)
+            if (HistoryListbox.SelectedItem != null && HistoryListbox.SelectedItem is ArtEntity entity)
             {
-                DisplayArt(ae);
+                DisplayArt(entity);
             }
         }
 
@@ -339,78 +321,40 @@ namespace UOGumpEditor
             {
                 SearchFlowPanel.Controls.Clear();
 
-                Color color = Color.Black;
+                Color color;
 
                 Image? image;
 
                 foreach (var entity in results)
                 {
+                    image = entity.GetImage();
+
                     if (results.Count > 0 && results[results.Count / 2] == entity)
                     {
                         color = Color.WhiteSmoke;
                     }
-
-                    image = entity.GetImage();
-
-                    if (image == null)
+                    else
                     {
-                        color = Color.Red;
+                        if (image == null)
+                        {
+                            color = Color.Red;
+                        }
+                        else
+                        {
+                            color = Color.Black;
+                        }
                     }
 
-                    var picBox = new PictureBox
-                    {
-                        BorderStyle = BorderStyle.Fixed3D,
-                        BackColor = color,
-                        Image = image,
-                        Size = new Size(100, 100),
-                        SizeMode = entity.Width > 100 || entity.Height > 100 ? PictureBoxSizeMode.Zoom : PictureBoxSizeMode.CenterImage,
-                        Tag = entity
-                    };
-
-                    color = Color.Black;
+                    SearchFlowPanel.Controls.Add(new ArtPictureBox(entity, image, color));
 
                     image = null;
-
-                    picBox.Click += PicBox_Click;
-
-                    picBox.MouseHover += PicBox_MouseHover;
-
-                    SearchFlowPanel.Controls.Add(picBox);
                 }
 
                 SearchFlowPanel.Visible = true;
             }
         }
 
-        private void PicBox_Click(object? sender, EventArgs e)
-        {
-            if (sender != null && sender is PictureBox picBox)
-            {
-                if (picBox.Tag is ArtEntity entity)
-                {
-                    DisplayArt(entity);
-                }
-            }
-
-            SearchFlowPanel.Visible = false;
-
-            PreviousButton.Visible = false;
-
-            NextButton.Visible = false;
-        }
-
-        private void PicBox_MouseHover(object? sender, EventArgs e)
-        {
-            if (sender != null && sender is PictureBox picBox)
-            {
-                if (picBox.Tag is ArtEntity entity)
-                {
-                    UpdateElementInfo(entity);
-                }
-            }
-        }
-
-        private void DisplayArt(ArtEntity entity)
+        public void DisplayArt(ArtEntity entity)
         {
             ResetIDSearch();
 
@@ -484,6 +428,11 @@ namespace UOGumpEditor
                     }
                 }
             }
+        }
+
+        private void ClearSelectedButton_Click(object sender, EventArgs e)
+        {
+            ClearSelected();
         }
 
         private void CanvasPanel_DragEnter(object sender, DragEventArgs e)

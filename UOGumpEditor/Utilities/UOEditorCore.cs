@@ -11,7 +11,7 @@ namespace UOGumpEditor
             MainUI = ui;
         }
 
-        public static UltimaArtLoader? ArtLoader { get; private set; }
+        public static UOArtLoader? ArtLoader { get; private set; }
 
         public static ElementControl? CurrentEleControl { get; private set; }
 
@@ -120,12 +120,12 @@ namespace UOGumpEditor
 
         public static void LoadArt()
         {
-            ArtLoader = new UltimaArtLoader();
+            ArtLoader = new UOArtLoader();
         }
 
         public static void ReLoadArt()
         {
-            UltimaArtLoader.ClearArt();
+            UOArtLoader.ClearArt();
 
             LoadArt();
         }

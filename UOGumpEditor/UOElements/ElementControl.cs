@@ -311,7 +311,7 @@
 
             if (Tag != null && Tag is ArtEntity ae)
             {
-                if (UltimaArtLoader.SearchArtByName(ae.Name[..^1], true, out List<ArtEntity> searchList))
+                if (UOArtLoader.SearchArtByName(ae.Name[..^1], true, out List<ArtEntity> searchList))
                 {
                     if (searchList.Count > 0)
                     {
@@ -339,7 +339,7 @@
             {
                 ButtonArt.Add(ae);
 
-                ButtonArt.Add(UltimaArtLoader.GetArtEntity(ae.ID + 1, true));
+                ButtonArt.Add(UOArtLoader.GetArtEntity(ae.ID + 1, true));
             }
         }
     }

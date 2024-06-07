@@ -3,13 +3,13 @@ using UOGumpEditor.Assets;
 
 namespace UOGumpEditor
 {
-    public class UltimaArtLoader
+    public class UOArtLoader
     {
+        public static bool IsLoaded { get; private set; } = false;
+
         private static readonly string DataFolder = Path.Combine(Directory.GetCurrentDirectory(), "DataFiles");
 
         private static readonly string GumpNameFile = Path.Combine(DataFolder, "GumpNames.txt");
-
-        public static bool IsLoaded { get; private set; } = false;
 
         private static readonly Dictionary<int, ArtEntity> GumpArtDict = [];
 
@@ -37,7 +37,7 @@ namespace UOGumpEditor
             return new ArtEntity(0, "BAD_ART", 0, 0, isGump);
         }
 
-        public UltimaArtLoader()
+        public UOArtLoader()
         {
             if (!string.IsNullOrEmpty(UOSettings.Default.UO_Folder))
             {

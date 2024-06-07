@@ -926,7 +926,7 @@
     <value>7</value>
   </data>
   <data name="NextButton.Text" xml:space="preserve">
-    <value>Next Page</value>
+    <value> Next &gt;&gt;</value>
   </data>
   <data name="NextButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -968,7 +968,7 @@
     <value>6</value>
   </data>
   <data name="PreviousButton.Text" xml:space="preserve">
-    <value>Previous Page</value>
+    <value>&lt;&lt; Previous</value>
   </data>
   <data name="PreviousButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1025,13 +1025,13 @@
     <value>17</value>
   </data>
   <data name="LayerListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 42</value>
+    <value>5, 37</value>
   </data>
   <data name="LayerListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="LayerListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 562</value>
+    <value>115, 532</value>
   </data>
   <data name="LayerListbox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1048,6 +1048,45 @@
   <data name="&gt;&gt;LayerListbox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="ClearSelectedButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="ClearSelectedButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="ClearSelectedButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="ClearSelectedButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ClearSelectedButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 569</value>
+  </data>
+  <data name="ClearSelectedButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ClearSelectedButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 40</value>
+  </data>
+  <data name="ClearSelectedButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="ClearSelectedButton.Text" xml:space="preserve">
+    <value>Clear Selected</value>
+  </data>
+  <data name="&gt;&gt;ClearSelectedButton.Name" xml:space="preserve">
+    <value>ClearSelectedButton</value>
+  </data>
+  <data name="&gt;&gt;ClearSelectedButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ClearSelectedButton.Parent" xml:space="preserve">
+    <value>FocusPanel</value>
+  </data>
+  <data name="&gt;&gt;ClearSelectedButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="LayerLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -1055,10 +1094,10 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="LayerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 10</value>
+    <value>5, 5</value>
   </data>
   <data name="LayerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 32</value>
+    <value>115, 32</value>
   </data>
   <data name="LayerLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1079,7 +1118,7 @@
     <value>FocusPanel</value>
   </data>
   <data name="&gt;&gt;LayerLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="FocusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -1091,7 +1130,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="FocusPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 10, 10</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="FocusPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 614</value>

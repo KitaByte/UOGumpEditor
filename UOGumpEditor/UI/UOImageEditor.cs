@@ -89,7 +89,7 @@ namespace UOGumpEditor
             {
                 if (int.TryParse(PropertyTextBox.Text, out int val))
                 {
-                    IMAGEELEMENT.Tag = UltimaArtLoader.GetArtEntity(val, ELEMENT != ElementTypes.Item);
+                    IMAGEELEMENT.Tag = UOArtLoader.GetArtEntity(val, ELEMENT != ElementTypes.Item);
 
                     if (IMAGEELEMENT.Tag is ArtEntity nae)
                     {
