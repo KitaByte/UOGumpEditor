@@ -698,7 +698,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 212</value>
+    <value>537, 212</value>
   </data>
   <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -875,7 +875,7 @@
     <value>None</value>
   </data>
   <data name="CanvasPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
+    <value>125, 25</value>
   </data>
   <data name="CanvasPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -884,7 +884,7 @@
     <value>10, 10, 10, 10</value>
   </data>
   <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 312</value>
+    <value>557, 312</value>
   </data>
   <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -920,7 +920,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="NextButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 35</value>
+    <value>537, 35</value>
   </data>
   <data name="NextButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -962,7 +962,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="PreviousButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 35</value>
+    <value>537, 35</value>
   </data>
   <data name="PreviousButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -986,7 +986,7 @@
     <value>1</value>
   </data>
   <data name="SearchPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 337</value>
+    <value>125, 337</value>
   </data>
   <data name="SearchPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -995,7 +995,7 @@
     <value>10, 10, 10, 10</value>
   </data>
   <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>582, 302</value>
+    <value>557, 302</value>
   </data>
   <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1025,13 +1025,13 @@
     <value>17</value>
   </data>
   <data name="LayerListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 42</value>
+    <value>10, 42</value>
   </data>
   <data name="LayerListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="LayerListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 567</value>
+    <value>105, 562</value>
   </data>
   <data name="LayerListbox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1055,16 +1055,16 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="LayerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
+    <value>10, 10</value>
   </data>
   <data name="LayerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 37</value>
+    <value>105, 32</value>
   </data>
   <data name="LayerLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="LayerLabel.Text" xml:space="preserve">
-    <value>LAYERS</value>
+    <value>Gump Layer</value>
   </data>
   <data name="LayerLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -1082,19 +1082,19 @@
     <value>1</value>
   </data>
   <data name="FocusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
+    <value>Left</value>
   </data>
   <data name="FocusPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>582, 25</value>
+    <value>0, 25</value>
   </data>
   <data name="FocusPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="FocusPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>10, 10, 10, 10</value>
   </data>
   <data name="FocusPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 614</value>
+    <value>125, 614</value>
   </data>
   <data name="FocusPanel.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>

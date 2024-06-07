@@ -458,9 +458,31 @@ namespace UOGumpEditor
 
         private void LayerListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (LayerListbox.SelectedItem is ElementEntity entity)
+            if (LayerListbox.SelectedItems.Count > 0)
             {
-                UOEditorCore.UpdateElementMove(entity.Element);
+                ClearSelected();
+
+                foreach (var item in LayerListbox.SelectedItems)
+                {
+                    if (item is ElementEntity entity)
+                    {
+                        entity.Element.SetSelected(true);
+                    }
+                }
+            }
+        }
+
+        public void ClearSelected()
+        {
+            if (LayerListbox.Items.Count > 0)
+            {
+                for (int i = 0; i < LayerListbox.Items.Count; i++)
+                {
+                    if (LayerListbox.Items[i] is ElementEntity entity)
+                    {
+                        entity.Element.SetSelected(false);
+                    }
+                }
             }
         }
 
@@ -486,7 +508,7 @@ namespace UOGumpEditor
                     {
                         var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
 
-                        BaseElement element = new()
+                        ElementControl element = new()
                         {
                             Tag = entity
                         };
@@ -580,7 +602,7 @@ namespace UOGumpEditor
 
         private UOImageEditor? editor;
 
-        internal void OpenImageEditor(ElementTypes element, BaseElement imageElement)
+        internal void OpenImageEditor(ElementTypes element, ElementControl imageElement)
         {
             if (editor != null && editor.Visible)
             {
@@ -601,7 +623,7 @@ namespace UOGumpEditor
 
         private UOTextEntry? entry;
 
-        public void OpenTextEntry(ElementTypes element, BaseElement? textElement = null)
+        public void OpenTextEntry(ElementTypes element, ElementControl? textElement = null)
         {
             if (entry != null && entry.Visible)
             {
@@ -622,7 +644,7 @@ namespace UOGumpEditor
 
         public void AddTextElement(string text, Color hue)
         {
-            BaseElement element = new()
+            ElementControl element = new()
             {
                 ElementType = ElementTypes.Label
             };
@@ -634,19 +656,16 @@ namespace UOGumpEditor
             AddArtToCanvas(element, new(50, 50));
         }
 
-        private void AddArtToCanvas(Control element, Point location)
+        private void AddArtToCanvas(ElementControl element, Point location)
         {
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
 
-            if (element is BaseElement be)
-            {
-                UpdateLayerList(be, true);
-            }
+            UOEditorCore.ReorderZLayers();
         }
 
-        public void RemoveFromCanvas(Control element)
+        public void RemoveFromCanvas(ElementControl element)
         {
             UOEditorCore.Z_Layer.Remove(element);
 
@@ -654,16 +673,23 @@ namespace UOGumpEditor
             {
                 CanvasPanel.Controls.Remove(element);
 
-                if (element is BaseElement be)
-                {
-                    UpdateLayerList(be, false);
-                }
+                UOEditorCore.ReorderZLayers();
             }
         }
 
-        // Add Method to reorder LayerList
+        public void ReorderLayerList()
+        {
+            LayerListbox.Items.Clear();
 
-        private void UpdateLayerList(BaseElement element, bool add)
+            foreach (ElementControl element in UOEditorCore.Z_Layer)
+            {
+                UpdateLayerList(element, true);
+            }
+
+            LayerListbox.Invalidate();
+        }
+
+        private void UpdateLayerList(ElementControl element, bool add)
         {
             if (!add)
             {

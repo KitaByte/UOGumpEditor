@@ -5,13 +5,13 @@ namespace UOGumpEditor
 {
     public partial class UOImageEditor : Form
     {
-        private readonly BaseElement? IMAGEELEMENT;
+        private readonly ElementControl? IMAGEELEMENT;
 
         private readonly ElementTypes ELEMENT;
 
         private int MaxTextLength = 0;
 
-        public UOImageEditor(ElementTypes element, BaseElement? imageElement = null)
+        public UOImageEditor(ElementTypes element, ElementControl? imageElement = null)
         {
             InitializeComponent();
 
@@ -85,7 +85,7 @@ namespace UOGumpEditor
 
         private void IDButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT?.Tag is ArtEntity ae)
+            if (IMAGEELEMENT?.Tag is ArtEntity)
             {
                 if (int.TryParse(PropertyTextBox.Text, out int val))
                 {

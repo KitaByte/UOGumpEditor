@@ -23,11 +23,6 @@ namespace UOGumpEditor
             }
         }
 
-        public override string ToString()
-        {
-            return $"{ID} : {(IsGump ? $"G-{Name}" : $"I-{Name}")}";
-        }
-
         public int CompareTo(ArtEntity? other)
         {
             if (other == null) return 1;
@@ -62,6 +57,11 @@ namespace UOGumpEditor
             var match = Regex.Match(name, @"\d+$");
 
             return match.Success ? int.Parse(match.Value) : 0;
+        }
+
+        public override string ToString()
+        {
+            return $"{ID} : {(IsGump ? $"G-{Name}" : $"I-{Name}")}";
         }
     }
 }

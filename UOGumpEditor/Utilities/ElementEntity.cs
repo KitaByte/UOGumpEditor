@@ -2,18 +2,18 @@
 
 namespace UOGumpEditor
 {
-    public class ElementEntity
+    public class ElementEntity(ElementControl element)
     {
-        public BaseElement Element { get; private set; }
-
-        public ElementEntity(BaseElement element)
-        {
-            Element = element;
-        }
+        public ElementControl Element { get; private set; } = element;
 
         public override string ToString()
         {
-            return $"{UOEditorCore.MainUI?.CanvasPanel.Controls.Count} : {Element.ElementType}";
+            if (Element.Tag is ArtEntity artEntity)
+            {
+                return $"{Element.GetLayer()} : {artEntity.ToString().Split(':').Last().Trim()}";
+            }
+
+            return $"{Element.GetLayer()} : {Element.ElementType}";
         }
     }
 }

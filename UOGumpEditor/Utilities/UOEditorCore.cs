@@ -13,11 +13,13 @@ namespace UOGumpEditor
 
         public static UltimaArtLoader? ArtLoader { get; private set; }
 
-        public static BaseElement? CurrentEleControl { get; private set; }
+        public static ElementControl? CurrentEleControl { get; private set; }
 
-        public static void UpdateElementMove(BaseElement element)
+        public static void UpdateElementMove(ElementControl element)
         {
             CurrentEleControl = element;
+
+            MainUI?.ClearSelected();
         }
 
         public static void MoveElement(int dx, int dy)
@@ -30,7 +32,7 @@ namespace UOGumpEditor
             }
         }
 
-        public static readonly List<Control> Z_Layer = [];
+        public static readonly List<ElementControl> Z_Layer = [];
 
         public static void ReorderZLayers()
         {
@@ -42,12 +44,14 @@ namespace UOGumpEditor
                 }
 
                 MainUI.CanvasPanel.Invalidate();
+
+                MainUI.ReorderLayerList();
             }
         }
 
         public static void MoveLayerUp()
         {
-            if (CurrentEleControl is Control control && Z_Layer.Contains(control))
+            if (CurrentEleControl is ElementControl control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 
@@ -64,7 +68,7 @@ namespace UOGumpEditor
 
         public static void MoveLayerDown()
         {
-            if (CurrentEleControl is Control control && Z_Layer.Contains(control))
+            if (CurrentEleControl is ElementControl control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 
@@ -79,13 +83,13 @@ namespace UOGumpEditor
             }
         }
 
-        public static void AddElement(Control control)
+        public static void AddElement(ElementControl control)
         {
             if (!Z_Layer.Contains(control))
             {
                 Z_Layer.Insert(0, control);
 
-                if (control is BaseElement ie && ie.Tag != null && ie.Tag is ArtEntity ae)
+                if (control.Tag is ArtEntity ae)
                 {
                     MainUI?.AddToHistory(ae);
                 }

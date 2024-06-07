@@ -1,0 +1,347 @@
+﻿namespace UOGumpEditor.UOElements
+{
+    public class ElementControl : Control
+    {
+        private Image? _image;
+        private Font _font;
+        private Brush _textBrush;
+        private ContentAlignment _textAlign;
+        private Point _dragStartPoint;
+        private bool _isDragging;
+        private bool _isSelected;
+
+        public ElementTypes ElementType { get; set; }
+
+        public int GetLayer()
+        {
+            if (UOEditorCore.Z_Layer.Contains(this))
+            {
+                return UOEditorCore.Z_Layer.IndexOf(this);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public ElementControl()
+        {
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+
+            BackColor = Color.Transparent;
+
+            _font = new Font("Arial", 10);
+            _textBrush = Brushes.White;
+            _textAlign = ContentAlignment.MiddleCenter;
+
+            MouseDown += ElementControl_MouseDown;
+            MouseMove += ElementControl_MouseMove;
+            MouseUp += ElementControl_MouseUp;
+            MouseHover += ElementControl_MouseHover;
+            MouseDoubleClick += ElementControl_MouseDoubleClick;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+
+                cp.ExStyle |= 0x20;
+
+                return cp;
+            }
+        }
+
+        protected override void OnMove(EventArgs e)
+        {
+            Update();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            if (_image != null)
+            {
+                e.Graphics.DrawImage(_image, (Width / 2) - (_image.Width / 2), (Height / 2) - (_image.Height / 2));
+            }
+
+            if (!string.IsNullOrEmpty(Text))
+            {
+                var textSize = e.Graphics.MeasureString(Text, _font);
+
+                PointF textLocation = GetTextLocation(textSize);
+
+                e.Graphics.DrawString(Text, _font, _textBrush, textLocation);
+            }
+
+            if (_isSelected)
+            {
+                using Pen pen = new(Color.Gold, 2);
+
+                e.Graphics.DrawRectangle(pen, 0, 0, Width - 1, Height - 1);
+            }
+        }
+
+        private PointF GetTextLocation(SizeF textSize)
+        {
+            float x = 0;
+            float y = 0;
+
+            switch (_textAlign)
+            {
+                case ContentAlignment.TopLeft:
+                    x = 0;
+                    y = 0;
+                    break;
+
+                case ContentAlignment.TopCenter:
+                    x = (Width - textSize.Width) / 2;
+                    y = 0;
+                    break;
+
+                case ContentAlignment.TopRight:
+                    x = Width - textSize.Width;
+                    y = 0;
+                    break;
+
+                case ContentAlignment.MiddleLeft:
+                    x = 0;
+                    y = (Height - textSize.Height) / 2;
+                    break;
+
+                case ContentAlignment.MiddleCenter:
+                    x = (Width - textSize.Width) / 2;
+                    y = (Height - textSize.Height) / 2;
+                    break;
+
+                case ContentAlignment.MiddleRight:
+                    x = Width - textSize.Width;
+                    y = (Height - textSize.Height) / 2;
+                    break;
+
+                case ContentAlignment.BottomLeft:
+                    x = 0;
+                    y = Height - textSize.Height;
+                    break;
+
+                case ContentAlignment.BottomCenter:
+                    x = (Width - textSize.Width) / 2;
+                    y = Height - textSize.Height;
+                    break;
+
+                case ContentAlignment.BottomRight:
+                    x = Width - textSize.Width;
+                    y = Height - textSize.Height;
+                    break;
+            }
+
+            return new PointF(x, y);
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            // Do not paint background
+        }
+
+        public Image? Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                Update();
+            }
+        }
+
+        public Font TextFont
+        {
+            get { return _font; }
+            set
+            {
+                _font = value;
+                Update();
+            }
+        }
+
+        public Brush TextBrush
+        {
+            get { return _textBrush; }
+            set
+            {
+                _textBrush = value;
+                Update();
+            }
+        }
+
+        public ContentAlignment TextAlign
+        {
+            get { return _textAlign; }
+            set
+            {
+                _textAlign = value;
+                Update();
+            }
+        }
+
+        private static void MakeTransparent(Bitmap bitmap)
+        {
+            bitmap.MakeTransparent(Color.Black);
+        }
+
+        private void ElementControl_MouseDown(object? sender, MouseEventArgs e)
+        {
+            UOEditorCore.UpdateElementMove(this);
+
+            if (e.Button == MouseButtons.Left)
+            {
+                _dragStartPoint = e.Location;
+
+                _isDragging = true;
+
+                BringToFront();
+            }
+        }
+
+        private void ElementControl_MouseMove(object? sender, MouseEventArgs e)
+        {
+            if (_isDragging)
+            {
+                Location = new Point(Left + e.X - _dragStartPoint.X, Top + e.Y - _dragStartPoint.Y);
+            }
+        }
+
+        private void ElementControl_MouseUp(object? sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                _isDragging = false;
+
+                UOEditorCore.ReorderZLayers();
+            }
+        }
+
+        private void ElementControl_MouseHover(object? sender, EventArgs e)
+        {
+            if (Tag is ArtEntity ae)
+            {
+                UOEditorCore.MainUI?.UpdateElementInfo(ae);
+            }
+        }
+
+        private void ElementControl_MouseDoubleClick(object? sender, MouseEventArgs e)
+        {
+            if (ElementType == ElementTypes.Label || ElementType == ElementTypes.Html)
+            {
+                UOEditorCore.MainUI?.OpenTextEntry(ElementType, this);
+            }
+            else
+            {
+                UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
+            }
+        }
+
+        Bitmap? tempBitmap;
+
+        public void SetImage(ArtEntity entity)
+        {
+            tempBitmap = entity.GetImage();
+
+            if (tempBitmap != null)
+            {
+                MakeTransparent(tempBitmap);
+
+                Image = tempBitmap;
+
+                Width = entity.Width;
+
+                Height = entity.Height;
+            }
+
+            Invalidate();
+        }
+
+        public void SetText(string text, Color hue)
+        {
+            Text = text;
+
+            Font = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
+
+            ForeColor = hue;
+
+            Size size = UOEditorCore.GetTextSize(text, Font);
+
+            Width = size.Width;
+
+            Height = size.Height;
+        }
+
+        public (int X, int Y) GetLocation()
+        {
+            if (Parent != null && Parent is Panel panel)
+            {
+                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y);
+            }
+            else
+            {
+                return (Location.X, Location.Y + 26);
+            }
+        }
+
+        public Image? GetImage()
+        {
+            return Image;
+        }
+
+        public void SetSelected(bool isSelected)
+        {
+            _isSelected = isSelected;
+
+            UOEditorCore.MainUI?.CanvasPanel.Invalidate();
+
+            Invalidate();
+        }
+
+        private List<ArtEntity>? BackgroundArt;
+
+        public void LoadBackground()
+        {
+            BackgroundArt = [];
+
+            if (Tag != null && Tag is ArtEntity ae)
+            {
+                if (UltimaArtLoader.SearchArtByName(ae.Name[..^1], true, out List<ArtEntity> searchList))
+                {
+                    if (searchList.Count > 0)
+                    {
+                        foreach (ArtEntity entity in searchList)
+                        {
+                            BackgroundArt.Add(entity);
+                        }
+
+                        if (BackgroundArt.Count > 0)
+                        {
+                            BackgroundArt.Sort();
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<ArtEntity>? ButtonArt;
+
+        public void LoadButton()
+        {
+            ButtonArt = [];
+
+            if (Tag != null && Tag is ArtEntity ae)
+            {
+                ButtonArt.Add(ae);
+
+                ButtonArt.Add(UltimaArtLoader.GetArtEntity(ae.ID + 1, true));
+            }
+        }
+    }
+}
+

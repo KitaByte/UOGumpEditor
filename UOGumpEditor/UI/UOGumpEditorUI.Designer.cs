@@ -80,6 +80,7 @@
             // 
             // BottomStatusStrip
             // 
+            BottomStatusStrip.BackColor = Color.WhiteSmoke;
             resources.ApplyResources(BottomStatusStrip, "BottomStatusStrip");
             BottomStatusStrip.GripMargin = new Padding(0);
             BottomStatusStrip.Items.AddRange(new ToolStripItem[] { UOProgressBar, GumpInfoLabel });
@@ -158,7 +159,7 @@
             // 
             // HistoryListbox
             // 
-            HistoryListbox.BackColor = Color.Gainsboro;
+            HistoryListbox.BackColor = Color.WhiteSmoke;
             HistoryListbox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(HistoryListbox, "HistoryListbox");
             HistoryListbox.ForeColor = Color.Black;
@@ -177,8 +178,9 @@
             // 
             // HistoryLabel
             // 
+            HistoryLabel.BackColor = Color.Indigo;
             resources.ApplyResources(HistoryLabel, "HistoryLabel");
-            HistoryLabel.ForeColor = Color.Gold;
+            HistoryLabel.ForeColor = Color.WhiteSmoke;
             HistoryLabel.Name = "HistoryLabel";
             // 
             // SizePanel
@@ -267,7 +269,7 @@
             // SearchFlowPanel
             // 
             resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
-            SearchFlowPanel.BackColor = Color.FromArgb(32, 32, 32);
+            SearchFlowPanel.BackColor = Color.FromArgb(64, 64, 64);
             SearchFlowPanel.Name = "SearchFlowPanel";
             // 
             // TopMenuStrip
@@ -384,7 +386,7 @@
             // 
             // SearchPanel
             // 
-            SearchPanel.BackColor = Color.Black;
+            SearchPanel.BackColor = Color.FromArgb(32, 32, 32);
             SearchPanel.Controls.Add(SearchFlowPanel);
             SearchPanel.Controls.Add(PreviousButton);
             SearchPanel.Controls.Add(NextButton);
@@ -393,7 +395,7 @@
             // 
             // FocusPanel
             // 
-            FocusPanel.BackColor = Color.Black;
+            FocusPanel.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(FocusPanel, "FocusPanel");
             FocusPanel.Controls.Add(LayerListbox);
             FocusPanel.Controls.Add(LayerLabel);
@@ -404,13 +406,15 @@
             LayerListbox.BackColor = Color.FromArgb(64, 64, 64);
             LayerListbox.BorderStyle = BorderStyle.FixedSingle;
             resources.ApplyResources(LayerListbox, "LayerListbox");
-            LayerListbox.ForeColor = Color.Gold;
+            LayerListbox.ForeColor = Color.White;
             LayerListbox.FormattingEnabled = true;
             LayerListbox.Name = "LayerListbox";
+            LayerListbox.SelectionMode = SelectionMode.MultiSimple;
             LayerListbox.SelectedIndexChanged += LayerListbox_SelectedIndexChanged;
             // 
             // LayerLabel
             // 
+            LayerLabel.BackColor = Color.DarkMagenta;
             resources.ApplyResources(LayerLabel, "LayerLabel");
             LayerLabel.Name = "LayerLabel";
             // 
