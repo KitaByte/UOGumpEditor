@@ -15,18 +15,21 @@ namespace UOGumpEditor
 
         public static ElementControl? CurrentEleControl { get; private set; }
 
-        public static void UpdateElementMove(ElementControl element)
+        public static void UpdateElementMove(ElementControl element, bool clearList = true)
         {
             CurrentEleControl = element;
 
-            MainUI?.ClearSelected();
+            if (clearList)
+            {
+                MainUI?.ClearSelected();
+            }
         }
 
-        public static void MoveElement(int dx, int dy)
+        public static void MoveElement(ElementControl element, int dx, int dy)
         {
-            if (CurrentEleControl != null && MainUI != null)
+            if (MainUI != null)
             {
-                CurrentEleControl.Location = new Point(CurrentEleControl.Location.X + dx, CurrentEleControl.Location.Y + dy);
+                element.Location = new Point(element.Location.X + dx, element.Location.Y + dy);
 
                 MainUI.CanvasPanel.Invalidate();
             }

@@ -84,24 +84,40 @@ namespace UOGumpEditor
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (UOEditorCore.CurrentEleControl != null)
+            List<ElementControl> selectedList = [];
+
+            foreach (var control in CanvasPanel.Controls)
+            {
+                if (control is ElementControl ec && ec.IsSelected)
+                {
+                    selectedList.Add(ec);
+                }
+            }
+
+            for (int i = 0; i < selectedList.Count; i++)
             {
                 switch (keyData)
                 {
                     case Keys.Up:
-                        UOEditorCore.MoveElement(0, -1);
-                        return true;
+                        UOEditorCore.MoveElement(selectedList[i], 0, -1);
+                        break;
                     case Keys.Down:
-                        UOEditorCore.MoveElement(0, 1);
-                        return true;
+                        UOEditorCore.MoveElement(selectedList[i], 0, 1);
+                        break;
                     case Keys.Left:
-                        UOEditorCore.MoveElement(-1, 0);
-                        return true;
+                        UOEditorCore.MoveElement(selectedList[i], -1, 0);
+                        break;
                     case Keys.Right:
-                        UOEditorCore.MoveElement(1, 0);
-                        return true;
+                        UOEditorCore.MoveElement(selectedList[i], 1, 0);
+                        break;
                 }
             }
+
+            if (selectedList.Count > 0)
+            {
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 

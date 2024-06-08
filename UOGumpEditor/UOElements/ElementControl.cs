@@ -9,7 +9,8 @@
         private Point _dragStartPoint;
 
         private bool _isDragging;
-        private bool _isSelected;
+
+        public bool IsSelected { get; private set; }
 
         public ElementTypes ElementType { get; set; }
 
@@ -80,7 +81,7 @@
                 e.Graphics.DrawString(Text, _font, _textBrush, textLocation);
             }
 
-            if (_isSelected)
+            if (IsSelected)
             {
                 using Pen pen = new(Color.Gold, 2);
 
@@ -333,7 +334,7 @@
 
         public void SetSelected(bool isSelected)
         {
-            _isSelected = isSelected;
+            IsSelected = isSelected;
 
             UOEditorCore.MainUI?.CanvasPanel.Invalidate();
 
