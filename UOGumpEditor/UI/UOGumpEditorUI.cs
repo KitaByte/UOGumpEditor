@@ -596,6 +596,8 @@ namespace UOGumpEditor
             {
                 CanvasPanel.Controls.Remove(element);
 
+                UpdateLayerList(element, false);
+
                 UOEditorCore.ReorderZLayers();
             }
         }

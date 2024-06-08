@@ -107,6 +107,8 @@ namespace UOGumpEditor
                 if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     UOEditorCore.MainUI?.RemoveFromCanvas(IMAGEELEMENT);
+
+                    Close();
                 }
             }
         }
