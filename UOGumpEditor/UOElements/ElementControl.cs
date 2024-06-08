@@ -7,6 +7,7 @@
         private Brush _textBrush;
         private ContentAlignment _textAlign;
         private Point _dragStartPoint;
+
         private bool _isDragging;
         private bool _isSelected;
 
@@ -31,9 +32,12 @@
             BackColor = Color.Transparent;
 
             _font = new Font("Arial", 10);
+
             _textBrush = Brushes.White;
+
             _textAlign = ContentAlignment.MiddleCenter;
 
+            // Events
             MouseDown += ElementControl_MouseDown;
             MouseMove += ElementControl_MouseMove;
             MouseUp += ElementControl_MouseUp;
@@ -92,49 +96,76 @@
             switch (_textAlign)
             {
                 case ContentAlignment.TopLeft:
-                    x = 0;
-                    y = 0;
-                    break;
+                    {
+                        x = 0;
+                        y = 0;
+
+                        break;
+                    }
 
                 case ContentAlignment.TopCenter:
-                    x = (Width - textSize.Width) / 2;
-                    y = 0;
-                    break;
+                    {
+                        x = (Width - textSize.Width) / 2;
+                        y = 0;
+
+                        break;
+                    }
 
                 case ContentAlignment.TopRight:
-                    x = Width - textSize.Width;
-                    y = 0;
-                    break;
+                    {
+                        x = Width - textSize.Width;
+                        y = 0;
+
+                        break;
+                    }
 
                 case ContentAlignment.MiddleLeft:
-                    x = 0;
-                    y = (Height - textSize.Height) / 2;
-                    break;
+                    {
+                        x = 0;
+                        y = (Height - textSize.Height) / 2;
+
+                        break;
+                    }
 
                 case ContentAlignment.MiddleCenter:
-                    x = (Width - textSize.Width) / 2;
-                    y = (Height - textSize.Height) / 2;
-                    break;
+                    {
+                        x = (Width - textSize.Width) / 2;
+                        y = (Height - textSize.Height) / 2;
+
+                        break;
+                    }
 
                 case ContentAlignment.MiddleRight:
-                    x = Width - textSize.Width;
-                    y = (Height - textSize.Height) / 2;
-                    break;
+                    {
+                        x = Width - textSize.Width;
+                        y = (Height - textSize.Height) / 2;
+
+                        break;
+                    }
 
                 case ContentAlignment.BottomLeft:
-                    x = 0;
-                    y = Height - textSize.Height;
-                    break;
+                    {
+                        x = 0;
+                        y = Height - textSize.Height;
+
+                        break;
+                    }
 
                 case ContentAlignment.BottomCenter:
-                    x = (Width - textSize.Width) / 2;
-                    y = Height - textSize.Height;
-                    break;
+                    {
+                        x = (Width - textSize.Width) / 2;
+                        y = Height - textSize.Height;
+
+                        break;
+                    }
 
                 case ContentAlignment.BottomRight:
-                    x = Width - textSize.Width;
-                    y = Height - textSize.Height;
-                    break;
+                    {
+                        x = Width - textSize.Width;
+                        y = Height - textSize.Height;
+
+                        break;
+                    }
             }
 
             return new PointF(x, y);
@@ -151,6 +182,7 @@
             set
             {
                 _image = value;
+
                 Update();
             }
         }
@@ -161,6 +193,7 @@
             set
             {
                 _font = value;
+
                 Update();
             }
         }
@@ -171,6 +204,7 @@
             set
             {
                 _textBrush = value;
+
                 Update();
             }
         }
@@ -181,6 +215,7 @@
             set
             {
                 _textAlign = value;
+
                 Update();
             }
         }
@@ -224,9 +259,9 @@
 
         private void ElementControl_MouseHover(object? sender, EventArgs e)
         {
-            if (Tag is ArtEntity ae)
+            if (Tag is ArtEntity entity)
             {
-                UOEditorCore.MainUI?.UpdateElementInfo(ae);
+                UOEditorCore.MainUI?.UpdateElementInfo(entity);
             }
         }
 
@@ -257,6 +292,8 @@
                 Width = entity.Width;
 
                 Height = entity.Height;
+
+                tempBitmap = null;
             }
 
             Invalidate();
@@ -279,7 +316,7 @@
 
         public (int X, int Y) GetLocation()
         {
-            if (Parent != null && Parent is Panel panel)
+            if (Parent is Panel panel)
             {
                 return (Location.X + panel.Location.X, Location.Y + panel.Location.Y);
             }
@@ -303,21 +340,21 @@
             Invalidate();
         }
 
-        private List<ArtEntity>? BackgroundArt;
+        public List<ArtEntity>? BackgroundArt { get; private set; }
 
         public void LoadBackground()
         {
             BackgroundArt = [];
 
-            if (Tag != null && Tag is ArtEntity ae)
+            if (Tag is ArtEntity entity)
             {
-                if (UOArtLoader.SearchArtByName(ae.Name[..^1], true, out List<ArtEntity> searchList))
+                if (UOArtLoader.SearchArtByName(entity.Name[..^1], true, out List<ArtEntity> searchList))
                 {
                     if (searchList.Count > 0)
                     {
-                        foreach (ArtEntity entity in searchList)
+                        foreach (ArtEntity ae in searchList)
                         {
-                            BackgroundArt.Add(entity);
+                            BackgroundArt.Add(ae);
                         }
 
                         if (BackgroundArt.Count > 0)
@@ -329,17 +366,17 @@
             }
         }
 
-        private List<ArtEntity>? ButtonArt;
+        public List<ArtEntity>? ButtonArt { get; private set; }
 
         public void LoadButton()
         {
             ButtonArt = [];
 
-            if (Tag != null && Tag is ArtEntity ae)
+            if (Tag is ArtEntity entity)
             {
-                ButtonArt.Add(ae);
+                ButtonArt.Add(entity);
 
-                ButtonArt.Add(UOArtLoader.GetArtEntity(ae.ID + 1, true));
+                ButtonArt.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
             }
         }
     }

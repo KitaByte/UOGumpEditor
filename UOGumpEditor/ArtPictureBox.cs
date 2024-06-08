@@ -1,4 +1,6 @@
-﻿namespace UOGumpEditor
+﻿using UOGumpEditor.UI;
+
+namespace UOGumpEditor
 {
     public class ArtPictureBox : PictureBox
     {
@@ -6,7 +8,9 @@
 
         private readonly Image? _Image;
 
-        private readonly Color _Color;
+        private readonly Color _Color; 
+        
+        private Form? _previewForm;
 
         public ArtPictureBox(ArtEntity entity, Image? image, Color color)
         {
@@ -36,6 +40,8 @@
             Click += ArtPictureBox_Click;
 
             MouseHover += ArtPictureBox_MouseHover;
+
+            MouseLeave += ArtPictureBox_MouseLeave;
         }
 
         private void ArtPictureBox_Click(object? sender, EventArgs e)
@@ -46,6 +52,57 @@
         private void ArtPictureBox_MouseHover(object? sender, EventArgs e)
         {
             UOEditorCore.MainUI?.UpdateElementInfo(_ArtEntity);
+
+            if (_ArtEntity.Name.StartsWith("Background"))
+            {
+                LoadBackground();
+
+                if (BackgroundArt?.Count > 0)
+                {
+                    _previewForm = new BackgroundPreview(BackgroundArt)
+                    {
+                        Location = Cursor.Position
+                    };
+
+                    _previewForm.Show();
+                }
+            }
+        }
+
+        private void ArtPictureBox_MouseLeave(object? sender, EventArgs e)
+        {
+            _previewForm?.Close();
+
+            _previewForm = null;
+        }
+
+        public List<ArtEntity>? BackgroundArt { get; private set; }
+
+        public void LoadBackground()
+        {
+            BackgroundArt = [];
+
+            if (Tag is ArtEntity entity)
+            {
+                if (UOArtLoader.SearchArtByName(entity.Name[..^1], true, out List<ArtEntity> searchList))
+                {
+                    if (searchList.Count > 0)
+                    {
+                        foreach (ArtEntity ae in searchList)
+                        {
+                            if (ae.Name.Length == entity.Name.Length && ae.Name.StartsWith(entity.Name[..^1]))
+                            {
+                                BackgroundArt.Add(ae);
+                            }
+                        }
+
+                        if (BackgroundArt.Count > 0)
+                        {
+                            BackgroundArt.Sort();
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -63,7 +63,6 @@
             // 
             WidthButton.BackColor = Color.Gainsboro;
             WidthButton.BackgroundImageLayout = ImageLayout.None;
-            WidthButton.Dock = DockStyle.Left;
             WidthButton.FlatAppearance.BorderSize = 0;
             WidthButton.FlatStyle = FlatStyle.Flat;
             WidthButton.ForeColor = Color.Black;
@@ -80,7 +79,6 @@
             // 
             HeightButton.BackColor = Color.Silver;
             HeightButton.BackgroundImageLayout = ImageLayout.None;
-            HeightButton.Dock = DockStyle.Right;
             HeightButton.FlatAppearance.BorderSize = 0;
             HeightButton.FlatStyle = FlatStyle.Flat;
             HeightButton.ForeColor = Color.Black;
@@ -228,7 +226,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(284, 251);
+            ClientSize = new Size(284, 246);
             Controls.Add(BottomButtonPanel);
             Controls.Add(MainButtonPanel);
             Controls.Add(PropertyTextBox);
@@ -239,7 +237,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MaximumSize = new Size(300, 290);
+            MaximumSize = new Size(300, 285);
             MinimizeBox = false;
             MinimumSize = new Size(300, 150);
             Name = "UOImageEditor";

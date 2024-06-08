@@ -150,6 +150,8 @@ namespace UOGumpEditor
 
             // Font Size
 
+            // Preview Window Sticky
+
             // Profile settings
 
 
