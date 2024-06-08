@@ -53,6 +53,8 @@ namespace UOGumpEditor
                     if (IMAGEELEMENT.Tag is ArtEntity nae)
                     {
                         IMAGEELEMENT.SetImage(nae);
+
+                        IMAGEELEMENT.Invalidate();
                     }
                 }
             }
@@ -87,6 +89,8 @@ namespace UOGumpEditor
                         AssetData.Hues.ApplyTo(image, val, false);
 
                         IMAGEELEMENT.Image = image;
+
+                        IMAGEELEMENT.Invalidate();
                     }
                 }
             }

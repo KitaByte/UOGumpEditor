@@ -167,13 +167,15 @@ namespace UOGumpEditor
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-
+            // todo
         }
 
         private void ModeButton_Click(object sender, EventArgs e)
         {
             CanvasPanel.BackColor = CanvasPanel.BackColor == Color.Black ? Color.Transparent : Color.Black;
         }
+
+        SettingsUI? _Settings;
 
         private void Settings_Click(object sender, EventArgs e)
         {
@@ -193,16 +195,21 @@ namespace UOGumpEditor
 
             // Profile settings
 
+            if (_Settings != null && _Settings.Visible)
+            {
+                _Settings.Close();
+            }
+            else
+            {
+                _Settings = new();
 
-            // Reset UO Folder
-            UOSettings.Default.Reset();
-
-            UOSettings.Default.Save();
+                _Settings.Show();
+            }
         }
 
         private void EditorHelpButton_Click(object sender, EventArgs e)
         {
-
+            // todo
         }
 
         private bool IsGump()
