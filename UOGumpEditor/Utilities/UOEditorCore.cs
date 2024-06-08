@@ -16,6 +16,8 @@ namespace UOGumpEditor
 
         public static ElementControl? CurrentElement { get; private set; }
 
+        public static ArtEntity? CurrentArtDisplayed { get; private set; }
+
         public static void UpdateCurrentElement(ElementControl element, bool clearList = true)
         {
             CurrentElement = element;
@@ -161,8 +163,6 @@ namespace UOGumpEditor
 
             LoadArt();
         }
-
-        public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
         public static void SetImageRenderer(PictureBox pb, ArtEntity entity)
         {
@@ -355,9 +355,16 @@ namespace UOGumpEditor
 
             if (entities.Count > 0)
             {
+                Bitmap? tempImage;
+                
                 foreach (var entity in entities)
                 {
-                    images.Add(entity.GetImage());
+                    tempImage = entity.GetImage();
+
+                    if (tempImage != null)
+                    {
+                        images.Add(tempImage);
+                    }
                 }
             }
 
