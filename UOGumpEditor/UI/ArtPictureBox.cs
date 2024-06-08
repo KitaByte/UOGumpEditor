@@ -61,7 +61,7 @@ namespace UOGumpEditor
                 {
                     _previewForm = new BackgroundPreview(BackgroundArt)
                     {
-                        Location = Cursor.Position
+                        Location = new Point(Cursor.Position.X + 10, Cursor.Position.Y + 10)
                     };
 
                     _previewForm.Show();

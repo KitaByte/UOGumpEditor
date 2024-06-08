@@ -35,14 +35,14 @@
             // 
             // DisplayPictureBox
             // 
+            DisplayPictureBox.BackColor = Color.White;
             DisplayPictureBox.BackgroundImageLayout = ImageLayout.None;
             DisplayPictureBox.Dock = DockStyle.Fill;
-            DisplayPictureBox.Location = new Point(0, 0);
+            DisplayPictureBox.Location = new Point(3, 3);
             DisplayPictureBox.Margin = new Padding(0);
-            DisplayPictureBox.MinimumSize = new Size(149, 151);
             DisplayPictureBox.Name = "DisplayPictureBox";
-            DisplayPictureBox.Size = new Size(149, 151);
-            DisplayPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+            DisplayPictureBox.Size = new Size(143, 145);
+            DisplayPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             DisplayPictureBox.TabIndex = 0;
             DisplayPictureBox.TabStop = false;
             // 
@@ -51,18 +51,19 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
-            BackColor = Color.Black;
+            BackColor = Color.Goldenrod;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(149, 151);
             Controls.Add(DisplayPictureBox);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "BackgroundPreview";
+            Padding = new Padding(3);
             ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.Manual;
             Text = "Preview";
             TopMost = true;
             Load += BackgroundPreview_Load;

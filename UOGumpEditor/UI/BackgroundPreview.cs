@@ -20,22 +20,7 @@
         {
             if (artList.Count > 0)
             {
-                List<Bitmap> imageList = [];
-
-                foreach (var entity in artList)
-                {
-                    Bitmap? image = entity.GetImage();
-
-                    if (image != null)
-                    {
-                        imageList.Add(image);
-                    }
-                }
-
-                if (imageList.Count > 0)
-                {
-                    DisplayPictureBox.Image = UOEditorCore.CombineBitmaps(imageList);
-                }
+                DisplayPictureBox.Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(artList));
             }
         }
     }

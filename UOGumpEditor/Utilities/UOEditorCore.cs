@@ -349,20 +349,35 @@ namespace UOGumpEditor
             }
         }
 
-        public static Bitmap? CombineBitmaps(List<Bitmap> bitmaps, int columns = 3)
+        public static List<Bitmap> GetImages(List<ArtEntity> entities)
         {
-            if (bitmaps == null || bitmaps.Count == 0)
+            List<Bitmap> images = [];
+
+            if (entities.Count > 0)
             {
-                MessageBox.Show("Missing Art!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                foreach (var entity in entities)
+                {
+                    images.Add(entity.GetImage());
+                }
+            }
+
+            return images;
+        }
+
+        public static Bitmap? CombineBitmaps(List<Bitmap> bitmaps)
+        {
+            if (bitmaps == null || bitmaps.Count != 9)
+            {
+                MessageBox.Show("Invalid number of images!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return null;
             }
 
-            int rows = (int)Math.Ceiling(bitmaps.Count / (double)columns);
+            Bitmap centerBitmap = bitmaps[4];
 
-            int width = bitmaps[0].Width * columns;
+            int width = centerBitmap.Width * 3;
 
-            int height = bitmaps[0].Height * rows;
+            int height = centerBitmap.Height * 3;
 
             Bitmap combinedBitmap = new(width, height);
 
@@ -370,16 +385,24 @@ namespace UOGumpEditor
             {
                 g.Clear(Color.Transparent);
 
-                for (int i = 0; i < bitmaps.Count; i++)
-                {
-                    int row = i / columns;
-                    int column = i % columns;
-
-                    int x = column * bitmaps[0].Width;
-                    int y = row * bitmaps[0].Height;
-
-                    g.DrawImage(bitmaps[i], new Rectangle(x, y, bitmaps[i].Width, bitmaps[i].Height));
-                }
+                // Top-left
+                g.DrawImage(bitmaps[0], new Rectangle(0, 0, centerBitmap.Width, centerBitmap.Height));
+                // Top-center
+                g.DrawImage(bitmaps[1], new Rectangle(centerBitmap.Width, 0, centerBitmap.Width, centerBitmap.Height));
+                // Top-right
+                g.DrawImage(bitmaps[2], new Rectangle(centerBitmap.Width * 2, 0, centerBitmap.Width, centerBitmap.Height));
+                // Middle-left
+                g.DrawImage(bitmaps[3], new Rectangle(0, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
+                // Middle-center (fill)
+                g.DrawImage(centerBitmap, new Rectangle(centerBitmap.Width, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
+                // Middle-right
+                g.DrawImage(bitmaps[5], new Rectangle(centerBitmap.Width * 2, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
+                // Bottom-left
+                g.DrawImage(bitmaps[6], new Rectangle(0, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
+                // Bottom-center
+                g.DrawImage(bitmaps[7], new Rectangle(centerBitmap.Width, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
+                // Bottom-right
+                g.DrawImage(bitmaps[8], new Rectangle(centerBitmap.Width * 2, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
             }
 
             return combinedBitmap;

@@ -120,11 +120,6 @@
                 }
             }
 
-            //if (_image != null)
-            //{
-            //    e.Graphics.DrawImage(_image, (Width / 2) - (_image.Width / 2), (Height / 2) - (_image.Height / 2));
-            //}
-
             if (!string.IsNullOrEmpty(Text))
             {
                 var textSize = e.Graphics.MeasureString(Text, _font);
@@ -414,21 +409,9 @@
 
                         if (BackgroundArt.Count > 0)
                         {
-                            List<Bitmap> images = [];
-
                             BackgroundArt.Sort();
 
-                            foreach (var artEntity in BackgroundArt)
-                            {
-                                var image = artEntity.GetImage();
-
-                                if (image != null)
-                                {
-                                    images.Add(image);
-                                }
-                            }
-
-                            Image = UOEditorCore.CombineBitmaps(images);
+                            Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundArt));
 
                             BGImageLayout = ImageLayout.Stretch;
                         }
