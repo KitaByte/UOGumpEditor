@@ -2,8 +2,6 @@
 {
     public partial class BackgroundPreview : Form
     {
-        private List<PictureBox>? picturesBoxes;
-
         private readonly List<ArtEntity> artList;
 
         public BackgroundPreview(List<ArtEntity> bgList)
@@ -15,48 +13,28 @@
 
         private void BackgroundPreview_Load(object sender, EventArgs e)
         {
-            LoadPictureBoxes();
-        }
-
-        private void LoadPictureBoxes()
-        {
-            picturesBoxes = [];
-
-            picturesBoxes.Add(BG1PictureBox);
-
-            picturesBoxes.Add(BG2PictureBox);
-
-            picturesBoxes.Add(BG3PictureBox);
-
-            picturesBoxes.Add(BG4PictureBox);
-
-            picturesBoxes.Add(BG5PictureBox);
-
-            picturesBoxes.Add(BG6PictureBox);
-
-            picturesBoxes.Add(BG7PictureBox);
-
-            picturesBoxes.Add(BG8PictureBox);
-
-            picturesBoxes.Add(BG9PictureBox);
-
             DisplayGrid();
         }
 
         private void DisplayGrid()
         {
-            if (artList.Count > 0 && picturesBoxes?.Count > 0)
+            if (artList.Count > 0)
             {
-                for (int i = 0; i < artList.Count; i++)
+                List<Bitmap> imageList = [];
+
+                foreach (var entity in artList)
                 {
-                    if (i < 9)
+                    Bitmap? image = entity.GetImage();
+
+                    if (image != null)
                     {
-                        picturesBoxes[i].Image = artList[i].GetImage();
+                        imageList.Add(image);
                     }
-                    else
-                    {
-                        break;
-                    }
+                }
+
+                if (imageList.Count > 0)
+                {
+                    DisplayPictureBox.Image = UOEditorCore.CombineBitmaps(imageList);
                 }
             }
         }

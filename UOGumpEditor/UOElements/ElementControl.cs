@@ -406,7 +406,10 @@
                     {
                         foreach (ArtEntity ae in searchList)
                         {
-                            BackgroundArt.Add(ae);
+                            if (entity.Name.Length == ae.Name.Length)
+                            {
+                                BackgroundArt.Add(ae);
+                            }
                         }
 
                         if (BackgroundArt.Count > 0)
@@ -427,7 +430,7 @@
 
                             Image = UOEditorCore.CombineBitmaps(images);
 
-                            BGImageLayout = ImageLayout.Zoom;
+                            BGImageLayout = ImageLayout.Stretch;
                         }
                     }
                 }
