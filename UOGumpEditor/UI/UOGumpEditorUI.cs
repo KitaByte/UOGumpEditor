@@ -84,37 +84,16 @@ namespace UOGumpEditor
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            List<ElementControl> selectedList = [];
-
-            foreach (var control in CanvasPanel.Controls)
+            if (CanvasPanel.Controls.Count > 0)
             {
-                if (control is ElementControl ec && ec.IsSelected)
+                for (int i = 0; i < CanvasPanel.Controls.Count; i++)
                 {
-                    selectedList.Add(ec);
+                    if (CanvasPanel.Controls[i] is ElementControl ec && ec.IsSelected)
+                    {
+                        UOEditorCore.SendMoveAction(keyData, ec);
+                    }
                 }
-            }
 
-            for (int i = 0; i < selectedList.Count; i++)
-            {
-                switch (keyData)
-                {
-                    case Keys.Up:
-                        UOEditorCore.MoveElement(selectedList[i], 0, -1);
-                        break;
-                    case Keys.Down:
-                        UOEditorCore.MoveElement(selectedList[i], 0, 1);
-                        break;
-                    case Keys.Left:
-                        UOEditorCore.MoveElement(selectedList[i], -1, 0);
-                        break;
-                    case Keys.Right:
-                        UOEditorCore.MoveElement(selectedList[i], 1, 0);
-                        break;
-                }
-            }
-
-            if (selectedList.Count > 0)
-            {
                 return true;
             }
 

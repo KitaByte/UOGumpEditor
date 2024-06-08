@@ -25,6 +25,25 @@ namespace UOGumpEditor
             }
         }
 
+        public static void SendMoveAction(Keys keyData, ElementControl element)
+        {
+            switch (keyData)
+            {
+                case Keys.Up:
+                    MoveElement(element, 0, -1);
+                    break;
+                case Keys.Down:
+                    MoveElement(element, 0, 1);
+                    break;
+                case Keys.Left:
+                    MoveElement(element, -1, 0);
+                    break;
+                case Keys.Right:
+                    MoveElement(element, 1, 0);
+                    break;
+            }
+        }
+
         public static void MoveElement(ElementControl element, int dx, int dy)
         {
             if (MainUI != null)
