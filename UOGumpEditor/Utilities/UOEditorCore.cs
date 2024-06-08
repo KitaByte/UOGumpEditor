@@ -369,14 +369,12 @@ namespace UOGumpEditor
             if (bitmaps == null || bitmaps.Count != 9)
             {
                 MessageBox.Show("Invalid number of images!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 return null;
             }
 
-            Bitmap centerBitmap = bitmaps[4];
+            Bitmap centerBitmap = bitmaps[4]; 
 
             int width = centerBitmap.Width * 3;
-
             int height = centerBitmap.Height * 3;
 
             Bitmap combinedBitmap = new(width, height);
@@ -385,27 +383,47 @@ namespace UOGumpEditor
             {
                 g.Clear(Color.Transparent);
 
-                // Top-left
-                g.DrawImage(bitmaps[0], new Rectangle(0, 0, centerBitmap.Width, centerBitmap.Height));
-                // Top-center
-                g.DrawImage(bitmaps[1], new Rectangle(centerBitmap.Width, 0, centerBitmap.Width, centerBitmap.Height));
-                // Top-right
-                g.DrawImage(bitmaps[2], new Rectangle(centerBitmap.Width * 2, 0, centerBitmap.Width, centerBitmap.Height));
-                // Middle-left
-                g.DrawImage(bitmaps[3], new Rectangle(0, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
-                // Middle-center (fill)
-                g.DrawImage(centerBitmap, new Rectangle(centerBitmap.Width, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
-                // Middle-right
-                g.DrawImage(bitmaps[5], new Rectangle(centerBitmap.Width * 2, centerBitmap.Height, centerBitmap.Width, centerBitmap.Height));
-                // Bottom-left
-                g.DrawImage(bitmaps[6], new Rectangle(0, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
-                // Bottom-center
-                g.DrawImage(bitmaps[7], new Rectangle(centerBitmap.Width, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
-                // Bottom-right
-                g.DrawImage(bitmaps[8], new Rectangle(centerBitmap.Width * 2, centerBitmap.Height * 2, centerBitmap.Width, centerBitmap.Height));
+                // Draw corners
+                g.DrawImage(bitmaps[0], new Rectangle(0, 0, bitmaps[0].Width, bitmaps[0].Height));
+                g.DrawImage(bitmaps[2], new Rectangle(width - bitmaps[2].Width, 0, bitmaps[2].Width, bitmaps[2].Height));
+                g.DrawImage(bitmaps[6], new Rectangle(0, height - bitmaps[6].Height, bitmaps[6].Width, bitmaps[6].Height));
+                g.DrawImage(bitmaps[8], new Rectangle(width - bitmaps[8].Width, height - bitmaps[8].Height, bitmaps[8].Width, bitmaps[8].Height));
+
+                // Draw edges
+                g.DrawImage(bitmaps[1], new Rectangle(bitmaps[0].Width, 0, width - bitmaps[0].Width - bitmaps[2].Width, bitmaps[1].Height));
+                g.DrawImage(bitmaps[3], new Rectangle(0, bitmaps[0].Height, bitmaps[3].Width, height - bitmaps[0].Height - bitmaps[6].Height));
+                g.DrawImage(bitmaps[5], new Rectangle(width - bitmaps[5].Width, bitmaps[2].Height, bitmaps[5].Width, height - bitmaps[2].Height - bitmaps[8].Height));
+                g.DrawImage(bitmaps[7], new Rectangle(bitmaps[6].Width, height - bitmaps[7].Height, width - bitmaps[6].Width - bitmaps[8].Width, bitmaps[7].Height));
+
+                // Draw center
+                g.DrawImage(bitmaps[4], new Rectangle(bitmaps[3].Width, bitmaps[1].Height, width - bitmaps[3].Width - bitmaps[5].Width, height - bitmaps[1].Height - bitmaps[7].Height));
             }
 
             return combinedBitmap;
+        }
+
+        public static Bitmap TileImage(Bitmap image, Size size)
+        {
+            Bitmap tiledBitmap = new(size.Width, size.Height);
+
+            using (Graphics g = Graphics.FromImage(tiledBitmap))
+            {
+                for (int x = 0; x < size.Width; x += image.Width)
+                {
+                    for (int y = 0; y < size.Height; y += image.Height)
+                    {
+                        g.DrawImage(image, new Rectangle(x, y, image.Width, image.Height));
+                    }
+                }
+
+                // Crop the edges to fit the exact size
+                if (size.Width % image.Width != 0 || size.Height % image.Height != 0)
+                {
+                    g.Clip = new Region(new Rectangle(0, 0, size.Width, size.Height));
+                }
+            }
+
+            return tiledBitmap;
         }
 
         public static void SaveGump(string name)

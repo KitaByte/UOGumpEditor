@@ -69,43 +69,45 @@
         {
             base.OnPaint(e);
 
-            if (_image != null)
+            var displayImage = Image;
+
+            if (displayImage != null)
             {
                 switch (BGImageLayout)
                 {
                     case ImageLayout.None:
                         {
-                            e.Graphics.DrawImage(_image, 0, 0);
+                            e.Graphics.DrawImage(displayImage, 0, 0);
 
                             break;
                         }
 
                     case ImageLayout.Tile:
                         {
-                            using TextureBrush brush = new(_image);
-
-                            e.Graphics.FillRectangle(brush, this.ClientRectangle);
-
+                            using (TextureBrush brush = new(displayImage))
+                            {
+                                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+                            }
                             break;
                         }
 
                     case ImageLayout.Center:
                         {
-                            e.Graphics.DrawImage(_image, (Width - _image.Width) / 2, (Height - _image.Height) / 2);
+                            e.Graphics.DrawImage(displayImage, (Width - displayImage.Width) / 2, (Height - displayImage.Height) / 2);
 
                             break;
                         }
 
                     case ImageLayout.Stretch:
                         {
-                            e.Graphics.DrawImage(_image, 0, 0, Width, Height);
+                            e.Graphics.DrawImage(displayImage, 0, 0, Width, Height);
 
                             break;
                         }
 
                     case ImageLayout.Zoom:
                         {
-                            Size imageSize = _image.Size;
+                            Size imageSize = displayImage.Size;
 
                             float ratio = Math.Min((float)Width / imageSize.Width, (float)Height / imageSize.Height);
 
@@ -113,7 +115,7 @@
 
                             int newHeight = (int)(imageSize.Height * ratio);
 
-                            e.Graphics.DrawImage(_image, (Width - newWidth) / 2, (Height - newHeight) / 2, newWidth, newHeight);
+                            e.Graphics.DrawImage(displayImage, (Width - newWidth) / 2, (Height - newHeight) / 2, newWidth, newHeight);
 
                             break;
                         }
@@ -227,7 +229,15 @@
 
         public Image? Image
         {
-            get { return _image; }
+            get
+            {
+                if (_image != null && (Width > _image.Width || Height > _image.Height) && ElementType != ElementTypes.Background)
+                {
+                    return UOEditorCore.TileImage((Bitmap)_image, new Size(Width, Height));
+                }
+
+                return _image;
+            }
             set
             {
                 _image = value;

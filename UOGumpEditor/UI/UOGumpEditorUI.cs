@@ -74,6 +74,7 @@ namespace UOGumpEditor
             ElementStrip.Enabled = !isLoading;
             GumpArtButton.Enabled = !isLoading;
             ItemArtButton.Enabled = !isLoading;
+            AllArtButton.Enabled = !isLoading;
             ArtIDSearchBox.Enabled = !isLoading;
             ArtNameSearchBox.Enabled = !isLoading;
             ArtWidthSearchBox.Enabled = !isLoading;
