@@ -46,5 +46,17 @@ namespace UOGumpEditor {
                 this["DisplayMax"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public float FontSize {
+            get {
+                return ((float)(this["FontSize"]));
+            }
+            set {
+                this["FontSize"] = value;
+            }
+        }
     }
 }

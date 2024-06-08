@@ -371,6 +371,7 @@
             // 
             CanvasPanel.AllowDrop = true;
             CanvasPanel.BackColor = Color.Black;
+            CanvasPanel.BackgroundImage = GumpRes.UOGSLogo;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
             CanvasPanel.Name = "CanvasPanel";
             CanvasPanel.DragDrop += CanvasPanel_DragDrop;

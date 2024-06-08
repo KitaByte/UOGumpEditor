@@ -34,7 +34,7 @@
 
             BackColor = Color.Transparent;
 
-            _font = new Font("Arial", 10);
+            _font = new Font("Arial", UOSettings.Default.FontSize);
 
             _textBrush = Brushes.White;
 

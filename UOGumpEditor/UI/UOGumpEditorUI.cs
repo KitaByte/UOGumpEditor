@@ -61,6 +61,8 @@ namespace UOGumpEditor
             SetLoadingState(false);
 
             DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
+
+            UOEditorCore.ResetEditor();
         }
 
         private void SetLoadingState(bool isLoading)
@@ -180,21 +182,7 @@ namespace UOGumpEditor
 
         private void Settings_Click(object sender, EventArgs e)
         {
-            // Set Language
-
-            // Edit Gump Names List
-
-            // Search Display Max
-
-            // Background Image
-
-            // Art Viewer Background Color
-
-            // Font Size
-
-            // Preview Window Sticky
-
-            // Profile settings
+            // todo Profile settings
 
             if (_Settings != null && _Settings.Visible)
             {

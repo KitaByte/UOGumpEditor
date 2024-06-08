@@ -17,6 +17,18 @@ namespace UOGumpEditor
 
         private static readonly Dictionary<int, string> GumpNameList = [];
 
+        public static List<string> GumpNames { get; private set; } = [];
+
+        public static void UpdateGumpName(int key, string name)
+        {
+            if (GumpNameList.ContainsKey(key))
+            {
+                GumpNameList[key] = name;
+
+                GumpNames[key] = $"{key}:{name}";
+            }
+        }
+
         public static ArtEntity GetArtEntity(int id, bool isGump)
         {
             if (isGump)
@@ -140,6 +152,8 @@ namespace UOGumpEditor
                                 GumpArtDict[i] = new ArtEntity(i, "FREE_SLOT", 0, 0, true);
                             }
                         }
+
+                        GumpNames.Add($"{GumpArtDict[i].ID}:{GumpArtDict[i].Name}");
                     }
                 });
             }

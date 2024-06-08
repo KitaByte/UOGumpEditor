@@ -127,6 +127,11 @@ namespace UOGumpEditor
 
             if (MainUI != null)
             {
+                if (MainUI.CanvasPanel.BackgroundImage != null)
+                {
+                    MainUI.CanvasPanel.BackgroundImage = null;
+                }
+
                 MainUI.CanvasPanel.Controls.Clear();
 
                 MainUI.HistoryListbox.Items.Clear();
