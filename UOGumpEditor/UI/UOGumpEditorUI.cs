@@ -84,6 +84,19 @@ namespace UOGumpEditor
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                SaveButton_Click(this, EventArgs.Empty);
+
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.O))
+            {
+                LoadButton_Click(this, EventArgs.Empty);
+
+                return true;
+            }
+
             if (CanvasPanel.Controls.Count > 0)
             {
                 CanvasPanel.SuspendLayout();
