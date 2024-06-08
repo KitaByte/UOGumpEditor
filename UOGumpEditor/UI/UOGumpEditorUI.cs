@@ -496,6 +496,8 @@ namespace UOGumpEditor
 
                         UOEditorCore.AddElement(element);
 
+                        element.SetImage(entity);
+
                         if (IsGump())
                         {
                             UOEditorCore.InitGumpConditions(entity, element);
@@ -504,8 +506,6 @@ namespace UOGumpEditor
                         {
                             element.ElementType = ElementTypes.Item;
                         }
-
-                        element.SetImage(entity);
 
                         AddArtToCanvas(element, dropLocation);
                     }

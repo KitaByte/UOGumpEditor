@@ -349,6 +349,42 @@ namespace UOGumpEditor
             }
         }
 
+        public static Bitmap? CombineBitmaps(List<Bitmap> bitmaps, int columns = 3)
+        {
+            if (bitmaps == null || bitmaps.Count == 0)
+            {
+                MessageBox.Show("Missing Art!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            int rows = (int)Math.Ceiling(bitmaps.Count / (double)columns);
+
+            int width = bitmaps[0].Width * columns;
+
+            int height = bitmaps[0].Height * rows;
+
+            Bitmap combinedBitmap = new(width, height);
+
+            using (Graphics g = Graphics.FromImage(combinedBitmap))
+            {
+                g.Clear(Color.Transparent);
+
+                for (int i = 0; i < bitmaps.Count; i++)
+                {
+                    int row = i / columns;
+                    int column = i % columns;
+
+                    int x = column * bitmaps[0].Width;
+                    int y = row * bitmaps[0].Height;
+
+                    g.DrawImage(bitmaps[i], new Rectangle(x, y, bitmaps[i].Width, bitmaps[i].Height));
+                }
+            }
+
+            return combinedBitmap;
+        }
+
         public static void SaveGump(string name)
         {
             if (MainUI != null)

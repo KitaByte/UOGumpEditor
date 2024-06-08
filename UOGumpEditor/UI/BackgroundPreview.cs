@@ -4,7 +4,7 @@
     {
         private List<PictureBox>? picturesBoxes;
 
-        private List<ArtEntity> artList;
+        private readonly List<ArtEntity> artList;
 
         public BackgroundPreview(List<ArtEntity> bgList)
         {

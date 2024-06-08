@@ -14,6 +14,8 @@
 
         public ElementTypes ElementType { get; set; }
 
+        public ImageLayout BGImageLayout { get; set; }
+
         public int GetLayer()
         {
             if (UOEditorCore.Z_Layer.Contains(this))
@@ -69,8 +71,59 @@
 
             if (_image != null)
             {
-                e.Graphics.DrawImage(_image, (Width / 2) - (_image.Width / 2), (Height / 2) - (_image.Height / 2));
+                switch (BGImageLayout)
+                {
+                    case ImageLayout.None:
+                        {
+                            e.Graphics.DrawImage(_image, 0, 0);
+
+                            break;
+                        }
+
+                    case ImageLayout.Tile:
+                        {
+                            using TextureBrush brush = new(_image);
+
+                            e.Graphics.FillRectangle(brush, this.ClientRectangle);
+
+                            break;
+                        }
+
+                    case ImageLayout.Center:
+                        {
+                            e.Graphics.DrawImage(_image, (Width - _image.Width) / 2, (Height - _image.Height) / 2);
+
+                            break;
+                        }
+
+                    case ImageLayout.Stretch:
+                        {
+                            e.Graphics.DrawImage(_image, 0, 0, Width, Height);
+
+                            break;
+                        }
+
+                    case ImageLayout.Zoom:
+                        {
+                            Size imageSize = _image.Size;
+
+                            float ratio = Math.Min((float)Width / imageSize.Width, (float)Height / imageSize.Height);
+
+                            int newWidth = (int)(imageSize.Width * ratio);
+
+                            int newHeight = (int)(imageSize.Height * ratio);
+
+                            e.Graphics.DrawImage(_image, (Width - newWidth) / 2, (Height - newHeight) / 2, newWidth, newHeight);
+
+                            break;
+                        }
+                }
             }
+
+            //if (_image != null)
+            //{
+            //    e.Graphics.DrawImage(_image, (Width / 2) - (_image.Width / 2), (Height / 2) - (_image.Height / 2));
+            //}
 
             if (!string.IsNullOrEmpty(Text))
             {
@@ -358,7 +411,23 @@
 
                         if (BackgroundArt.Count > 0)
                         {
+                            List<Bitmap> images = [];
+
                             BackgroundArt.Sort();
+
+                            foreach (var artEntity in BackgroundArt)
+                            {
+                                var image = artEntity.GetImage();
+
+                                if (image != null)
+                                {
+                                    images.Add(image);
+                                }
+                            }
+
+                            Image = UOEditorCore.CombineBitmaps(images);
+
+                            BGImageLayout = ImageLayout.Zoom;
                         }
                     }
                 }
