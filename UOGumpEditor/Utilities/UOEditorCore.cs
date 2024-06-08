@@ -14,11 +14,11 @@ namespace UOGumpEditor
 
         public static UOArtLoader? ArtLoader { get; private set; }
 
-        public static ElementControl? CurrentEleControl { get; private set; }
+        public static ElementControl? CurrentElement { get; private set; }
 
-        public static void UpdateElementMove(ElementControl element, bool clearList = true)
+        public static void UpdateCurrentElement(ElementControl element, bool clearList = true)
         {
-            CurrentEleControl = element;
+            CurrentElement = element;
 
             if (clearList)
             {
@@ -74,7 +74,7 @@ namespace UOGumpEditor
 
         public static void MoveLayerUp()
         {
-            if (CurrentEleControl is ElementControl control && Z_Layer.Contains(control))
+            if (CurrentElement is ElementControl control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 
@@ -91,7 +91,7 @@ namespace UOGumpEditor
 
         public static void MoveLayerDown()
         {
-            if (CurrentEleControl is ElementControl control && Z_Layer.Contains(control))
+            if (CurrentElement is ElementControl control && Z_Layer.Contains(control))
             {
                 int currentIndex = Z_Layer.IndexOf(control);
 

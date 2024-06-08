@@ -245,16 +245,16 @@
     <value>17</value>
   </data>
   <data name="HistoryListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 347</value>
+    <value>5, 387</value>
   </data>
   <data name="HistoryListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 222</value>
+    <value>192, 182</value>
   </data>
   <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;HistoryListbox.Name" xml:space="preserve">
     <value>HistoryListbox</value>
@@ -287,7 +287,7 @@
     <value>192, 40</value>
   </data>
   <data name="ClearHistoryButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="ClearHistoryButton.Text" xml:space="preserve">
     <value>Clear History</value>
@@ -311,7 +311,7 @@
     <value>Segoe UI, 11.25pt, style=Bold</value>
   </data>
   <data name="HistoryLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 312</value>
+    <value>5, 352</value>
   </data>
   <data name="HistoryLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 35</value>
@@ -419,7 +419,7 @@
     <value>Top</value>
   </data>
   <data name="SizePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 287</value>
+    <value>5, 327</value>
   </data>
   <data name="SizePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -428,7 +428,7 @@
     <value>192, 25</value>
   </data>
   <data name="SizePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;SizePanel.Name" xml:space="preserve">
     <value>SizePanel</value>
@@ -449,7 +449,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="ArtNameSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 262</value>
+    <value>5, 302</value>
   </data>
   <data name="ArtNameSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -464,7 +464,7 @@
     <value>192, 25</value>
   </data>
   <data name="ArtNameSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="ArtNameSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -488,7 +488,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="ArtIDSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 237</value>
+    <value>5, 277</value>
   </data>
   <data name="ArtIDSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -503,7 +503,7 @@
     <value>192, 25</value>
   </data>
   <data name="ArtIDSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="ArtIDSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
@@ -519,6 +519,45 @@
   </data>
   <data name="&gt;&gt;ArtIDSearchBox.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="AllArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="AllArtButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="AllArtButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="AllArtButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="AllArtButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 237</value>
+  </data>
+  <data name="AllArtButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="AllArtButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 40</value>
+  </data>
+  <data name="AllArtButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="AllArtButton.Text" xml:space="preserve">
+    <value>Search All</value>
+  </data>
+  <data name="&gt;&gt;AllArtButton.Name" xml:space="preserve">
+    <value>AllArtButton</value>
+  </data>
+  <data name="&gt;&gt;AllArtButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AllArtButton.Parent" xml:space="preserve">
+    <value>ArtPanel</value>
+  </data>
+  <data name="&gt;&gt;AllArtButton.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="ArtPicturebox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -551,7 +590,7 @@
     <value>ArtPanel</value>
   </data>
   <data name="&gt;&gt;ArtPicturebox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="ItemArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -653,7 +692,7 @@
     <value>ArtPanel</value>
   </data>
   <data name="&gt;&gt;ArtSelectPanel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="ArtPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -1070,7 +1109,7 @@
     <value>115, 40</value>
   </data>
   <data name="ClearSelectedButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="ClearSelectedButton.Text" xml:space="preserve">
     <value>Clear Selected</value>

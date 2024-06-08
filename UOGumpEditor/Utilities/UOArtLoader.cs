@@ -210,6 +210,22 @@ namespace UOGumpEditor
 
         private static List<ArtEntity>? tempEntityList;
 
+        internal static bool GetAllArt(bool isGump, out List<ArtEntity> list)
+        {
+            if (isGump)
+            {
+                tempEntityList = [.. GumpArtDict.Values];
+
+                return LoadList(tempEntityList, out list);
+            }
+            else
+            {
+                tempEntityList = [.. ItemArtDict.Values];
+
+                return LoadList(tempEntityList, out list);
+            }
+        }
+
         public static bool SearchArtByID(int id, bool isGump, out List<ArtEntity> list)
         {
             int range = UOSettings.Default.DisplayMax / 2;

@@ -47,6 +47,7 @@
             ArtWidthSearchBox = new TextBox();
             ArtNameSearchBox = new TextBox();
             ArtIDSearchBox = new TextBox();
+            AllArtButton = new Button();
             ArtPicturebox = new PictureBox();
             ArtSelectPanel = new Panel();
             ItemArtButton = new Button();
@@ -153,6 +154,7 @@
             ArtPanel.Controls.Add(SizePanel);
             ArtPanel.Controls.Add(ArtNameSearchBox);
             ArtPanel.Controls.Add(ArtIDSearchBox);
+            ArtPanel.Controls.Add(AllArtButton);
             ArtPanel.Controls.Add(ArtPicturebox);
             ArtPanel.Controls.Add(ArtSelectPanel);
             resources.ApplyResources(ArtPanel, "ArtPanel");
@@ -230,6 +232,15 @@
             ArtIDSearchBox.Name = "ArtIDSearchBox";
             ArtIDSearchBox.MouseClick += ArtSearchBox_MouseClick;
             ArtIDSearchBox.TextChanged += ArtIDSearchBox_TextChanged;
+            // 
+            // AllArtButton
+            // 
+            AllArtButton.BackColor = Color.Goldenrod;
+            resources.ApplyResources(AllArtButton, "AllArtButton");
+            AllArtButton.FlatAppearance.BorderSize = 0;
+            AllArtButton.Name = "AllArtButton";
+            AllArtButton.UseVisualStyleBackColor = false;
+            AllArtButton.Click += AllArtButton_Click;
             // 
             // ArtPicturebox
             // 
@@ -412,6 +423,7 @@
             LayerListbox.FormattingEnabled = true;
             LayerListbox.Name = "LayerListbox";
             LayerListbox.SelectionMode = SelectionMode.MultiSimple;
+            LayerListbox.TabStop = false;
             LayerListbox.SelectedIndexChanged += LayerListbox_SelectedIndexChanged;
             // 
             // ClearSelectedButton
@@ -503,5 +515,6 @@
         private Button ClearSelectedButton;
         internal ListBox HistoryListbox;
         internal ListBox LayerListbox;
+        private Button AllArtButton;
     }
 }

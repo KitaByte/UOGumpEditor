@@ -10,6 +10,7 @@ namespace UOGumpEditor
         public string Name { get; init; } = name;
         public int Width { get; init; } = w;
         public int Height { get; init; } = h;
+        public int Hue { get; set; } = 0;
 
         public Bitmap? GetImage()
         {

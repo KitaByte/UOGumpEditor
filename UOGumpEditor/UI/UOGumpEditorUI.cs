@@ -247,6 +247,20 @@ namespace UOGumpEditor
             }
         }
 
+        private void AllArtButton_Click(object sender, EventArgs e)
+        {
+            if (UOArtLoader.GetAllArt(IsGump(), out List<ArtEntity> results))
+            {
+                _artCache = new ArtCache(results);
+
+                DisplayArtWindow();
+            }
+            else
+            {
+                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
+            }
+        }
+
         private void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && ArtIDSearchBox.Text.Length < 6)

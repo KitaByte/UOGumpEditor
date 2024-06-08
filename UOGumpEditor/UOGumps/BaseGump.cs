@@ -36,6 +36,7 @@ namespace UOGumpEditor.UOGumps
         public string ArtName { get; set; } = string.Empty;
         public int ArtWidth { get; set; } = 0;
         public int ArtHeight { get; set; } = 0;
+        public int ArtHue { get; set; } = 0;
         public bool IsGump { get; set; } = true;
 
         public GumpElement()
@@ -57,13 +58,14 @@ namespace UOGumpEditor.UOGumps
                 ArtName = ae.Name;
                 ArtWidth = ae.Width;
                 ArtHeight = ae.Height;
+                ArtHue = ae.Hue;
                 IsGump = ae.IsGump;
             }
         }
 
         public ArtEntity ToArtEntity()
         {
-            return new ArtEntity(ArtID, ArtName, ArtWidth, ArtHeight, IsGump);
+            return new ArtEntity(ArtID, ArtName, ArtWidth, ArtHeight, IsGump) { Hue = ArtHue };
         }
     }
 }

@@ -20,7 +20,7 @@ namespace UOGumpEditor
 
             using StreamWriter writer = new(filePath);
 
-            writer.WriteLine("ID,Name,Width,Height,IsGump,Text,Type,LocationX,LocationY,SizeWidth,SizeHeight,Color");
+            writer.WriteLine("ID,Name,Width,Height,Hue,IsGump,Text,Type,LocationX,LocationY,SizeWidth,SizeHeight,Color");
 
             foreach (var element in gump.Elements)
             {
@@ -29,6 +29,7 @@ namespace UOGumpEditor
                     $"{element.ArtName}," +
                     $"{element.ArtWidth}," +
                     $"{element.ArtHeight}," +
+                    $"{element.ArtHue}," +
                     $"{element.IsGump}," +
                     $"{element.Text}," +
                     $"{element.Type}," +
@@ -77,12 +78,13 @@ namespace UOGumpEditor
                             ArtName = values[1],
                             ArtWidth = int.Parse(values[2]),
                             ArtHeight = int.Parse(values[3]),
-                            IsGump = bool.Parse(values[4]),
-                            Text = values[5],
-                            Type = values[6],
-                            Location = new Point(int.Parse(values[7]), int.Parse(values[8])),
-                            Size = new Size(int.Parse(values[9]), int.Parse(values[10])),
-                            Color = Color.FromArgb(int.Parse(values[11]))
+                            ArtHue = int.Parse(values[4]),
+                            IsGump = bool.Parse(values[5]),
+                            Text = values[6],
+                            Type = values[7],
+                            Location = new Point(int.Parse(values[8]), int.Parse(values[9])),
+                            Size = new Size(int.Parse(values[10]), int.Parse(values[11])),
+                            Color = Color.FromArgb(int.Parse(values[12]))
                         };
 
                         gump.Elements.Add(element);

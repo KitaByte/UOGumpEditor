@@ -276,7 +276,7 @@
 
         private void ElementControl_MouseDown(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.UpdateElementMove(this);
+            UOEditorCore.UpdateCurrentElement(this);
 
             if (e.Button == MouseButtons.Left)
             {
