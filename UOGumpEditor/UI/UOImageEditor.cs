@@ -23,51 +23,10 @@ namespace UOGumpEditor
         private void UOImageEditor_Load(object sender, EventArgs e)
         {
             HueButton.Visible = false;
-            MaxButton.Visible = false;
 
-            switch (ELEMENT)
-            {
-                case ElementTypes.AlphaRegion:
-                    ElementComboBox.Items.Add(ElementTypes.AlphaRegion);
-                    break;
-                case ElementTypes.Background:
-                    ElementComboBox.Items.Add(ElementTypes.Background);
-                    ElementComboBox.Items.Add(ElementTypes.TiledImage);
-                    HueButton.Visible = true;
-                    break;
-                case ElementTypes.Button:
-                    ElementComboBox.Items.Add(ElementTypes.Button);
-                    break;
-                case ElementTypes.CheckBox:
-                    ElementComboBox.Items.Add(ElementTypes.CheckBox);
-                    break;
-                case ElementTypes.Image:
-                    ElementComboBox.Items.Add(ElementTypes.Image);
-                    ElementComboBox.Items.Add(ElementTypes.TiledImage);
-                    HueButton.Visible = true;
-                    break;
-                case ElementTypes.Item:
-                    ElementComboBox.Items.Add(ElementTypes.Item);
-                    HueButton.Visible = true;
-                    break;
-                case ElementTypes.RadioButton:
-                    ElementComboBox.Items.Add(ElementTypes.RadioButton);
-                    break;
-                case ElementTypes.TextEntry:
-                    ElementComboBox.Items.Add(ElementTypes.TextEntry);
-                    ElementComboBox.Items.Add(ElementTypes.TextEntryLimited);
-                    break;
-                case ElementTypes.TextEntryLimited:
-                    ElementComboBox.Items.Add(ElementTypes.TextEntry);
-                    ElementComboBox.Items.Add(ElementTypes.TextEntryLimited);
-                    MaxButton.Visible = true;
-                    break;
-                case ElementTypes.TiledImage:
-                    ElementComboBox.Items.Add(ElementTypes.Image);
-                    ElementComboBox.Items.Add(ElementTypes.TiledImage);
-                    HueButton.Visible = true;
-                    break;
-            }
+            MaxButton.Visible = ELEMENT == ElementTypes.TextEntryLimited;
+
+            UOEditorCore.InitElement(ELEMENT, ElementComboBox, HueButton);
 
             ElementComboBox.SelectedIndex = ElementComboBox.Items.IndexOf(ELEMENT);
         }

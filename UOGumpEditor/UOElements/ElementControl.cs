@@ -336,9 +336,7 @@
         {
             IsSelected = isSelected;
 
-            UOEditorCore.MainUI?.CanvasPanel.Invalidate();
-
-            Invalidate();
+            Update();
         }
 
         public List<ArtEntity>? BackgroundArt { get; private set; }

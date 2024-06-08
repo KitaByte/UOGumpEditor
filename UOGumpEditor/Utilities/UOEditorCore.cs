@@ -1,4 +1,5 @@
 ﻿using UOGumpEditor.UOElements;
+using UOGumpEditor.UOGumps;
 
 namespace UOGumpEditor
 {
@@ -118,9 +119,18 @@ namespace UOGumpEditor
             }
         }
 
-        public static void ResetGumpElements()
+        public static void ResetEditor()
         {
             Z_Layer.Clear();
+
+            if (MainUI != null)
+            {
+                MainUI.CanvasPanel.Controls.Clear();
+
+                MainUI.HistoryListbox.Items.Clear();
+
+                MainUI.LayerListbox.Items.Clear();
+            }
         }
 
         public static string? FindDataFile(string dataPath, string search)
@@ -189,6 +199,209 @@ namespace UOGumpEditor
         public static Size GetTextSize(string text, Font font)
         {
             return TextRenderer.MeasureText(text, font);
+        }
+
+        public static void InitGumpConditions(ArtEntity entity, ElementControl element) 
+        {
+            if (entity.Name.StartsWith("Background"))
+            {
+                element.ElementType = ElementTypes.Background;
+
+                element.LoadBackground();
+            }
+            else
+            {
+                switch (entity.Name)
+                {
+                    case "Button":
+                        {
+                            element.ElementType = ElementTypes.Button;
+
+                            element.LoadButton();
+
+                            break;
+                        }
+
+                    case "Radio":
+                        {
+                            element.ElementType = ElementTypes.RadioButton;
+
+                            element.LoadButton();
+
+                            break;
+                        }
+
+                    case "Check":
+                        {
+                            element.ElementType = ElementTypes.CheckBox;
+
+                            element.LoadButton();
+
+                            break;
+                        }
+
+                    case "TextEntry":
+                        {
+                            element.ElementType = ElementTypes.TextEntry;
+
+                            break;
+                        }
+
+                    case "AlphaRegion":
+                        {
+                            element.ElementType = ElementTypes.AlphaRegion;
+
+                            break;
+                        }
+
+                    default:
+                        {
+                            element.ElementType = ElementTypes.Image;
+
+                            break;
+                        }
+                }
+            }
+        }
+
+        public static void InitElement(ElementTypes element, ComboBox comboBox, Button hue)
+        {
+            switch (element)
+            {
+                case ElementTypes.AlphaRegion:
+                    {
+                        comboBox.Items.Add(ElementTypes.AlphaRegion);
+
+                        break;
+                    }
+
+                case ElementTypes.Background:
+                    {
+                        comboBox.Items.Add(ElementTypes.Background);
+                        comboBox.Items.Add(ElementTypes.TiledImage);
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.Button:
+                    {
+                        comboBox.Items.Add(ElementTypes.Button);
+
+                        break;
+                    }
+
+                case ElementTypes.CheckBox:
+                    {
+                        comboBox.Items.Add(ElementTypes.CheckBox);
+
+                        break;
+                    }
+
+                case ElementTypes.Image:
+                    {
+                        comboBox.Items.Add(ElementTypes.Image);
+                        comboBox.Items.Add(ElementTypes.TiledImage);
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.Item:
+                    {
+                        comboBox.Items.Add(ElementTypes.Item);
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.RadioButton:
+                    {
+                        comboBox.Items.Add(ElementTypes.RadioButton);
+
+                        break;
+                    }
+
+                case ElementTypes.TextEntry:
+                    {
+                        comboBox.Items.Add(ElementTypes.TextEntry);
+                        comboBox.Items.Add(ElementTypes.TextEntryLimited);
+
+                        break;
+                    }
+
+                case ElementTypes.TextEntryLimited:
+                    {
+                        comboBox.Items.Add(ElementTypes.TextEntry);
+                        comboBox.Items.Add(ElementTypes.TextEntryLimited);
+
+                        break;
+                    }
+
+                case ElementTypes.TiledImage:
+                    {
+                        comboBox.Items.Add(ElementTypes.Image);
+                        comboBox.Items.Add(ElementTypes.TiledImage);
+                        hue.Visible = true;
+
+                        break;
+                    }
+            }
+        }
+
+        public static void SaveGump(string name)
+        {
+            if (MainUI != null)
+            {
+                BaseGump gump = new(Path.GetFileNameWithoutExtension(name));
+
+                foreach (Control control in MainUI.CanvasPanel.Controls)
+                {
+                    if (control is ElementControl elementControl)
+                    {
+                        gump.Elements.Add(new GumpElement(elementControl));
+                    }
+                }
+
+                CSVHelper.SaveGump(gump);
+
+                MessageBox.Show($"{gump.Name} Saved!", "System", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        public static void LoadGump(BaseGump gump)
+        {
+            if (MainUI != null)
+            {
+                foreach (var element in gump.Elements)
+                {
+                    ElementControl control = new()
+                    {
+                        Text = element.Text,
+                        ElementType = (ElementTypes)Enum.Parse(typeof(ElementTypes), element.Type),
+                        Location = element.Location,
+                        Size = element.Size,
+                        ForeColor = element.Color,
+                        Tag = element.ToArtEntity()
+                    };
+
+                    if (control.Tag is ArtEntity entity)
+                    {
+                        if (control.ElementType != ElementTypes.Item)
+                        {
+                            InitGumpConditions(entity, control);
+                        }
+
+                        control.SetImage(entity);
+                    }
+
+                    MainUI.CanvasPanel.Controls.Add(control);
+
+                    AddElement(control);
+                }
+
+                ReorderZLayers();
+            }
         }
     }
 }

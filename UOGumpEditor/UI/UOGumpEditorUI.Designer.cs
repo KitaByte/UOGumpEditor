@@ -473,7 +473,6 @@
         private Panel ArtPanel;
         private PictureBox ArtPicturebox;
         private TextBox ArtIDSearchBox;
-        private ListBox HistoryListbox;
         private Label HistoryLabel;
         private Panel ArtSelectPanel;
         private Button ItemArtButton;
@@ -501,7 +500,8 @@
         internal Panel CanvasPanel;
         private Panel FocusPanel;
         private Label LayerLabel;
-        private ListBox LayerListbox;
         private Button ClearSelectedButton;
+        internal ListBox HistoryListbox;
+        internal ListBox LayerListbox;
     }
 }

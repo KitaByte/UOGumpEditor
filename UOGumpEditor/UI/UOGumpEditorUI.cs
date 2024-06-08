@@ -86,6 +86,8 @@ namespace UOGumpEditor
         {
             if (CanvasPanel.Controls.Count > 0)
             {
+                CanvasPanel.SuspendLayout();
+
                 for (int i = 0; i < CanvasPanel.Controls.Count; i++)
                 {
                     if (CanvasPanel.Controls[i] is ElementControl ec && ec.IsSelected)
@@ -94,7 +96,7 @@ namespace UOGumpEditor
                     }
                 }
 
-                return true;
+                CanvasPanel.ResumeLayout();
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -102,23 +104,52 @@ namespace UOGumpEditor
 
         private void NewButton_Click(object sender, EventArgs e)
         {
-            CanvasPanel.Controls.Clear();
+            UOEditorCore.ResetEditor();
+        }
 
-            HistoryListbox.Items.Clear();
+        private GumpHandler? _Handler;
 
-            LayerListbox.Items.Clear();
-
-            UOEditorCore.ResetGumpElements();
+        private void CheckHandler()
+        {
+            if (_Handler != null && _Handler.Visible)
+            {
+                _Handler.Close();
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (CanvasPanel.Controls.Count > 0)
+            {
+                CheckHandler();
 
+                _Handler = new(GumpActions.Save);
+
+                _Handler.Show();
+            }
+            else
+            {
+                MessageBox.Show("Missing Gump!", "Required!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
+            if (CanvasPanel.Controls.Count > 0)
+            {
+                if (MessageBox.Show("Clearing Canvas, Proceed?", "Load Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    return;
+                }
 
+                UOEditorCore.ResetEditor();
+            }
+
+            CheckHandler();
+
+            _Handler = new(GumpActions.Load);
+
+            _Handler.Show();
         }
 
         private void ExportButton_Click(object sender, EventArgs e)
@@ -399,10 +430,10 @@ namespace UOGumpEditor
 
         private void LayerListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClearSelected();
+
             if (LayerListbox.SelectedItems.Count > 0)
             {
-                ClearSelected();
-
                 foreach (var item in LayerListbox.SelectedItems)
                 {
                     if (item is ElementEntity entity)
@@ -410,6 +441,8 @@ namespace UOGumpEditor
                         entity.Element.SetSelected(true);
                     }
                 }
+
+                CanvasPanel.Invalidate();
             }
         }
 
@@ -425,6 +458,8 @@ namespace UOGumpEditor
                     }
                 }
             }
+
+            CanvasPanel.Invalidate();
         }
 
         private void ClearSelectedButton_Click(object sender, EventArgs e)
@@ -463,65 +498,7 @@ namespace UOGumpEditor
 
                         if (IsGump())
                         {
-                            if (entity.Name.StartsWith("Background"))
-                            {
-                                element.ElementType = ElementTypes.Background;
-
-                                element.LoadBackground();
-                            }
-                            else
-                            {
-                                switch (entity.Name)
-                                {
-                                    case "Button":
-                                        {
-                                            element.ElementType = ElementTypes.Button;
-
-                                            element.LoadButton();
-
-                                            break;
-                                        }
-
-                                    case "Radio":
-                                        {
-                                            element.ElementType = ElementTypes.RadioButton;
-
-                                            element.LoadButton();
-
-                                            break;
-                                        }
-
-                                    case "Check":
-                                        {
-                                            element.ElementType = ElementTypes.CheckBox;
-
-                                            element.LoadButton();
-
-                                            break;
-                                        }
-
-                                    case "TextEntry":
-                                        {
-                                            element.ElementType = ElementTypes.TextEntry;
-
-                                            break;
-                                        }
-
-                                    case "AlphaRegion":
-                                        {
-                                            element.ElementType = ElementTypes.AlphaRegion;
-
-                                            break;
-                                        }
-
-                                    default:
-                                        {
-                                            element.ElementType = ElementTypes.Image;
-
-                                            break;
-                                        }
-                                }
-                            }
+                            UOEditorCore.InitGumpConditions(entity, element);
                         }
                         else
                         {
