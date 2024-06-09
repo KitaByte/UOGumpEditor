@@ -2,14 +2,20 @@
 {
     public partial class SettingsUI : Form
     {
+        private ListBox GumpNameListbox;
+
         public SettingsUI()
         {
             InitializeComponent();
+
+            GumpNameListbox = UOArtLoader.GumpListBox;
         }
 
         private void SettingsUI_Load(object sender, EventArgs e)
         {
-            LoadGumpNames();
+            GumpNameListbox.SelectedIndexChanged += GumpNameListbox_SelectedIndexChanged1;
+
+            GumpListPanel.Controls.Add(GumpNameListbox);
 
             FontTextbox.Text = UOSettings.Default.FontSize.ToString();
 
@@ -20,15 +26,6 @@
             ExportCombobox.SelectedIndex = 0;
 
             LanguageCombobox.SelectedIndex = 0;
-        }
-
-        private void LoadGumpNames()
-        {
-            GumpNameListbox.SuspendLayout();
-
-            GumpNameListbox.DataSource = UOArtLoader.GumpNames;
-
-            GumpNameListbox.ResumeLayout();
         }
 
         private void SetFontButton_Click(object sender, EventArgs e)
@@ -55,18 +52,16 @@
                 {
                     UOArtLoader.UpdateGumpName(val, nameInfo[1]);
 
-                    GumpNameListbox.Items.Clear();
-
-                    LoadGumpNames();
+                    UOArtLoader.GumpListBox.Update();
                 }
             }
         }
 
-        private void GumpNameListbox_SelectedIndexChanged(object sender, EventArgs e)
+        private void GumpNameListbox_SelectedIndexChanged1(object? sender, EventArgs e)
         {
-            if (GumpNameListbox.SelectedValue != null)
+            if (UOArtLoader.GumpListBox.SelectedValue != null)
             {
-                GumpNameTextbox.Text = GumpNameListbox.SelectedValue.ToString();
+                GumpNameTextbox.Text = UOArtLoader.GumpListBox.SelectedValue.ToString();
             }
         }
 
@@ -95,12 +90,22 @@
 
         private void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ExportCombobox.SelectedIndex > -1)
+            {
+                UOSettings.Default.ExportType = ExportCombobox.SelectedIndex;
 
+                UOSettings.Default.Save();
+            }
         }
 
         private void LanguageCombobox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (LanguageCombobox.SelectedIndex > -1)
+            {
+                UOSettings.Default.LanguageType = LanguageCombobox.SelectedIndex;
 
+                UOSettings.Default.Save();
+            }
         }
 
         private void BackgroundButton_Click(object sender, EventArgs e)

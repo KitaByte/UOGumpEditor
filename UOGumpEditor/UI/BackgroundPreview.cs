@@ -8,6 +8,11 @@
         {
             InitializeComponent();
 
+            if (UOSettings.Default.PreviewSticky)
+            {
+                FormBorderStyle = FormBorderStyle.FixedSingle;
+            }
+
             artList = bgList;
         }
 
@@ -22,6 +27,11 @@
             {
                 DisplayPictureBox.Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(artList));
             }
+        }
+
+        private void BackgroundPreview_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ArtPictureBox.PreviewBox = null;
         }
     }
 }

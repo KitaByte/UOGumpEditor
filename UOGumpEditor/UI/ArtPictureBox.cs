@@ -10,7 +10,7 @@ namespace UOGumpEditor
 
         private readonly Color _Color; 
         
-        private Form? _previewForm;
+        public static Form? PreviewBox { get; set; }
 
         public ArtPictureBox(ArtEntity entity, Image? image, Color color)
         {
@@ -57,23 +57,26 @@ namespace UOGumpEditor
             {
                 LoadBackground();
 
-                if (BackgroundArt?.Count > 0)
+                if (BackgroundArt?.Count > 0 && PreviewBox == null)
                 {
-                    _previewForm = new BackgroundPreview(BackgroundArt)
+                    PreviewBox = new BackgroundPreview(BackgroundArt)
                     {
                         Location = new Point(Cursor.Position.X + 10, Cursor.Position.Y + 10)
                     };
 
-                    _previewForm.Show();
+                    PreviewBox.Show();
                 }
             }
         }
 
         private void ArtPictureBox_MouseLeave(object? sender, EventArgs e)
         {
-            _previewForm?.Close();
+            if (!UOSettings.Default.PreviewSticky)
+            {
+                PreviewBox?.Close();
 
-            _previewForm = null;
+                PreviewBox = null;
+            }
         }
 
         public List<ArtEntity>? BackgroundArt { get; private set; }

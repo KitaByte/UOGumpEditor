@@ -1,4 +1,5 @@
-﻿using UOGumpEditor.UOElements;
+﻿using System.Collections;
+using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -173,9 +174,32 @@ namespace UOGumpEditor
             _Handler.Show();
         }
 
+        public ExportUI? _ExportUI { get; set; }
+
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            // todo
+            if (CanvasPanel.Controls.Count > 0 && _ExportUI == null)
+            {
+                List<ElementControl> elementList = [];
+
+                foreach (var element in CanvasPanel.Controls)
+                {
+                    if (element is ElementControl ec)
+                    {
+                        elementList.Add(ec);
+                    }
+                }
+
+                ElementControl[] elements = [.. elementList];
+
+                _ExportUI = new ExportUI(elements);
+
+                _ExportUI.Show();
+            }
+            else
+            {
+                _ExportUI?.Close();
+            }
         }
 
         private void ModeButton_Click(object sender, EventArgs e)
@@ -193,12 +217,10 @@ namespace UOGumpEditor
             {
                 _Settings.Close();
             }
-            else
-            {
-                _Settings = new();
 
-                _Settings.Show();
-            }
+            _Settings = new();
+
+            _Settings.Show();
         }
 
         private void EditorHelpButton_Click(object sender, EventArgs e)

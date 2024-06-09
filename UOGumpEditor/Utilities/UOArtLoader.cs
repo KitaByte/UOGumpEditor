@@ -9,6 +9,8 @@ namespace UOGumpEditor
 
         public static readonly string DataFolder = Path.Combine(Directory.GetCurrentDirectory(), "DataFiles");
 
+        public static readonly string ExportFolder = Path.Combine(Directory.GetCurrentDirectory(), "Exported");
+
         public static readonly string BGImageFile = Path.Combine(DataFolder, "BackgroundImage.png");
 
         private static readonly string GumpNameFile = Path.Combine(DataFolder, "GumpNames.txt");
@@ -20,6 +22,12 @@ namespace UOGumpEditor
         private static readonly Dictionary<int, string> GumpNameList = [];
 
         public static List<string> GumpNames { get; private set; } = [];
+
+        public static ListBox GumpListBox { get; private set; } = new ListBox() 
+        { 
+            Size = new Size(306, 308), 
+            Dock = DockStyle.Bottom
+        };
 
         public static void UpdateGumpName(int key, string name)
         {
@@ -75,6 +83,11 @@ namespace UOGumpEditor
             if (!Directory.Exists(DataFolder))
             {
                 Directory.CreateDirectory(DataFolder);
+            }
+
+            if (!Directory.Exists(ExportFolder))
+            {
+                Directory.CreateDirectory(ExportFolder);
             }
 
             if (!File.Exists(GumpNameFile))
@@ -157,6 +170,8 @@ namespace UOGumpEditor
 
                         GumpNames.Add($"{GumpArtDict[i].ID}:{GumpArtDict[i].Name}");
                     }
+
+                    GumpListBox.DataSource = GumpNames;
                 });
             }
         }

@@ -38,7 +38,6 @@
             GumpListPanel = new Panel();
             GumpNameTextbox = new TextBox();
             SetNameButton = new Button();
-            GumpNameListbox = new ListBox();
             FontPanel = new Panel();
             FontTextbox = new TextBox();
             SetFontButton = new Button();
@@ -176,7 +175,6 @@
             GumpListPanel.BackgroundImageLayout = ImageLayout.None;
             GumpListPanel.Controls.Add(GumpNameTextbox);
             GumpListPanel.Controls.Add(SetNameButton);
-            GumpListPanel.Controls.Add(GumpNameListbox);
             GumpListPanel.Dock = DockStyle.Top;
             GumpListPanel.Location = new Point(5, 40);
             GumpListPanel.Margin = new Padding(0);
@@ -190,18 +188,19 @@
             GumpNameTextbox.BackColor = Color.WhiteSmoke;
             GumpNameTextbox.BorderStyle = BorderStyle.FixedSingle;
             GumpNameTextbox.Dock = DockStyle.Right;
+            GumpNameTextbox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             GumpNameTextbox.ForeColor = Color.Black;
             GumpNameTextbox.Location = new Point(158, 5);
             GumpNameTextbox.Margin = new Padding(0);
             GumpNameTextbox.MaxLength = 2;
             GumpNameTextbox.Name = "GumpNameTextbox";
-            GumpNameTextbox.Size = new Size(153, 25);
+            GumpNameTextbox.Size = new Size(153, 29);
             GumpNameTextbox.TabIndex = 2;
             GumpNameTextbox.TextAlign = HorizontalAlignment.Center;
             // 
             // SetNameButton
             // 
-            SetNameButton.BackColor = Color.SteelBlue;
+            SetNameButton.BackColor = Color.Goldenrod;
             SetNameButton.BackgroundImageLayout = ImageLayout.None;
             SetNameButton.Dock = DockStyle.Left;
             SetNameButton.FlatAppearance.BorderSize = 0;
@@ -209,27 +208,11 @@
             SetNameButton.Location = new Point(5, 5);
             SetNameButton.Margin = new Padding(0);
             SetNameButton.Name = "SetNameButton";
-            SetNameButton.Size = new Size(153, 33);
+            SetNameButton.Size = new Size(153, 341);
             SetNameButton.TabIndex = 1;
             SetNameButton.Text = "Set Name";
             SetNameButton.UseVisualStyleBackColor = false;
             SetNameButton.Click += SetNameButton_Click;
-            // 
-            // GumpNameListbox
-            // 
-            GumpNameListbox.BackColor = Color.WhiteSmoke;
-            GumpNameListbox.BorderStyle = BorderStyle.FixedSingle;
-            GumpNameListbox.Dock = DockStyle.Bottom;
-            GumpNameListbox.ForeColor = Color.Black;
-            GumpNameListbox.FormattingEnabled = true;
-            GumpNameListbox.ItemHeight = 17;
-            GumpNameListbox.Location = new Point(5, 38);
-            GumpNameListbox.Margin = new Padding(0);
-            GumpNameListbox.Name = "GumpNameListbox";
-            GumpNameListbox.ScrollAlwaysVisible = true;
-            GumpNameListbox.Size = new Size(306, 308);
-            GumpNameListbox.TabIndex = 0;
-            GumpNameListbox.SelectedIndexChanged += GumpNameListbox_SelectedIndexChanged;
             // 
             // FontPanel
             // 
@@ -405,7 +388,7 @@
             ExportCombobox.Dock = DockStyle.Right;
             ExportCombobox.ForeColor = Color.Black;
             ExportCombobox.FormattingEnabled = true;
-            ExportCombobox.Items.AddRange(new object[] { "RunUO 1.0", "RunUO 2.0", "ServUO 54", "ServUO 55", "ServUO 56", "ServUO 57", "ServUO 58", "MUO" });
+            ExportCombobox.Items.AddRange(new object[] { "CSharp", "Sphere" });
             ExportCombobox.Location = new Point(158, 5);
             ExportCombobox.Margin = new Padding(0);
             ExportCombobox.Name = "ExportCombobox";
@@ -477,7 +460,7 @@
             ArtDisplayButton.Name = "ArtDisplayButton";
             ArtDisplayButton.Size = new Size(153, 25);
             ArtDisplayButton.TabIndex = 0;
-            ArtDisplayButton.Text = "Set Art Display";
+            ArtDisplayButton.Text = "Set Display Color";
             ArtDisplayButton.UseVisualStyleBackColor = false;
             ArtDisplayButton.Click += ArtDisplayButton_Click;
             // 
@@ -622,7 +605,6 @@
         private Button SetFontButton;
         private Panel GumpListPanel;
         private Button SetNameButton;
-        private ListBox GumpNameListbox;
         private TextBox FontTextbox;
         private TextBox GumpNameTextbox;
         private Panel MaxSearchPanel;
@@ -634,7 +616,6 @@
         private Panel VersionPanel;
         private Button VersionButton;
         private Panel LanguagePanel;
-        private TextBox textBox1;
         private Button LanguageButton;
         private Panel ArtDisplayPanel;
         private Button ArtDisplayButton;

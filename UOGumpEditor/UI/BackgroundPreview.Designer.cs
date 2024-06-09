@@ -66,6 +66,7 @@
             StartPosition = FormStartPosition.Manual;
             Text = "Preview";
             TopMost = true;
+            FormClosed += BackgroundPreview_FormClosed;
             Load += BackgroundPreview_Load;
             ((System.ComponentModel.ISupportInitialize)DisplayPictureBox).EndInit();
             ResumeLayout(false);

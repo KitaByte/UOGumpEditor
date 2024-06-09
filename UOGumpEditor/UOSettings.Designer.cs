@@ -82,5 +82,29 @@ namespace UOGumpEditor {
                 this["ArtDisplayColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ExportType {
+            get {
+                return ((int)(this["ExportType"]));
+            }
+            set {
+                this["ExportType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LanguageType {
+            get {
+                return ((int)(this["LanguageType"]));
+            }
+            set {
+                this["LanguageType"] = value;
+            }
+        }
     }
 }
