@@ -56,6 +56,12 @@
             ExportCombobox = new ComboBox();
             VersionButton = new Button();
             StyleTab = new TabPage();
+            CtrlSpeedPanel = new Panel();
+            CtrlSpeedTextbox = new TextBox();
+            CtrlSpeedButton = new Button();
+            ShiftSpeedPanel = new Panel();
+            ShiftSpeedTextbox = new TextBox();
+            ShiftSpeedButton = new Button();
             ArtDisplayPanel = new Panel();
             ArtDisplayColorPanel = new Panel();
             ArtDisplayButton = new Button();
@@ -65,12 +71,6 @@
             LanguagePanel = new Panel();
             LanguageCombobox = new ComboBox();
             LanguageButton = new Button();
-            ShiftSpeedPanel = new Panel();
-            ShiftSpeedTextbox = new TextBox();
-            ShiftSpeedButton = new Button();
-            CtrlSpeedPanel = new Panel();
-            CtrlSpeedTextbox = new TextBox();
-            CtrlSpeedButton = new Button();
             SettingsTabControl.SuspendLayout();
             MainTab.SuspendLayout();
             ElementTab.SuspendLayout();
@@ -83,11 +83,11 @@
             ExportTab.SuspendLayout();
             VersionPanel.SuspendLayout();
             StyleTab.SuspendLayout();
+            CtrlSpeedPanel.SuspendLayout();
+            ShiftSpeedPanel.SuspendLayout();
             ArtDisplayPanel.SuspendLayout();
             BackgroundPanel.SuspendLayout();
             LanguagePanel.SuspendLayout();
-            ShiftSpeedPanel.SuspendLayout();
-            CtrlSpeedPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ResetButton
@@ -484,6 +484,90 @@
             StyleTab.TabIndex = 4;
             StyleTab.Text = "Style";
             // 
+            // CtrlSpeedPanel
+            // 
+            CtrlSpeedPanel.Controls.Add(CtrlSpeedTextbox);
+            CtrlSpeedPanel.Controls.Add(CtrlSpeedButton);
+            CtrlSpeedPanel.Dock = DockStyle.Top;
+            CtrlSpeedPanel.Location = new Point(5, 145);
+            CtrlSpeedPanel.Margin = new Padding(0);
+            CtrlSpeedPanel.Name = "CtrlSpeedPanel";
+            CtrlSpeedPanel.Padding = new Padding(5);
+            CtrlSpeedPanel.Size = new Size(316, 35);
+            CtrlSpeedPanel.TabIndex = 4;
+            // 
+            // CtrlSpeedTextbox
+            // 
+            CtrlSpeedTextbox.BackColor = Color.WhiteSmoke;
+            CtrlSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
+            CtrlSpeedTextbox.Dock = DockStyle.Right;
+            CtrlSpeedTextbox.ForeColor = Color.Black;
+            CtrlSpeedTextbox.Location = new Point(158, 5);
+            CtrlSpeedTextbox.Margin = new Padding(0);
+            CtrlSpeedTextbox.MaxLength = 2;
+            CtrlSpeedTextbox.Name = "CtrlSpeedTextbox";
+            CtrlSpeedTextbox.Size = new Size(153, 25);
+            CtrlSpeedTextbox.TabIndex = 1;
+            CtrlSpeedTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // CtrlSpeedButton
+            // 
+            CtrlSpeedButton.BackColor = Color.SteelBlue;
+            CtrlSpeedButton.BackgroundImageLayout = ImageLayout.None;
+            CtrlSpeedButton.Dock = DockStyle.Left;
+            CtrlSpeedButton.FlatAppearance.BorderSize = 0;
+            CtrlSpeedButton.FlatStyle = FlatStyle.Flat;
+            CtrlSpeedButton.Location = new Point(5, 5);
+            CtrlSpeedButton.Margin = new Padding(0);
+            CtrlSpeedButton.Name = "CtrlSpeedButton";
+            CtrlSpeedButton.Size = new Size(153, 25);
+            CtrlSpeedButton.TabIndex = 0;
+            CtrlSpeedButton.Text = "Set Ctrl Speed";
+            CtrlSpeedButton.UseVisualStyleBackColor = false;
+            CtrlSpeedButton.Click += CtrlSpeedButton_Click;
+            // 
+            // ShiftSpeedPanel
+            // 
+            ShiftSpeedPanel.Controls.Add(ShiftSpeedTextbox);
+            ShiftSpeedPanel.Controls.Add(ShiftSpeedButton);
+            ShiftSpeedPanel.Dock = DockStyle.Top;
+            ShiftSpeedPanel.Location = new Point(5, 110);
+            ShiftSpeedPanel.Margin = new Padding(0);
+            ShiftSpeedPanel.Name = "ShiftSpeedPanel";
+            ShiftSpeedPanel.Padding = new Padding(5);
+            ShiftSpeedPanel.Size = new Size(316, 35);
+            ShiftSpeedPanel.TabIndex = 3;
+            // 
+            // ShiftSpeedTextbox
+            // 
+            ShiftSpeedTextbox.BackColor = Color.WhiteSmoke;
+            ShiftSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
+            ShiftSpeedTextbox.Dock = DockStyle.Right;
+            ShiftSpeedTextbox.ForeColor = Color.Black;
+            ShiftSpeedTextbox.Location = new Point(158, 5);
+            ShiftSpeedTextbox.Margin = new Padding(0);
+            ShiftSpeedTextbox.MaxLength = 2;
+            ShiftSpeedTextbox.Name = "ShiftSpeedTextbox";
+            ShiftSpeedTextbox.Size = new Size(153, 25);
+            ShiftSpeedTextbox.TabIndex = 1;
+            ShiftSpeedTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // ShiftSpeedButton
+            // 
+            ShiftSpeedButton.BackColor = Color.SteelBlue;
+            ShiftSpeedButton.BackgroundImageLayout = ImageLayout.None;
+            ShiftSpeedButton.Dock = DockStyle.Left;
+            ShiftSpeedButton.FlatAppearance.BorderSize = 0;
+            ShiftSpeedButton.FlatStyle = FlatStyle.Flat;
+            ShiftSpeedButton.Location = new Point(5, 5);
+            ShiftSpeedButton.Margin = new Padding(0);
+            ShiftSpeedButton.Name = "ShiftSpeedButton";
+            ShiftSpeedButton.Size = new Size(153, 25);
+            ShiftSpeedButton.TabIndex = 0;
+            ShiftSpeedButton.Text = "Set Shift Speed";
+            ShiftSpeedButton.UseVisualStyleBackColor = false;
+            ShiftSpeedButton.Click += ShiftSpeedButton_Click;
+            // 
             // ArtDisplayPanel
             // 
             ArtDisplayPanel.Controls.Add(ArtDisplayColorPanel);
@@ -584,7 +668,7 @@
             LanguageCombobox.Dock = DockStyle.Right;
             LanguageCombobox.ForeColor = Color.Black;
             LanguageCombobox.FormattingEnabled = true;
-            LanguageCombobox.Items.AddRange(new object[] { "English", "French", "German", "Spanish" });
+            LanguageCombobox.Items.AddRange(new object[] { "English", "ToDo", "ToDo", "ToDo" });
             LanguageCombobox.Location = new Point(158, 5);
             LanguageCombobox.Margin = new Padding(0);
             LanguageCombobox.Name = "LanguageCombobox";
@@ -606,90 +690,6 @@
             LanguageButton.TabIndex = 0;
             LanguageButton.Text = "Select Language";
             LanguageButton.UseVisualStyleBackColor = false;
-            // 
-            // ShiftSpeedPanel
-            // 
-            ShiftSpeedPanel.Controls.Add(ShiftSpeedTextbox);
-            ShiftSpeedPanel.Controls.Add(ShiftSpeedButton);
-            ShiftSpeedPanel.Dock = DockStyle.Top;
-            ShiftSpeedPanel.Location = new Point(5, 110);
-            ShiftSpeedPanel.Margin = new Padding(0);
-            ShiftSpeedPanel.Name = "ShiftSpeedPanel";
-            ShiftSpeedPanel.Padding = new Padding(5);
-            ShiftSpeedPanel.Size = new Size(316, 35);
-            ShiftSpeedPanel.TabIndex = 3;
-            // 
-            // ShiftSpeedTextbox
-            // 
-            ShiftSpeedTextbox.BackColor = Color.WhiteSmoke;
-            ShiftSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
-            ShiftSpeedTextbox.Dock = DockStyle.Right;
-            ShiftSpeedTextbox.ForeColor = Color.Black;
-            ShiftSpeedTextbox.Location = new Point(158, 5);
-            ShiftSpeedTextbox.Margin = new Padding(0);
-            ShiftSpeedTextbox.MaxLength = 2;
-            ShiftSpeedTextbox.Name = "ShiftSpeedTextbox";
-            ShiftSpeedTextbox.Size = new Size(153, 25);
-            ShiftSpeedTextbox.TabIndex = 1;
-            ShiftSpeedTextbox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // ShiftSpeedButton
-            // 
-            ShiftSpeedButton.BackColor = Color.SteelBlue;
-            ShiftSpeedButton.BackgroundImageLayout = ImageLayout.None;
-            ShiftSpeedButton.Dock = DockStyle.Left;
-            ShiftSpeedButton.FlatAppearance.BorderSize = 0;
-            ShiftSpeedButton.FlatStyle = FlatStyle.Flat;
-            ShiftSpeedButton.Location = new Point(5, 5);
-            ShiftSpeedButton.Margin = new Padding(0);
-            ShiftSpeedButton.Name = "ShiftSpeedButton";
-            ShiftSpeedButton.Size = new Size(153, 25);
-            ShiftSpeedButton.TabIndex = 0;
-            ShiftSpeedButton.Text = "Set Shift Speed";
-            ShiftSpeedButton.UseVisualStyleBackColor = false;
-            ShiftSpeedButton.Click += ShiftSpeedButton_Click;
-            // 
-            // CtrlSpeedPanel
-            // 
-            CtrlSpeedPanel.Controls.Add(CtrlSpeedTextbox);
-            CtrlSpeedPanel.Controls.Add(CtrlSpeedButton);
-            CtrlSpeedPanel.Dock = DockStyle.Top;
-            CtrlSpeedPanel.Location = new Point(5, 145);
-            CtrlSpeedPanel.Margin = new Padding(0);
-            CtrlSpeedPanel.Name = "CtrlSpeedPanel";
-            CtrlSpeedPanel.Padding = new Padding(5);
-            CtrlSpeedPanel.Size = new Size(316, 35);
-            CtrlSpeedPanel.TabIndex = 4;
-            // 
-            // CtrlSpeedTextbox
-            // 
-            CtrlSpeedTextbox.BackColor = Color.WhiteSmoke;
-            CtrlSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
-            CtrlSpeedTextbox.Dock = DockStyle.Right;
-            CtrlSpeedTextbox.ForeColor = Color.Black;
-            CtrlSpeedTextbox.Location = new Point(158, 5);
-            CtrlSpeedTextbox.Margin = new Padding(0);
-            CtrlSpeedTextbox.MaxLength = 2;
-            CtrlSpeedTextbox.Name = "CtrlSpeedTextbox";
-            CtrlSpeedTextbox.Size = new Size(153, 25);
-            CtrlSpeedTextbox.TabIndex = 1;
-            CtrlSpeedTextbox.TextAlign = HorizontalAlignment.Center;
-            // 
-            // CtrlSpeedButton
-            // 
-            CtrlSpeedButton.BackColor = Color.SteelBlue;
-            CtrlSpeedButton.BackgroundImageLayout = ImageLayout.None;
-            CtrlSpeedButton.Dock = DockStyle.Left;
-            CtrlSpeedButton.FlatAppearance.BorderSize = 0;
-            CtrlSpeedButton.FlatStyle = FlatStyle.Flat;
-            CtrlSpeedButton.Location = new Point(5, 5);
-            CtrlSpeedButton.Margin = new Padding(0);
-            CtrlSpeedButton.Name = "CtrlSpeedButton";
-            CtrlSpeedButton.Size = new Size(153, 25);
-            CtrlSpeedButton.TabIndex = 0;
-            CtrlSpeedButton.Text = "Set Ctrl Speed";
-            CtrlSpeedButton.UseVisualStyleBackColor = false;
-            CtrlSpeedButton.Click += CtrlSpeedButton_Click;
             // 
             // SettingsUI
             // 
@@ -727,14 +727,14 @@
             ExportTab.ResumeLayout(false);
             VersionPanel.ResumeLayout(false);
             StyleTab.ResumeLayout(false);
+            CtrlSpeedPanel.ResumeLayout(false);
+            CtrlSpeedPanel.PerformLayout();
+            ShiftSpeedPanel.ResumeLayout(false);
+            ShiftSpeedPanel.PerformLayout();
             ArtDisplayPanel.ResumeLayout(false);
             BackgroundPanel.ResumeLayout(false);
             BackgroundPanel.PerformLayout();
             LanguagePanel.ResumeLayout(false);
-            ShiftSpeedPanel.ResumeLayout(false);
-            ShiftSpeedPanel.PerformLayout();
-            CtrlSpeedPanel.ResumeLayout(false);
-            CtrlSpeedPanel.PerformLayout();
             ResumeLayout(false);
         }
 
