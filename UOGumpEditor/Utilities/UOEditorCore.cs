@@ -32,20 +32,46 @@ namespace UOGumpEditor
 
         public static void SendMoveAction(Keys keyData, ElementControl element)
         {
-            switch (keyData)
+            int moveAmount = 1;
+
+            if ((keyData & Keys.Shift) == Keys.Shift)
+            {
+                moveAmount = UOSettings.Default.ShiftSpeed;
+            }
+            else if ((keyData & Keys.Control) == Keys.Control)
+            {
+                moveAmount = UOSettings.Default.CtrlSpeed;
+            }
+
+            switch (keyData & Keys.KeyCode)
             {
                 case Keys.Up:
-                    MoveElement(element, 0, -1);
-                    break;
+                    {
+                        MoveElement(element, 0, -moveAmount);
+
+                        break;
+                    }
+
                 case Keys.Down:
-                    MoveElement(element, 0, 1);
-                    break;
+                    {
+                        MoveElement(element, 0, moveAmount);
+
+                        break;
+                    }
+
                 case Keys.Left:
-                    MoveElement(element, -1, 0);
-                    break;
+                    {
+                        MoveElement(element, -moveAmount, 0);
+
+                        break;
+                    }
+
                 case Keys.Right:
-                    MoveElement(element, 1, 0);
-                    break;
+                    {
+                        MoveElement(element, moveAmount, 0);
+
+                        break;
+                    }
             }
         }
 

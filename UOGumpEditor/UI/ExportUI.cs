@@ -35,7 +35,7 @@ namespace UOGumpEditor
         {
             if (UOEditorCore.MainUI != null)
             {
-                UOEditorCore.MainUI._ExportUI = null;
+                UOEditorCore.MainUI.ExportUIHandle = null;
             }
         }
     }

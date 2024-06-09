@@ -175,11 +175,11 @@ namespace UOGumpEditor
             _Handler.Show();
         }
 
-        public ExportUI? _ExportUI { get; set; }
+        public ExportUI? ExportUIHandle { get; set; }
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            if (CanvasPanel.Controls.Count > 0 && _ExportUI == null)
+            if (CanvasPanel.Controls.Count > 0 && ExportUIHandle == null)
             {
                 List<ElementControl> elementList = [];
 
@@ -193,13 +193,13 @@ namespace UOGumpEditor
 
                 ElementControl[] elements = [.. elementList];
 
-                _ExportUI = new ExportUI(elements);
+                ExportUIHandle = new ExportUI(elements);
 
-                _ExportUI.Show();
+                ExportUIHandle.Show();
             }
             else
             {
-                _ExportUI?.Close();
+                ExportUIHandle?.Close();
             }
         }
 
@@ -208,7 +208,7 @@ namespace UOGumpEditor
             CanvasPanel.BackColor = CanvasPanel.BackColor == Color.Black ? Color.Transparent : Color.Black;
         }
 
-        SettingsUI? _Settings;
+        private SettingsUI? _Settings;
 
         private void Settings_Click(object sender, EventArgs e)
         {

@@ -2,13 +2,11 @@
 {
     public partial class SettingsUI : Form
     {
-        private ListBox GumpNameListbox;
+        private readonly ListBox GumpNameListbox = UOArtLoader.GumpListBox;
 
         public SettingsUI()
         {
             InitializeComponent();
-
-            GumpNameListbox = UOArtLoader.GumpListBox;
         }
 
         private void SettingsUI_Load(object sender, EventArgs e)
@@ -24,6 +22,10 @@
             PreviewTextbox.Text = UOSettings.Default.PreviewSticky.ToString();
 
             FreeSlotTextbox.Text = UOSettings.Default.ShowFreeSlots.ToString();
+
+            ShiftSpeedTextbox.Text = UOSettings.Default.ShiftSpeed.ToString();
+
+            CtrlSpeedTextbox.Text = UOSettings.Default.CtrlSpeed.ToString();
 
             ExportCombobox.SelectedIndex = 0;
 
@@ -77,7 +79,7 @@
             }
             else
             {
-                FontTextbox.Text = UOSettings.Default.DisplayMax.ToString();
+                MaxSearchTextbox.Text = UOSettings.Default.DisplayMax.ToString();
             }
         }
 
@@ -136,6 +138,34 @@
             UOSettings.Default.ArtDisplayColor = ArtDisplayColorPanel.BackColor;
 
             UOSettings.Default.Save();
+        }
+
+        private void ShiftSpeedButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(ShiftSpeedTextbox.Text, out int speed))
+            {
+                UOSettings.Default.ShiftSpeed = speed;
+
+                UOSettings.Default.Save();
+            }
+            else
+            {
+                ShiftSpeedTextbox.Text = UOSettings.Default.ShiftSpeed.ToString();
+            }
+        }
+
+        private void CtrlSpeedButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(CtrlSpeedTextbox.Text, out int speed))
+            {
+                UOSettings.Default.CtrlSpeed = speed;
+
+                UOSettings.Default.Save();
+            }
+            else
+            {
+                CtrlSpeedTextbox.Text = UOSettings.Default.CtrlSpeed.ToString();
+            }
         }
 
         private void ResetButton_Click(object sender, EventArgs e)

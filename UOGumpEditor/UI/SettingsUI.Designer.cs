@@ -42,6 +42,9 @@
             FontTextbox = new TextBox();
             SetFontButton = new Button();
             SearchTab = new TabPage();
+            FlreeSlotPanel = new Panel();
+            FreeSlotTextbox = new TextBox();
+            FreeSlotButton = new Button();
             PreviewPanel = new Panel();
             PreviewTextbox = new TextBox();
             PreviewButton = new Button();
@@ -62,15 +65,19 @@
             LanguagePanel = new Panel();
             LanguageCombobox = new ComboBox();
             LanguageButton = new Button();
-            FlreeSlotPanel = new Panel();
-            FreeSlotTextbox = new TextBox();
-            FreeSlotButton = new Button();
+            ShiftSpeedPanel = new Panel();
+            ShiftSpeedTextbox = new TextBox();
+            ShiftSpeedButton = new Button();
+            CtrlSpeedPanel = new Panel();
+            CtrlSpeedTextbox = new TextBox();
+            CtrlSpeedButton = new Button();
             SettingsTabControl.SuspendLayout();
             MainTab.SuspendLayout();
             ElementTab.SuspendLayout();
             GumpListPanel.SuspendLayout();
             FontPanel.SuspendLayout();
             SearchTab.SuspendLayout();
+            FlreeSlotPanel.SuspendLayout();
             PreviewPanel.SuspendLayout();
             MaxSearchPanel.SuspendLayout();
             ExportTab.SuspendLayout();
@@ -79,7 +86,8 @@
             ArtDisplayPanel.SuspendLayout();
             BackgroundPanel.SuspendLayout();
             LanguagePanel.SuspendLayout();
-            FlreeSlotPanel.SuspendLayout();
+            ShiftSpeedPanel.SuspendLayout();
+            CtrlSpeedPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ResetButton
@@ -276,6 +284,49 @@
             SearchTab.TabIndex = 2;
             SearchTab.Text = "Search";
             // 
+            // FlreeSlotPanel
+            // 
+            FlreeSlotPanel.Controls.Add(FreeSlotTextbox);
+            FlreeSlotPanel.Controls.Add(FreeSlotButton);
+            FlreeSlotPanel.Dock = DockStyle.Top;
+            FlreeSlotPanel.Location = new Point(5, 75);
+            FlreeSlotPanel.Margin = new Padding(0);
+            FlreeSlotPanel.Name = "FlreeSlotPanel";
+            FlreeSlotPanel.Padding = new Padding(5);
+            FlreeSlotPanel.Size = new Size(316, 35);
+            FlreeSlotPanel.TabIndex = 2;
+            // 
+            // FreeSlotTextbox
+            // 
+            FreeSlotTextbox.BackColor = Color.WhiteSmoke;
+            FreeSlotTextbox.BorderStyle = BorderStyle.FixedSingle;
+            FreeSlotTextbox.Dock = DockStyle.Right;
+            FreeSlotTextbox.ForeColor = Color.Black;
+            FreeSlotTextbox.Location = new Point(158, 5);
+            FreeSlotTextbox.Margin = new Padding(0);
+            FreeSlotTextbox.MaxLength = 2;
+            FreeSlotTextbox.Name = "FreeSlotTextbox";
+            FreeSlotTextbox.ReadOnly = true;
+            FreeSlotTextbox.Size = new Size(153, 25);
+            FreeSlotTextbox.TabIndex = 1;
+            FreeSlotTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // FreeSlotButton
+            // 
+            FreeSlotButton.BackColor = Color.SteelBlue;
+            FreeSlotButton.BackgroundImageLayout = ImageLayout.None;
+            FreeSlotButton.Dock = DockStyle.Left;
+            FreeSlotButton.FlatAppearance.BorderSize = 0;
+            FreeSlotButton.FlatStyle = FlatStyle.Flat;
+            FreeSlotButton.Location = new Point(5, 5);
+            FreeSlotButton.Margin = new Padding(0);
+            FreeSlotButton.Name = "FreeSlotButton";
+            FreeSlotButton.Size = new Size(153, 25);
+            FreeSlotButton.TabIndex = 0;
+            FreeSlotButton.Text = "Show Free Slots";
+            FreeSlotButton.UseVisualStyleBackColor = false;
+            FreeSlotButton.Click += FreeSlotButton_Click;
+            // 
             // PreviewPanel
             // 
             PreviewPanel.Controls.Add(PreviewTextbox);
@@ -286,7 +337,7 @@
             PreviewPanel.Name = "PreviewPanel";
             PreviewPanel.Padding = new Padding(5);
             PreviewPanel.Size = new Size(316, 35);
-            PreviewPanel.TabIndex = 2;
+            PreviewPanel.TabIndex = 1;
             // 
             // PreviewTextbox
             // 
@@ -329,7 +380,7 @@
             MaxSearchPanel.Name = "MaxSearchPanel";
             MaxSearchPanel.Padding = new Padding(5);
             MaxSearchPanel.Size = new Size(316, 35);
-            MaxSearchPanel.TabIndex = 1;
+            MaxSearchPanel.TabIndex = 0;
             // 
             // MaxSearchTextbox
             // 
@@ -385,7 +436,7 @@
             VersionPanel.Name = "VersionPanel";
             VersionPanel.Padding = new Padding(5);
             VersionPanel.Size = new Size(316, 35);
-            VersionPanel.TabIndex = 3;
+            VersionPanel.TabIndex = 0;
             // 
             // ExportCombobox
             // 
@@ -419,6 +470,8 @@
             // StyleTab
             // 
             StyleTab.BackColor = Color.FromArgb(64, 64, 64);
+            StyleTab.Controls.Add(CtrlSpeedPanel);
+            StyleTab.Controls.Add(ShiftSpeedPanel);
             StyleTab.Controls.Add(ArtDisplayPanel);
             StyleTab.Controls.Add(BackgroundPanel);
             StyleTab.Controls.Add(LanguagePanel);
@@ -441,7 +494,7 @@
             ArtDisplayPanel.Name = "ArtDisplayPanel";
             ArtDisplayPanel.Padding = new Padding(5);
             ArtDisplayPanel.Size = new Size(316, 35);
-            ArtDisplayPanel.TabIndex = 5;
+            ArtDisplayPanel.TabIndex = 2;
             // 
             // ArtDisplayColorPanel
             // 
@@ -523,7 +576,7 @@
             LanguagePanel.Name = "LanguagePanel";
             LanguagePanel.Padding = new Padding(5);
             LanguagePanel.Size = new Size(316, 35);
-            LanguagePanel.TabIndex = 3;
+            LanguagePanel.TabIndex = 0;
             // 
             // LanguageCombobox
             // 
@@ -554,48 +607,89 @@
             LanguageButton.Text = "Select Language";
             LanguageButton.UseVisualStyleBackColor = false;
             // 
-            // FlreeSlotPanel
+            // ShiftSpeedPanel
             // 
-            FlreeSlotPanel.Controls.Add(FreeSlotTextbox);
-            FlreeSlotPanel.Controls.Add(FreeSlotButton);
-            FlreeSlotPanel.Dock = DockStyle.Top;
-            FlreeSlotPanel.Location = new Point(5, 75);
-            FlreeSlotPanel.Margin = new Padding(0);
-            FlreeSlotPanel.Name = "FlreeSlotPanel";
-            FlreeSlotPanel.Padding = new Padding(5);
-            FlreeSlotPanel.Size = new Size(316, 35);
-            FlreeSlotPanel.TabIndex = 3;
+            ShiftSpeedPanel.Controls.Add(ShiftSpeedTextbox);
+            ShiftSpeedPanel.Controls.Add(ShiftSpeedButton);
+            ShiftSpeedPanel.Dock = DockStyle.Top;
+            ShiftSpeedPanel.Location = new Point(5, 110);
+            ShiftSpeedPanel.Margin = new Padding(0);
+            ShiftSpeedPanel.Name = "ShiftSpeedPanel";
+            ShiftSpeedPanel.Padding = new Padding(5);
+            ShiftSpeedPanel.Size = new Size(316, 35);
+            ShiftSpeedPanel.TabIndex = 3;
             // 
-            // FreeSlotTextbox
+            // ShiftSpeedTextbox
             // 
-            FreeSlotTextbox.BackColor = Color.WhiteSmoke;
-            FreeSlotTextbox.BorderStyle = BorderStyle.FixedSingle;
-            FreeSlotTextbox.Dock = DockStyle.Right;
-            FreeSlotTextbox.ForeColor = Color.Black;
-            FreeSlotTextbox.Location = new Point(158, 5);
-            FreeSlotTextbox.Margin = new Padding(0);
-            FreeSlotTextbox.MaxLength = 2;
-            FreeSlotTextbox.Name = "FreeSlotTextbox";
-            FreeSlotTextbox.ReadOnly = true;
-            FreeSlotTextbox.Size = new Size(153, 25);
-            FreeSlotTextbox.TabIndex = 1;
-            FreeSlotTextbox.TextAlign = HorizontalAlignment.Center;
+            ShiftSpeedTextbox.BackColor = Color.WhiteSmoke;
+            ShiftSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
+            ShiftSpeedTextbox.Dock = DockStyle.Right;
+            ShiftSpeedTextbox.ForeColor = Color.Black;
+            ShiftSpeedTextbox.Location = new Point(158, 5);
+            ShiftSpeedTextbox.Margin = new Padding(0);
+            ShiftSpeedTextbox.MaxLength = 2;
+            ShiftSpeedTextbox.Name = "ShiftSpeedTextbox";
+            ShiftSpeedTextbox.Size = new Size(153, 25);
+            ShiftSpeedTextbox.TabIndex = 1;
+            ShiftSpeedTextbox.TextAlign = HorizontalAlignment.Center;
             // 
-            // FreeSlotButton
+            // ShiftSpeedButton
             // 
-            FreeSlotButton.BackColor = Color.SteelBlue;
-            FreeSlotButton.BackgroundImageLayout = ImageLayout.None;
-            FreeSlotButton.Dock = DockStyle.Left;
-            FreeSlotButton.FlatAppearance.BorderSize = 0;
-            FreeSlotButton.FlatStyle = FlatStyle.Flat;
-            FreeSlotButton.Location = new Point(5, 5);
-            FreeSlotButton.Margin = new Padding(0);
-            FreeSlotButton.Name = "FreeSlotButton";
-            FreeSlotButton.Size = new Size(153, 25);
-            FreeSlotButton.TabIndex = 0;
-            FreeSlotButton.Text = "Show Free Slots";
-            FreeSlotButton.UseVisualStyleBackColor = false;
-            FreeSlotButton.Click += FreeSlotButton_Click;
+            ShiftSpeedButton.BackColor = Color.SteelBlue;
+            ShiftSpeedButton.BackgroundImageLayout = ImageLayout.None;
+            ShiftSpeedButton.Dock = DockStyle.Left;
+            ShiftSpeedButton.FlatAppearance.BorderSize = 0;
+            ShiftSpeedButton.FlatStyle = FlatStyle.Flat;
+            ShiftSpeedButton.Location = new Point(5, 5);
+            ShiftSpeedButton.Margin = new Padding(0);
+            ShiftSpeedButton.Name = "ShiftSpeedButton";
+            ShiftSpeedButton.Size = new Size(153, 25);
+            ShiftSpeedButton.TabIndex = 0;
+            ShiftSpeedButton.Text = "Set Shift Speed";
+            ShiftSpeedButton.UseVisualStyleBackColor = false;
+            ShiftSpeedButton.Click += ShiftSpeedButton_Click;
+            // 
+            // CtrlSpeedPanel
+            // 
+            CtrlSpeedPanel.Controls.Add(CtrlSpeedTextbox);
+            CtrlSpeedPanel.Controls.Add(CtrlSpeedButton);
+            CtrlSpeedPanel.Dock = DockStyle.Top;
+            CtrlSpeedPanel.Location = new Point(5, 145);
+            CtrlSpeedPanel.Margin = new Padding(0);
+            CtrlSpeedPanel.Name = "CtrlSpeedPanel";
+            CtrlSpeedPanel.Padding = new Padding(5);
+            CtrlSpeedPanel.Size = new Size(316, 35);
+            CtrlSpeedPanel.TabIndex = 4;
+            // 
+            // CtrlSpeedTextbox
+            // 
+            CtrlSpeedTextbox.BackColor = Color.WhiteSmoke;
+            CtrlSpeedTextbox.BorderStyle = BorderStyle.FixedSingle;
+            CtrlSpeedTextbox.Dock = DockStyle.Right;
+            CtrlSpeedTextbox.ForeColor = Color.Black;
+            CtrlSpeedTextbox.Location = new Point(158, 5);
+            CtrlSpeedTextbox.Margin = new Padding(0);
+            CtrlSpeedTextbox.MaxLength = 2;
+            CtrlSpeedTextbox.Name = "CtrlSpeedTextbox";
+            CtrlSpeedTextbox.Size = new Size(153, 25);
+            CtrlSpeedTextbox.TabIndex = 1;
+            CtrlSpeedTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // CtrlSpeedButton
+            // 
+            CtrlSpeedButton.BackColor = Color.SteelBlue;
+            CtrlSpeedButton.BackgroundImageLayout = ImageLayout.None;
+            CtrlSpeedButton.Dock = DockStyle.Left;
+            CtrlSpeedButton.FlatAppearance.BorderSize = 0;
+            CtrlSpeedButton.FlatStyle = FlatStyle.Flat;
+            CtrlSpeedButton.Location = new Point(5, 5);
+            CtrlSpeedButton.Margin = new Padding(0);
+            CtrlSpeedButton.Name = "CtrlSpeedButton";
+            CtrlSpeedButton.Size = new Size(153, 25);
+            CtrlSpeedButton.TabIndex = 0;
+            CtrlSpeedButton.Text = "Set Ctrl Speed";
+            CtrlSpeedButton.UseVisualStyleBackColor = false;
+            CtrlSpeedButton.Click += CtrlSpeedButton_Click;
             // 
             // SettingsUI
             // 
@@ -624,6 +718,8 @@
             FontPanel.ResumeLayout(false);
             FontPanel.PerformLayout();
             SearchTab.ResumeLayout(false);
+            FlreeSlotPanel.ResumeLayout(false);
+            FlreeSlotPanel.PerformLayout();
             PreviewPanel.ResumeLayout(false);
             PreviewPanel.PerformLayout();
             MaxSearchPanel.ResumeLayout(false);
@@ -635,8 +731,10 @@
             BackgroundPanel.ResumeLayout(false);
             BackgroundPanel.PerformLayout();
             LanguagePanel.ResumeLayout(false);
-            FlreeSlotPanel.ResumeLayout(false);
-            FlreeSlotPanel.PerformLayout();
+            ShiftSpeedPanel.ResumeLayout(false);
+            ShiftSpeedPanel.PerformLayout();
+            CtrlSpeedPanel.ResumeLayout(false);
+            CtrlSpeedPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -678,5 +776,11 @@
         private Panel FlreeSlotPanel;
         private TextBox FreeSlotTextbox;
         private Button FreeSlotButton;
+        private Panel CtrlSpeedPanel;
+        private TextBox CtrlSpeedTextbox;
+        private Button CtrlSpeedButton;
+        private Panel ShiftSpeedPanel;
+        private TextBox ShiftSpeedTextbox;
+        private Button ShiftSpeedButton;
     }
 }

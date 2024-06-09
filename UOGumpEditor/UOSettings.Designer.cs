@@ -118,5 +118,29 @@ namespace UOGumpEditor {
                 this["ShowFreeSlots"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int ShiftSpeed {
+            get {
+                return ((int)(this["ShiftSpeed"]));
+            }
+            set {
+                this["ShiftSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int CtrlSpeed {
+            get {
+                return ((int)(this["CtrlSpeed"]));
+            }
+            set {
+                this["CtrlSpeed"] = value;
+            }
+        }
     }
 }
