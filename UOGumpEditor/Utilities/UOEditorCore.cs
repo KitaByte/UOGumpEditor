@@ -1,4 +1,5 @@
-﻿using UOGumpEditor.UOElements;
+﻿using System.Runtime.Versioning;
+using UOGumpEditor.UOElements;
 using UOGumpEditor.UOGumps;
 
 namespace UOGumpEditor
@@ -437,6 +438,65 @@ namespace UOGumpEditor
 
             return tiledBitmap;
         }
+
+        public static void PromptUserForImage()
+        {
+            if (MainUI != null)
+            {
+                using OpenFileDialog openFileDialog = new();
+
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+                openFileDialog.Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*";
+
+                openFileDialog.FilterIndex = 1;
+
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(UOArtLoader.BGImageFile) && MainUI.BackgroundImage != null)
+                    {
+                        Image? image = MainUI.BackgroundImage;
+
+                        MainUI.BackgroundImage = GumpRes.UOGSLogo;
+
+                        image.Dispose();
+
+                        GC.Collect();
+
+                        GC.WaitForPendingFinalizers();
+                    }
+
+                    Thread.Sleep(500);
+
+                    try
+                    {
+                        File.Copy(openFileDialog.FileName, UOArtLoader.BGImageFile, true);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error copying image!", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MainUI.BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
+                }
+            }
+        }
+
+        public static Color PromptUserForColor()
+        {
+            using (ColorDialog colorDialog = new())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return colorDialog.Color;
+                }
+            }
+
+            return Color.Black;
+        }
+
 
         public static void SaveGump(string name)
         {

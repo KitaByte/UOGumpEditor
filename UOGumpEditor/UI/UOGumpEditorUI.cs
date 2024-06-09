@@ -63,6 +63,11 @@ namespace UOGumpEditor
             DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
 
             UOEditorCore.ResetEditor();
+
+            if (File.Exists(UOArtLoader.BGImageFile))
+            {
+                BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
+            }
         }
 
         private void SetLoadingState(bool isLoading)

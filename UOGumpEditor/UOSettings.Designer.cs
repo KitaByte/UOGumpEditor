@@ -58,5 +58,29 @@ namespace UOGumpEditor {
                 this["FontSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PreviewSticky {
+            get {
+                return ((bool)(this["PreviewSticky"]));
+            }
+            set {
+                this["PreviewSticky"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color ArtDisplayColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ArtDisplayColor"]));
+            }
+            set {
+                this["ArtDisplayColor"] = value;
+            }
+        }
     }
 }

@@ -7,7 +7,9 @@ namespace UOGumpEditor
     {
         public static bool IsLoaded { get; private set; } = false;
 
-        private static readonly string DataFolder = Path.Combine(Directory.GetCurrentDirectory(), "DataFiles");
+        public static readonly string DataFolder = Path.Combine(Directory.GetCurrentDirectory(), "DataFiles");
+
+        public static readonly string BGImageFile = Path.Combine(DataFolder, "BackgroundImage.png");
 
         private static readonly string GumpNameFile = Path.Combine(DataFolder, "GumpNames.txt");
 

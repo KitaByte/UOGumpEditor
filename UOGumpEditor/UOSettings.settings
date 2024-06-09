@@ -11,5 +11,11 @@
     <Setting Name="FontSize" Type="System.Single" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
+    <Setting Name="PreviewSticky" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ArtDisplayColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

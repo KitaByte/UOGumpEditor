@@ -15,6 +15,8 @@
 
             MaxSearchTextbox.Text = UOSettings.Default.DisplayMax.ToString();
 
+            PreviewTextbox.Text = UOSettings.Default.PreviewSticky.ToString();
+
             ExportCombobox.SelectedIndex = 0;
 
             LanguageCombobox.SelectedIndex = 0;
@@ -84,7 +86,11 @@
 
         private void PreviewButton_Click(object sender, EventArgs e)
         {
+            UOSettings.Default.PreviewSticky = !UOSettings.Default.PreviewSticky;
 
+            UOSettings.Default.Save();
+
+            PreviewTextbox.Text = UOSettings.Default.PreviewSticky.ToString();
         }
 
         private void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,12 +105,21 @@
 
         private void BackgroundButton_Click(object sender, EventArgs e)
         {
+            UOEditorCore.PromptUserForImage();
 
+            if (File.Exists(UOArtLoader.BGImageFile))
+            {
+                BackgroundTextbox.Text = "User Image";
+            }
         }
 
         private void ArtDisplayButton_Click(object sender, EventArgs e)
         {
+            ArtDisplayColorPanel.BackColor = UOEditorCore.PromptUserForColor();
 
+            UOSettings.Default.ArtDisplayColor = ArtDisplayColorPanel.BackColor;
+
+            UOSettings.Default.Save();
         }
 
         private void ResetButton_Click(object sender, EventArgs e)

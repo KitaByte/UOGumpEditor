@@ -503,10 +503,10 @@
             BackgroundTextbox.Margin = new Padding(0);
             BackgroundTextbox.MaxLength = 2;
             BackgroundTextbox.Name = "BackgroundTextbox";
-            BackgroundTextbox.PlaceholderText = "Default";
             BackgroundTextbox.ReadOnly = true;
             BackgroundTextbox.Size = new Size(153, 25);
             BackgroundTextbox.TabIndex = 1;
+            BackgroundTextbox.Text = "Default Image";
             BackgroundTextbox.TextAlign = HorizontalAlignment.Center;
             // 
             // BackgroundButton
