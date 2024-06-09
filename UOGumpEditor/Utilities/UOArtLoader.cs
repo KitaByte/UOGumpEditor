@@ -274,8 +274,6 @@ namespace UOGumpEditor
                 }
 
                 tempEntityList = GumpArtDict.Values.Where(a => a.ID <= id + range && a.ID >= id - range).ToList();
-
-                return LoadList(tempEntityList, out list);
             }
             else
             {
@@ -285,9 +283,9 @@ namespace UOGumpEditor
                 }
 
                 tempEntityList = ItemArtDict.Values.Where(a => a.ID < id + range && a.ID > id - range).ToList();
-
-                return LoadList(tempEntityList, out list);
             }
+
+            return LoadList(tempEntityList, out list);
         }
 
         public static bool SearchArtByName(string name, bool isGump, out List<ArtEntity> list)
@@ -295,15 +293,13 @@ namespace UOGumpEditor
             if (isGump)
             {
                 tempEntityList = GumpArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
-
-                return LoadList(tempEntityList, out list);
             }
             else
             {
                 tempEntityList = ItemArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
-
-                return LoadList(tempEntityList, out list);
             }
+
+            return LoadList(tempEntityList, out list);
         }
 
         public static bool SearchArtBySize(int size, bool isGump, out List<ArtEntity> list, bool isWidth)
@@ -318,8 +314,6 @@ namespace UOGumpEditor
                 {
                     tempEntityList = GumpArtDict.Values.Where(a => a.Height == size).ToList();
                 }
-
-                return LoadList(tempEntityList, out list);
             }
             else
             {
@@ -331,15 +325,20 @@ namespace UOGumpEditor
                 {
                     tempEntityList = ItemArtDict.Values.Where(a => a.Height == size).ToList();
                 }
-
-                return LoadList(tempEntityList, out list);
             }
+
+            return LoadList(tempEntityList, out list);
         }
 
         private static bool LoadList(List<ArtEntity> itemList, out List<ArtEntity> list )
         {
             if (itemList != null && itemList.Count > 0)
             {
+                if (!UOSettings.Default.ShowFreeSlots)
+                {
+                    itemList.RemoveAll(b => b.GetImage() == null);
+                }
+
                 list = itemList;
 
                 return true;

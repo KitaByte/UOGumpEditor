@@ -23,6 +23,8 @@
 
             PreviewTextbox.Text = UOSettings.Default.PreviewSticky.ToString();
 
+            FreeSlotTextbox.Text = UOSettings.Default.ShowFreeSlots.ToString();
+
             ExportCombobox.SelectedIndex = 0;
 
             LanguageCombobox.SelectedIndex = 0;
@@ -86,6 +88,15 @@
             UOSettings.Default.Save();
 
             PreviewTextbox.Text = UOSettings.Default.PreviewSticky.ToString();
+        }
+
+        private void FreeSlotButton_Click(object sender, EventArgs e)
+        {
+            UOSettings.Default.ShowFreeSlots = !UOSettings.Default.ShowFreeSlots;
+
+            UOSettings.Default.Save();
+
+            FreeSlotTextbox.Text = UOSettings.Default.ShowFreeSlots.ToString();
         }
 
         private void ExportCombobox_SelectedIndexChanged(object sender, EventArgs e)

@@ -46,7 +46,10 @@ namespace UOGumpEditor
 
         private void ArtPictureBox_Click(object? sender, EventArgs e)
         {
-            UOEditorCore.MainUI?.DisplayArt(_ArtEntity);
+            if (Image != null)
+            {
+                UOEditorCore.MainUI?.DisplayArt(_ArtEntity);
+            }
         }
 
         private void ArtPictureBox_MouseHover(object? sender, EventArgs e)

@@ -106,5 +106,17 @@ namespace UOGumpEditor {
                 this["LanguageType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowFreeSlots {
+            get {
+                return ((bool)(this["ShowFreeSlots"]));
+            }
+            set {
+                this["ShowFreeSlots"] = value;
+            }
+        }
     }
 }

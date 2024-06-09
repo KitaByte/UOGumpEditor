@@ -62,6 +62,9 @@
             LanguagePanel = new Panel();
             LanguageCombobox = new ComboBox();
             LanguageButton = new Button();
+            FlreeSlotPanel = new Panel();
+            FreeSlotTextbox = new TextBox();
+            FreeSlotButton = new Button();
             SettingsTabControl.SuspendLayout();
             MainTab.SuspendLayout();
             ElementTab.SuspendLayout();
@@ -76,6 +79,7 @@
             ArtDisplayPanel.SuspendLayout();
             BackgroundPanel.SuspendLayout();
             LanguagePanel.SuspendLayout();
+            FlreeSlotPanel.SuspendLayout();
             SuspendLayout();
             // 
             // ResetButton
@@ -260,6 +264,7 @@
             // 
             SearchTab.BackColor = Color.FromArgb(64, 64, 64);
             SearchTab.BackgroundImageLayout = ImageLayout.None;
+            SearchTab.Controls.Add(FlreeSlotPanel);
             SearchTab.Controls.Add(PreviewPanel);
             SearchTab.Controls.Add(MaxSearchPanel);
             SearchTab.ForeColor = Color.WhiteSmoke;
@@ -549,6 +554,49 @@
             LanguageButton.Text = "Select Language";
             LanguageButton.UseVisualStyleBackColor = false;
             // 
+            // FlreeSlotPanel
+            // 
+            FlreeSlotPanel.Controls.Add(FreeSlotTextbox);
+            FlreeSlotPanel.Controls.Add(FreeSlotButton);
+            FlreeSlotPanel.Dock = DockStyle.Top;
+            FlreeSlotPanel.Location = new Point(5, 75);
+            FlreeSlotPanel.Margin = new Padding(0);
+            FlreeSlotPanel.Name = "FlreeSlotPanel";
+            FlreeSlotPanel.Padding = new Padding(5);
+            FlreeSlotPanel.Size = new Size(316, 35);
+            FlreeSlotPanel.TabIndex = 3;
+            // 
+            // FreeSlotTextbox
+            // 
+            FreeSlotTextbox.BackColor = Color.WhiteSmoke;
+            FreeSlotTextbox.BorderStyle = BorderStyle.FixedSingle;
+            FreeSlotTextbox.Dock = DockStyle.Right;
+            FreeSlotTextbox.ForeColor = Color.Black;
+            FreeSlotTextbox.Location = new Point(158, 5);
+            FreeSlotTextbox.Margin = new Padding(0);
+            FreeSlotTextbox.MaxLength = 2;
+            FreeSlotTextbox.Name = "FreeSlotTextbox";
+            FreeSlotTextbox.ReadOnly = true;
+            FreeSlotTextbox.Size = new Size(153, 25);
+            FreeSlotTextbox.TabIndex = 1;
+            FreeSlotTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // FreeSlotButton
+            // 
+            FreeSlotButton.BackColor = Color.SteelBlue;
+            FreeSlotButton.BackgroundImageLayout = ImageLayout.None;
+            FreeSlotButton.Dock = DockStyle.Left;
+            FreeSlotButton.FlatAppearance.BorderSize = 0;
+            FreeSlotButton.FlatStyle = FlatStyle.Flat;
+            FreeSlotButton.Location = new Point(5, 5);
+            FreeSlotButton.Margin = new Padding(0);
+            FreeSlotButton.Name = "FreeSlotButton";
+            FreeSlotButton.Size = new Size(153, 25);
+            FreeSlotButton.TabIndex = 0;
+            FreeSlotButton.Text = "Show Free Slots";
+            FreeSlotButton.UseVisualStyleBackColor = false;
+            FreeSlotButton.Click += FreeSlotButton_Click;
+            // 
             // SettingsUI
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -587,6 +635,8 @@
             BackgroundPanel.ResumeLayout(false);
             BackgroundPanel.PerformLayout();
             LanguagePanel.ResumeLayout(false);
+            FlreeSlotPanel.ResumeLayout(false);
+            FlreeSlotPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -625,5 +675,8 @@
         private Panel ArtDisplayColorPanel;
         private ComboBox LanguageCombobox;
         private ComboBox ExportCombobox;
+        private Panel FlreeSlotPanel;
+        private TextBox FreeSlotTextbox;
+        private Button FreeSlotButton;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Versioning;
+﻿using System.Diagnostics;
+using System.Runtime.Versioning;
 using UOGumpEditor.UOElements;
 using UOGumpEditor.UOGumps;
 
@@ -497,6 +498,21 @@ namespace UOGumpEditor
             return Color.Black;
         }
 
+        public static void OpenWebsite(string url)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not open the website. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         public static void SaveGump(string name)
         {

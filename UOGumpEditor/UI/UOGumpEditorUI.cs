@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UOGumpEditor.UOElements;
+﻿using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -14,6 +13,8 @@ namespace UOGumpEditor
             UOEditorCore.SetMainHandle(this);
 
             KeyPreview = true;
+
+            Text = $"{Text} - 1.0.0.0";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -225,7 +226,7 @@ namespace UOGumpEditor
 
         private void EditorHelpButton_Click(object sender, EventArgs e)
         {
-            // todo
+            UOEditorCore.OpenWebsite("https://www.uoopenai.com/uo_gump_editor");
         }
 
         private bool IsGump()
