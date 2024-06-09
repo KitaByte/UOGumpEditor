@@ -13,6 +13,8 @@
                 FormBorderStyle = FormBorderStyle.FixedSingle;
             }
 
+            BackColor = UOSettings.Default.ArtDisplayColor;
+
             artList = bgList;
         }
 

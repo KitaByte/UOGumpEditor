@@ -1,4 +1,5 @@
-﻿using UOGumpEditor.UI;
+﻿using System.Drawing.Printing;
+using UOGumpEditor.UI;
 
 namespace UOGumpEditor
 {
@@ -25,7 +26,7 @@ namespace UOGumpEditor
 
         private void InitializePictureBox()
         {
-            BorderStyle = BorderStyle.Fixed3D;
+            BorderStyle = BorderStyle.FixedSingle;
 
             BackColor = _Color;
 

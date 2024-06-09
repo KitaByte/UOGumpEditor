@@ -39,8 +39,9 @@
             DisplayPictureBox.BackgroundImageLayout = ImageLayout.None;
             DisplayPictureBox.Dock = DockStyle.Fill;
             DisplayPictureBox.Location = new Point(3, 3);
-            DisplayPictureBox.Margin = new Padding(0);
+            DisplayPictureBox.Margin = new Padding(5);
             DisplayPictureBox.Name = "DisplayPictureBox";
+            DisplayPictureBox.Padding = new Padding(5);
             DisplayPictureBox.Size = new Size(143, 145);
             DisplayPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             DisplayPictureBox.TabIndex = 0;
