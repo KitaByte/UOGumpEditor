@@ -703,7 +703,7 @@ namespace UOGumpEditor
 
         public void UpdateElementInfo(ArtEntity entity)
         {
-            GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / hieght: {entity.Height}";
+            GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / height: {entity.Height}";
         }
 
         private void UOGumpEditorUI_Resize(object sender, EventArgs e)
