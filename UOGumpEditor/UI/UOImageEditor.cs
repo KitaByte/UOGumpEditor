@@ -22,9 +22,7 @@ namespace UOGumpEditor
         {
             HueButton.Visible = false;
 
-            UOEditorCore.InitElement(ELEMENT, ElementComboBox, HueButton);
-
-            ElementComboBox.SelectedIndex = ElementComboBox.Items.IndexOf(ELEMENT);
+            UOEditorCore.InitElement(ELEMENT, HueButton);
 
             if (IMAGEELEMENT != null)
             {
@@ -41,17 +39,6 @@ namespace UOGumpEditor
                 else
                 {
                     HueTextbox.Text = IMAGEELEMENT.ForeColor.ToArgb().ToString();
-                }
-            }
-        }
-
-        private void ElementComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (IMAGEELEMENT != null)
-            {
-                if (ElementComboBox.SelectedItem is ElementTypes selectedElement)
-                {
-                    IMAGEELEMENT.ElementType = selectedElement;
                 }
             }
         }
@@ -78,22 +65,39 @@ namespace UOGumpEditor
 
         private void WidthButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT != null && int.TryParse(WidthTextbox.Text, out int val))
-            {
-                IMAGEELEMENT.Width = val;
-
-                SendValueUpdatedMsg("Width");
-            }
+            UpdateSize();
         }
 
         private void HeightButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT != null && int.TryParse(HeightTextbox.Text, out int val))
-            {
-                IMAGEELEMENT.Height = val;
+            UpdateSize();
+        }
 
-                SendValueUpdatedMsg("Height");
+        private void UpdateSize()
+        {
+            if (IMAGEELEMENT != null && int.TryParse(WidthTextbox.Text, out int width))
+            {
+                IMAGEELEMENT.Width = width;
             }
+
+            if (IMAGEELEMENT != null && int.TryParse(HeightTextbox.Text, out int height))
+            {
+                IMAGEELEMENT.Height = height;
+            }
+
+            if (IMAGEELEMENT?.Tag is ArtEntity entity)
+            {
+                if (IMAGEELEMENT.ElementType == ElementTypes.Image && (entity.Width < IMAGEELEMENT.Width || entity.Height < IMAGEELEMENT.Height))
+                {
+                    IMAGEELEMENT.ElementType = ElementTypes.TiledImage;
+                }
+                else if (IMAGEELEMENT.ElementType == ElementTypes.TiledImage && (entity.Width >= IMAGEELEMENT.Width && entity.Height >= IMAGEELEMENT.Height))
+                {
+                    IMAGEELEMENT.ElementType = ElementTypes.Image;
+                }
+            }
+
+            SendValueUpdatedMsg("Size");
         }
 
         private void HueButton_Click(object sender, EventArgs e)

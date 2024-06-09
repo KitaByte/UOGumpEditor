@@ -12,7 +12,6 @@
         Label,
         RadioButton,
         TextEntry,
-        TextEntryLimited,
         TiledImage
     }
 }

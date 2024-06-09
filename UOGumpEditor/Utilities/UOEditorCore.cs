@@ -297,44 +297,19 @@ namespace UOGumpEditor
             }
         }
 
-        public static void InitElement(ElementTypes element, ComboBox comboBox, Button hue)
+        public static void InitElement(ElementTypes element, Button hue)
         {
             switch (element)
             {
-                case ElementTypes.AlphaRegion:
-                    {
-                        comboBox.Items.Add(ElementTypes.AlphaRegion);
-
-                        break;
-                    }
-
                 case ElementTypes.Background:
                     {
-                        comboBox.Items.Add(ElementTypes.Background);
-                        comboBox.Items.Add(ElementTypes.TiledImage);
                         hue.Visible = true;
-
-                        break;
-                    }
-
-                case ElementTypes.Button:
-                    {
-                        comboBox.Items.Add(ElementTypes.Button);
-
-                        break;
-                    }
-
-                case ElementTypes.CheckBox:
-                    {
-                        comboBox.Items.Add(ElementTypes.CheckBox);
 
                         break;
                     }
 
                 case ElementTypes.Image:
                     {
-                        comboBox.Items.Add(ElementTypes.Image);
-                        comboBox.Items.Add(ElementTypes.TiledImage);
                         hue.Visible = true;
 
                         break;
@@ -342,39 +317,13 @@ namespace UOGumpEditor
 
                 case ElementTypes.Item:
                     {
-                        comboBox.Items.Add(ElementTypes.Item);
                         hue.Visible = true;
-
-                        break;
-                    }
-
-                case ElementTypes.RadioButton:
-                    {
-                        comboBox.Items.Add(ElementTypes.RadioButton);
-
-                        break;
-                    }
-
-                case ElementTypes.TextEntry:
-                    {
-                        comboBox.Items.Add(ElementTypes.TextEntry);
-                        comboBox.Items.Add(ElementTypes.TextEntryLimited);
-
-                        break;
-                    }
-
-                case ElementTypes.TextEntryLimited:
-                    {
-                        comboBox.Items.Add(ElementTypes.TextEntry);
-                        comboBox.Items.Add(ElementTypes.TextEntryLimited);
 
                         break;
                     }
 
                 case ElementTypes.TiledImage:
                     {
-                        comboBox.Items.Add(ElementTypes.Image);
-                        comboBox.Items.Add(ElementTypes.TiledImage);
                         hue.Visible = true;
 
                         break;

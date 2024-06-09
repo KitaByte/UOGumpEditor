@@ -43,7 +43,6 @@
             BottomButtonPanel = new Panel();
             DeleteButton = new Button();
             CloseButton = new Button();
-            ElementComboBox = new ComboBox();
             HuePanel = new Panel();
             HueTextbox = new TextBox();
             MainButtonPanel.SuspendLayout();
@@ -128,7 +127,7 @@
             MainButtonPanel.Controls.Add(WidthPanel);
             MainButtonPanel.Controls.Add(IDPanel);
             MainButtonPanel.Dock = DockStyle.Top;
-            MainButtonPanel.Location = new Point(10, 35);
+            MainButtonPanel.Location = new Point(10, 10);
             MainButtonPanel.Margin = new Padding(0);
             MainButtonPanel.Name = "MainButtonPanel";
             MainButtonPanel.Size = new Size(264, 75);
@@ -222,7 +221,7 @@
             BottomButtonPanel.Controls.Add(DeleteButton);
             BottomButtonPanel.Controls.Add(CloseButton);
             BottomButtonPanel.Dock = DockStyle.Bottom;
-            BottomButtonPanel.Location = new Point(10, 135);
+            BottomButtonPanel.Location = new Point(10, 110);
             BottomButtonPanel.Margin = new Padding(0);
             BottomButtonPanel.Name = "BottomButtonPanel";
             BottomButtonPanel.Size = new Size(264, 58);
@@ -262,28 +261,13 @@
             CloseButton.UseVisualStyleBackColor = false;
             CloseButton.Click += CloseButton_Click;
             // 
-            // ElementComboBox
-            // 
-            ElementComboBox.BackColor = Color.FromArgb(32, 32, 32);
-            ElementComboBox.Dock = DockStyle.Top;
-            ElementComboBox.FlatStyle = FlatStyle.Flat;
-            ElementComboBox.ForeColor = Color.WhiteSmoke;
-            ElementComboBox.FormattingEnabled = true;
-            ElementComboBox.Location = new Point(10, 10);
-            ElementComboBox.Margin = new Padding(0);
-            ElementComboBox.Name = "ElementComboBox";
-            ElementComboBox.Size = new Size(264, 25);
-            ElementComboBox.Sorted = true;
-            ElementComboBox.TabIndex = 0;
-            ElementComboBox.SelectedIndexChanged += ElementComboBox_SelectedIndexChanged;
-            // 
             // HuePanel
             // 
             HuePanel.BackgroundImageLayout = ImageLayout.None;
             HuePanel.Controls.Add(HueTextbox);
             HuePanel.Controls.Add(HueButton);
             HuePanel.Dock = DockStyle.Top;
-            HuePanel.Location = new Point(10, 110);
+            HuePanel.Location = new Point(10, 85);
             HuePanel.Margin = new Padding(0);
             HuePanel.Name = "HuePanel";
             HuePanel.Size = new Size(264, 25);
@@ -312,11 +296,10 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(284, 203);
+            ClientSize = new Size(284, 178);
             Controls.Add(HuePanel);
             Controls.Add(BottomButtonPanel);
             Controls.Add(MainButtonPanel);
-            Controls.Add(ElementComboBox);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
@@ -324,7 +307,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            MinimumSize = new Size(300, 217);
+            MinimumSize = new Size(300, 192);
             Name = "UOImageEditor";
             Padding = new Padding(10);
             ShowInTaskbar = false;
@@ -355,7 +338,6 @@
         private Panel BottomButtonPanel;
         private Button CloseButton;
         private Button DeleteButton;
-        private ComboBox ElementComboBox;
         private Panel IDPanel;
         private Panel WidthPanel;
         private Panel HeightPanel;

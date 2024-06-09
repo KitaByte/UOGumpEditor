@@ -147,15 +147,6 @@ namespace UOGumpEditor
 
                                 break;
                             }
-
-                        case ElementTypes.TextEntryLimited:
-                            {
-                                sb.AppendLine($"        AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\", 20);");
-
-                                txtCounter++;
-
-                                break;
-                            }
                     }
                 }
             }
@@ -274,15 +265,6 @@ namespace UOGumpEditor
                         case ElementTypes.TextEntry:
                             {
                                 sb.AppendLine($"SERV.GUMPTEXTENTRY {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, \"{element.Text}\"");
-
-                                txtCounter++;
-
-                                break;
-                            }
-
-                        case ElementTypes.TextEntryLimited:
-                            {
-                                sb.AppendLine($"SERV.GUMPTEXTENTRYLIMIT {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, \"{element.Text}\", 20");
 
                                 txtCounter++;
 
