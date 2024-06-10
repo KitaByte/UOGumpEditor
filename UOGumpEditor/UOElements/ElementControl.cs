@@ -84,10 +84,10 @@
 
                     case ImageLayout.Tile:
                         {
-                            using (TextureBrush brush = new(displayImage))
-                            {
-                                e.Graphics.FillRectangle(brush, this.ClientRectangle);
-                            }
+                            using TextureBrush brush = new(displayImage);
+
+                            e.Graphics.FillRectangle(brush, this.ClientRectangle);
+
                             break;
                         }
 
@@ -286,8 +286,6 @@
 
         private void ElementControl_MouseDown(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.UpdateCurrentElement(this);
-
             if (e.Button == MouseButtons.Left)
             {
                 _dragStartPoint = e.Location;
@@ -310,6 +308,8 @@
         {
             if (e.Button == MouseButtons.Left)
             {
+                UOEditorCore.UpdateCurrentElement(this);
+
                 _isDragging = false;
 
                 UOEditorCore.ReorderZLayers();

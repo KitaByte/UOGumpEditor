@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Runtime.Versioning;
 using UOGumpEditor.UOElements;
 using UOGumpEditor.UOGumps;
 
@@ -28,17 +27,19 @@ namespace UOGumpEditor
             {
                 MainUI?.ClearSelected();
             }
+
+            element.SetSelected(true);
         }
 
         public static void SendMoveAction(Keys keyData, ElementControl element)
         {
             int moveAmount = 1;
 
-            if ((keyData & Keys.Shift) == Keys.Shift)
+            if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 moveAmount = UOSettings.Default.ShiftSpeed;
             }
-            else if ((keyData & Keys.Control) == Keys.Control)
+            else if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
             {
                 moveAmount = UOSettings.Default.CtrlSpeed;
             }
@@ -157,6 +158,8 @@ namespace UOGumpEditor
             {
                 if (MainUI.CanvasPanel.BackgroundImage != null)
                 {
+                    MainUI.CanvasPanel.BackgroundImageLayout = ImageLayout.Stretch;
+
                     MainUI.CanvasPanel.BackgroundImage = null;
                 }
 

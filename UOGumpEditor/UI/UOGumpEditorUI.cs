@@ -62,9 +62,9 @@ namespace UOGumpEditor
 
             SetLoadingState(false);
 
-            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-
             UOEditorCore.ResetEditor();
+
+            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
 
             if (File.Exists(UOArtLoader.BGImageFile))
             {
@@ -558,7 +558,7 @@ namespace UOGumpEditor
                             element.ElementType = ElementTypes.Item;
                         }
 
-                        AddArtToCanvas(element, dropLocation);
+                        AddToCanvas(element, dropLocation);
                     }
                 }
             }
@@ -627,14 +627,16 @@ namespace UOGumpEditor
 
             element.SetText(text, hue);
 
-            AddArtToCanvas(element, new(50, 50));
+            AddToCanvas(element, new(50, 50));
         }
 
-        private void AddArtToCanvas(ElementControl element, Point location)
+        private void AddToCanvas(ElementControl element, Point location)
         {
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
+
+            UOEditorCore.UpdateCurrentElement(element);
 
             UOEditorCore.ReorderZLayers();
         }
