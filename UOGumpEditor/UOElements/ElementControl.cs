@@ -313,6 +313,11 @@
                 _isDragging = false;
 
                 UOEditorCore.RestoreElementIndices();
+
+                if (UOEditorCore.MainUI != null)
+                {
+                    UOEditorCore.MainUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
+                }
             }
         }
 
