@@ -199,7 +199,14 @@ namespace UOGumpEditor
             }
             else
             {
-                ExportUIHandle?.Close();
+                if (ExportUIHandle == null)
+                {
+                    MessageBox.Show("Gump Missing!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    ExportUIHandle.Close();
+                }
             }
         }
 
