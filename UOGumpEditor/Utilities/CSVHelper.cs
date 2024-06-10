@@ -16,6 +16,8 @@ namespace UOGumpEditor
 
         public static void SaveGump(BaseGump gump)
         {
+            _cachedGumps = null;
+
             string filePath = Path.Combine(SaveDirectory, $"{gump.Name}.csv");
 
             using StreamWriter writer = new(filePath);

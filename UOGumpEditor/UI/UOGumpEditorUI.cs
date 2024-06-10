@@ -365,15 +365,9 @@ namespace UOGumpEditor
             {
                 var results = _artCache.GetCurrentWindow(SearchFlowPanel);
 
-                if (_artCache.CanScrollPrev())
-                {
-                    PreviousButton.Visible = true;
-                }
+                PreviousButton.Visible = _artCache.CanScrollPrev();
 
-                if (_artCache.CanScrollNext())
-                {
-                    NextButton.Visible = true;
-                }
+                NextButton.Visible = _artCache.CanScrollNext();
 
                 DisplaySearchResults(results);
 
@@ -446,7 +440,7 @@ namespace UOGumpEditor
         {
             PreviousButton.Visible = false;
 
-            if (_artCache != null && _artCache.CanScrollPrev())
+            if (_artCache != null)
             {
                 _artCache.ScrollPrev();
 
@@ -458,7 +452,7 @@ namespace UOGumpEditor
         {
             NextButton.Visible = false;
 
-            if (_artCache != null && _artCache.CanScrollNext())
+            if (_artCache != null)
             {
                 _artCache.ScrollNext();
 
@@ -479,17 +473,22 @@ namespace UOGumpEditor
             SearchFlowPanel.Visible = false;
         }
 
-        private void LayerListbox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ElementListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClearSelected();
-
-            if (LayerListbox.SelectedItems.Count > 0)
+            if (ElementListbox.Items.Count > 0)
             {
-                foreach (var item in LayerListbox.SelectedItems)
+                for (int i = 0; i < ElementListbox.Items.Count; i++)
                 {
-                    if (item is ElementEntity entity)
+                    if (ElementListbox.Items[i] is ElementEntity ee)
                     {
-                        entity.Element.SetSelected(true);
+                        if (ElementListbox.SelectedItems.Contains(ee))
+                        {
+                            ee.Element.SetSelected(true);
+                        }
+                        else
+                        {
+                            ee.Element.SetSelected(false);
+                        }
                     }
                 }
 
@@ -497,25 +496,20 @@ namespace UOGumpEditor
             }
         }
 
-        public void ClearSelected()
+        private void ClearSelectedButton_Click(object sender, EventArgs e)
         {
-            if (LayerListbox.Items.Count > 0)
+            if (ElementListbox.Items.Count > 0)
             {
-                for (int i = 0; i < LayerListbox.Items.Count; i++)
+                for (int i = 0; i < ElementListbox.Items.Count; i++)
                 {
-                    if (LayerListbox.Items[i] is ElementEntity entity)
+                    if (ElementListbox.Items[i] is ElementEntity entity)
                     {
                         entity.Element.SetSelected(false);
                     }
                 }
+
+                ElementListbox.SelectedItems.Clear();
             }
-
-            CanvasPanel.Invalidate();
-        }
-
-        private void ClearSelectedButton_Click(object sender, EventArgs e)
-        {
-            ClearSelected();
         }
 
         private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
@@ -635,65 +629,45 @@ namespace UOGumpEditor
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
-
-            UOEditorCore.UpdateCurrentElement(element);
-
-            UOEditorCore.ReorderZLayers();
         }
 
         public void RemoveFromCanvas(ElementControl element)
         {
-            UOEditorCore.Z_Layer.Remove(element);
-
             if (CanvasPanel.Controls.Contains(element))
             {
                 CanvasPanel.Controls.Remove(element);
-
-                UpdateLayerList(element, false);
-
-                UOEditorCore.ReorderZLayers();
             }
         }
 
-        public void ReorderLayerList()
+        private void CanvasPanel_ControlAdded(object sender, ControlEventArgs e)
         {
-            LayerListbox.Items.Clear();
-
-            foreach (ElementControl element in UOEditorCore.Z_Layer)
+            if (e.Control is ElementControl ec)
             {
-                UpdateLayerList(element, true);
-            }
+                ElementListbox.Items.Add(new ElementEntity(ec));
 
-            LayerListbox.Invalidate();
+                CanvasPanel.Controls.SetChildIndex(ec, CanvasPanel.Controls.Count - 1);
+            }
         }
 
-        private void UpdateLayerList(ElementControl element, bool add)
+        private void CanvasPanel_ControlRemoved(object sender, ControlEventArgs e)
         {
-            if (!add)
+            if (e.Control is ElementControl ec)
             {
-                ElementEntity? entity = null;
+                ElementEntity? ee = null;
 
-                foreach (var item in LayerListbox.Items)
+                foreach (var entity in ElementListbox.Items)
                 {
-                    if (item is ElementEntity ee && ee.Element == element)
+                    if (entity is ElementEntity elementEntity && elementEntity.Element == ec)
                     {
-                        entity = ee;
-
-                        break;
+                        ee = elementEntity;
                     }
                 }
 
-                if (entity != null)
+                if (ee != null)
                 {
-                    LayerListbox.Items.Remove(entity);
+                    ElementListbox.Items.Remove(ee);
                 }
             }
-            else
-            {
-                LayerListbox.Items.Add(new ElementEntity(element));
-            }
-
-            LayerListbox.Invalidate();
         }
 
         public void AddToHistory(ArtEntity entity)
@@ -701,6 +675,11 @@ namespace UOGumpEditor
             HistoryListbox.Items.Add(entity);
 
             HistoryListbox.Invalidate();
+        }
+
+        private bool IsSingleSelected()
+        {
+            return ElementListbox.SelectedItems.Count == 1;
         }
 
         public void UpdateElementInfo(ArtEntity entity)
@@ -722,11 +701,25 @@ namespace UOGumpEditor
 
         private void RaiseLayerButton_Click(object sender, EventArgs e)
         {
+            if (!IsSingleSelected())
+            {
+                MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
             UOEditorCore.MoveLayerUp();
         }
 
         private void LowerLayerButton_Click(object sender, EventArgs e)
         {
+            if (!IsSingleSelected())
+            {
+                MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
             UOEditorCore.MoveLayerDown();
         }
     }

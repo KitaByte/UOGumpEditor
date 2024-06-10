@@ -18,9 +18,9 @@
 
         public int GetLayer()
         {
-            if (UOEditorCore.Z_Layer.Contains(this))
+            if (UOEditorCore.MainUI != null && UOEditorCore.MainUI.CanvasPanel.Controls.Contains(this))
             {
-                return UOEditorCore.Z_Layer.IndexOf(this);
+                return UOEditorCore.MainUI.CanvasPanel.Controls.IndexOf(this);
             }
             else
             {
@@ -292,6 +292,8 @@
 
                 _isDragging = true;
 
+                UOEditorCore.StoreElementIndices();
+
                 BringToFront();
             }
         }
@@ -308,11 +310,9 @@
         {
             if (e.Button == MouseButtons.Left)
             {
-                UOEditorCore.UpdateCurrentElement(this);
-
                 _isDragging = false;
 
-                UOEditorCore.ReorderZLayers();
+                UOEditorCore.RestoreElementIndices();
             }
         }
 
@@ -441,6 +441,18 @@
                 ButtonArt.Add(entity);
 
                 ButtonArt.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
+            }
+        }
+
+        public override string ToString()
+        {
+            if (Tag is ArtEntity ae)
+            {
+                return ae.ToString();
+            }
+            else
+            {
+                return $"{ElementType}, {Text}";
             }
         }
     }

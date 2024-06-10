@@ -15,21 +15,7 @@ namespace UOGumpEditor
 
         public static UOArtLoader? ArtLoader { get; private set; }
 
-        public static ElementControl? CurrentElement { get; private set; }
-
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
-
-        public static void UpdateCurrentElement(ElementControl element, bool clearList = true)
-        {
-            CurrentElement = element;
-
-            if (clearList)
-            {
-                MainUI?.ClearSelected();
-            }
-
-            element.SetSelected(true);
-        }
 
         public static void SendMoveAction(Keys keyData, ElementControl element)
         {
@@ -86,74 +72,93 @@ namespace UOGumpEditor
             }
         }
 
-        public static readonly List<ElementControl> Z_Layer = [];
+        private static readonly Dictionary<ElementControl, int> elementIndices = [];
 
-        public static void ReorderZLayers()
+        public static void StoreElementIndices()
         {
-            if (Z_Layer.Count > 0 && MainUI?.CanvasPanel != null)
+            if (MainUI != null)
             {
-                for (int i = 0; i < Z_Layer.Count; i++)
+                elementIndices.Clear();
+
+                for (int i = 0; i < MainUI.CanvasPanel.Controls.Count; i++)
                 {
-                    MainUI.CanvasPanel.Controls.SetChildIndex(Z_Layer[i], Z_Layer.Count - 1 - i);
+                    if (MainUI.CanvasPanel.Controls[i] is ElementControl ec)
+                    {
+                        elementIndices[ec] = i;
+                    }
+                }
+            }
+        }
+
+        public static void RestoreElementIndices()
+        {
+            if (MainUI != null)
+            {
+                foreach (var pair in elementIndices)
+                {
+                    MainUI.CanvasPanel.Controls.SetChildIndex(pair.Key, pair.Value);
                 }
 
                 MainUI.CanvasPanel.Invalidate();
-
-                MainUI.ReorderLayerList();
             }
         }
 
         public static void MoveLayerUp()
         {
-            if (CurrentElement is ElementControl control && Z_Layer.Contains(control))
+            if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
             {
-                int currentIndex = Z_Layer.IndexOf(control);
-
-                if (currentIndex > 0)
+                foreach (Control control in MainUI.CanvasPanel.Controls)
                 {
-                    Z_Layer.RemoveAt(currentIndex);
+                    if (control is ElementControl ec && ec.IsSelected)
+                    {
+                        int currentIndex = MainUI.CanvasPanel.Controls.GetChildIndex(ec);
 
-                    Z_Layer.Insert(currentIndex - 1, control);
+                        if (currentIndex < MainUI.CanvasPanel.Controls.Count - 1)
+                        {
+                            MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex + 1);
 
-                    ReorderZLayers();
+                            break;
+                        }
+                    }
                 }
+
+                MainUI.CanvasPanel.Invalidate();
             }
         }
 
         public static void MoveLayerDown()
         {
-            if (CurrentElement is ElementControl control && Z_Layer.Contains(control))
+            if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
             {
-                int currentIndex = Z_Layer.IndexOf(control);
-
-                if (currentIndex < Z_Layer.Count - 1)
+                foreach (Control control in MainUI.CanvasPanel.Controls)
                 {
-                    Z_Layer.RemoveAt(currentIndex);
+                    if (control is ElementControl ec && ec.IsSelected)
+                    {
+                        int currentIndex = MainUI.CanvasPanel.Controls.GetChildIndex(ec);
 
-                    Z_Layer.Insert(currentIndex + 1, control);
+                        if (currentIndex > 0)
+                        {
+                            MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex - 1);
 
-                    ReorderZLayers();
+                            break;
+                        }
+                    }
                 }
+
+                MainUI.CanvasPanel.Invalidate();
             }
         }
 
         public static void AddElement(ElementControl control)
         {
-            if (!Z_Layer.Contains(control))
+            if (control.Tag is ArtEntity ae)
             {
-                Z_Layer.Insert(0, control);
-
-                if (control.Tag is ArtEntity ae)
-                {
-                    MainUI?.AddToHistory(ae);
-                }
+                MainUI?.AddToHistory(ae);
             }
         }
 
         public static void ResetEditor()
         {
-            Z_Layer.Clear();
-
             if (MainUI != null)
             {
                 if (MainUI.CanvasPanel.BackgroundImage != null)
@@ -167,7 +172,7 @@ namespace UOGumpEditor
 
                 MainUI.HistoryListbox.Items.Clear();
 
-                MainUI.LayerListbox.Items.Clear();
+                MainUI.ElementListbox.Items.Clear();
             }
         }
 
@@ -542,8 +547,6 @@ namespace UOGumpEditor
 
                     AddElement(control);
                 }
-
-                ReorderZLayers();
             }
         }
     }

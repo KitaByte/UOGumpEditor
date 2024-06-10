@@ -66,9 +66,9 @@
             PreviousButton = new Button();
             SearchPanel = new Panel();
             FocusPanel = new Panel();
-            LayerListbox = new ListBox();
+            ElementListbox = new ListBox();
             ClearSelectedButton = new Button();
-            LayerLabel = new Label();
+            ElementLabel = new Label();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -374,6 +374,8 @@
             CanvasPanel.BackgroundImage = GumpRes.UOGSLogo;
             resources.ApplyResources(CanvasPanel, "CanvasPanel");
             CanvasPanel.Name = "CanvasPanel";
+            CanvasPanel.ControlAdded += CanvasPanel_ControlAdded;
+            CanvasPanel.ControlRemoved += CanvasPanel_ControlRemoved;
             CanvasPanel.DragDrop += CanvasPanel_DragDrop;
             CanvasPanel.DragEnter += CanvasPanel_DragEnter;
             // 
@@ -410,22 +412,22 @@
             // 
             FocusPanel.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(FocusPanel, "FocusPanel");
-            FocusPanel.Controls.Add(LayerListbox);
+            FocusPanel.Controls.Add(ElementListbox);
             FocusPanel.Controls.Add(ClearSelectedButton);
-            FocusPanel.Controls.Add(LayerLabel);
+            FocusPanel.Controls.Add(ElementLabel);
             FocusPanel.Name = "FocusPanel";
             // 
-            // LayerListbox
+            // ElementListbox
             // 
-            LayerListbox.BackColor = Color.FromArgb(64, 64, 64);
-            LayerListbox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(LayerListbox, "LayerListbox");
-            LayerListbox.ForeColor = Color.White;
-            LayerListbox.FormattingEnabled = true;
-            LayerListbox.Name = "LayerListbox";
-            LayerListbox.SelectionMode = SelectionMode.MultiSimple;
-            LayerListbox.TabStop = false;
-            LayerListbox.SelectedIndexChanged += LayerListbox_SelectedIndexChanged;
+            ElementListbox.BackColor = Color.FromArgb(64, 64, 64);
+            ElementListbox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(ElementListbox, "ElementListbox");
+            ElementListbox.ForeColor = Color.White;
+            ElementListbox.FormattingEnabled = true;
+            ElementListbox.Name = "ElementListbox";
+            ElementListbox.SelectionMode = SelectionMode.MultiSimple;
+            ElementListbox.TabStop = false;
+            ElementListbox.SelectedIndexChanged += ElementListbox_SelectedIndexChanged;
             // 
             // ClearSelectedButton
             // 
@@ -436,11 +438,11 @@
             ClearSelectedButton.UseVisualStyleBackColor = false;
             ClearSelectedButton.Click += ClearSelectedButton_Click;
             // 
-            // LayerLabel
+            // ElementLabel
             // 
-            LayerLabel.BackColor = Color.DarkMagenta;
-            resources.ApplyResources(LayerLabel, "LayerLabel");
-            LayerLabel.Name = "LayerLabel";
+            ElementLabel.BackColor = Color.DarkMagenta;
+            resources.ApplyResources(ElementLabel, "ElementLabel");
+            ElementLabel.Name = "ElementLabel";
             // 
             // UOGumpEditorUI
             // 
@@ -512,10 +514,10 @@
         private Panel SearchPanel;
         internal Panel CanvasPanel;
         private Panel FocusPanel;
-        private Label LayerLabel;
+        private Label ElementLabel;
         private Button ClearSelectedButton;
         internal ListBox HistoryListbox;
-        internal ListBox LayerListbox;
+        internal ListBox ElementListbox;
         private Button AllArtButton;
     }
 }

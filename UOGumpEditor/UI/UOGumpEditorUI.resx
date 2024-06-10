@@ -1054,37 +1054,37 @@
   <data name="FocusPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="LayerListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ElementListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="LayerListbox.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="ElementListbox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt</value>
   </data>
-  <data name="LayerListbox.ItemHeight" type="System.Int32, mscorlib">
+  <data name="ElementListbox.ItemHeight" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="LayerListbox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="ElementListbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 37</value>
   </data>
-  <data name="LayerListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="ElementListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="LayerListbox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="ElementListbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 532</value>
   </data>
-  <data name="LayerListbox.TabIndex" type="System.Int32, mscorlib">
+  <data name="ElementListbox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;LayerListbox.Name" xml:space="preserve">
-    <value>LayerListbox</value>
+  <data name="&gt;&gt;ElementListbox.Name" xml:space="preserve">
+    <value>ElementListbox</value>
   </data>
-  <data name="&gt;&gt;LayerListbox.Type" xml:space="preserve">
+  <data name="&gt;&gt;ElementListbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LayerListbox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ElementListbox.Parent" xml:space="preserve">
     <value>FocusPanel</value>
   </data>
-  <data name="&gt;&gt;LayerListbox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;ElementListbox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="ClearSelectedButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1126,37 +1126,37 @@
   <data name="&gt;&gt;ClearSelectedButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="LayerLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="ElementLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="LayerLabel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="ElementLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="LayerLabel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="ElementLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 5</value>
   </data>
-  <data name="LayerLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="ElementLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 32</value>
   </data>
-  <data name="LayerLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="ElementLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="LayerLabel.Text" xml:space="preserve">
-    <value>Gump Layer</value>
+  <data name="ElementLabel.Text" xml:space="preserve">
+    <value>Elements</value>
   </data>
-  <data name="LayerLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="ElementLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;LayerLabel.Name" xml:space="preserve">
-    <value>LayerLabel</value>
+  <data name="&gt;&gt;ElementLabel.Name" xml:space="preserve">
+    <value>ElementLabel</value>
   </data>
-  <data name="&gt;&gt;LayerLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;ElementLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LayerLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;ElementLabel.Parent" xml:space="preserve">
     <value>FocusPanel</value>
   </data>
-  <data name="&gt;&gt;LayerLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;ElementLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="FocusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">

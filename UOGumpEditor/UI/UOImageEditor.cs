@@ -135,13 +135,16 @@ namespace UOGumpEditor
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT != null && UOEditorCore.Z_Layer.Contains(IMAGEELEMENT))
+            if (UOEditorCore.MainUI != null && IMAGEELEMENT != null)
             {
-                if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (UOEditorCore.MainUI.CanvasPanel.Controls.Contains(IMAGEELEMENT))
                 {
-                    UOEditorCore.MainUI?.RemoveFromCanvas(IMAGEELEMENT);
+                    if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        UOEditorCore.MainUI?.RemoveFromCanvas(IMAGEELEMENT);
 
-                    Close();
+                        Close();
+                    }
                 }
             }
         }
