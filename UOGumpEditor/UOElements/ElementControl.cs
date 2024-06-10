@@ -448,11 +448,11 @@
         {
             if (Tag is ArtEntity ae)
             {
-                return ae.ToString();
+                return $"{GetLayer()} : {(ae.IsGump ? $"G-{ae.Name}" : $"I-{ae.Name}")}";
             }
             else
             {
-                return $"{ElementType}, {Text}";
+                return $"{GetLayer()} : {ElementType}";
             }
         }
     }

@@ -505,18 +505,7 @@ namespace UOGumpEditor
 
         private void ClearSelectedButton_Click(object sender, EventArgs e)
         {
-            if (ElementListbox.Items.Count > 0)
-            {
-                for (int i = 0; i < ElementListbox.Items.Count; i++)
-                {
-                    if (ElementListbox.Items[i] is ElementEntity entity)
-                    {
-                        entity.Element.SetSelected(false);
-                    }
-                }
-
-                ElementListbox.SelectedItems.Clear();
-            }
+            ElementListbox.ClearSelected();
         }
 
         private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
@@ -650,9 +639,13 @@ namespace UOGumpEditor
         {
             if (e.Control is ElementControl ec)
             {
+                ElementListbox.ClearSelected();
+
                 ElementListbox.Items.Add(new ElementEntity(ec));
 
                 CanvasPanel.Controls.SetChildIndex(ec, CanvasPanel.Controls.Count - 1);
+
+                ElementListbox.SelectedIndex = ElementListbox.Items.Count - 1;
             }
         }
 
@@ -689,6 +682,22 @@ namespace UOGumpEditor
             return ElementListbox.SelectedItems.Count == 1;
         }
 
+        public void ReloadListBox(int index)
+        {
+            ElementListbox.Items.Clear();
+
+            foreach (Control control in CanvasPanel.Controls)
+            {
+                if (control is ElementControl ec)
+                {
+                    ElementListbox.Items.Add(new ElementEntity(ec));
+                }
+            }
+
+            ElementListbox.SelectedIndex = index;
+        }
+
+
         public void UpdateElementInfo(ArtEntity entity)
         {
             GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / height: {entity.Height}";
@@ -715,7 +724,12 @@ namespace UOGumpEditor
                 return;
             }
 
-            UOEditorCore.MoveLayerUp();
+            int index = (ElementListbox.SelectedIndex + 1);
+
+            if (UOEditorCore.MoveLayerUp())
+            {
+                ReloadListBox(index);
+            }
         }
 
         private void LowerLayerButton_Click(object sender, EventArgs e)
@@ -727,7 +741,12 @@ namespace UOGumpEditor
                 return;
             }
 
-            UOEditorCore.MoveLayerDown();
+            int index = (ElementListbox.SelectedIndex - 1);
+
+            if (UOEditorCore.MoveLayerDown())
+            {
+                ReloadListBox(index);
+            }
         }
     }
 }

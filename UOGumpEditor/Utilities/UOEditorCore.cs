@@ -103,7 +103,7 @@ namespace UOGumpEditor
             }
         }
 
-        public static void MoveLayerUp()
+        public static bool MoveLayerUp()
         {
             if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
             {
@@ -117,16 +117,18 @@ namespace UOGumpEditor
                         {
                             MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex + 1);
 
-                            break;
+                            MainUI.CanvasPanel.Invalidate();
+
+                            return true;
                         }
                     }
                 }
-
-                MainUI.CanvasPanel.Invalidate();
             }
+
+            return false;
         }
 
-        public static void MoveLayerDown()
+        public static bool MoveLayerDown()
         {
             if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
             {
@@ -140,13 +142,15 @@ namespace UOGumpEditor
                         {
                             MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex - 1);
 
-                            break;
+                            MainUI.CanvasPanel.Invalidate();
+
+                            return true;
                         }
                     }
                 }
-
-                MainUI.CanvasPanel.Invalidate();
             }
+
+            return false;
         }
 
         public static void AddElement(ElementControl control)

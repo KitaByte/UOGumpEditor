@@ -381,7 +381,7 @@
             // 
             // NextButton
             // 
-            NextButton.BackColor = Color.WhiteSmoke;
+            NextButton.BackColor = Color.Goldenrod;
             resources.ApplyResources(NextButton, "NextButton");
             NextButton.FlatAppearance.BorderSize = 0;
             NextButton.ForeColor = Color.Black;
@@ -391,7 +391,7 @@
             // 
             // PreviousButton
             // 
-            PreviousButton.BackColor = Color.WhiteSmoke;
+            PreviousButton.BackColor = Color.Goldenrod;
             resources.ApplyResources(PreviousButton, "PreviousButton");
             PreviousButton.FlatAppearance.BorderSize = 0;
             PreviousButton.ForeColor = Color.Black;
