@@ -4,7 +4,7 @@ namespace UOGumpEditor
 {
     public partial class ExportUI : Form
     {
-        private ElementControl[] _elements;
+        private readonly ElementControl[] _elements;
 
         public ExportUI(ElementControl[] list)
         {

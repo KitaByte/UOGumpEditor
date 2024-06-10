@@ -444,7 +444,7 @@
             ExportCombobox.Dock = DockStyle.Right;
             ExportCombobox.ForeColor = Color.Black;
             ExportCombobox.FormattingEnabled = true;
-            ExportCombobox.Items.AddRange(new object[] { "CSharp", "Sphere" });
+            ExportCombobox.Items.AddRange(new object[] { "CSharp", "Sphere", "MUO" });
             ExportCombobox.Location = new Point(158, 5);
             ExportCombobox.Margin = new Padding(0);
             ExportCombobox.Name = "ExportCombobox";

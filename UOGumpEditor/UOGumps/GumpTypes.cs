@@ -3,6 +3,7 @@
     public enum GumpTypes
     {
         CSharp,
-        Sphere
+        Sphere,
+        MUO
     }
 }

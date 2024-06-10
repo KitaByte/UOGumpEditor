@@ -14,7 +14,7 @@ namespace UOGumpEditor
 
             KeyPreview = true;
 
-            Text = $"{Text} - 1.0.0.0";
+            Text = $"{Text} - 1.0.0.2";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)

@@ -12,12 +12,21 @@ namespace UOGumpEditor
                 case GumpTypes.CSharp:
                     {
                         ExportToCSharp(elements, gumpName);
+
                         break;
                     }
 
                 case GumpTypes.Sphere:
                     {
                         ExportToSphere(elements, gumpName);
+
+                        break;
+                    }
+
+                case GumpTypes.MUO:
+                    {
+                        ExportToMUO(elements, gumpName);
+
                         break;
                     }
             }
@@ -277,6 +286,141 @@ namespace UOGumpEditor
             File.WriteAllText(Path.Combine(UOArtLoader.ExportFolder, $"{gumpName}Gump.scp"), sb.ToString());
 
             SendCompletedMsg($"{gumpName}Gump.scp");
+        }
+
+        private static void ExportToMUO(ElementControl[] elements, string gumpName)
+        {
+            StringBuilder sb = new();
+
+            ArtEntity? entity;
+
+            int counter = 1;
+            int txtCounter = 1;
+
+            sb.AppendLine("using System;");
+            sb.AppendLine("using Server;");
+            sb.AppendLine("using Server.Network;");
+            sb.AppendLine();
+            sb.AppendLine("namespace Server.Gumps;");
+            sb.AppendLine();
+            sb.AppendLine($"public class {gumpName}Gump : DynamicGump");
+            sb.AppendLine("{");
+            sb.AppendLine($"    public {gumpName}Gump() : base(50, 50)");
+            sb.AppendLine("     {");
+            sb.AppendLine("         protected sealed override void BuildLayout(ref DynamicGumpBuilder builder)");
+            sb.AppendLine("         {");
+            sb.AppendLine("             builder.AddPage();");
+            sb.AppendLine("             builder.SetNoResize();");
+            sb.AppendLine();
+
+            foreach (var element in elements)
+            {
+                if (element.Tag is ArtEntity ae)
+                {
+                    entity = ae;
+
+                    switch (element.ElementType)
+                    {
+                        case ElementTypes.AlphaRegion:
+                            {
+                                sb.AppendLine($"            builder.AddAlphaRegion({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height});");
+
+                                break;
+                            }
+
+                        case ElementTypes.Background:
+                            {
+                                sb.AppendLine($"            builder.AddBackground({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {entity.ID});");
+
+                                break;
+                            }
+
+                        case ElementTypes.Button:
+                            {
+                                sb.AppendLine($"            builder.AddButton({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, {counter});");
+
+                                counter++;
+
+                                break;
+                            }
+
+                        case ElementTypes.CheckBox:
+                            {
+                                sb.AppendLine($"            builder.AddCheck({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, false, {counter});");
+
+                                counter++;
+
+                                break;
+                            }
+
+                        case ElementTypes.Image:
+                            {
+                                sb.AppendLine($"            builder.AddImage({element.Location.X}, {element.Location.Y}, {entity.ID});");
+
+                                break;
+                            }
+
+                        case ElementTypes.Item:
+                            {
+                                sb.AppendLine($"            builder.AddItem({element.Location.X}, {element.Location.Y}, {entity.ID});");
+
+                                break;
+                            }
+
+                        case ElementTypes.RadioButton:
+                            {
+                                sb.AppendLine($"            builder.AddRadio({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, false, {counter});");
+
+                                counter++;
+
+                                break;
+                            }
+
+                        case ElementTypes.TiledImage:
+                            {
+                                sb.AppendLine($"            builder.AddImageTiled({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {entity.ID});");
+
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    switch (element.ElementType)
+                    {
+                        case ElementTypes.Html:
+                            {
+                                sb.AppendLine($"            builder.AddHtml({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, \"{element.Text}\", false, false);");
+
+                                break;
+                            }
+
+                        case ElementTypes.Label:
+                            {
+                                sb.AppendLine($"            builder.AddLabel({element.Location.X}, {element.Location.Y}, {element.ForeColor.ToArgb()}, \"{element.Text}\");");
+
+                                break;
+                            }
+
+                        case ElementTypes.TextEntry:
+                            {
+                                sb.AppendLine($"            builder.AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\");");
+
+                                txtCounter++;
+
+                                break;
+                            }
+                    }
+                }
+            }
+
+            sb.AppendLine("         }");
+            sb.AppendLine("    }");
+            sb.AppendLine("}");
+
+            File.WriteAllText(Path.Combine(UOArtLoader.ExportFolder, $"{gumpName}Gump.cs"), sb.ToString());
+
+            SendCompletedMsg($"{gumpName}Gump.cs");
         }
 
         private static void SendCompletedMsg(string fileName)

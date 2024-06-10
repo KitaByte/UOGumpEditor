@@ -27,7 +27,7 @@
 
             CtrlSpeedTextbox.Text = UOSettings.Default.CtrlSpeed.ToString();
 
-            ExportCombobox.SelectedIndex = 0;
+            ExportCombobox.SelectedIndex = UOSettings.Default.ExportType;
 
             LanguageCombobox.SelectedIndex = 0;
         }
