@@ -7,6 +7,7 @@
         private Brush _textBrush;
         private ContentAlignment _textAlign;
         private Point _dragStartPoint;
+        private Point _startingPoint;
 
         private bool _isDragging;
 
@@ -290,6 +291,8 @@
             {
                 _dragStartPoint = e.Location;
 
+                _startingPoint = Location;
+
                 _isDragging = true;
 
                 UOEditorCore.StoreElementIndices();
@@ -314,7 +317,14 @@
 
                 UOEditorCore.RestoreElementIndices();
 
-                UOEditorCore.MainUI?.ElementListbox.SetSelected(GetLayer(), !IsSelected);
+                if (_startingPoint != Location)
+                {
+                    UOEditorCore.MainUI?.ElementListbox.SetSelected(GetLayer(), true);
+                }
+                else
+                {
+                    UOEditorCore.MainUI?.ElementListbox.SetSelected(GetLayer(), !IsSelected);
+                }
             }
         }
 
