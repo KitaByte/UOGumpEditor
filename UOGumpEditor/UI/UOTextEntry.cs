@@ -43,7 +43,7 @@ namespace UOGumpEditor
             }
         }
 
-        private void OKButton_Click(object sender, EventArgs e)
+        private void SetTextButton_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextEntryBox.Text))
             {

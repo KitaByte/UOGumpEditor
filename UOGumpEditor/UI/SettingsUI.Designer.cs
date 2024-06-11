@@ -97,7 +97,7 @@
             ResetButton.Dock = DockStyle.Bottom;
             ResetButton.FlatAppearance.BorderSize = 0;
             ResetButton.FlatStyle = FlatStyle.Flat;
-            ResetButton.ForeColor = Color.WhiteSmoke;
+            ResetButton.ForeColor = Color.Gold;
             ResetButton.Location = new Point(0, 426);
             ResetButton.Margin = new Padding(0);
             ResetButton.Name = "ResetButton";
@@ -706,6 +706,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SettingsUI";
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Settings";
             TopMost = true;

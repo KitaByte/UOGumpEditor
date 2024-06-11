@@ -152,7 +152,7 @@ namespace UOGumpEditor
             }
             else
             {
-                MessageBox.Show("Missing Gump!", "Required!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Gump Missing!", "Required!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

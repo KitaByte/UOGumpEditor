@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UOTextEntry));
             TextEntryBox = new TextBox();
-            OKButton = new Button();
+            SetTextButton = new Button();
             HueButton = new Button();
             DeleteButton = new Button();
             SuspendLayout();
@@ -49,23 +49,23 @@
             TextEntryBox.Size = new Size(264, 59);
             TextEntryBox.TabIndex = 0;
             // 
-            // OKButton
+            // SetTextButton
             // 
-            OKButton.BackColor = Color.ForestGreen;
-            OKButton.DialogResult = DialogResult.OK;
-            OKButton.Dock = DockStyle.Left;
-            OKButton.FlatAppearance.BorderSize = 0;
-            OKButton.FlatStyle = FlatStyle.Flat;
-            OKButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            OKButton.ForeColor = Color.WhiteSmoke;
-            OKButton.Location = new Point(10, 69);
-            OKButton.Margin = new Padding(0);
-            OKButton.Name = "OKButton";
-            OKButton.Size = new Size(90, 32);
-            OKButton.TabIndex = 1;
-            OKButton.Text = "OK";
-            OKButton.UseVisualStyleBackColor = false;
-            OKButton.Click += OKButton_Click;
+            SetTextButton.BackColor = Color.SteelBlue;
+            SetTextButton.DialogResult = DialogResult.OK;
+            SetTextButton.Dock = DockStyle.Left;
+            SetTextButton.FlatAppearance.BorderSize = 0;
+            SetTextButton.FlatStyle = FlatStyle.Flat;
+            SetTextButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SetTextButton.ForeColor = Color.WhiteSmoke;
+            SetTextButton.Location = new Point(10, 69);
+            SetTextButton.Margin = new Padding(0);
+            SetTextButton.Name = "SetTextButton";
+            SetTextButton.Size = new Size(90, 32);
+            SetTextButton.TabIndex = 1;
+            SetTextButton.Text = "Set Text";
+            SetTextButton.UseVisualStyleBackColor = false;
+            SetTextButton.Click += SetTextButton_Click;
             // 
             // HueButton
             // 
@@ -93,7 +93,7 @@
             DeleteButton.FlatAppearance.BorderSize = 0;
             DeleteButton.FlatStyle = FlatStyle.Flat;
             DeleteButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DeleteButton.ForeColor = Color.WhiteSmoke;
+            DeleteButton.ForeColor = Color.Gold;
             DeleteButton.Location = new Point(184, 69);
             DeleteButton.Margin = new Padding(0);
             DeleteButton.Name = "DeleteButton";
@@ -105,7 +105,7 @@
             // 
             // UOTextEntry
             // 
-            AcceptButton = OKButton;
+            AcceptButton = SetTextButton;
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.WhiteSmoke;
@@ -113,7 +113,7 @@
             ClientSize = new Size(284, 111);
             Controls.Add(HueButton);
             Controls.Add(DeleteButton);
-            Controls.Add(OKButton);
+            Controls.Add(SetTextButton);
             Controls.Add(TextEntryBox);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -138,7 +138,7 @@
         #endregion
 
         private TextBox TextEntryBox;
-        private Button OKButton;
+        private Button SetTextButton;
         private Button HueButton;
         private Button DeleteButton;
     }

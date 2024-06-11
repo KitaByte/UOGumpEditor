@@ -117,6 +117,7 @@
             MinimizeBox = false;
             MinimumSize = new Size(300, 0);
             Name = "GumpHandler";
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gump Processor";
             TopMost = true;

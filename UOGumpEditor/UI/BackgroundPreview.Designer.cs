@@ -42,7 +42,7 @@
             DisplayPictureBox.Margin = new Padding(5);
             DisplayPictureBox.Name = "DisplayPictureBox";
             DisplayPictureBox.Padding = new Padding(5);
-            DisplayPictureBox.Size = new Size(143, 145);
+            DisplayPictureBox.Size = new Size(144, 144);
             DisplayPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             DisplayPictureBox.TabIndex = 0;
             DisplayPictureBox.TabStop = false;
@@ -54,7 +54,7 @@
             AutoSize = true;
             BackColor = Color.Goldenrod;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(149, 151);
+            ClientSize = new Size(150, 150);
             Controls.Add(DisplayPictureBox);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;

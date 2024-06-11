@@ -286,7 +286,7 @@
 
         private void ElementControl_MouseDown(object? sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && UOEditorCore.MainUI != null)
             {
                 _dragStartPoint = e.Location;
 
@@ -314,10 +314,7 @@
 
                 UOEditorCore.RestoreElementIndices();
 
-                if (UOEditorCore.MainUI != null)
-                {
-                    UOEditorCore.MainUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
-                }
+                UOEditorCore.MainUI?.ElementListbox.SetSelected(GetLayer(), !IsSelected);
             }
         }
 
