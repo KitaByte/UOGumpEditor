@@ -546,6 +546,10 @@ namespace UOGumpEditor
 
                         control.SetImage(entity);
                     }
+                    else
+                    {
+                        control.SetText(element.Text, element.Color);
+                    }
 
                     MainUI.CanvasPanel.Controls.Add(control);
 

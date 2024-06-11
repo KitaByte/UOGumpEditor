@@ -43,8 +43,13 @@ namespace UOGumpEditor.UOGumps
             }
         }
 
-        public ArtEntity ToArtEntity()
+        public ArtEntity? ToArtEntity()
         {
+            if (ArtID == 0 && ArtWidth == 0 && ArtHeight == 0)
+            {
+                return null;
+            }
+
             return new ArtEntity(ArtID, ArtName, ArtWidth, ArtHeight, IsGump) { Hue = ArtHue };
         }
     }

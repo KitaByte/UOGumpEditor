@@ -360,9 +360,15 @@
 
                 Image = tempBitmap;
 
-                Width = entity.Width;
+                if (Width < entity.Width)
+                {
+                    Width = entity.Width;
+                }
 
-                Height = entity.Height;
+                if (Height < entity.Height)
+                {
+                    Height = entity.Height;
+                }
 
                 tempBitmap = null;
             }

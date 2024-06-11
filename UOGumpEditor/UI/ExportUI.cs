@@ -19,7 +19,7 @@ namespace UOGumpEditor
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameTextbox.Text))
+            if (!string.IsNullOrEmpty(NameTextbox.Text))
             {
                 GumpExport.ExportGump(_elements, NameTextbox.Text);
 

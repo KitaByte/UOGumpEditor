@@ -60,40 +60,47 @@ namespace UOGumpEditor
 
             foreach (string file in Directory.GetFiles(SaveDirectory, "*.csv"))
             {
-                using StreamReader reader = new(file);
-
-                BaseGump gump = new(Path.GetFileNameWithoutExtension(file));
-
-                string? headerLine = reader.ReadLine(); // Skip header
-
-                while (!reader.EndOfStream)
+                try
                 {
-                    string? line = reader.ReadLine();
+                    using StreamReader reader = new(file);
 
-                    if (line != null)
+                    BaseGump gump = new(Path.GetFileNameWithoutExtension(file));
+
+                    string? headerLine = reader.ReadLine(); // Skip header
+
+                    while (!reader.EndOfStream)
                     {
-                        string[] values = line.Split(',');
+                        string? line = reader.ReadLine();
 
-                        GumpElement element = new()
+                        if (line != null)
                         {
-                            ArtID = int.Parse(values[0]),
-                            ArtName = values[1],
-                            ArtWidth = int.Parse(values[2]),
-                            ArtHeight = int.Parse(values[3]),
-                            ArtHue = int.Parse(values[4]),
-                            IsGump = bool.Parse(values[5]),
-                            Text = values[6],
-                            Type = values[7],
-                            Location = new Point(int.Parse(values[8]), int.Parse(values[9])),
-                            Size = new Size(int.Parse(values[10]), int.Parse(values[11])),
-                            Color = Color.FromArgb(int.Parse(values[12]))
-                        };
+                            string[] values = line.Split(',');
 
-                        gump.Elements.Add(element);
+                            GumpElement element = new()
+                            {
+                                ArtID = int.Parse(values[0]),
+                                ArtName = values[1],
+                                ArtWidth = int.Parse(values[2]),
+                                ArtHeight = int.Parse(values[3]),
+                                ArtHue = int.Parse(values[4]),
+                                IsGump = bool.Parse(values[5]),
+                                Text = values[6],
+                                Type = values[7],
+                                Location = new Point(int.Parse(values[8]), int.Parse(values[9])),
+                                Size = new Size(int.Parse(values[10]), int.Parse(values[11])),
+                                Color = Color.FromArgb(int.Parse(values[12]))
+                            };
+
+                            gump.Elements.Add(element);
+                        }
                     }
-                }
 
-                _cachedGumps.Add(gump);
+                    _cachedGumps.Add(gump);
+                }
+                catch
+                {
+                    MessageBox.Show("Issue with loading files!", "Bug Report", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             return _cachedGumps;
