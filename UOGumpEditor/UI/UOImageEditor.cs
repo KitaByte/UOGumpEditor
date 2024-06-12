@@ -30,9 +30,9 @@ namespace UOGumpEditor
                 {
                     IDTextbox.Text = entity.ID.ToString();
 
-                    WidthTextbox.Text = entity.Width.ToString();
+                    WidthTextbox.Text = IMAGEELEMENT.Width.ToString();
 
-                    HeightTextbox.Text = entity.Height.ToString();
+                    HeightTextbox.Text = IMAGEELEMENT.Height.ToString();
 
                     HueTextbox.Text = entity.Hue.ToString();
                 }

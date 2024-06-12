@@ -428,6 +428,7 @@
             ElementListbox.SelectionMode = SelectionMode.MultiSimple;
             ElementListbox.TabStop = false;
             ElementListbox.SelectedIndexChanged += ElementListbox_SelectedIndexChanged;
+            ElementListbox.MouseDoubleClick += ElementListbox_MouseDoubleClick;
             // 
             // ClearSelectedButton
             // 

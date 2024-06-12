@@ -332,7 +332,7 @@
         {
             if (Tag is ArtEntity entity)
             {
-                UOEditorCore.MainUI?.UpdateElementInfo(entity);
+                UOEditorCore.MainUI?.UpdateElementInfo(entity, this);
             }
         }
 

@@ -68,7 +68,10 @@ namespace UOGumpEditor
                         Location = new Point(Cursor.Position.X + 10, Cursor.Position.Y + 10)
                     };
 
-                    PreviewBox.Show();
+                    if (PreviewBox != null)
+                    {
+                        PreviewBox.Show();
+                    }
                 }
             }
         }

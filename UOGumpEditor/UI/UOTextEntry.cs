@@ -41,6 +41,13 @@ namespace UOGumpEditor
                         break;
                     }
             }
+
+            if (TEXTELEMENT != null)
+            {
+                Text = TEXTELEMENT.Text;
+
+                Size = TEXTELEMENT.Size;
+            }
         }
 
         private void SetTextButton_Click(object sender, EventArgs e)
@@ -60,6 +67,8 @@ namespace UOGumpEditor
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 HUE = colorDialog.Color;
+
+                TextEntryBox.ForeColor = HUE;
             }
         }
 

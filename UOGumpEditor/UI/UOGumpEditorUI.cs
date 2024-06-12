@@ -106,6 +106,21 @@ namespace UOGumpEditor
 
                 return true;
             }
+            else if (keyData == (Keys.Delete))
+            {
+                if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
+                {
+                    if (CanvasPanel.Controls.Contains(entity.Element))
+                    {
+                        if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        {
+                            RemoveFromCanvas(entity.Element);
+                        }
+                    }
+                }
+
+                return true;
+            }
 
             if (CanvasPanel.Controls.Count > 0)
             {
@@ -503,6 +518,21 @@ namespace UOGumpEditor
             }
         }
 
+        private void ElementListbox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
+            {
+                if (ee.Element.ElementType == ElementTypes.Label || ee.Element.ElementType == ElementTypes.Html)
+                {
+                    OpenTextEntry(ee.Element.ElementType, ee.Element);
+                }
+                else
+                {
+                    OpenImageEditor(ee.Element.ElementType, ee.Element);
+                }
+            }
+        }
+
         private void ClearSelectedButton_Click(object sender, EventArgs e)
         {
             ElementListbox.ClearSelected();
@@ -622,6 +652,13 @@ namespace UOGumpEditor
 
         private void AddToCanvas(ElementControl element, Point location)
         {
+            if (element.ElementType == ElementTypes.Background)
+            {
+                element.Width *= 3;
+
+                element.Height *= 3;
+            }
+
             element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
 
             CanvasPanel.Controls.Add(element);
@@ -697,10 +734,14 @@ namespace UOGumpEditor
             ElementListbox.SelectedIndex = index;
         }
 
-
-        public void UpdateElementInfo(ArtEntity entity)
+        public void UpdateElementInfo(ArtEntity entity, ElementControl? element = null)
         {
             GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / height: {entity.Height}";
+
+            if (element != null)
+            {
+                GumpInfoLabel.Text += $" | width: {element.Width} / height: {element.Height}";
+            }
         }
 
         private void UOGumpEditorUI_Resize(object sender, EventArgs e)
