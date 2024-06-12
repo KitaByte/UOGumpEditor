@@ -26,14 +26,14 @@ namespace UOGumpEditor
 
             foreach (var element in gump.Elements)
             {
-                var line = 
+                var line =
                     $"{element.ArtID}," +
                     $"{element.ArtName}," +
                     $"{element.ArtWidth}," +
                     $"{element.ArtHeight}," +
                     $"{element.ArtHue}," +
                     $"{element.IsGump}," +
-                    $"{element.Text}," +
+                    $"{UOEditorCore.CombineMultiString(element.Text)}," + 
                     $"{element.Type}," +
                     $"{element.Location.X}," +
                     $"{element.Location.Y}," +
@@ -74,7 +74,7 @@ namespace UOGumpEditor
 
                         if (line != null)
                         {
-                            string[] values = line.Split(',');
+                            string[] values = ParseCsvLine(line);
 
                             GumpElement element = new()
                             {
@@ -84,7 +84,7 @@ namespace UOGumpEditor
                                 ArtHeight = int.Parse(values[3]),
                                 ArtHue = int.Parse(values[4]),
                                 IsGump = bool.Parse(values[5]),
-                                Text = values[6],
+                                Text = UOEditorCore.ReturnMultiString(values[6]),
                                 Type = values[7],
                                 Location = new Point(int.Parse(values[8]), int.Parse(values[9])),
                                 Size = new Size(int.Parse(values[10]), int.Parse(values[11])),
@@ -105,6 +105,37 @@ namespace UOGumpEditor
 
             return _cachedGumps;
         }
+
+        private static string[] ParseCsvLine(string line)
+        {
+            List<string> values = [];
+
+            bool inQuotes = false;
+
+            string value = string.Empty;
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                char c = line[i];
+
+                if (c == '"' && (i == 0 || line[i - 1] != '\\'))
+                {
+                    inQuotes = !inQuotes;
+                }
+                else if (c == ',' && !inQuotes)
+                {
+                    values.Add(value);
+                    value = string.Empty;
+                }
+                else
+                {
+                    value += c;
+                }
+            }
+
+            values.Add(value);
+
+            return [.. values];
+        }
     }
 }
-

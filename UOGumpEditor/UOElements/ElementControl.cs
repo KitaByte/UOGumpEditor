@@ -5,9 +5,9 @@
         private Image? _image;
         private Font _font;
         private Brush _textBrush;
-        private ContentAlignment _textAlign;
         private Point _dragStartPoint;
         private Point _startingPoint;
+        private ContentAlignment _textAlign;
 
         private bool _isDragging;
 
@@ -16,6 +16,19 @@
         public ElementTypes ElementType { get; set; }
 
         public ImageLayout BGImageLayout { get; set; }
+
+        public Color TextColor
+        {
+            get { return (_textBrush as SolidBrush)?.Color ?? Color.White; }
+            set
+            {
+                _textBrush = new SolidBrush(value);
+
+                ForeColor = value;
+
+                Invalidate();
+            }
+        }
 
         public int GetLayer()
         {
@@ -380,15 +393,17 @@
         {
             Text = text;
 
-            Font = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
+            TextFont = new Font(FontFamily.GenericSansSerif, 11.25f, FontStyle.Bold);
 
-            ForeColor = hue;
+            TextColor = hue;
+
+            TextAlign = ContentAlignment.MiddleCenter;
 
             Size size = UOEditorCore.GetTextSize(text, Font);
 
-            Width = size.Width;
+            Width = size.Width + 20;
 
-            Height = size.Height;
+            Height = size.Height + 10;
         }
 
         public (int X, int Y) GetLocation()

@@ -136,7 +136,7 @@ namespace UOGumpEditor
                     {
                         case ElementTypes.Html:
                             {
-                                sb.AppendLine($"        AddHtml({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, \"{element.Text}\", false, false);");
+                                sb.AppendLine($"        AddHtml({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, \"{UOEditorCore.CombineMultiString(element.Text, false)}\", false, false);");
                                 
                                 break;
                             }

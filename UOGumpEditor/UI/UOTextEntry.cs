@@ -36,6 +36,8 @@ namespace UOGumpEditor
                     {
                         TextEntryBox.Multiline = true;
 
+                        TextEntryBox.AcceptsReturn = true;
+
                         Text = "HTML Entry";
 
                         break;
@@ -44,9 +46,11 @@ namespace UOGumpEditor
 
             if (TEXTELEMENT != null)
             {
-                Text = TEXTELEMENT.Text;
+                TextEntryBox.Text = TEXTELEMENT.Text;
 
-                Size = TEXTELEMENT.Size;
+                HUE = TEXTELEMENT.TextColor;
+
+                TextEntryBox.ForeColor = HUE;
             }
         }
 
@@ -54,7 +58,16 @@ namespace UOGumpEditor
         {
             if (!string.IsNullOrEmpty(TextEntryBox.Text))
             {
-                UOEditorCore.MainUI?.AddTextElement(TextEntryBox.Text, HUE);
+                if (TEXTELEMENT == null)
+                {
+                    UOEditorCore.MainUI?.AddTextElement(TextEntryBox.Text, HUE, ELEMENT);
+                }
+                else
+                {
+                    TEXTELEMENT.Text = TextEntryBox.Text;
+
+                    TEXTELEMENT.TextColor = HUE;
+                }
             }
 
             Close();

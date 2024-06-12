@@ -636,11 +636,11 @@ namespace UOGumpEditor
             entry.Show();
         }
 
-        public void AddTextElement(string text, Color hue)
+        public void AddTextElement(string text, Color hue, ElementTypes textType)
         {
             ElementControl element = new()
             {
-                ElementType = ElementTypes.Label
+                ElementType = textType
             };
 
             UOEditorCore.AddElement(element);

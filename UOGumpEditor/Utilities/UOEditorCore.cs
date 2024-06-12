@@ -501,6 +501,44 @@ namespace UOGumpEditor
             }
         }
 
+        private const string LineBreakMarker = "*BR*";
+
+        public static string CombineMultiString(string multiLine, bool useMarker = true)
+        {
+            string[] text = multiLine.Split('\n');
+
+            if (text.Length > 0)
+            {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    text[i] = text[i].TrimEnd('\r').Trim();
+
+                    if (i > 0)
+                    {
+                        if (useMarker)
+                        {
+                            text[0] += $"{LineBreakMarker}{text[i]}";
+                        }
+                        else
+                        {
+                            text[0] += $"{"\\r\\n"}{text[i]}";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                text[0] = multiLine;
+            }
+
+            return text[0];
+        }
+
+        public static string ReturnMultiString(string combinedString)
+        {
+            return combinedString.Replace(LineBreakMarker, "\r\n");
+        }
+
         public static void SaveGump(string name)
         {
             if (MainUI != null)
