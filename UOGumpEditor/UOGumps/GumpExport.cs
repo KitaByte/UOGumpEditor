@@ -128,6 +128,16 @@ namespace UOGumpEditor
                                 
                                 break;
                             }
+
+                        case ElementTypes.TextEntry:
+                            {
+                                sb.AppendLine($"        AddImage({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"        AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\");");
+
+                                txtCounter++;
+
+                                break;
+                            }
                     }
                 }
                 else
@@ -145,15 +155,6 @@ namespace UOGumpEditor
                             {
                                 sb.AppendLine($"        AddLabel({element.Location.X}, {element.Location.Y}, {element.ForeColor.ToArgb()}, \"{element.Text}\");");
                                 
-                                break;
-                            }
-
-                        case ElementTypes.TextEntry:
-                            {
-                                sb.AppendLine($"        AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\");");
-
-                                txtCounter++;
-
                                 break;
                             }
                     }
@@ -251,6 +252,16 @@ namespace UOGumpEditor
                                 
                                 break;
                             }
+
+                        case ElementTypes.TextEntry:
+                            {
+                                sb.AppendLine($"SERV.GUMPIMAGE {element.Location.X}, {element.Location.Y}, {entity.ID}");
+                                sb.AppendLine($"SERV.GUMPTEXTENTRY {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, \"{element.Text}\"");
+
+                                txtCounter++;
+
+                                break;
+                            }
                     }
                 }
                 else
@@ -268,15 +279,6 @@ namespace UOGumpEditor
                             {
                                 sb.AppendLine($"SERV.GUMPTEXT {element.Location.X}, {element.Location.Y}, \"{element.Text}\"");
                                 
-                                break;
-                            }
-
-                        case ElementTypes.TextEntry:
-                            {
-                                sb.AppendLine($"SERV.GUMPTEXTENTRY {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, \"{element.Text}\"");
-
-                                txtCounter++;
-
                                 break;
                             }
                     }
@@ -382,6 +384,16 @@ namespace UOGumpEditor
 
                                 break;
                             }
+
+                        case ElementTypes.TextEntry:
+                            {
+                                sb.AppendLine($"            builder.AddImage({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"            builder.AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\");");
+
+                                txtCounter++;
+
+                                break;
+                            }
                     }
                 }
                 else
@@ -398,15 +410,6 @@ namespace UOGumpEditor
                         case ElementTypes.Label:
                             {
                                 sb.AppendLine($"            builder.AddLabel({element.Location.X}, {element.Location.Y}, {element.ForeColor.ToArgb()}, \"{element.Text}\");");
-
-                                break;
-                            }
-
-                        case ElementTypes.TextEntry:
-                            {
-                                sb.AppendLine($"            builder.AddTextEntry({element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, 0, \"{element.Text}\");");
-
-                                txtCounter++;
 
                                 break;
                             }
