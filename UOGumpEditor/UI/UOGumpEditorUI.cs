@@ -565,8 +565,6 @@ namespace UOGumpEditor
                             Tag = entity
                         };
 
-                        UOEditorCore.AddElement(element);
-
                         element.SetImage(entity);
 
                         if (IsGump())
@@ -643,8 +641,6 @@ namespace UOGumpEditor
                 ElementType = textType
             };
 
-            UOEditorCore.AddElement(element);
-
             element.SetText(text, hue);
 
             AddToCanvas(element, new(50, 50));
@@ -683,6 +679,11 @@ namespace UOGumpEditor
                 CanvasPanel.Controls.SetChildIndex(ec, CanvasPanel.Controls.Count - 1);
 
                 ElementListbox.SelectedIndex = ElementListbox.Items.Count - 1;
+
+                if (ec.Tag != null && ec.Tag is ArtEntity entity)
+                {
+                    AddToHistory(entity);
+                }
             }
         }
 

@@ -153,14 +153,6 @@ namespace UOGumpEditor
             return false;
         }
 
-        public static void AddElement(ElementControl control)
-        {
-            if (control.Tag is ArtEntity ae)
-            {
-                MainUI?.AddToHistory(ae);
-            }
-        }
-
         public static void ResetEditor()
         {
             if (MainUI != null)
@@ -590,8 +582,6 @@ namespace UOGumpEditor
                     }
 
                     MainUI.CanvasPanel.Controls.Add(control);
-
-                    AddElement(control);
                 }
             }
         }
