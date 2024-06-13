@@ -522,14 +522,7 @@ namespace UOGumpEditor
         {
             if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
             {
-                if (ee.Element.ElementType == ElementTypes.Label || ee.Element.ElementType == ElementTypes.Html)
-                {
-                    OpenTextEntry(ee.Element.ElementType, ee.Element);
-                }
-                else
-                {
-                    OpenImageEditor(ee.Element.ElementType, ee.Element);
-                }
+                OpenEditor(ee.Element.ElementType, ee.Element);
             }
         }
 
@@ -584,26 +577,26 @@ namespace UOGumpEditor
 
         private void AddLabelButton_Click(object sender, EventArgs e)
         {
-            OpenTextEntry(ElementTypes.Label);
+            OpenEditor(ElementTypes.Label);
         }
 
         private void AddHTMLButton_Click(object sender, EventArgs e)
         {
-            OpenTextEntry(ElementTypes.Html);
+            OpenEditor(ElementTypes.Html);
         }
 
         private UOImageEditor? editor;
 
-        internal void OpenImageEditor(ElementTypes element, ElementControl imageElement)
+        internal void OpenEditor(ElementTypes element, ElementControl? elementControl = null)
         {
             if (editor != null && editor.Visible)
             {
                 return;
             }
 
-            if (imageElement != null)
+            if (elementControl != null)
             {
-                editor = new(element, imageElement);
+                editor = new(element, elementControl);
             }
             else
             {
@@ -611,27 +604,6 @@ namespace UOGumpEditor
             }
 
             editor.Show();
-        }
-
-        private UOTextEntry? entry;
-
-        public void OpenTextEntry(ElementTypes element, ElementControl? textElement = null)
-        {
-            if (entry != null && entry.Visible)
-            {
-                return;
-            }
-
-            if (textElement != null)
-            {
-                entry = new(element, textElement);
-            }
-            else
-            {
-                entry = new(element);
-            }
-
-            entry.Show();
         }
 
         public void AddTextElement(string text, Color hue, ElementTypes textType)

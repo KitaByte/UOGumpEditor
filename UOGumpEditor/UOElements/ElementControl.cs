@@ -351,14 +351,7 @@
 
         private void ElementControl_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            if (ElementType == ElementTypes.Label || ElementType == ElementTypes.Html)
-            {
-                UOEditorCore.MainUI?.OpenTextEntry(ElementType, this);
-            }
-            else
-            {
-                UOEditorCore.MainUI?.OpenImageEditor(ElementType, this);
-            }
+            UOEditorCore.MainUI?.OpenEditor(ElementType, this);
         }
 
         Bitmap? tempBitmap;

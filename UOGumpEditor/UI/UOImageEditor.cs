@@ -5,61 +5,101 @@ namespace UOGumpEditor
 {
     public partial class UOImageEditor : Form
     {
-        private readonly ElementControl? IMAGEELEMENT;
+        private readonly ElementControl? _ElementControl;
 
-        private readonly ElementTypes ELEMENT;
+        private readonly ElementTypes _ElementType;
 
-        public UOImageEditor(ElementTypes element, ElementControl? imageElement = null)
+        public UOImageEditor(ElementTypes element, ElementControl? elementControl = null)
         {
             InitializeComponent();
 
-            IMAGEELEMENT = imageElement;
+            _ElementControl = elementControl;
 
-            ELEMENT = element;
+            _ElementType = element;
         }
 
         private void UOImageEditor_Load(object sender, EventArgs e)
         {
-            HueButton.Visible = false;
+            IDPanel.Visible = false;
 
-            UOEditorCore.InitElement(ELEMENT, HueButton);
+            TextPanel.Visible = false;
 
-            if (IMAGEELEMENT != null)
+            HuePanel.Visible = false;
+
+            UOEditorCore.InitElement(_ElementType, IDPanel, TextPanel, HuePanel);
+
+            if (_ElementType == ElementTypes.Html)
             {
-                if (IMAGEELEMENT.Tag is ArtEntity entity)
+                TextPanel.Height *= 4;
+
+                TextTextbox.ScrollBars = ScrollBars.Both;
+
+                TextTextbox.AcceptsReturn = true;
+
+                TextTextbox.Multiline = true;
+
+                TextTextbox.MaxLength *= 10;
+
+                TextTextbox.PlaceholderText = "HTML";
+            }
+
+            if (_ElementControl != null)
+            {
+                if (_ElementControl.Tag is ArtEntity entity)
                 {
                     IDTextbox.Text = entity.ID.ToString();
-
-                    WidthTextbox.Text = IMAGEELEMENT.Width.ToString();
-
-                    HeightTextbox.Text = IMAGEELEMENT.Height.ToString();
 
                     HueTextbox.Text = entity.Hue.ToString();
                 }
                 else
                 {
-                    HueTextbox.Text = IMAGEELEMENT.ForeColor.ToArgb().ToString();
+                    TextTextbox.Text = _ElementControl.Text;
+
+                    HueTextbox.ForeColor = _ElementControl.TextColor;
                 }
+
+                WidthTextbox.Text = _ElementControl.Width.ToString();
+
+                HeightTextbox.Text = _ElementControl.Height.ToString();
             }
         }
 
         private void IDButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT?.Tag is ArtEntity)
+            if (_ElementControl?.Tag is ArtEntity)
             {
                 if (int.TryParse(IDTextbox.Text, out int val))
                 {
-                    IMAGEELEMENT.Tag = UOArtLoader.GetArtEntity(val, ELEMENT != ElementTypes.Item);
+                    _ElementControl.Tag = UOArtLoader.GetArtEntity(val, _ElementType != ElementTypes.Item);
 
-                    if (IMAGEELEMENT.Tag is ArtEntity nae)
+                    if (_ElementControl.Tag is ArtEntity nae)
                     {
-                        IMAGEELEMENT.SetImage(nae);
+                        _ElementControl.SetImage(nae);
 
-                        IMAGEELEMENT.Invalidate();
+                        _ElementControl.Invalidate();
                     }
 
                     SendValueUpdatedMsg("ID");
                 }
+            }
+        }
+
+        private void TextButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TextTextbox.Text))
+            {
+                if (_ElementControl == null)
+                {
+                    UOEditorCore.MainUI?.AddTextElement(TextTextbox.Text, TextTextbox.ForeColor, _ElementType);
+                }
+                else
+                {
+                    _ElementControl.Text = TextTextbox.Text;
+
+                    _ElementControl.TextColor = TextTextbox.ForeColor;
+                }
+
+                SendValueUpdatedMsg("Text");
             }
         }
 
@@ -75,25 +115,25 @@ namespace UOGumpEditor
 
         private void UpdateSize()
         {
-            if (IMAGEELEMENT != null && int.TryParse(WidthTextbox.Text, out int width))
+            if (_ElementControl != null && int.TryParse(WidthTextbox.Text, out int width))
             {
-                IMAGEELEMENT.Width = width;
+                _ElementControl.Width = width;
             }
 
-            if (IMAGEELEMENT != null && int.TryParse(HeightTextbox.Text, out int height))
+            if (_ElementControl != null && int.TryParse(HeightTextbox.Text, out int height))
             {
-                IMAGEELEMENT.Height = height;
+                _ElementControl.Height = height;
             }
 
-            if (IMAGEELEMENT?.Tag is ArtEntity entity)
+            if (_ElementControl?.Tag is ArtEntity entity)
             {
-                if (IMAGEELEMENT.ElementType == ElementTypes.Image && (entity.Width < IMAGEELEMENT.Width || entity.Height < IMAGEELEMENT.Height))
+                if (_ElementControl.ElementType == ElementTypes.Image && (entity.Width < _ElementControl.Width || entity.Height < _ElementControl.Height))
                 {
-                    IMAGEELEMENT.ElementType = ElementTypes.TiledImage;
+                    _ElementControl.ElementType = ElementTypes.TiledImage;
                 }
-                else if (IMAGEELEMENT.ElementType == ElementTypes.TiledImage && (entity.Width >= IMAGEELEMENT.Width && entity.Height >= IMAGEELEMENT.Height))
+                else if (_ElementControl.ElementType == ElementTypes.TiledImage && (entity.Width >= _ElementControl.Width && entity.Height >= _ElementControl.Height))
                 {
-                    IMAGEELEMENT.ElementType = ElementTypes.Image;
+                    _ElementControl.ElementType = ElementTypes.Image;
                 }
             }
 
@@ -102,9 +142,9 @@ namespace UOGumpEditor
 
         private void HueButton_Click(object sender, EventArgs e)
         {
-            if (IMAGEELEMENT != null && int.TryParse(HueTextbox.Text, out int val))
+            if (_ElementControl != null && int.TryParse(HueTextbox.Text, out int val))
             {
-                if (IMAGEELEMENT.Tag is ArtEntity ae)
+                if (_ElementControl.Tag is ArtEntity ae)
                 {
                     Bitmap? image = ae.GetImage();
 
@@ -114,14 +154,14 @@ namespace UOGumpEditor
 
                         AssetData.Hues.ApplyTo(image, val, false);
 
-                        IMAGEELEMENT.Image = image;
+                        _ElementControl.Image = image;
 
-                        IMAGEELEMENT.Invalidate();
+                        _ElementControl.Invalidate();
                     }
                 }
                 else
                 {
-                    IMAGEELEMENT.ForeColor = Color.FromArgb(val);
+                    _ElementControl.ForeColor = Color.FromArgb(val);
                 }
 
                 SendValueUpdatedMsg("Hue");
@@ -135,13 +175,13 @@ namespace UOGumpEditor
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (UOEditorCore.MainUI != null && IMAGEELEMENT != null)
+            if (UOEditorCore.MainUI != null && _ElementControl != null)
             {
-                if (UOEditorCore.MainUI.CanvasPanel.Controls.Contains(IMAGEELEMENT))
+                if (UOEditorCore.MainUI.CanvasPanel.Controls.Contains(_ElementControl))
                 {
                     if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-                        UOEditorCore.MainUI?.RemoveFromCanvas(IMAGEELEMENT);
+                        UOEditorCore.MainUI?.RemoveFromCanvas(_ElementControl);
 
                         Close();
                     }

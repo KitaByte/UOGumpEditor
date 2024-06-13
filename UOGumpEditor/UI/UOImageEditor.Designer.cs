@@ -33,7 +33,6 @@
             HeightButton = new Button();
             HueButton = new Button();
             IDButton = new Button();
-            MainButtonPanel = new Panel();
             HeightPanel = new Panel();
             HeightTextbox = new TextBox();
             WidthPanel = new Panel();
@@ -45,12 +44,15 @@
             CloseButton = new Button();
             HuePanel = new Panel();
             HueTextbox = new TextBox();
-            MainButtonPanel.SuspendLayout();
+            TextPanel = new Panel();
+            TextTextbox = new TextBox();
+            TextButton = new Button();
             HeightPanel.SuspendLayout();
             WidthPanel.SuspendLayout();
             IDPanel.SuspendLayout();
             BottomButtonPanel.SuspendLayout();
             HuePanel.SuspendLayout();
+            TextPanel.SuspendLayout();
             SuspendLayout();
             // 
             // WidthButton
@@ -65,7 +67,7 @@
             WidthButton.Margin = new Padding(0);
             WidthButton.Name = "WidthButton";
             WidthButton.Size = new Size(132, 25);
-            WidthButton.TabIndex = 1;
+            WidthButton.TabIndex = 0;
             WidthButton.Text = "Set Width";
             WidthButton.UseVisualStyleBackColor = false;
             WidthButton.Click += WidthButton_Click;
@@ -82,7 +84,7 @@
             HeightButton.Margin = new Padding(0);
             HeightButton.Name = "HeightButton";
             HeightButton.Size = new Size(132, 25);
-            HeightButton.TabIndex = 2;
+            HeightButton.TabIndex = 0;
             HeightButton.Text = "Set Height";
             HeightButton.UseVisualStyleBackColor = false;
             HeightButton.Click += HeightButton_Click;
@@ -121,29 +123,17 @@
             IDButton.UseVisualStyleBackColor = false;
             IDButton.Click += IDButton_Click;
             // 
-            // MainButtonPanel
-            // 
-            MainButtonPanel.Controls.Add(HeightPanel);
-            MainButtonPanel.Controls.Add(WidthPanel);
-            MainButtonPanel.Controls.Add(IDPanel);
-            MainButtonPanel.Dock = DockStyle.Top;
-            MainButtonPanel.Location = new Point(10, 10);
-            MainButtonPanel.Margin = new Padding(0);
-            MainButtonPanel.Name = "MainButtonPanel";
-            MainButtonPanel.Size = new Size(264, 75);
-            MainButtonPanel.TabIndex = 2;
-            // 
             // HeightPanel
             // 
             HeightPanel.BackgroundImageLayout = ImageLayout.None;
             HeightPanel.Controls.Add(HeightTextbox);
             HeightPanel.Controls.Add(HeightButton);
             HeightPanel.Dock = DockStyle.Top;
-            HeightPanel.Location = new Point(0, 50);
+            HeightPanel.Location = new Point(10, 85);
             HeightPanel.Margin = new Padding(0);
             HeightPanel.Name = "HeightPanel";
             HeightPanel.Size = new Size(264, 25);
-            HeightPanel.TabIndex = 6;
+            HeightPanel.TabIndex = 2;
             // 
             // HeightTextbox
             // 
@@ -157,7 +147,7 @@
             HeightTextbox.Name = "HeightTextbox";
             HeightTextbox.PlaceholderText = "0";
             HeightTextbox.Size = new Size(132, 25);
-            HeightTextbox.TabIndex = 11;
+            HeightTextbox.TabIndex = 1;
             HeightTextbox.TextAlign = HorizontalAlignment.Center;
             // 
             // WidthPanel
@@ -166,11 +156,11 @@
             WidthPanel.Controls.Add(WidthTextbox);
             WidthPanel.Controls.Add(WidthButton);
             WidthPanel.Dock = DockStyle.Top;
-            WidthPanel.Location = new Point(0, 25);
+            WidthPanel.Location = new Point(10, 60);
             WidthPanel.Margin = new Padding(0);
             WidthPanel.Name = "WidthPanel";
             WidthPanel.Size = new Size(264, 25);
-            WidthPanel.TabIndex = 5;
+            WidthPanel.TabIndex = 1;
             // 
             // WidthTextbox
             // 
@@ -184,7 +174,7 @@
             WidthTextbox.Name = "WidthTextbox";
             WidthTextbox.PlaceholderText = "0";
             WidthTextbox.Size = new Size(132, 25);
-            WidthTextbox.TabIndex = 10;
+            WidthTextbox.TabIndex = 1;
             WidthTextbox.TextAlign = HorizontalAlignment.Center;
             // 
             // IDPanel
@@ -193,11 +183,11 @@
             IDPanel.Controls.Add(IDTextbox);
             IDPanel.Controls.Add(IDButton);
             IDPanel.Dock = DockStyle.Top;
-            IDPanel.Location = new Point(0, 0);
+            IDPanel.Location = new Point(10, 10);
             IDPanel.Margin = new Padding(0);
             IDPanel.Name = "IDPanel";
             IDPanel.Size = new Size(264, 25);
-            IDPanel.TabIndex = 4;
+            IDPanel.TabIndex = 0;
             // 
             // IDTextbox
             // 
@@ -211,7 +201,7 @@
             IDTextbox.Name = "IDTextbox";
             IDTextbox.PlaceholderText = "0";
             IDTextbox.Size = new Size(132, 25);
-            IDTextbox.TabIndex = 9;
+            IDTextbox.TabIndex = 1;
             IDTextbox.TextAlign = HorizontalAlignment.Center;
             // 
             // BottomButtonPanel
@@ -221,7 +211,7 @@
             BottomButtonPanel.Controls.Add(DeleteButton);
             BottomButtonPanel.Controls.Add(CloseButton);
             BottomButtonPanel.Dock = DockStyle.Bottom;
-            BottomButtonPanel.Location = new Point(10, 110);
+            BottomButtonPanel.Location = new Point(10, 135);
             BottomButtonPanel.Margin = new Padding(0);
             BottomButtonPanel.Name = "BottomButtonPanel";
             BottomButtonPanel.Size = new Size(264, 58);
@@ -239,7 +229,7 @@
             DeleteButton.Margin = new Padding(0);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(264, 29);
-            DeleteButton.TabIndex = 2;
+            DeleteButton.TabIndex = 4;
             DeleteButton.Text = "DELETE";
             DeleteButton.UseVisualStyleBackColor = false;
             DeleteButton.Click += DeleteButton_Click;
@@ -256,7 +246,7 @@
             CloseButton.Margin = new Padding(0);
             CloseButton.Name = "CloseButton";
             CloseButton.Size = new Size(264, 29);
-            CloseButton.TabIndex = 3;
+            CloseButton.TabIndex = 5;
             CloseButton.Text = "CLOSE";
             CloseButton.UseVisualStyleBackColor = false;
             CloseButton.Click += CloseButton_Click;
@@ -267,11 +257,11 @@
             HuePanel.Controls.Add(HueTextbox);
             HuePanel.Controls.Add(HueButton);
             HuePanel.Dock = DockStyle.Top;
-            HuePanel.Location = new Point(10, 85);
+            HuePanel.Location = new Point(10, 110);
             HuePanel.Margin = new Padding(0);
             HuePanel.Name = "HuePanel";
             HuePanel.Size = new Size(264, 25);
-            HuePanel.TabIndex = 7;
+            HuePanel.TabIndex = 3;
             // 
             // HueTextbox
             // 
@@ -285,8 +275,52 @@
             HueTextbox.Name = "HueTextbox";
             HueTextbox.PlaceholderText = "0";
             HueTextbox.Size = new Size(132, 25);
-            HueTextbox.TabIndex = 11;
+            HueTextbox.TabIndex = 1;
             HueTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TextPanel
+            // 
+            TextPanel.BackgroundImageLayout = ImageLayout.None;
+            TextPanel.Controls.Add(TextTextbox);
+            TextPanel.Controls.Add(TextButton);
+            TextPanel.Dock = DockStyle.Top;
+            TextPanel.Location = new Point(10, 35);
+            TextPanel.Margin = new Padding(0);
+            TextPanel.Name = "TextPanel";
+            TextPanel.Size = new Size(264, 25);
+            TextPanel.TabIndex = 0;
+            // 
+            // TextTextbox
+            // 
+            TextTextbox.BackColor = Color.WhiteSmoke;
+            TextTextbox.BorderStyle = BorderStyle.FixedSingle;
+            TextTextbox.Dock = DockStyle.Right;
+            TextTextbox.ForeColor = Color.Black;
+            TextTextbox.Location = new Point(132, 0);
+            TextTextbox.Margin = new Padding(0);
+            TextTextbox.MaxLength = 100;
+            TextTextbox.Name = "TextTextbox";
+            TextTextbox.PlaceholderText = "label";
+            TextTextbox.Size = new Size(132, 25);
+            TextTextbox.TabIndex = 1;
+            TextTextbox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // TextButton
+            // 
+            TextButton.BackColor = Color.FromArgb(64, 64, 64);
+            TextButton.BackgroundImageLayout = ImageLayout.None;
+            TextButton.Dock = DockStyle.Left;
+            TextButton.FlatAppearance.BorderSize = 0;
+            TextButton.FlatStyle = FlatStyle.Flat;
+            TextButton.ForeColor = Color.WhiteSmoke;
+            TextButton.Location = new Point(0, 0);
+            TextButton.Margin = new Padding(0);
+            TextButton.Name = "TextButton";
+            TextButton.Size = new Size(132, 25);
+            TextButton.TabIndex = 0;
+            TextButton.Text = "Set Text";
+            TextButton.UseVisualStyleBackColor = false;
+            TextButton.Click += TextButton_Click;
             // 
             // UOImageEditor
             // 
@@ -296,10 +330,13 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(284, 178);
+            ClientSize = new Size(284, 203);
             Controls.Add(HuePanel);
+            Controls.Add(HeightPanel);
+            Controls.Add(WidthPanel);
             Controls.Add(BottomButtonPanel);
-            Controls.Add(MainButtonPanel);
+            Controls.Add(TextPanel);
+            Controls.Add(IDPanel);
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
@@ -307,15 +344,14 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            MinimumSize = new Size(300, 192);
+            MinimumSize = new Size(300, 191);
             Name = "UOImageEditor";
             Padding = new Padding(10);
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Image Editor";
+            Text = "Editor";
             TopMost = true;
             Load += UOImageEditor_Load;
-            MainButtonPanel.ResumeLayout(false);
             HeightPanel.ResumeLayout(false);
             HeightPanel.PerformLayout();
             WidthPanel.ResumeLayout(false);
@@ -325,6 +361,8 @@
             BottomButtonPanel.ResumeLayout(false);
             HuePanel.ResumeLayout(false);
             HuePanel.PerformLayout();
+            TextPanel.ResumeLayout(false);
+            TextPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -334,7 +372,6 @@
         private Button HeightButton;
         private Button HueButton;
         private Button IDButton;
-        private Panel MainButtonPanel;
         private Panel BottomButtonPanel;
         private Button CloseButton;
         private Button DeleteButton;
@@ -346,5 +383,8 @@
         private TextBox WidthTextbox;
         private TextBox HeightTextbox;
         private TextBox HueTextbox;
+        private Panel TextPanel;
+        private TextBox TextTextbox;
+        private Button TextButton;
     }
 }

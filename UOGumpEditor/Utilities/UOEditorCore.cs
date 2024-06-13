@@ -301,8 +301,17 @@ namespace UOGumpEditor
             }
         }
 
-        public static void InitElement(ElementTypes element, Button hue)
+        public static void InitElement(ElementTypes element, Panel id, Panel text, Panel hue)
         {
+            if (element == ElementTypes.Label || element == ElementTypes.Html)
+            {
+                text.Visible = true;
+            }
+            else
+            {
+                id.Visible = true;
+            }
+
             switch (element)
             {
                 case ElementTypes.Background:
@@ -327,6 +336,27 @@ namespace UOGumpEditor
                     }
 
                 case ElementTypes.TiledImage:
+                    {
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.Label:
+                    {
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.TextEntry:
+                    {
+                        hue.Visible = true;
+
+                        break;
+                    }
+
+                case ElementTypes.Html:
                     {
                         hue.Visible = true;
 
