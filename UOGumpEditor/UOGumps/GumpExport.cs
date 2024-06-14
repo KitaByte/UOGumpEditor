@@ -101,14 +101,14 @@ namespace UOGumpEditor
 
                         case ElementTypes.Image:
                             {
-                                sb.AppendLine($"        AddImage({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"        AddImage({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue});");
                                 
                                 break;
                             }
 
                         case ElementTypes.Item:
                             {
-                                sb.AppendLine($"        AddItem({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"        AddItem({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue});");
                                 
                                 break;
                             }
@@ -153,7 +153,7 @@ namespace UOGumpEditor
 
                         case ElementTypes.Label:
                             {
-                                sb.AppendLine($"        AddLabel({element.Location.X}, {element.Location.Y}, {element.ForeColor.ToArgb()}, \"{element.Text}\");");
+                                sb.AppendLine($"        AddLabel({element.Location.X}, {element.Location.Y}, {UOEditorCore.GetNumberFromColor(element.TextColor)}, \"{element.Text}\");");
                                 
                                 break;
                             }
@@ -225,14 +225,14 @@ namespace UOGumpEditor
 
                         case ElementTypes.Image:
                             {
-                                sb.AppendLine($"SERV.GUMPIMAGE {element.Location.X}, {element.Location.Y}, {entity.ID}");
+                                sb.AppendLine($"SERV.GUMPIMAGE {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue}");
                                 
                                 break;
                             }
 
                         case ElementTypes.Item:
                             {
-                                sb.AppendLine($"SERV.GUMPITEM {element.Location.X}, {element.Location.Y}, {entity.ID}");
+                                sb.AppendLine($"SERV.GUMPITEM {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue}");
                                 
                                 break;
                             }
@@ -277,7 +277,7 @@ namespace UOGumpEditor
 
                         case ElementTypes.Label:
                             {
-                                sb.AppendLine($"SERV.GUMPTEXT {element.Location.X}, {element.Location.Y}, \"{element.Text}\"");
+                                sb.AppendLine($"SERV.GUMPTEXT {element.Location.X}, {element.Location.Y}, {UOEditorCore.GetNumberFromColor(element.TextColor)}, \"{element.Text}\"");
                                 
                                 break;
                             }
@@ -357,14 +357,14 @@ namespace UOGumpEditor
 
                         case ElementTypes.Image:
                             {
-                                sb.AppendLine($"            builder.AddImage({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"            builder.AddImage({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue});");
 
                                 break;
                             }
 
                         case ElementTypes.Item:
                             {
-                                sb.AppendLine($"            builder.AddItem({element.Location.X}, {element.Location.Y}, {entity.ID});");
+                                sb.AppendLine($"            builder.AddItem({element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue});");
 
                                 break;
                             }
@@ -409,7 +409,7 @@ namespace UOGumpEditor
 
                         case ElementTypes.Label:
                             {
-                                sb.AppendLine($"            builder.AddLabel({element.Location.X}, {element.Location.Y}, {element.ForeColor.ToArgb()}, \"{element.Text}\");");
+                                sb.AppendLine($"            builder.AddLabel({element.Location.X}, {element.Location.Y}, {UOEditorCore.GetNumberFromColor(element.TextColor)}, \"{element.Text}\");");
 
                                 break;
                             }

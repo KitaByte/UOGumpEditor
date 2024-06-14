@@ -55,7 +55,14 @@ namespace UOGumpEditor
                 {
                     TextTextbox.Text = _ElementControl.Text;
 
-                    HueTextbox.ForeColor = _ElementControl.TextColor;
+                    TextTextbox.ForeColor = _ElementControl.TextColor;
+
+                    HueTextbox.Text = UOEditorCore.GetNumberFromColor(_ElementControl.TextColor).ToString();
+
+                    if (_ElementControl.TextColor == Color.White)
+                    {
+                        TextTextbox.BackColor = Color.Black;
+                    }
                 }
 
                 WidthTextbox.Text = _ElementControl.Width.ToString();
@@ -75,11 +82,9 @@ namespace UOGumpEditor
                     if (_ElementControl.Tag is ArtEntity nae)
                     {
                         _ElementControl.SetImage(nae);
-
-                        _ElementControl.Invalidate();
                     }
 
-                    SendValueUpdatedMsg("ID");
+                    SendValueUpdatedMsg("ID", _ElementControl);
                 }
             }
         }
@@ -90,7 +95,9 @@ namespace UOGumpEditor
             {
                 if (_ElementControl == null)
                 {
-                    UOEditorCore.MainUI?.AddTextElement(TextTextbox.Text, TextTextbox.ForeColor, _ElementType);
+                    UOEditorCore.MainUI?.AddTextElement(TextTextbox.Text, Color.White, _ElementType);
+
+                    Close();
                 }
                 else
                 {
@@ -99,7 +106,7 @@ namespace UOGumpEditor
                     _ElementControl.TextColor = TextTextbox.ForeColor;
                 }
 
-                SendValueUpdatedMsg("Text");
+                SendValueUpdatedMsg("Text", _ElementControl);
             }
         }
 
@@ -137,7 +144,7 @@ namespace UOGumpEditor
                 }
             }
 
-            SendValueUpdatedMsg("Size");
+            SendValueUpdatedMsg("Size", _ElementControl);
         }
 
         private void HueButton_Click(object sender, EventArgs e)
@@ -155,21 +162,23 @@ namespace UOGumpEditor
                         AssetData.Hues.ApplyTo(image, val, false);
 
                         _ElementControl.Image = image;
-
-                        _ElementControl.Invalidate();
                     }
                 }
                 else
                 {
-                    _ElementControl.ForeColor = Color.FromArgb(val);
+                    _ElementControl.TextColor = UOEditorCore.GetColorFromNumber(val);
+
+                    TextTextbox.ForeColor = _ElementControl.TextColor;
                 }
 
-                SendValueUpdatedMsg("Hue");
+                SendValueUpdatedMsg("Hue", _ElementControl);
             }
         }
 
-        private static void SendValueUpdatedMsg(string name)
+        private static void SendValueUpdatedMsg(string name, ElementControl? element)
         {
+            element?.Invalidate();
+
             MessageBox.Show($"{name} Updated!", "Element Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

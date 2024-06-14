@@ -507,6 +507,50 @@ namespace UOGumpEditor
             return Color.Black;
         }
 
+        private static readonly Color[] TextColors =
+        {
+            Color.Blue,
+            Color.Purple,
+            Color.Pink,
+            Color.Red,
+            Color.Orange,
+            Color.Yellow,
+            Color.YellowGreen,
+            Color.Green,
+            Color.Cyan,
+            Color.SteelBlue,
+            Color.White
+        };
+
+        public static Color GetColorFromNumber(int number)
+        {
+            if (number == 0)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                int colorIndex = (number % 100) / 10;
+
+                if (colorIndex >= TextColors.Length)
+                {
+                    colorIndex = TextColors.Length - 1;
+                }
+
+                return TextColors[colorIndex];
+            }
+        }
+
+        public static int GetNumberFromColor(Color color)
+        {
+            if (color == Color.Black)
+            {
+                return 0;
+            }
+
+            return TextColors.ToList().IndexOf(color) * 10;
+        }
+
         public static void OpenWebsite(string url)
         {
             try
