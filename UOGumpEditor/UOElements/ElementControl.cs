@@ -481,6 +481,34 @@
                 return $"{GetLayer()} : {ElementType}";
             }
         }
+
+        public ElementControl? Copy()
+        {
+            ElementControl copy = new()
+            {
+                Size = Size, 
+                ElementType = ElementType,
+                BGImageLayout = BGImageLayout,
+                Font = Font,
+                TextAlign = TextAlign,
+                TextColor = TextColor,
+                Text = Text
+            };
+
+            if (Image != null)
+            {
+                copy.Image = new Bitmap(Image); // Copy the image
+            }
+
+            if (Tag is ArtEntity entity)
+            {
+                ArtEntity newEntity = new(entity.ID, entity.Name, entity.Width, entity.Height, entity.IsGump);
+
+                copy.Tag = newEntity;
+            }
+
+            return copy;
+        }
     }
 }
 

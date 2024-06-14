@@ -92,49 +92,86 @@ namespace UOGumpEditor
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
+        private ElementControl? _ElementCopy = null;
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Control | Keys.S))
+            switch (keyData)
             {
-                SaveButton_Click(this, EventArgs.Empty);
-
-                return true;
-            }
-            else if (keyData == (Keys.Control | Keys.O))
-            {
-                LoadButton_Click(this, EventArgs.Empty);
-
-                return true;
-            }
-            else if (keyData == (Keys.Delete))
-            {
-                if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
-                {
-                    if (CanvasPanel.Controls.Contains(entity.Element))
+                case (Keys.Control | Keys.S):
                     {
-                        if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        SaveButton_Click(this, EventArgs.Empty);
+
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.O):
+                    {
+                        LoadButton_Click(this, EventArgs.Empty);
+
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.C):
+                    {
+                        if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
                         {
-                            RemoveFromCanvas(entity.Element);
+                            if (CanvasPanel.Controls.Contains(entity.Element))
+                            {
+                                _ElementCopy = entity.Element.Copy();
+                            }
                         }
+
+                        return true;
                     }
-                }
 
-                return true;
-            }
-
-            if (CanvasPanel.Controls.Count > 0)
-            {
-                CanvasPanel.SuspendLayout();
-
-                for (int i = 0; i < CanvasPanel.Controls.Count; i++)
-                {
-                    if (CanvasPanel.Controls[i] is ElementControl ec && ec.IsSelected)
+                case (Keys.Control | Keys.V):
                     {
-                        UOEditorCore.SendMoveAction(keyData, ec);
-                    }
-                }
+                        if (_ElementCopy != null)
+                        {
+                            AddToCanvas(_ElementCopy, new(CanvasPanel.Location.X + (CanvasPanel.Width / 2), CanvasPanel.Location.Y + (CanvasPanel.Height / 2)));
 
-                CanvasPanel.ResumeLayout();
+                            _ElementCopy = _ElementCopy.Copy();
+                        }
+
+                        return true;
+                    }
+
+                case Keys.Delete:
+                    {
+                        if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
+                        {
+                            if (CanvasPanel.Controls.Contains(entity.Element))
+                            {
+                                if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                                {
+                                    RemoveFromCanvas(entity.Element);
+                                }
+                            }
+                        }
+
+                        return true;
+                    }
+
+                default:
+                    {
+                        if (CanvasPanel.Controls.Count > 0)
+                        {
+                            CanvasPanel.SuspendLayout();
+
+                            for (int i = 0; i < CanvasPanel.Controls.Count; i++)
+                            {
+                                if (CanvasPanel.Controls[i] is ElementControl ec && ec.IsSelected)
+                                {
+                                    UOEditorCore.SendMoveAction(keyData, ec);
+                                }
+                            }
+
+                            CanvasPanel.ResumeLayout();
+                        }
+
+                        break;
+                    }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
