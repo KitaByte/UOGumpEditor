@@ -532,42 +532,6 @@ namespace UOGumpEditor
             SearchFlowPanel.Visible = false;
         }
 
-        private void ElementListbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ElementListbox.Items.Count > 0)
-            {
-                for (int i = 0; i < ElementListbox.Items.Count; i++)
-                {
-                    if (ElementListbox.Items[i] is ElementEntity ee)
-                    {
-                        if (ElementListbox.SelectedItems.Contains(ee))
-                        {
-                            ee.Element.SetSelected(true);
-                        }
-                        else
-                        {
-                            ee.Element.SetSelected(false);
-                        }
-                    }
-                }
-
-                CanvasPanel.Invalidate();
-            }
-        }
-
-        private void ElementListbox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
-            {
-                OpenEditor(ee.Element.ElementType, ee.Element);
-            }
-        }
-
-        private void ClearSelectedButton_Click(object sender, EventArgs e)
-        {
-            ElementListbox.ClearSelected();
-        }
-
         private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data != null && e.Data.GetDataPresent(typeof(ArtEntity)))
@@ -727,6 +691,56 @@ namespace UOGumpEditor
         private bool IsSingleSelected()
         {
             return ElementListbox.SelectedItems.Count == 1;
+        }
+
+        private void ElementListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ElementListbox.Items.Count > 0)
+            {
+                for (int i = 0; i < ElementListbox.Items.Count; i++)
+                {
+                    if (ElementListbox.Items[i] is ElementEntity ee)
+                    {
+                        if (ElementListbox.SelectedItems.Contains(ee))
+                        {
+                            ee.Element.SetSelected(true);
+                        }
+                        else
+                        {
+                            ee.Element.SetSelected(false);
+                        }
+                    }
+                }
+
+                CanvasPanel.Invalidate();
+            }
+        }
+
+        private void ElementListbox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
+            {
+                OpenEditor(ee.Element.ElementType, ee.Element);
+            }
+        }
+
+        private void SelectAllButton_Click(object sender, EventArgs e)
+        {
+            if (ElementListbox.Items.Count > 0)
+            {
+                for (int i = 0; i < ElementListbox.Items.Count; i++)
+                {
+                    if (!ElementListbox.SelectedItems.Contains(ElementListbox.Items[i]))
+                    {
+                        ElementListbox.SetSelected(i, true);
+                    }
+                }
+            }
+        }
+
+        private void ClearSelectedButton_Click(object sender, EventArgs e)
+        {
+            ElementListbox.ClearSelected();
         }
 
         public void ReloadListBox(int index)

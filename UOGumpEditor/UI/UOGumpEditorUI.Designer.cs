@@ -69,6 +69,7 @@
             ElementListbox = new ListBox();
             ClearSelectedButton = new Button();
             ElementLabel = new Label();
+            SelectAllButton = new Button();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -413,6 +414,7 @@
             FocusPanel.BackColor = Color.FromArgb(32, 32, 32);
             resources.ApplyResources(FocusPanel, "FocusPanel");
             FocusPanel.Controls.Add(ElementListbox);
+            FocusPanel.Controls.Add(SelectAllButton);
             FocusPanel.Controls.Add(ClearSelectedButton);
             FocusPanel.Controls.Add(ElementLabel);
             FocusPanel.Name = "FocusPanel";
@@ -444,6 +446,15 @@
             ElementLabel.BackColor = Color.DarkMagenta;
             resources.ApplyResources(ElementLabel, "ElementLabel");
             ElementLabel.Name = "ElementLabel";
+            // 
+            // SelectAllButton
+            // 
+            SelectAllButton.BackColor = Color.Goldenrod;
+            resources.ApplyResources(SelectAllButton, "SelectAllButton");
+            SelectAllButton.FlatAppearance.BorderSize = 0;
+            SelectAllButton.Name = "SelectAllButton";
+            SelectAllButton.UseVisualStyleBackColor = false;
+            SelectAllButton.Click += SelectAllButton_Click;
             // 
             // UOGumpEditorUI
             // 
@@ -520,5 +531,6 @@
         internal ListBox HistoryListbox;
         internal ListBox ElementListbox;
         private Button AllArtButton;
+        private Button SelectAllButton;
     }
 }
