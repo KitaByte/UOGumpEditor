@@ -63,14 +63,18 @@ namespace UOGumpEditor
 
                 if (BackgroundArt?.Count > 0 && PreviewBox == null)
                 {
-                    PreviewBox = new BackgroundPreview(BackgroundArt)
+                    try
                     {
-                        Location = new Point(Cursor.Position.X + 10, Cursor.Position.Y + 10)
-                    };
+                        PreviewBox = new BackgroundPreview(BackgroundArt)
+                        {
+                            Location = new Point(Cursor.Position.X + 10, Cursor.Position.Y + 10)
+                        };
 
-                    if (PreviewBox != null)
+                        PreviewBox?.Show();
+                    }
+                    catch
                     {
-                        PreviewBox.Show();
+                        MessageBox.Show("Preview Failed!", "Bug Report", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
