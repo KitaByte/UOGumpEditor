@@ -308,7 +308,7 @@ namespace UOGumpEditor
             DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
         }
 
-        private void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
+        private async void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
         {
             if (UOEditorCore.CurrentArtDisplayed != null)
             {
@@ -317,9 +317,19 @@ namespace UOGumpEditor
 
             if (sender == ArtPicturebox)
             {
-                if (e.Button == MouseButtons.Left && ArtPicturebox.Tag is ArtEntity entity)
+                if (ArtPicturebox.Tag is ArtEntity entity)
                 {
-                    ArtPicturebox.DoDragDrop(entity, DragDropEffects.Copy);
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        ArtPicturebox.DoDragDrop(entity, DragDropEffects.Copy);
+                    }
+
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        _artCache = new ArtCache(await UOArtLoader.SearchArtByIDAsync(entity.ID, IsGump()));
+
+                        DisplayArtWindow();
+                    }
                 }
             }
         }
@@ -465,20 +475,13 @@ namespace UOGumpEditor
                 {
                     image = entity.GetImage();
 
-                    if (results.Count > 0 && results[results.Count / 2] == entity)
+                    if (image == null)
                     {
-                        color = Color.WhiteSmoke;
+                        color = Color.Brown; // red
                     }
                     else
                     {
-                        if (image == null)
-                        {
-                            color = Color.Red;
-                        }
-                        else
-                        {
-                            color = Color.Black;
-                        }
+                        color = Color.Black;
                     }
 
                     SearchFlowPanel.Controls.Add(new ArtPictureBox(entity, image, color));
