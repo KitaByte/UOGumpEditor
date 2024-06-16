@@ -302,28 +302,36 @@ namespace UOGumpEditor
             return LoadList(tempEntityList, out list);
         }
 
-        public static bool SearchArtBySize(int size, bool isGump, out List<ArtEntity> list, bool isWidth)
+        private static int _HighEnd = 0;
+
+        private static int _LowEnd = 0;
+
+        public static bool SearchArtBySize(int size, int range, bool isGump, out List<ArtEntity> list, bool isWidth)
         {
+            _HighEnd = size + range;
+
+            _LowEnd = size - range;
+
             if (isGump)
             {
                 if (isWidth)
                 {
-                    tempEntityList = GumpArtDict.Values.Where(a => a.Width == size).ToList();
+                    tempEntityList = GumpArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
                 }
                 else
                 {
-                    tempEntityList = GumpArtDict.Values.Where(a => a.Height == size).ToList();
+                    tempEntityList = GumpArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
                 }
             }
             else
             {
                 if (isWidth)
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Width == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
                 }
                 else
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Height == size).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
                 }
             }
 

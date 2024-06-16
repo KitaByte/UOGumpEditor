@@ -532,6 +532,11 @@ namespace UOGumpEditor
             {
                 int colorIndex = (number % 100) / 10;
 
+                if (colorIndex < 0)
+                {
+                    colorIndex = 0;
+                }
+
                 if (colorIndex >= TextColors.Length)
                 {
                     colorIndex = TextColors.Length - 1;
@@ -543,7 +548,7 @@ namespace UOGumpEditor
 
         public static int GetNumberFromColor(Color color)
         {
-            if (color == Color.Black)
+            if (color == Color.Black || !TextColors.Contains(color))
             {
                 return 0;
             }

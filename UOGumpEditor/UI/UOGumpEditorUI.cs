@@ -88,6 +88,7 @@ namespace UOGumpEditor
             ArtNameSearchBox.Enabled = !isLoading;
             ArtWidthSearchBox.Enabled = !isLoading;
             ArtHeightSearchBox.Enabled = !isLoading;
+            ArtRangeSearchTextbox.Enabled = !isLoading;
 
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
@@ -374,6 +375,8 @@ namespace UOGumpEditor
             }
         }
 
+        private int _SizeRange = 0;
+
         private void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
         {
             if (sender is TextBox tb)
@@ -382,7 +385,17 @@ namespace UOGumpEditor
                 {
                     if (int.TryParse(tb.Text, out int size) && size > 0)
                     {
-                        if (UOArtLoader.SearchArtBySize(size, IsGump(), out List<ArtEntity> results, sender == ArtWidthSearchBox))
+                        _SizeRange = 0;
+                        
+                        if (!string.IsNullOrEmpty(ArtRangeSearchTextbox.Text))
+                        {
+                            if (int.TryParse(ArtRangeSearchTextbox.Text, out int val))
+                            {
+                                _SizeRange = val;
+                            }
+                        }
+
+                        if (UOArtLoader.SearchArtBySize(size, _SizeRange, IsGump(), out List<ArtEntity> results, sender == ArtWidthSearchBox))
                         {
                             _artCache = new ArtCache(results);
 

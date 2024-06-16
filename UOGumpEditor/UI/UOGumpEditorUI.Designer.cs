@@ -67,9 +67,10 @@
             SearchPanel = new Panel();
             FocusPanel = new Panel();
             ElementListbox = new ListBox();
+            SelectAllButton = new Button();
             ClearSelectedButton = new Button();
             ElementLabel = new Label();
-            SelectAllButton = new Button();
+            ArtRangeSearchTextbox = new TextBox();
             BottomStatusStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
             ArtPanel.SuspendLayout();
@@ -189,8 +190,9 @@
             // 
             // SizePanel
             // 
-            SizePanel.Controls.Add(ArtHeightSearchBox);
             SizePanel.Controls.Add(ArtWidthSearchBox);
+            SizePanel.Controls.Add(ArtHeightSearchBox);
+            SizePanel.Controls.Add(ArtRangeSearchTextbox);
             resources.ApplyResources(SizePanel, "SizePanel");
             SizePanel.Name = "SizePanel";
             // 
@@ -432,6 +434,15 @@
             ElementListbox.SelectedIndexChanged += ElementListbox_SelectedIndexChanged;
             ElementListbox.MouseDoubleClick += ElementListbox_MouseDoubleClick;
             // 
+            // SelectAllButton
+            // 
+            SelectAllButton.BackColor = Color.Goldenrod;
+            resources.ApplyResources(SelectAllButton, "SelectAllButton");
+            SelectAllButton.FlatAppearance.BorderSize = 0;
+            SelectAllButton.Name = "SelectAllButton";
+            SelectAllButton.UseVisualStyleBackColor = false;
+            SelectAllButton.Click += SelectAllButton_Click;
+            // 
             // ClearSelectedButton
             // 
             ClearSelectedButton.BackColor = Color.Brown;
@@ -447,14 +458,13 @@
             resources.ApplyResources(ElementLabel, "ElementLabel");
             ElementLabel.Name = "ElementLabel";
             // 
-            // SelectAllButton
+            // ArtRangeSearchTextbox
             // 
-            SelectAllButton.BackColor = Color.Goldenrod;
-            resources.ApplyResources(SelectAllButton, "SelectAllButton");
-            SelectAllButton.FlatAppearance.BorderSize = 0;
-            SelectAllButton.Name = "SelectAllButton";
-            SelectAllButton.UseVisualStyleBackColor = false;
-            SelectAllButton.Click += SelectAllButton_Click;
+            ArtRangeSearchTextbox.BackColor = Color.PaleGoldenrod;
+            ArtRangeSearchTextbox.BorderStyle = BorderStyle.FixedSingle;
+            resources.ApplyResources(ArtRangeSearchTextbox, "ArtRangeSearchTextbox");
+            ArtRangeSearchTextbox.ForeColor = Color.Black;
+            ArtRangeSearchTextbox.Name = "ArtRangeSearchTextbox";
             // 
             // UOGumpEditorUI
             // 
@@ -532,5 +542,6 @@
         internal ListBox ElementListbox;
         private Button AllArtButton;
         private Button SelectAllButton;
+        private TextBox ArtRangeSearchTextbox;
     }
 }
