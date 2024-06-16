@@ -34,10 +34,7 @@ namespace UOGumpEditor
 
         private void ExportUI_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (UOEditorCore.MainUI != null)
-            {
-                UOEditorCore.MainUI.ExportUIHandle = null;
-            }
+            UOEditorCore.MainUI.ExportUIHandle = null;
         }
     }
 }

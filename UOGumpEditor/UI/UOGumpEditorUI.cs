@@ -10,8 +10,6 @@ namespace UOGumpEditor
         {
             InitializeComponent();
 
-            UOEditorCore.SetMainHandle(this);
-
             KeyPreview = true;
 
             Text = $"{Text} - Ver 1.0.0.8";

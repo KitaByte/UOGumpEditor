@@ -6,12 +6,7 @@ namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
-        public static UOGumpEditorUI? MainUI { get; private set; }
-
-        internal static void SetMainHandle(UOGumpEditorUI ui)
-        {
-            MainUI = ui;
-        }
+        public static UOGumpEditorUI MainUI { get; private set; } = Program.Session.MainUI;
 
         public static UOArtLoader? ArtLoader { get; private set; }
 
@@ -64,48 +59,39 @@ namespace UOGumpEditor
 
         public static void MoveElement(ElementControl element, int dx, int dy)
         {
-            if (MainUI != null)
-            {
-                element.Location = new Point(element.Location.X + dx, element.Location.Y + dy);
+            element.Location = new Point(element.Location.X + dx, element.Location.Y + dy);
 
-                MainUI.CanvasPanel.Invalidate();
-            }
+            MainUI.CanvasPanel.Invalidate();
         }
 
         private static readonly Dictionary<ElementControl, int> elementIndices = [];
 
         public static void StoreElementIndices()
         {
-            if (MainUI != null)
-            {
-                elementIndices.Clear();
+            elementIndices.Clear();
 
-                for (int i = 0; i < MainUI.CanvasPanel.Controls.Count; i++)
+            for (int i = 0; i < MainUI.CanvasPanel.Controls.Count; i++)
+            {
+                if (MainUI.CanvasPanel.Controls[i] is ElementControl ec)
                 {
-                    if (MainUI.CanvasPanel.Controls[i] is ElementControl ec)
-                    {
-                        elementIndices[ec] = i;
-                    }
+                    elementIndices[ec] = i;
                 }
             }
         }
 
         public static void RestoreElementIndices()
         {
-            if (MainUI != null)
+            foreach (var pair in elementIndices)
             {
-                foreach (var pair in elementIndices)
-                {
-                    MainUI.CanvasPanel.Controls.SetChildIndex(pair.Key, pair.Value);
-                }
-
-                MainUI.CanvasPanel.Invalidate();
+                MainUI.CanvasPanel.Controls.SetChildIndex(pair.Key, pair.Value);
             }
+
+            MainUI.CanvasPanel.Invalidate();
         }
 
         public static bool MoveLayerUp()
         {
-            if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
+            if (MainUI.CanvasPanel.Controls.Count > 0)
             {
                 foreach (Control control in MainUI.CanvasPanel.Controls)
                 {
@@ -130,7 +116,7 @@ namespace UOGumpEditor
 
         public static bool MoveLayerDown()
         {
-            if (MainUI != null && MainUI.CanvasPanel.Controls.Count > 0)
+            if (MainUI.CanvasPanel.Controls.Count > 0)
             {
                 foreach (Control control in MainUI.CanvasPanel.Controls)
                 {
@@ -155,21 +141,18 @@ namespace UOGumpEditor
 
         public static void ResetEditor()
         {
-            if (MainUI != null)
+            if (MainUI.CanvasPanel.BackgroundImage != null)
             {
-                if (MainUI.CanvasPanel.BackgroundImage != null)
-                {
-                    MainUI.CanvasPanel.BackgroundImageLayout = ImageLayout.Stretch;
+                MainUI.CanvasPanel.BackgroundImageLayout = ImageLayout.Stretch;
 
-                    MainUI.CanvasPanel.BackgroundImage = null;
-                }
-
-                MainUI.CanvasPanel.Controls.Clear();
-
-                MainUI.HistoryListbox.Items.Clear();
-
-                MainUI.ElementListbox.Items.Clear();
+                MainUI.CanvasPanel.BackgroundImage = null;
             }
+
+            MainUI.CanvasPanel.Controls.Clear();
+
+            MainUI.HistoryListbox.Items.Clear();
+
+            MainUI.ElementListbox.Items.Clear();
         }
 
         public static string? FindDataFile(string dataPath, string search)
@@ -220,7 +203,7 @@ namespace UOGumpEditor
 
                 CurrentArtDisplayed = entity;
 
-                MainUI?.UpdateElementInfo(entity);
+                MainUI.UpdateElementInfo(entity);
             }
         }
 
@@ -451,46 +434,43 @@ namespace UOGumpEditor
 
         public static void PromptUserForImage()
         {
-            if (MainUI != null)
+            using OpenFileDialog openFileDialog = new();
+
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+            openFileDialog.Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*";
+
+            openFileDialog.FilterIndex = 1;
+
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using OpenFileDialog openFileDialog = new();
-
-                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-
-                openFileDialog.Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*";
-
-                openFileDialog.FilterIndex = 1;
-
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (File.Exists(UOArtLoader.BGImageFile) && MainUI.BackgroundImage != null)
                 {
-                    if (File.Exists(UOArtLoader.BGImageFile) && MainUI.BackgroundImage != null)
-                    {
-                        Image? image = MainUI.BackgroundImage;
+                    Image? image = MainUI.BackgroundImage;
 
-                        MainUI.BackgroundImage = GumpRes.UOGSLogo;
+                    MainUI.BackgroundImage = GumpRes.UOGSLogo;
 
-                        image.Dispose();
+                    image.Dispose();
 
-                        GC.Collect();
+                    GC.Collect();
 
-                        GC.WaitForPendingFinalizers();
-                    }
-
-                    Thread.Sleep(500);
-
-                    try
-                    {
-                        File.Copy(openFileDialog.FileName, UOArtLoader.BGImageFile, true);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error copying image!", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    MainUI.BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
+                    GC.WaitForPendingFinalizers();
                 }
+
+                Thread.Sleep(500);
+
+                try
+                {
+                    File.Copy(openFileDialog.FileName, UOArtLoader.BGImageFile, true);
+                }
+                catch
+                {
+                    MessageBox.Show("Error copying image!", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                MainUI.BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
             }
         }
 
@@ -612,56 +592,50 @@ namespace UOGumpEditor
 
         public static void SaveGump(string name)
         {
-            if (MainUI != null)
+            BaseGump gump = new(Path.GetFileNameWithoutExtension(name));
+
+            foreach (Control control in MainUI.CanvasPanel.Controls)
             {
-                BaseGump gump = new(Path.GetFileNameWithoutExtension(name));
-
-                foreach (Control control in MainUI.CanvasPanel.Controls)
+                if (control is ElementControl elementControl)
                 {
-                    if (control is ElementControl elementControl)
-                    {
-                        gump.Elements.Add(new GumpElement(elementControl));
-                    }
+                    gump.Elements.Add(new GumpElement(elementControl));
                 }
-
-                CSVHelper.SaveGump(gump);
-
-                MessageBox.Show($"{gump.Name} Saved!", "System", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            CSVHelper.SaveGump(gump);
+
+            MessageBox.Show($"{gump.Name} Saved!", "System", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void LoadGump(BaseGump gump)
         {
-            if (MainUI != null)
+            foreach (var element in gump.Elements)
             {
-                foreach (var element in gump.Elements)
+                ElementControl control = new()
                 {
-                    ElementControl control = new()
-                    {
-                        Text = element.Text,
-                        ElementType = (ElementTypes)Enum.Parse(typeof(ElementTypes), element.Type),
-                        Location = element.Location,
-                        Size = element.Size,
-                        ForeColor = element.Color,
-                        Tag = element.ToArtEntity()
-                    };
+                    Text = element.Text,
+                    ElementType = (ElementTypes)Enum.Parse(typeof(ElementTypes), element.Type),
+                    Location = element.Location,
+                    Size = element.Size,
+                    ForeColor = element.Color,
+                    Tag = element.ToArtEntity()
+                };
 
-                    if (control.Tag is ArtEntity entity)
+                if (control.Tag is ArtEntity entity)
+                {
+                    if (control.ElementType != ElementTypes.Item)
                     {
-                        if (control.ElementType != ElementTypes.Item)
-                        {
-                            InitGumpConditions(entity, control);
-                        }
-
-                        control.SetImage(entity);
-                    }
-                    else
-                    {
-                        control.SetText(element.Text, element.Color);
+                        InitGumpConditions(entity, control);
                     }
 
-                    MainUI.CanvasPanel.Controls.Add(control);
+                    control.SetImage(entity);
                 }
+                else
+                {
+                    control.SetText(element.Text, element.Color);
+                }
+
+                MainUI.CanvasPanel.Controls.Add(control);
             }
         }
     }

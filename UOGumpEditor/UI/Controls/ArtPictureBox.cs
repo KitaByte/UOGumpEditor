@@ -46,17 +46,17 @@
         {
             if (Image != null)
             {
-                UOEditorCore.MainUI?.DisplayArt(_ArtEntity);
+                UOEditorCore.MainUI.DisplayArt(_ArtEntity);
             }
         }
 
-        private void ArtPictureBox_MouseHover(object? sender, EventArgs e)
+        private async void ArtPictureBox_MouseHover(object? sender, EventArgs e)
         {
-            UOEditorCore.MainUI?.UpdateElementInfo(_ArtEntity);
+            UOEditorCore.MainUI.UpdateElementInfo(_ArtEntity);
 
             if (_ArtEntity.Name.StartsWith("Background"))
             {
-                LoadBackground();
+                await LoadBackground();
 
                 if (BackgroundArt?.Count > 0 && PreviewBox == null)
                 {
@@ -89,7 +89,7 @@
 
         public List<ArtEntity>? BackgroundArt { get; private set; }
 
-        public async void LoadBackground()
+        public async Task LoadBackground()
         {
             BackgroundArt = [];
 
