@@ -1,4 +1,4 @@
-﻿namespace UOGumpEditor.UI
+﻿namespace UOGumpEditor
 {
     partial class BackgroundPreview
     {
