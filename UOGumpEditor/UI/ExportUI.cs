@@ -1,4 +1,5 @@
 ﻿using UOGumpEditor.UOElements;
+using UOGumpEditor.UOGumps;
 
 namespace UOGumpEditor
 {

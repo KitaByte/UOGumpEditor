@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using UOGumpEditor.UOElements;
 
-namespace UOGumpEditor
+namespace UOGumpEditor.UOGumps
 {
     public static class GumpExport
     {

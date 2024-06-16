@@ -1,7 +1,4 @@
-﻿using System.Drawing.Printing;
-using UOGumpEditor.UI;
-
-namespace UOGumpEditor
+﻿namespace UOGumpEditor
 {
     public class ArtPictureBox : PictureBox
     {
