@@ -60,7 +60,6 @@ namespace UOGumpEditor
 
             foreach (var element in elements)
             {
-
                 if (element.Tag is ArtEntity ae)
                 {
                     entity = ae;
@@ -175,16 +174,15 @@ namespace UOGumpEditor
 
             ArtEntity? entity;
 
-            int counter = 1;
+            int buttonCounter = 1; 
 
-            int txtCounter = 1;
-
-            sb.AppendLine($"[FUNCTION f_{gumpName}_gump]");
-            sb.AppendLine("SERV.NEWGUMP");
+            sb.AppendLine($"[DIALOG d_{gumpName}_gump]");
+            sb.AppendLine("0,0");
+            sb.AppendLine();
+            sb.AppendLine("page 0");
 
             foreach (var element in elements)
             {
-
                 if (element.Tag is ArtEntity ae)
                 {
                     entity = ae;
@@ -193,72 +191,70 @@ namespace UOGumpEditor
                     {
                         case ElementTypes.AlphaRegion:
                             {
-                                sb.AppendLine($"SERV.GUMPALPHA {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}");
-                                
+                                sb.AppendLine($"checkertrans {element.Location.X} {element.Location.Y} {element.Width} {element.Height}");
+
                                 break;
                             }
 
                         case ElementTypes.Background:
                             {
-                                sb.AppendLine($"SERV.GUMPICON {element.Location.X}, {element.Location.Y}, {entity.ID}");
-                                
+                                sb.AppendLine($"resizepic {element.Location.X} {element.Location.Y} {entity.ID} {element.Width} {element.Height}");
+
                                 break;
                             }
 
                         case ElementTypes.Button:
                             {
-                                sb.AppendLine($"SERV.GUMPBUTTON {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, {counter}, 0");
+                                sb.AppendLine($"button {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 1 0 {buttonCounter}");
 
-                                counter++;
+                                buttonCounter++;
 
                                 break;
                             }
 
                         case ElementTypes.CheckBox:
                             {
-                                sb.AppendLine($"SERV.GUMPCHECKBOX {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, {counter}");
+                                sb.AppendLine($"checkbox {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {buttonCounter}");
 
-                                counter++;
+                                buttonCounter++;
 
                                 break;
                             }
 
                         case ElementTypes.Image:
                             {
-                                sb.AppendLine($"SERV.GUMPIMAGE {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue}");
-                                
+                                sb.AppendLine($"gumppic {element.Location.X} {element.Location.Y} {entity.ID} {entity.Hue}");
+
                                 break;
                             }
 
                         case ElementTypes.Item:
                             {
-                                sb.AppendLine($"SERV.GUMPITEM {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.Hue}");
-                                
+                                sb.AppendLine($"tilepic {element.Location.X} {element.Location.Y} {entity.ID}");
+
                                 break;
                             }
 
                         case ElementTypes.RadioButton:
                             {
-                                sb.AppendLine($"SERV.GUMPRADIO {element.Location.X}, {element.Location.Y}, {entity.ID}, {entity.ID + 1}, {counter}");
+                                sb.AppendLine($"radio {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {buttonCounter}");
 
-                                counter++;
+                                buttonCounter++;
 
                                 break;
                             }
-
                         case ElementTypes.TiledImage:
                             {
-                                sb.AppendLine($"SERV.GUMPTILED {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {entity.ID}");
-                                
+                                sb.AppendLine($"gumppictiled {element.Location.X} {element.Location.Y} {element.Width} {element.Height} {entity.ID}");
+
                                 break;
                             }
-
                         case ElementTypes.TextEntry:
                             {
-                                sb.AppendLine($"SERV.GUMPIMAGE {element.Location.X}, {element.Location.Y}, {entity.ID}");
-                                sb.AppendLine($"SERV.GUMPTEXTENTRY {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, {txtCounter}, \"{element.Text}\"");
+                                sb.AppendLine($"gumppic {element.Location.X} {element.Location.Y} {entity.ID}");
+                                sb.AppendLine($"dtextentry {element.Location.X} {element.Location.Y} {element.Width} {element.Height} 0 {buttonCounter} {element.Text}");
 
-                                txtCounter++;
+                                buttonCounter++;
 
                                 break;
                             }
@@ -270,24 +266,34 @@ namespace UOGumpEditor
                     {
                         case ElementTypes.Html:
                             {
-                                sb.AppendLine($"SERV.GUMPTEXTHTML {element.Location.X}, {element.Location.Y}, {element.Width}, {element.Height}, \"{element.Text}\"");
-                                
+                                sb.AppendLine($"htmlgump {element.Location.X} {element.Location.Y} {element.Width} {element.Height} \"{element.Text}\" 0 0");
+
                                 break;
                             }
-
                         case ElementTypes.Label:
                             {
-                                sb.AppendLine($"SERV.GUMPTEXT {element.Location.X}, {element.Location.Y}, {UOEditorCore.GetNumberFromColor(element.TextColor)}, \"{element.Text}\"");
-                                
+                                sb.AppendLine($"dtext {element.Location.X} {element.Location.Y} {UOEditorCore.GetNumberFromColor(element.TextColor)} {element.Text}");
+
                                 break;
                             }
                     }
                 }
             }
 
+            sb.AppendLine();
+            sb.AppendLine($"[DIALOG d_{gumpName}_gump button]");
+            sb.AppendLine("on=0 // Exit");
+            sb.AppendLine();
+
+            for (int i = 1; i < buttonCounter; i++)
+            {
+                sb.AppendLine($"on={i} // Button {i}");
+                sb.AppendLine();
+            }
+
             File.WriteAllText(Path.Combine(UOArtLoader.ExportFolder, $"{gumpName}Gump.scp"), sb.ToString());
 
-            SendCompletedMsg($"{gumpName}Gump.scp");
+            SendCompletedMsg($"d_{gumpName}.scp");
         }
 
         private static void ExportToMUO(ElementControl[] elements, string gumpName)
