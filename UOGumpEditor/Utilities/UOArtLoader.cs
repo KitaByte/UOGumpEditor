@@ -247,98 +247,107 @@ namespace UOGumpEditor
             {
                 tempEntityList = [.. GumpArtDict.Values];
 
-                return LoadList(tempEntityList, out list);
+                list = LoadList(tempEntityList);
             }
             else
             {
                 tempEntityList = [.. ItemArtDict.Values];
 
-                return LoadList(tempEntityList, out list);
+                list = LoadList(tempEntityList);
             }
+
+            return list.Count > 0;
         }
 
-        public static bool SearchArtByID(int id, bool isGump, out List<ArtEntity> list)
+        public static async Task<List<ArtEntity>> SearchArtByIDAsync(int id, bool isGump)
         {
-            int range = UOSettings.Default.DisplayMax / 2;
-
-            if (id - range < 0)
+            return await Task.Run(() =>
             {
-                range = id;
-            }
+                int range = UOSettings.Default.DisplayMax / 2;
 
-            if (isGump)
-            {
-                if (id + range >= GumpArtDict.Count)
+                if (id - range < 0)
                 {
-                    range = Math.Abs(GumpArtDict.Count - id);
+                    range = id;
                 }
 
-                tempEntityList = GumpArtDict.Values.Where(a => a.ID <= id + range && a.ID >= id - range).ToList();
-            }
-            else
-            {
-                if (id + range >= ItemArtDict.Count)
+                List<ArtEntity> tempEntityList;
+                if (isGump)
                 {
-                    range = Math.Abs(ItemArtDict.Count - id);
-                }
+                    if (id + range >= GumpArtDict.Count)
+                    {
+                        range = Math.Abs(GumpArtDict.Count - id);
+                    }
 
-                tempEntityList = ItemArtDict.Values.Where(a => a.ID < id + range && a.ID > id - range).ToList();
-            }
-
-            return LoadList(tempEntityList, out list);
-        }
-
-        public static bool SearchArtByName(string name, bool isGump, out List<ArtEntity> list)
-        {
-            if (isGump)
-            {
-                tempEntityList = GumpArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            }
-            else
-            {
-                tempEntityList = ItemArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            }
-
-            return LoadList(tempEntityList, out list);
-        }
-
-        private static int _HighEnd = 0;
-
-        private static int _LowEnd = 0;
-
-        public static bool SearchArtBySize(int size, int range, bool isGump, out List<ArtEntity> list, bool isWidth)
-        {
-            _HighEnd = size + range;
-
-            _LowEnd = size - range;
-
-            if (isGump)
-            {
-                if (isWidth)
-                {
-                    tempEntityList = GumpArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
+                    tempEntityList = GumpArtDict.Values.Where(a => a.ID <= id + range && a.ID >= id - range).ToList();
                 }
                 else
                 {
-                    tempEntityList = GumpArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
+                    if (id + range >= ItemArtDict.Count)
+                    {
+                        range = Math.Abs(ItemArtDict.Count - id);
+                    }
+
+                    tempEntityList = ItemArtDict.Values.Where(a => a.ID < id + range && a.ID > id - range).ToList();
                 }
-            }
-            else
+
+                return LoadList(tempEntityList);
+            });
+        }
+
+        public static async Task<List<ArtEntity>> SearchArtByNameAsync(string name, bool isGump)
+        {
+            return await Task.Run(() =>
             {
-                if (isWidth)
+                List<ArtEntity> tempEntityList;
+                if (isGump)
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
+                    tempEntityList = GumpArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
                 }
                 else
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
                 }
-            }
 
-            return LoadList(tempEntityList, out list);
+                return LoadList(tempEntityList);
+            });
         }
 
-        private static bool LoadList(List<ArtEntity> itemList, out List<ArtEntity> list )
+        public static async Task<List<ArtEntity>> SearchArtBySizeAsync(int size, int range, bool isGump, bool isWidth)
+        {
+            return await Task.Run(() =>
+            {
+                int _HighEnd = size + range;
+                int _LowEnd = size - range;
+
+                List<ArtEntity> tempEntityList;
+                if (isGump)
+                {
+                    if (isWidth)
+                    {
+                        tempEntityList = GumpArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
+                    }
+                    else
+                    {
+                        tempEntityList = GumpArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
+                    }
+                }
+                else
+                {
+                    if (isWidth)
+                    {
+                        tempEntityList = ItemArtDict.Values.Where(a => a.Width <= _HighEnd && a.Width >= _LowEnd).ToList();
+                    }
+                    else
+                    {
+                        tempEntityList = ItemArtDict.Values.Where(a => a.Height <= _HighEnd && a.Height >= _LowEnd).ToList();
+                    }
+                }
+
+                return LoadList(tempEntityList);
+            });
+        }
+
+        private static List<ArtEntity> LoadList(List<ArtEntity> itemList)
         {
             if (itemList != null && itemList.Count > 0)
             {
@@ -347,14 +356,10 @@ namespace UOGumpEditor
                     itemList.RemoveAll(b => b.GetImage() == null);
                 }
 
-                list = itemList;
-
-                return true;
+                return itemList;
             }
 
-            list = [];
-
-            return false;
+            return [];
         }
     }
 }

@@ -92,28 +92,27 @@ namespace UOGumpEditor
 
         public List<ArtEntity>? BackgroundArt { get; private set; }
 
-        public void LoadBackground()
+        public async void LoadBackground()
         {
             BackgroundArt = [];
 
             if (Tag is ArtEntity entity)
             {
-                if (UOArtLoader.SearchArtByName(entity.Name[..^1], true, out List<ArtEntity> searchList))
-                {
-                    if (searchList.Count > 0)
-                    {
-                        foreach (ArtEntity ae in searchList)
-                        {
-                            if (ae.Name.Length == entity.Name.Length && ae.Name.StartsWith(entity.Name[..^1]))
-                            {
-                                BackgroundArt.Add(ae);
-                            }
-                        }
+                List<ArtEntity> searchList = await UOArtLoader.SearchArtByNameAsync(entity.Name[..^1], true);
 
-                        if (BackgroundArt.Count > 0)
+                if (searchList.Count > 0)
+                {
+                    foreach (ArtEntity ae in searchList)
+                    {
+                        if (ae.Name.Length == entity.Name.Length && ae.Name.StartsWith(entity.Name[..^1]))
                         {
-                            BackgroundArt.Sort();
+                            BackgroundArt.Add(ae);
                         }
+                    }
+
+                    if (BackgroundArt.Count > 0)
+                    {
+                        BackgroundArt.Sort();
                     }
                 }
             }

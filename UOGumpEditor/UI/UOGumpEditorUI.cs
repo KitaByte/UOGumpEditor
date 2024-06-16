@@ -338,33 +338,13 @@ namespace UOGumpEditor
             }
         }
 
-        private void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
+        private async void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && ArtIDSearchBox.Text.Length < 6)
             {
                 if (int.TryParse(ArtIDSearchBox.Text, out int val))
                 {
-                    if (UOArtLoader.SearchArtByID(val, IsGump(), out List<ArtEntity> results))
-                    {
-                        _artCache = new ArtCache(results);
-
-                        DisplayArtWindow();
-                    }
-                }
-            }
-            else
-            {
-                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-            }
-        }
-
-        private void ArtNameSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
-            {
-                if (UOArtLoader.SearchArtByName(ArtNameSearchBox.Text, IsGump(), out List<ArtEntity> results))
-                {
-                    _artCache = new ArtCache(results);
+                    _artCache = new ArtCache(await UOArtLoader.SearchArtByIDAsync(val, IsGump()));
 
                     DisplayArtWindow();
                 }
@@ -375,9 +355,23 @@ namespace UOGumpEditor
             }
         }
 
+        private async void ArtNameSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
+            {
+                _artCache = new ArtCache(await UOArtLoader.SearchArtByNameAsync(ArtNameSearchBox.Text, IsGump()));
+
+                DisplayArtWindow();
+            }
+            else
+            {
+                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
+            }
+        }
+
         private int _SizeRange = 0;
 
-        private void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
+        private async void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
         {
             if (sender is TextBox tb)
             {
@@ -395,12 +389,9 @@ namespace UOGumpEditor
                             }
                         }
 
-                        if (UOArtLoader.SearchArtBySize(size, _SizeRange, IsGump(), out List<ArtEntity> results, sender == ArtWidthSearchBox))
-                        {
-                            _artCache = new ArtCache(results);
+                        _artCache = new ArtCache(await UOArtLoader.SearchArtBySizeAsync(size, _SizeRange, IsGump(), sender == ArtWidthSearchBox));
 
-                            DisplayArtWindow();
-                        }
+                        DisplayArtWindow();
                     }
                 }
                 else

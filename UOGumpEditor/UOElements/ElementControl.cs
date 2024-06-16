@@ -425,32 +425,31 @@
 
         public List<ArtEntity>? BackgroundArt { get; private set; }
 
-        public void LoadBackground()
+        public async void LoadBackground()
         {
             BackgroundArt = [];
 
             if (Tag is ArtEntity entity)
             {
-                if (UOArtLoader.SearchArtByName(entity.Name[..^1], true, out List<ArtEntity> searchList))
+                List<ArtEntity> searchList = await UOArtLoader.SearchArtByNameAsync(entity.Name[..^1], true);
+
+                if (searchList.Count > 0)
                 {
-                    if (searchList.Count > 0)
+                    foreach (ArtEntity ae in searchList)
                     {
-                        foreach (ArtEntity ae in searchList)
+                        if (entity.Name.Length == ae.Name.Length)
                         {
-                            if (entity.Name.Length == ae.Name.Length)
-                            {
-                                BackgroundArt.Add(ae);
-                            }
+                            BackgroundArt.Add(ae);
                         }
+                    }
 
-                        if (BackgroundArt.Count > 0)
-                        {
-                            BackgroundArt.Sort();
+                    if (BackgroundArt.Count > 0)
+                    {
+                        BackgroundArt.Sort();
 
-                            Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundArt));
+                        Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundArt));
 
-                            BGImageLayout = ImageLayout.Stretch;
-                        }
+                        BGImageLayout = ImageLayout.Stretch;
                     }
                 }
             }
