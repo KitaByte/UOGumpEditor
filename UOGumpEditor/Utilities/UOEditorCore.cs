@@ -6,7 +6,7 @@ namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
-        public static UOGumpEditorUI MainUI { get; private set; } = Program.Session.MainUI;
+        public static UOGumpEditorUI MainUI => Program.Session.MainUI;
 
         public static UOArtLoader? ArtLoader { get; private set; }
 
