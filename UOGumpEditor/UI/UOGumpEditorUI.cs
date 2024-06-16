@@ -536,6 +536,8 @@ namespace UOGumpEditor
 
             ArtHeightSearchBox.Clear();
 
+            ArtRangeSearchTextbox.Clear();
+
             SearchFlowPanel.Visible = false;
         }
 
