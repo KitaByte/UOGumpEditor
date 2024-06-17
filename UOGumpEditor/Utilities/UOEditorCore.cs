@@ -12,10 +12,12 @@ namespace UOGumpEditor
 
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
+        private static Point CurrentPosition = new(0,0);
+
+        private static int moveAmount = 1;
+
         public static Point GetMoveAction(Keys keyData, ElementControl element)
         {
-            int moveAmount = 1;
-
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 moveAmount = UOSettings.Default.ShiftSpeed;
@@ -24,46 +26,50 @@ namespace UOGumpEditor
             {
                 moveAmount = UOSettings.Default.CtrlSpeed;
             }
+            else
+            {
+                moveAmount = 1;
+            }
+
+            CurrentPosition = element.Location;
 
             switch (keyData & Keys.KeyCode)
             {
                 case Keys.Up:
                     {
-                        MoveElement(element, 0, -moveAmount);
+                        CurrentPosition = MoveElement(element, 0, -moveAmount);
 
                         break;
                     }
 
                 case Keys.Down:
                     {
-                        MoveElement(element, 0, moveAmount);
+                        CurrentPosition = MoveElement(element, 0, moveAmount);
 
                         break;
                     }
 
                 case Keys.Left:
                     {
-                        MoveElement(element, -moveAmount, 0);
+                        CurrentPosition = MoveElement(element, -moveAmount, 0);
 
                         break;
                     }
 
                 case Keys.Right:
                     {
-                        MoveElement(element, moveAmount, 0);
+                        CurrentPosition = MoveElement(element, moveAmount, 0);
 
                         break;
                     }
             }
 
-            return element.Location;
+            return CurrentPosition;
         }
 
-        public static void MoveElement(ElementControl element, int dx, int dy)
+        private static Point MoveElement(ElementControl element, int dx, int dy)
         {
-            element.Location = new Point(element.Location.X + dx, element.Location.Y + dy);
-
-            Session.CanvasUI.Invalidate();
+            return new Point(element.Location.X + dx, element.Location.Y + dy);
         }
 
         private static readonly Dictionary<ElementControl, int> elementIndices = [];

@@ -86,9 +86,9 @@ namespace UOGumpEditor
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
-        private Dictionary<ElementControl, Point> moveElements = [];
-
         private bool isMoving = false;
+
+        private readonly Dictionary<ElementControl, Point> moveElements = [];
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -152,7 +152,7 @@ namespace UOGumpEditor
 
                 default:
                     {
-                        if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && !isMoving)
+                        if (!isMoving && UOEditorCore.Session.CanvasUI.Controls.Count > 0)
                         {
                             isMoving = true;
 
@@ -162,26 +162,24 @@ namespace UOGumpEditor
                             {
                                 if (UOEditorCore.Session.CanvasUI.Controls[i] is ElementControl ec && ec.IsSelected)
                                 {
-                                    Point newPosition = UOEditorCore.GetMoveAction(keyData, ec);
-
-                                    moveElements[ec] = newPosition;
+                                    moveElements[ec] = UOEditorCore.GetMoveAction(keyData, ec);
                                 }
                             }
+
+                            UOEditorCore.Session.CanvasUI.SuspendLayout();
 
                             Task.Run(() =>
                             {
                                 UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
                                 {
-                                    UOEditorCore.Session.CanvasUI.SuspendLayout();
-
                                     foreach (var kvp in moveElements)
                                     {
                                         kvp.Key.Location = kvp.Value;
                                     }
-
-                                    UOEditorCore.Session.CanvasUI.ResumeLayout();
                                 }));
                             });
+
+                            UOEditorCore.Session.CanvasUI.Invalidate();
 
                             isMoving = false;
 

@@ -84,6 +84,8 @@
         {
             if (ElementListbox.Items.Count > 0)
             {
+                ElementListbox.SuspendLayout();
+
                 for (int i = 0; i < ElementListbox.Items.Count; i++)
                 {
                     if (!ElementListbox.SelectedItems.Contains(ElementListbox.Items[i]))
@@ -91,6 +93,8 @@
                         ElementListbox.SetSelected(i, true);
                     }
                 }
+
+                ElementListbox.ResumeLayout();
             }
         }
 
