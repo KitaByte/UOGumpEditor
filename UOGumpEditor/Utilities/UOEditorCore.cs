@@ -12,7 +12,7 @@ namespace UOGumpEditor
 
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
-        public static void SendMoveAction(Keys keyData, ElementControl element)
+        public static Point GetMoveAction(Keys keyData, ElementControl element)
         {
             int moveAmount = 1;
 
@@ -55,6 +55,8 @@ namespace UOGumpEditor
                         break;
                     }
             }
+
+            return element.Location;
         }
 
         public static void MoveElement(ElementControl element, int dx, int dy)

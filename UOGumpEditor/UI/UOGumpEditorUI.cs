@@ -18,7 +18,7 @@ namespace UOGumpEditor
 
             KeyPreview = true;
 
-            Text = $"{Text} - Ver 1.0.0.10";
+            Text = $"{Text} - Ver 1.0.0.11";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -69,6 +69,8 @@ namespace UOGumpEditor
             UOEditorCore.Session.SetMainDisplay(UOEditorCore.Session.CanvasUI);
 
             UOEditorCore.ResetEditor();
+
+            GumpInfoLabel.Text = "UO Gump Editor - Ready!";
         }
 
         private void SetLoadingState(bool isLoading)
@@ -84,6 +86,10 @@ namespace UOGumpEditor
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
+        private Dictionary<ElementControl, Point> moveElements = [];
+
+        private bool isMoving = false;
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -91,7 +97,6 @@ namespace UOGumpEditor
                 case (Keys.Control | Keys.S):
                     {
                         SaveButton_Click(this, EventArgs.Empty);
-
                         return true;
                     }
 
@@ -147,19 +152,40 @@ namespace UOGumpEditor
 
                 default:
                     {
-                        if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
+                        if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && !isMoving)
                         {
-                            UOEditorCore.Session.CanvasUI.SuspendLayout();
+                            isMoving = true;
+
+                            moveElements.Clear();
 
                             for (int i = 0; i < UOEditorCore.Session.CanvasUI.Controls.Count; i++)
                             {
                                 if (UOEditorCore.Session.CanvasUI.Controls[i] is ElementControl ec && ec.IsSelected)
                                 {
-                                    UOEditorCore.SendMoveAction(keyData, ec);
+                                    Point newPosition = UOEditorCore.GetMoveAction(keyData, ec);
+
+                                    moveElements[ec] = newPosition;
                                 }
                             }
 
-                            UOEditorCore.Session.CanvasUI.ResumeLayout();
+                            Task.Run(() =>
+                            {
+                                UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
+                                {
+                                    UOEditorCore.Session.CanvasUI.SuspendLayout();
+
+                                    foreach (var kvp in moveElements)
+                                    {
+                                        kvp.Key.Location = kvp.Value;
+                                    }
+
+                                    UOEditorCore.Session.CanvasUI.ResumeLayout();
+                                }));
+                            });
+
+                            isMoving = false;
+
+                            return true;
                         }
 
                         break;

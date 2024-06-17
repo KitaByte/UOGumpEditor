@@ -341,7 +341,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="AddLabelButton.Text" xml:space="preserve">
     <value>Label</value>
@@ -353,7 +353,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="AddHTMLButton.Text" xml:space="preserve">
     <value>HTML</value>
@@ -365,7 +365,7 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="RaiseLayerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="RaiseLayerButton.Text" xml:space="preserve">
     <value>Raise Selected</value>
@@ -377,13 +377,13 @@
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="LowerLayerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>167, 22</value>
   </data>
   <data name="LowerLayerButton.Text" xml:space="preserve">
     <value>Lower Selected</value>
   </data>
   <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 114</value>
+    <value>168, 92</value>
   </data>
   <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
     <value>ElementStrip</value>
