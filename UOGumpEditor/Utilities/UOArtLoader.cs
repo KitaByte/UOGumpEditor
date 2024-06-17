@@ -270,7 +270,6 @@ namespace UOGumpEditor
                     range = id;
                 }
 
-                List<ArtEntity> tempEntityList;
                 if (isGump)
                 {
                     if (id + range >= GumpArtDict.Count)
@@ -298,7 +297,6 @@ namespace UOGumpEditor
         {
             return await Task.Run(() =>
             {
-                List<ArtEntity> tempEntityList;
                 if (isGump)
                 {
                     tempEntityList = GumpArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
@@ -319,7 +317,6 @@ namespace UOGumpEditor
                 int _HighEnd = size + range;
                 int _LowEnd = size - range;
 
-                List<ArtEntity> tempEntityList;
                 if (isGump)
                 {
                     if (isWidth)

@@ -6,7 +6,7 @@ namespace UOGumpEditor
 {
     public static class UOEditorCore
     {
-        public static UOGumpEditorUI MainUI => Program.Session.MainUI;
+        public static SessionEntity Session => Program.Session;
 
         public static UOArtLoader? ArtLoader { get; private set; }
 
@@ -61,7 +61,7 @@ namespace UOGumpEditor
         {
             element.Location = new Point(element.Location.X + dx, element.Location.Y + dy);
 
-            MainUI.CanvasPanel.Invalidate();
+            Session.CanvasUI.Invalidate();
         }
 
         private static readonly Dictionary<ElementControl, int> elementIndices = [];
@@ -70,9 +70,9 @@ namespace UOGumpEditor
         {
             elementIndices.Clear();
 
-            for (int i = 0; i < MainUI.CanvasPanel.Controls.Count; i++)
+            for (int i = 0; i < Session.CanvasUI.Controls.Count; i++)
             {
-                if (MainUI.CanvasPanel.Controls[i] is ElementControl ec)
+                if (Session.CanvasUI.Controls[i] is ElementControl ec)
                 {
                     elementIndices[ec] = i;
                 }
@@ -83,27 +83,27 @@ namespace UOGumpEditor
         {
             foreach (var pair in elementIndices)
             {
-                MainUI.CanvasPanel.Controls.SetChildIndex(pair.Key, pair.Value);
+                Session.CanvasUI.Controls.SetChildIndex(pair.Key, pair.Value);
             }
 
-            MainUI.CanvasPanel.Invalidate();
+            Session.CanvasUI.Invalidate();
         }
 
         public static bool MoveLayerUp()
         {
-            if (MainUI.CanvasPanel.Controls.Count > 0)
+            if (Session.CanvasUI.Controls.Count > 0)
             {
-                foreach (Control control in MainUI.CanvasPanel.Controls)
+                foreach (Control control in Session.CanvasUI.Controls)
                 {
                     if (control is ElementControl ec && ec.IsSelected)
                     {
-                        int currentIndex = MainUI.CanvasPanel.Controls.GetChildIndex(ec);
+                        int currentIndex = Session.CanvasUI.Controls.GetChildIndex(ec);
 
-                        if (currentIndex < MainUI.CanvasPanel.Controls.Count - 1)
+                        if (currentIndex < Session.CanvasUI.Controls.Count - 1)
                         {
-                            MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex + 1);
+                            Session.CanvasUI.Controls.SetChildIndex(ec, currentIndex + 1);
 
-                            MainUI.CanvasPanel.Invalidate();
+                            Session.CanvasUI.Invalidate();
 
                             return true;
                         }
@@ -116,19 +116,19 @@ namespace UOGumpEditor
 
         public static bool MoveLayerDown()
         {
-            if (MainUI.CanvasPanel.Controls.Count > 0)
+            if (Session.CanvasUI.Controls.Count > 0)
             {
-                foreach (Control control in MainUI.CanvasPanel.Controls)
+                foreach (Control control in Session.CanvasUI.Controls)
                 {
                     if (control is ElementControl ec && ec.IsSelected)
                     {
-                        int currentIndex = MainUI.CanvasPanel.Controls.GetChildIndex(ec);
+                        int currentIndex = Session.CanvasUI.Controls.GetChildIndex(ec);
 
                         if (currentIndex > 0)
                         {
-                            MainUI.CanvasPanel.Controls.SetChildIndex(ec, currentIndex - 1);
+                            Session.CanvasUI.Controls.SetChildIndex(ec, currentIndex - 1);
 
-                            MainUI.CanvasPanel.Invalidate();
+                            Session.CanvasUI.Invalidate();
 
                             return true;
                         }
@@ -141,18 +141,18 @@ namespace UOGumpEditor
 
         public static void ResetEditor()
         {
-            if (MainUI.CanvasPanel.BackgroundImage != null)
+            if (Session.CanvasUI.BackgroundImage != null)
             {
-                MainUI.CanvasPanel.BackgroundImageLayout = ImageLayout.Stretch;
+                Session.CanvasUI.BackgroundImageLayout = ImageLayout.Stretch;
 
-                MainUI.CanvasPanel.BackgroundImage = null;
+                Session.CanvasUI.BackgroundImage = null;
             }
 
-            MainUI.CanvasPanel.Controls.Clear();
+            Session.CanvasUI.Controls.Clear();
 
-            MainUI.HistoryListbox.Items.Clear();
+            Session.SearchUI.HistoryListbox.Items.Clear();
 
-            MainUI.ElementListbox.Items.Clear();
+            Session.ElementUI.ElementListbox.Items.Clear();
         }
 
         public static string? FindDataFile(string dataPath, string search)
@@ -203,7 +203,7 @@ namespace UOGumpEditor
 
                 CurrentArtDisplayed = entity;
 
-                MainUI.UpdateElementInfo(entity);
+                Session.UpdateElementInfo(entity);
             }
         }
 
@@ -446,13 +446,13 @@ namespace UOGumpEditor
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (File.Exists(UOArtLoader.BGImageFile) && MainUI.BackgroundImage != null)
+                if (File.Exists(UOArtLoader.BGImageFile) && Session.CanvasUI.BackgroundImage != null)
                 {
-                    Image? image = MainUI.BackgroundImage;
+                    Image? image = Session.CanvasUI.BackgroundImage;
 
-                    MainUI.BackgroundImage = GumpRes.UOGSLogo;
+                    Session.CanvasUI.BackgroundImage = GumpRes.UOGSLogo;
 
-                    image.Dispose();
+                    image?.Dispose();
 
                     GC.Collect();
 
@@ -470,7 +470,7 @@ namespace UOGumpEditor
                     MessageBox.Show("Error copying image!", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                MainUI.BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
+                Session.CanvasUI.BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
             }
         }
 
@@ -594,7 +594,7 @@ namespace UOGumpEditor
         {
             BaseGump gump = new(Path.GetFileNameWithoutExtension(name));
 
-            foreach (Control control in MainUI.CanvasPanel.Controls)
+            foreach (Control control in Session.CanvasUI.Controls)
             {
                 if (control is ElementControl elementControl)
                 {
@@ -635,7 +635,7 @@ namespace UOGumpEditor
                     control.SetText(element.Text, element.Color);
                 }
 
-                MainUI.CanvasPanel.Controls.Add(control);
+                Session.CanvasUI.Controls.Add(control);
             }
         }
     }

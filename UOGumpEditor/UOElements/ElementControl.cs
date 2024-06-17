@@ -32,9 +32,9 @@
 
         public int GetLayer()
         {
-            if (UOEditorCore.MainUI.CanvasPanel.Controls.Contains(this))
+            if (UOEditorCore.Session.CanvasUI.Controls.Contains(this))
             {
-                return UOEditorCore.MainUI.CanvasPanel.Controls.IndexOf(this);
+                return UOEditorCore.Session.CanvasUI.Controls.IndexOf(this);
             }
             else
             {
@@ -332,11 +332,11 @@
 
                 if (_startingPoint != Location)
                 {
-                    UOEditorCore.MainUI.ElementListbox.SetSelected(GetLayer(), true);
+                    UOEditorCore.Session.ElementUI.ElementListbox.SetSelected(GetLayer(), true);
                 }
                 else
                 {
-                    UOEditorCore.MainUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
+                    UOEditorCore.Session.ElementUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
                 }
             }
         }
@@ -345,13 +345,13 @@
         {
             if (Tag is ArtEntity entity)
             {
-                UOEditorCore.MainUI.UpdateElementInfo(entity, this);
+                UOEditorCore.Session.UpdateElementInfo(entity, this);
             }
         }
 
         private void ElementControl_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.MainUI.OpenEditor(ElementType, this);
+            UOEditorCore.Session.CanvasUI.OpenEditor(ElementType, this);
         }
 
         Bitmap? tempBitmap;

@@ -170,688 +170,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BottomStatusStrip.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="ElementStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>295, 17</value>
-  </metadata>
-  <data name="ElementStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="ElementStrip.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt, style=Bold</value>
-  </data>
-  <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 92</value>
-  </data>
-  <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
-    <value>ElementStrip</value>
-  </data>
-  <data name="&gt;&gt;ElementStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="AddLabelButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="AddLabelButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="AddLabelButton.Text" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="AddHTMLButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="AddHTMLButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="AddHTMLButton.Text" xml:space="preserve">
-    <value>HTML</value>
-  </data>
-  <data name="RaiseLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="RaiseLayerButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="RaiseLayerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="RaiseLayerButton.Text" xml:space="preserve">
-    <value>Raise Selected</value>
-  </data>
-  <data name="LowerLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="LowerLayerButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="LowerLayerButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="LowerLayerButton.Text" xml:space="preserve">
-    <value>Lower Selected</value>
-  </data>
-  <data name="HistoryListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="HistoryListbox.ItemHeight" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="HistoryListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 412</value>
-  </data>
-  <data name="HistoryListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="HistoryListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 157</value>
-  </data>
-  <data name="HistoryListbox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Name" xml:space="preserve">
-    <value>HistoryListbox</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;HistoryListbox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ClearHistoryButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="ClearHistoryButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="ClearHistoryButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ClearHistoryButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 569</value>
-  </data>
-  <data name="ClearHistoryButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ClearHistoryButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 40</value>
-  </data>
-  <data name="ClearHistoryButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="ClearHistoryButton.Text" xml:space="preserve">
-    <value>Clear History</value>
-  </data>
-  <data name="&gt;&gt;ClearHistoryButton.Name" xml:space="preserve">
-    <value>ClearHistoryButton</value>
-  </data>
-  <data name="&gt;&gt;ClearHistoryButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ClearHistoryButton.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ClearHistoryButton.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="HistoryLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="HistoryLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11.25pt, style=Bold</value>
-  </data>
-  <data name="HistoryLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 377</value>
-  </data>
-  <data name="HistoryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 35</value>
-  </data>
-  <data name="HistoryLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="HistoryLabel.Text" xml:space="preserve">
-    <value>History</value>
-  </data>
-  <data name="HistoryLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;HistoryLabel.Name" xml:space="preserve">
-    <value>HistoryLabel</value>
-  </data>
-  <data name="&gt;&gt;HistoryLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HistoryLabel.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;HistoryLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ArtWidthSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="ArtWidthSearchBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ArtWidthSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="ArtWidthSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtWidthSearchBox.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="ArtWidthSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Width</value>
-  </data>
-  <data name="ArtWidthSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 25</value>
-  </data>
-  <data name="ArtWidthSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ArtWidthSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;ArtWidthSearchBox.Name" xml:space="preserve">
-    <value>ArtWidthSearchBox</value>
-  </data>
-  <data name="&gt;&gt;ArtWidthSearchBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtWidthSearchBox.Parent" xml:space="preserve">
-    <value>SizePanel</value>
-  </data>
-  <data name="&gt;&gt;ArtWidthSearchBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ArtHeightSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="ArtHeightSearchBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ArtHeightSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 0</value>
-  </data>
-  <data name="ArtHeightSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtHeightSearchBox.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="ArtHeightSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Height</value>
-  </data>
-  <data name="ArtHeightSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 25</value>
-  </data>
-  <data name="ArtHeightSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="ArtHeightSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;ArtHeightSearchBox.Name" xml:space="preserve">
-    <value>ArtHeightSearchBox</value>
-  </data>
-  <data name="&gt;&gt;ArtHeightSearchBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtHeightSearchBox.Parent" xml:space="preserve">
-    <value>SizePanel</value>
-  </data>
-  <data name="&gt;&gt;ArtHeightSearchBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.MaxLength" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.PlaceholderText" xml:space="preserve">
-    <value>Size Range [Default 0]</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 25</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="ArtRangeSearchTextbox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;ArtRangeSearchTextbox.Name" xml:space="preserve">
-    <value>ArtRangeSearchTextbox</value>
-  </data>
-  <data name="&gt;&gt;ArtRangeSearchTextbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtRangeSearchTextbox.Parent" xml:space="preserve">
-    <value>SizePanel</value>
-  </data>
-  <data name="&gt;&gt;ArtRangeSearchTextbox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="SizePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="SizePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 327</value>
-  </data>
-  <data name="SizePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="SizePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 50</value>
-  </data>
-  <data name="SizePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;SizePanel.Name" xml:space="preserve">
-    <value>SizePanel</value>
-  </data>
-  <data name="&gt;&gt;SizePanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SizePanel.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;SizePanel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="ArtNameSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ArtNameSearchBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ArtNameSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 302</value>
-  </data>
-  <data name="ArtNameSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtNameSearchBox.MaxLength" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="ArtNameSearchBox.PlaceholderText" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ArtNameSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 25</value>
-  </data>
-  <data name="ArtNameSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="ArtNameSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;ArtNameSearchBox.Name" xml:space="preserve">
-    <value>ArtNameSearchBox</value>
-  </data>
-  <data name="&gt;&gt;ArtNameSearchBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtNameSearchBox.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtNameSearchBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ArtIDSearchBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ArtIDSearchBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ArtIDSearchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 277</value>
-  </data>
-  <data name="ArtIDSearchBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtIDSearchBox.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="ArtIDSearchBox.PlaceholderText" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="ArtIDSearchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 25</value>
-  </data>
-  <data name="ArtIDSearchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="ArtIDSearchBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="&gt;&gt;ArtIDSearchBox.Name" xml:space="preserve">
-    <value>ArtIDSearchBox</value>
-  </data>
-  <data name="&gt;&gt;ArtIDSearchBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtIDSearchBox.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtIDSearchBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="AllArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="AllArtButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="AllArtButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="AllArtButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="AllArtButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 237</value>
-  </data>
-  <data name="AllArtButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="AllArtButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 40</value>
-  </data>
-  <data name="AllArtButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="AllArtButton.Text" xml:space="preserve">
-    <value>Search All</value>
-  </data>
-  <data name="&gt;&gt;AllArtButton.Name" xml:space="preserve">
-    <value>AllArtButton</value>
-  </data>
-  <data name="&gt;&gt;AllArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;AllArtButton.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;AllArtButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="ArtPicturebox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="ArtPicturebox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ArtPicturebox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 47</value>
-  </data>
-  <data name="ArtPicturebox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtPicturebox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 190</value>
-  </data>
-  <data name="ArtPicturebox.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="ArtPicturebox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ArtPicturebox.Name" xml:space="preserve">
-    <value>ArtPicturebox</value>
-  </data>
-  <data name="&gt;&gt;ArtPicturebox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtPicturebox.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtPicturebox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Name" xml:space="preserve">
-    <value>ItemArtButton</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Name" xml:space="preserve">
-    <value>GumpArtButton</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ArtSelectPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ArtSelectPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
-  </data>
-  <data name="ArtSelectPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtSelectPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 5, 0, 5</value>
-  </data>
-  <data name="ArtSelectPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 42</value>
-  </data>
-  <data name="ArtSelectPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Name" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.Parent" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtSelectPanel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="ArtPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="ArtPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>682, 25</value>
-  </data>
-  <data name="ArtPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ArtPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="ArtPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 614</value>
-  </data>
-  <data name="ArtPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Name" xml:space="preserve">
-    <value>ArtPanel</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ArtPanel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="ItemArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="ItemArtButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="ItemArtButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="ItemArtButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 5</value>
-  </data>
-  <data name="ItemArtButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ItemArtButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 32</value>
-  </data>
-  <data name="ItemArtButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="ItemArtButton.Text" xml:space="preserve">
-    <value>Item Art</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Name" xml:space="preserve">
-    <value>ItemArtButton</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;ItemArtButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="GumpArtButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="GumpArtButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="GumpArtButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="GumpArtButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 5</value>
-  </data>
-  <data name="GumpArtButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="GumpArtButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 32</value>
-  </data>
-  <data name="GumpArtButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="GumpArtButton.Text" xml:space="preserve">
-    <value>Gump Art</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Name" xml:space="preserve">
-    <value>GumpArtButton</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.Parent" xml:space="preserve">
-    <value>ArtSelectPanel</value>
-  </data>
-  <data name="&gt;&gt;GumpArtButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SearchFlowPanel.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="SearchFlowPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="SearchFlowPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="SearchFlowPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 45</value>
-  </data>
-  <data name="SearchFlowPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="SearchFlowPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>537, 212</value>
-  </data>
-  <data name="SearchFlowPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="SearchFlowPanel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;SearchFlowPanel.Name" xml:space="preserve">
-    <value>SearchFlowPanel</value>
-  </data>
-  <data name="&gt;&gt;SearchFlowPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SearchFlowPanel.Parent" xml:space="preserve">
-    <value>SearchPanel</value>
-  </data>
-  <data name="&gt;&gt;SearchFlowPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="TopMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>21, 19</value>
+    <value>17, 17</value>
   </metadata>
   <data name="TopMenuStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="TopMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="TopMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 25</value>
-  </data>
-  <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="TopMenuStrip.Text" xml:space="preserve">
-    <value>MainMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Name" xml:space="preserve">
-    <value>TopMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="NewButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -976,371 +301,95 @@
   <data name="ModeButton.ToolTipText" xml:space="preserve">
     <value>Canvas Mode</value>
   </data>
-  <data name="CanvasPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
+  <data name="TopMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="CanvasPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 25</value>
+  <data name="TopMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>884, 25</value>
   </data>
-  <data name="CanvasPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="TopMenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="CanvasPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 10, 10</value>
+  <data name="TopMenuStrip.Text" xml:space="preserve">
+    <value>MainMenuStrip</value>
   </data>
-  <data name="CanvasPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>557, 312</value>
+  <data name="&gt;&gt;TopMenuStrip.Name" xml:space="preserve">
+    <value>TopMenuStrip</value>
   </data>
-  <data name="CanvasPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;TopMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.Name" xml:space="preserve">
-    <value>CanvasPanel</value>
-  </data>
-  <data name="&gt;&gt;CanvasPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CanvasPanel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;TopMenuStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CanvasPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="NextButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="NextButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="NextButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="NextButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="NextButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 257</value>
-  </data>
-  <data name="NextButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="NextButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>537, 35</value>
-  </data>
-  <data name="NextButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;TopMenuStrip.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="NextButton.Text" xml:space="preserve">
-    <value> Next &gt;&gt;</value>
-  </data>
-  <data name="NextButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;NextButton.Name" xml:space="preserve">
-    <value>NextButton</value>
-  </data>
-  <data name="&gt;&gt;NextButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NextButton.Parent" xml:space="preserve">
-    <value>SearchPanel</value>
-  </data>
-  <data name="&gt;&gt;NextButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="PreviousButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="PreviousButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="PreviousButton.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="PreviousButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="PreviousButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 10</value>
-  </data>
-  <data name="PreviousButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="PreviousButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>537, 35</value>
-  </data>
-  <data name="PreviousButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="PreviousButton.Text" xml:space="preserve">
-    <value>&lt;&lt; Previous</value>
-  </data>
-  <data name="PreviousButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;PreviousButton.Name" xml:space="preserve">
-    <value>PreviousButton</value>
-  </data>
-  <data name="&gt;&gt;PreviousButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PreviousButton.Parent" xml:space="preserve">
-    <value>SearchPanel</value>
-  </data>
-  <data name="&gt;&gt;PreviousButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SearchPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 337</value>
-  </data>
-  <data name="SearchPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="SearchPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 10, 10, 10</value>
-  </data>
-  <data name="SearchPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>557, 302</value>
-  </data>
-  <data name="SearchPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;SearchPanel.Name" xml:space="preserve">
-    <value>SearchPanel</value>
-  </data>
-  <data name="&gt;&gt;SearchPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SearchPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;SearchPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="FocusPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <metadata name="ElementStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>295, 22</value>
+  </metadata>
+  <data name="ElementStrip.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="&gt;&gt;ElementListbox.Name" xml:space="preserve">
-    <value>ElementListbox</value>
+  <data name="ElementStrip.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;ElementListbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="AddLabelButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
   </data>
-  <data name="&gt;&gt;ElementListbox.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;ElementListbox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Name" xml:space="preserve">
-    <value>SelectAllButton</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Name" xml:space="preserve">
-    <value>ClearSelectedButton</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;ElementLabel.Name" xml:space="preserve">
-    <value>ElementLabel</value>
-  </data>
-  <data name="&gt;&gt;ElementLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ElementLabel.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;ElementLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="FocusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="FocusPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="FocusPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="FocusPanel.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
-  </data>
-  <data name="FocusPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 614</value>
-  </data>
-  <data name="FocusPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;FocusPanel.Name" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;FocusPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;FocusPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;FocusPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ElementListbox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ElementListbox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="ElementListbox.ItemHeight" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="ElementListbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 37</value>
-  </data>
-  <data name="ElementListbox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="ElementListbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 492</value>
-  </data>
-  <data name="ElementListbox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ElementListbox.Name" xml:space="preserve">
-    <value>ElementListbox</value>
-  </data>
-  <data name="&gt;&gt;ElementListbox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ElementListbox.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;ElementListbox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="SelectAllButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="SelectAllButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="SelectAllButton.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="AddLabelButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="SelectAllButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="AddLabelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="SelectAllButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 529</value>
+  <data name="AddLabelButton.Text" xml:space="preserve">
+    <value>Label</value>
   </data>
-  <data name="SelectAllButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="AddHTMLButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
   </data>
-  <data name="SelectAllButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 40</value>
-  </data>
-  <data name="SelectAllButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="SelectAllButton.Text" xml:space="preserve">
-    <value>Select All</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Name" xml:space="preserve">
-    <value>SelectAllButton</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;SelectAllButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="ClearSelectedButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="ClearSelectedButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="ClearSelectedButton.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="AddHTMLButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="ClearSelectedButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="AddHTMLButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="ClearSelectedButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 569</value>
+  <data name="AddHTMLButton.Text" xml:space="preserve">
+    <value>HTML</value>
   </data>
-  <data name="ClearSelectedButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="RaiseLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
   </data>
-  <data name="ClearSelectedButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 40</value>
-  </data>
-  <data name="ClearSelectedButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="ClearSelectedButton.Text" xml:space="preserve">
-    <value>Clear Selected</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Name" xml:space="preserve">
-    <value>ClearSelectedButton</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
-  </data>
-  <data name="&gt;&gt;ClearSelectedButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ElementLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="ElementLabel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="RaiseLayerButton.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="ElementLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 5</value>
+  <data name="RaiseLayerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="ElementLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 32</value>
+  <data name="RaiseLayerButton.Text" xml:space="preserve">
+    <value>Raise Selected</value>
   </data>
-  <data name="ElementLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="LowerLayerButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
   </data>
-  <data name="ElementLabel.Text" xml:space="preserve">
-    <value>Elements</value>
+  <data name="LowerLayerButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
-  <data name="ElementLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="LowerLayerButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="&gt;&gt;ElementLabel.Name" xml:space="preserve">
-    <value>ElementLabel</value>
+  <data name="LowerLayerButton.Text" xml:space="preserve">
+    <value>Lower Selected</value>
   </data>
-  <data name="&gt;&gt;ElementLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ElementStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 114</value>
   </data>
-  <data name="&gt;&gt;ElementLabel.Parent" xml:space="preserve">
-    <value>FocusPanel</value>
+  <data name="&gt;&gt;ElementStrip.Name" xml:space="preserve">
+    <value>ElementStrip</value>
   </data>
-  <data name="&gt;&gt;ElementLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;ElementStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1349,7 +398,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
+    <value>Center</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 661</value>
@@ -3115,30 +2164,6 @@
   <data name="&gt;&gt;GumpInfoLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;AddLabelButton.Name" xml:space="preserve">
-    <value>AddLabelButton</value>
-  </data>
-  <data name="&gt;&gt;AddLabelButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;AddHTMLButton.Name" xml:space="preserve">
-    <value>AddHTMLButton</value>
-  </data>
-  <data name="&gt;&gt;AddHTMLButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RaiseLayerButton.Name" xml:space="preserve">
-    <value>RaiseLayerButton</value>
-  </data>
-  <data name="&gt;&gt;RaiseLayerButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LowerLayerButton.Name" xml:space="preserve">
-    <value>LowerLayerButton</value>
-  </data>
-  <data name="&gt;&gt;LowerLayerButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;NewButton.Name" xml:space="preserve">
     <value>NewButton</value>
   </data>
@@ -3180,6 +2205,30 @@
   </data>
   <data name="&gt;&gt;ModeButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddLabelButton.Name" xml:space="preserve">
+    <value>AddLabelButton</value>
+  </data>
+  <data name="&gt;&gt;AddLabelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AddHTMLButton.Name" xml:space="preserve">
+    <value>AddHTMLButton</value>
+  </data>
+  <data name="&gt;&gt;AddHTMLButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RaiseLayerButton.Name" xml:space="preserve">
+    <value>RaiseLayerButton</value>
+  </data>
+  <data name="&gt;&gt;RaiseLayerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LowerLayerButton.Name" xml:space="preserve">
+    <value>LowerLayerButton</value>
+  </data>
+  <data name="&gt;&gt;LowerLayerButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>UOGumpEditorUI</value>

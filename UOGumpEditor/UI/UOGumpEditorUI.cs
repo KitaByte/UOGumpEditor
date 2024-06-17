@@ -4,7 +4,13 @@ namespace UOGumpEditor
 {
     public partial class UOGumpEditorUI : Form
     {
-        private ArtCache? _artCache;
+        private ElementControl? _ElementCopy = null;
+
+        private GumpHandler? _Handler;
+
+        public ExportUI? ExportUIHandle { get; set; }
+
+        private SettingsUI? _Settings;
 
         public UOGumpEditorUI()
         {
@@ -12,7 +18,7 @@ namespace UOGumpEditor
 
             KeyPreview = true;
 
-            Text = $"{Text} - Ver 1.0.0.9";
+            Text = $"{Text} - Ver 1.0.0.10";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
@@ -42,8 +48,6 @@ namespace UOGumpEditor
 
         private async void LoadArtAsync()
         {
-            SetMainDisplay(CanvasPanel);
-
             SetLoadingState(true);
 
             GumpInfoLabel.Text = "Loading Gump Assets ...";
@@ -60,14 +64,11 @@ namespace UOGumpEditor
 
             SetLoadingState(false);
 
+            UOEditorCore.Session.LoadMainControls();
+
+            UOEditorCore.Session.SetMainDisplay(UOEditorCore.Session.CanvasUI);
+
             UOEditorCore.ResetEditor();
-
-            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-
-            if (File.Exists(UOArtLoader.BGImageFile))
-            {
-                BackgroundImage = Image.FromFile(UOArtLoader.BGImageFile);
-            }
         }
 
         private void SetLoadingState(bool isLoading)
@@ -79,19 +80,9 @@ namespace UOGumpEditor
             ModeButton.Enabled = !isLoading;
             SettingsButton.Enabled = !isLoading;
             ElementStrip.Enabled = !isLoading;
-            GumpArtButton.Enabled = !isLoading;
-            ItemArtButton.Enabled = !isLoading;
-            AllArtButton.Enabled = !isLoading;
-            ArtIDSearchBox.Enabled = !isLoading;
-            ArtNameSearchBox.Enabled = !isLoading;
-            ArtWidthSearchBox.Enabled = !isLoading;
-            ArtHeightSearchBox.Enabled = !isLoading;
-            ArtRangeSearchTextbox.Enabled = !isLoading;
 
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
-
-        private ElementControl? _ElementCopy = null;
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -113,9 +104,9 @@ namespace UOGumpEditor
 
                 case (Keys.Control | Keys.C):
                     {
-                        if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
+                        if (UOEditorCore.Session.IsSingleSelected() && UOEditorCore.Session.ElementUI.ElementListbox.SelectedItem is ElementEntity entity)
                         {
-                            if (CanvasPanel.Controls.Contains(entity.Element))
+                            if (UOEditorCore.Session.CanvasUI.Controls.Contains(entity.Element))
                             {
                                 _ElementCopy = entity.Element.Copy();
                             }
@@ -128,7 +119,9 @@ namespace UOGumpEditor
                     {
                         if (_ElementCopy != null)
                         {
-                            AddToCanvas(_ElementCopy, new(CanvasPanel.Location.X + (CanvasPanel.Width / 2), CanvasPanel.Location.Y + (CanvasPanel.Height / 2)));
+                            Panel panel = UOEditorCore.Session.CanvasUI;
+
+                            UOEditorCore.Session.AddToCanvas(_ElementCopy, new(panel.Location.X + (panel.Width / 2), panel.Location.Y + (panel.Height / 2)));
 
                             _ElementCopy = _ElementCopy.Copy();
                         }
@@ -138,13 +131,13 @@ namespace UOGumpEditor
 
                 case Keys.Delete:
                     {
-                        if (IsSingleSelected() && ElementListbox.SelectedItem is ElementEntity entity)
+                        if (UOEditorCore.Session.IsSingleSelected() && UOEditorCore.Session.ElementUI.ElementListbox.SelectedItem is ElementEntity entity)
                         {
-                            if (CanvasPanel.Controls.Contains(entity.Element))
+                            if (UOEditorCore.Session.CanvasUI.Controls.Contains(entity.Element))
                             {
                                 if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                                 {
-                                    RemoveFromCanvas(entity.Element);
+                                    UOEditorCore.Session.RemoveFromCanvas(entity.Element);
                                 }
                             }
                         }
@@ -154,19 +147,19 @@ namespace UOGumpEditor
 
                 default:
                     {
-                        if (CanvasPanel.Controls.Count > 0)
+                        if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
                         {
-                            CanvasPanel.SuspendLayout();
+                            UOEditorCore.Session.CanvasUI.SuspendLayout();
 
-                            for (int i = 0; i < CanvasPanel.Controls.Count; i++)
+                            for (int i = 0; i < UOEditorCore.Session.CanvasUI.Controls.Count; i++)
                             {
-                                if (CanvasPanel.Controls[i] is ElementControl ec && ec.IsSelected)
+                                if (UOEditorCore.Session.CanvasUI.Controls[i] is ElementControl ec && ec.IsSelected)
                                 {
                                     UOEditorCore.SendMoveAction(keyData, ec);
                                 }
                             }
 
-                            CanvasPanel.ResumeLayout();
+                            UOEditorCore.Session.CanvasUI.ResumeLayout();
                         }
 
                         break;
@@ -176,13 +169,6 @@ namespace UOGumpEditor
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void NewButton_Click(object sender, EventArgs e)
-        {
-            UOEditorCore.ResetEditor();
-        }
-
-        private GumpHandler? _Handler;
-
         private void CheckHandler()
         {
             if (_Handler != null && _Handler.Visible)
@@ -191,9 +177,14 @@ namespace UOGumpEditor
             }
         }
 
+        private void NewButton_Click(object sender, EventArgs e)
+        {
+            UOEditorCore.ResetEditor();
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (CanvasPanel.Controls.Count > 0)
+            if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
             {
                 CheckHandler();
 
@@ -209,7 +200,7 @@ namespace UOGumpEditor
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            if (CanvasPanel.Controls.Count > 0)
+            if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
             {
                 if (MessageBox.Show("Clearing Canvas, Proceed?", "Load Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                 {
@@ -226,15 +217,13 @@ namespace UOGumpEditor
             _Handler.Show();
         }
 
-        public ExportUI? ExportUIHandle { get; set; }
-
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            if (CanvasPanel.Controls.Count > 0 && ExportUIHandle == null)
+            if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && ExportUIHandle == null)
             {
                 List<ElementControl> elementList = [];
 
-                foreach (var element in CanvasPanel.Controls)
+                foreach (var element in UOEditorCore.Session.CanvasUI.Controls)
                 {
                     if (element is ElementControl ec)
                     {
@@ -263,10 +252,8 @@ namespace UOGumpEditor
 
         private void ModeButton_Click(object sender, EventArgs e)
         {
-            CanvasPanel.BackColor = CanvasPanel.BackColor == Color.Black ? Color.Transparent : Color.Black;
+            UOEditorCore.Session.CanvasUI.SetMode();
         }
-
-        private SettingsUI? _Settings;
 
         private void Settings_Click(object sender, EventArgs e)
         {
@@ -287,537 +274,65 @@ namespace UOGumpEditor
             UOEditorCore.OpenWebsite("https://www.uoopenai.com/uo_gump_editor");
         }
 
-        private bool IsGump()
+        private void UOGumpEditorUI_Resize(object sender, EventArgs e)
         {
-            return GumpArtButton.BackColor == Color.DodgerBlue;
-        }
-
-        private void GumpArtButton_Click(object sender, EventArgs e)
-        {
-            UOEditorCore.SwapButtonOn(GumpArtButton, ItemArtButton);
-
-            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-        }
-
-        private void ItemArtButton_Click(object sender, EventArgs e)
-        {
-            UOEditorCore.SwapButtonOn(ItemArtButton, GumpArtButton);
-
-            DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-        }
-
-        private async void ArtPicturebox_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (UOEditorCore.CurrentArtDisplayed != null)
+            if (UOEditorCore.Session.DisplayUI.Visible)
             {
-                UpdateElementInfo(UOEditorCore.CurrentArtDisplayed);
-            }
-
-            if (sender == ArtPicturebox)
-            {
-                if (ArtPicturebox.Tag is ArtEntity entity)
-                {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        ArtPicturebox.DoDragDrop(entity, DragDropEffects.Copy);
-                    }
-
-                    if (e.Button == MouseButtons.Right)
-                    {
-                        _artCache = new ArtCache(await UOArtLoader.SearchArtByIDAsync(entity.ID, IsGump()));
-
-                        DisplayArtWindow();
-                    }
-                }
-            }
-        }
-
-        private void AllArtButton_Click(object sender, EventArgs e)
-        {
-            if (UOArtLoader.GetAllArt(IsGump(), out List<ArtEntity> results))
-            {
-                _artCache = new ArtCache(results);
-
-                DisplayArtWindow();
-            }
-            else
-            {
-                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-            }
-        }
-
-        private async void ArtIDSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && ArtIDSearchBox.Text.Length < 6)
-            {
-                if (int.TryParse(ArtIDSearchBox.Text, out int val))
-                {
-                    _artCache = new ArtCache(await UOArtLoader.SearchArtByIDAsync(val, IsGump()));
-
-                    DisplayArtWindow();
-                }
-            }
-            else
-            {
-                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-            }
-        }
-
-        private async void ArtNameSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
-            {
-                _artCache = new ArtCache(await UOArtLoader.SearchArtByNameAsync(ArtNameSearchBox.Text, IsGump()));
-
-                DisplayArtWindow();
-            }
-            else
-            {
-                DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-            }
-        }
-
-        private int _SizeRange = 0;
-
-        private async void ArtSizeSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            if (sender is TextBox tb)
-            {
-                if (!string.IsNullOrEmpty(tb.Text) && tb.Text.Length < 6)
-                {
-                    if (int.TryParse(tb.Text, out int size) && size > 0)
-                    {
-                        _SizeRange = 0;
-                        
-                        if (!string.IsNullOrEmpty(ArtRangeSearchTextbox.Text))
-                        {
-                            if (int.TryParse(ArtRangeSearchTextbox.Text, out int val))
-                            {
-                                _SizeRange = val;
-                            }
-                        }
-
-                        _artCache = new ArtCache(await UOArtLoader.SearchArtBySizeAsync(size, _SizeRange, IsGump(), sender == ArtWidthSearchBox));
-
-                        DisplayArtWindow();
-                    }
-                }
-                else
-                {
-                    DisplayArt(UOArtLoader.GetArtEntity(0, IsGump()));
-                }
-            }
-        }
-
-        private void ArtSearchBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (sender is TextBox box && box.Text.Length == 0)
-            {
-                ResetIDSearch();
-            }
-        }
-
-        private void HistoryListbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (HistoryListbox.SelectedItem != null && HistoryListbox.SelectedItem is ArtEntity entity)
-            {
-                DisplayArt(entity);
-            }
-        }
-
-        private void ClearHistoryButton_Click(object sender, EventArgs e)
-        {
-            HistoryListbox.Items.Clear();
-        }
-
-        private void DisplayArtWindow()
-        {
-            if (_artCache != null)
-            {
-                var results = _artCache.GetCurrentWindow(SearchFlowPanel);
-
-                PreviousButton.Visible = _artCache.CanScrollPrev();
-
-                NextButton.Visible = _artCache.CanScrollNext();
-
-                DisplaySearchResults(results);
-
-                SetMainDisplay(SearchPanel);
-            }
-        }
-
-        private void SetMainDisplay(Panel panel)
-        {
-            CanvasPanel.Dock = DockStyle.None;
-
-            SearchPanel.Dock = DockStyle.None;
-
-            panel.Dock = DockStyle.Fill;
-
-            FocusPanel.Visible = CanvasPanel.Dock == DockStyle.Fill;
-
-            panel.BringToFront();
-        }
-
-        private void DisplaySearchResults(List<ArtEntity> results)
-        {
-            if (results.Count > 0)
-            {
-                SearchFlowPanel.Controls.Clear();
-
-                Color color;
-
-                Image? image;
-
-                foreach (var entity in results)
-                {
-                    image = entity.GetImage();
-
-                    if (image == null)
-                    {
-                        color = Color.Brown; // red
-                    }
-                    else
-                    {
-                        color = Color.Black;
-                    }
-
-                    SearchFlowPanel.Controls.Add(new ArtPictureBox(entity, image, color));
-
-                    image = null;
-                }
-
-                SearchFlowPanel.Visible = true;
-            }
-        }
-
-        public void DisplayArt(ArtEntity entity)
-        {
-            ResetIDSearch();
-
-            UOEditorCore.SetImageRenderer(ArtPicturebox, entity);
-
-            SetMainDisplay(CanvasPanel);
-        }
-
-        private void PreviousButton_Click(object sender, EventArgs e)
-        {
-            PreviousButton.Visible = false;
-
-            if (_artCache != null)
-            {
-                _artCache.ScrollPrev();
-
-                DisplayArtWindow();
-            }
-        }
-
-        private void NextButton_Click(object sender, EventArgs e)
-        {
-            NextButton.Visible = false;
-
-            if (_artCache != null)
-            {
-                _artCache.ScrollNext();
-
-                DisplayArtWindow();
-            }
-        }
-
-        private void ResetIDSearch()
-        {
-            ArtIDSearchBox.Clear();
-
-            ArtNameSearchBox.Clear();
-
-            ArtWidthSearchBox.Clear();
-
-            ArtHeightSearchBox.Clear();
-
-            ArtRangeSearchTextbox.Clear();
-
-            SearchFlowPanel.Visible = false;
-        }
-
-        private void CanvasPanel_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data != null && e.Data.GetDataPresent(typeof(ArtEntity)))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-
-        private void CanvasPanel_DragDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data != null)
-            {
-                if (e.Data.GetDataPresent(typeof(ArtEntity)))
-                {
-                    if (e.Data.GetData(typeof(ArtEntity)) is ArtEntity entity)
-                    {
-                        var dropLocation = CanvasPanel.PointToClient(new Point(e.X, e.Y));
-
-                        ElementControl element = new()
-                        {
-                            Tag = entity
-                        };
-
-                        element.SetImage(entity);
-
-                        if (IsGump())
-                        {
-                            UOEditorCore.InitGumpConditions(entity, element);
-                        }
-                        else
-                        {
-                            element.ElementType = ElementTypes.Item;
-                        }
-
-                        AddToCanvas(element, dropLocation);
-                    }
-                }
+                UOEditorCore.Session.DisplayArtWindow();
             }
         }
 
         private void AddLabelButton_Click(object sender, EventArgs e)
         {
-            OpenEditor(ElementTypes.Label);
+            UOEditorCore.Session.CanvasUI.OpenEditor(ElementTypes.Label);
         }
 
         private void AddHTMLButton_Click(object sender, EventArgs e)
         {
-            OpenEditor(ElementTypes.Html);
-        }
-
-        private UOImageEditor? editor;
-
-        internal void OpenEditor(ElementTypes element, ElementControl? elementControl = null)
-        {
-            if (editor != null && editor.Visible)
-            {
-                return;
-            }
-
-            if (elementControl != null)
-            {
-                editor = new(element, elementControl);
-            }
-            else
-            {
-                editor = new(element);
-            }
-
-            editor.Show();
-        }
-
-        public void AddTextElement(string text, Color hue, ElementTypes textType)
-        {
-            ElementControl element = new()
-            {
-                ElementType = textType
-            };
-
-            element.SetText(text, hue);
-
-            AddToCanvas(element, new(50, 50));
-        }
-
-        private void AddToCanvas(ElementControl element, Point location)
-        {
-            if (element.ElementType == ElementTypes.Background)
-            {
-                element.Width *= 3;
-
-                element.Height *= 3;
-            }
-
-            element.Location = new Point(location.X - (element.Width / 2), location.Y - (element.Height / 2));
-
-            CanvasPanel.Controls.Add(element);
-        }
-
-        public void RemoveFromCanvas(ElementControl element)
-        {
-            if (CanvasPanel.Controls.Contains(element))
-            {
-                CanvasPanel.Controls.Remove(element);
-            }
-        }
-
-        private void CanvasPanel_ControlAdded(object sender, ControlEventArgs e)
-        {
-            if (e.Control is ElementControl ec)
-            {
-                ElementListbox.ClearSelected();
-
-                ElementListbox.Items.Add(new ElementEntity(ec));
-
-                CanvasPanel.Controls.SetChildIndex(ec, CanvasPanel.Controls.Count - 1);
-
-                ElementListbox.SelectedIndex = ElementListbox.Items.Count - 1;
-
-                if (ec.Tag != null && ec.Tag is ArtEntity entity)
-                {
-                    AddToHistory(entity);
-                }
-            }
-        }
-
-        private void CanvasPanel_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            if (e.Control is ElementControl ec)
-            {
-                ElementEntity? ee = null;
-
-                foreach (var entity in ElementListbox.Items)
-                {
-                    if (entity is ElementEntity elementEntity && elementEntity.Element == ec)
-                    {
-                        ee = elementEntity;
-                    }
-                }
-
-                if (ee != null)
-                {
-                    ElementListbox.Items.Remove(ee);
-                }
-            }
-        }
-
-        public void AddToHistory(ArtEntity entity)
-        {
-            HistoryListbox.Items.Add(entity);
-
-            HistoryListbox.Invalidate();
-        }
-
-        private bool IsSingleSelected()
-        {
-            return ElementListbox.SelectedItems.Count == 1;
-        }
-
-        private void ElementListbox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ElementListbox.Items.Count > 0)
-            {
-                for (int i = 0; i < ElementListbox.Items.Count; i++)
-                {
-                    if (ElementListbox.Items[i] is ElementEntity ee)
-                    {
-                        if (ElementListbox.SelectedItems.Contains(ee))
-                        {
-                            ee.Element.SetSelected(true);
-                        }
-                        else
-                        {
-                            ee.Element.SetSelected(false);
-                        }
-                    }
-                }
-
-                CanvasPanel.Invalidate();
-            }
-        }
-
-        private void ElementListbox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
-            {
-                OpenEditor(ee.Element.ElementType, ee.Element);
-            }
-        }
-
-        private void SelectAllButton_Click(object sender, EventArgs e)
-        {
-            if (ElementListbox.Items.Count > 0)
-            {
-                for (int i = 0; i < ElementListbox.Items.Count; i++)
-                {
-                    if (!ElementListbox.SelectedItems.Contains(ElementListbox.Items[i]))
-                    {
-                        ElementListbox.SetSelected(i, true);
-                    }
-                }
-            }
-        }
-
-        private void ClearSelectedButton_Click(object sender, EventArgs e)
-        {
-            ElementListbox.ClearSelected();
-        }
-
-        public void ReloadListBox(int index)
-        {
-            ElementListbox.Items.Clear();
-
-            foreach (Control control in CanvasPanel.Controls)
-            {
-                if (control is ElementControl ec)
-                {
-                    ElementListbox.Items.Add(new ElementEntity(ec));
-                }
-            }
-
-            ElementListbox.SelectedIndex = index;
-        }
-
-        public void UpdateElementInfo(ArtEntity entity, ElementControl? element = null)
-        {
-            GumpInfoLabel.Text = $"{(entity.IsGump ? "Gump" : "Item")} {entity.ID} : [{entity.Name}] - width: {entity.Width} / height: {entity.Height}";
-
-            if (element != null)
-            {
-                GumpInfoLabel.Text += $" | width: {element.Width} / height: {element.Height}";
-            }
-        }
-
-        private void UOGumpEditorUI_Resize(object sender, EventArgs e)
-        {
-            if (SearchFlowPanel.Visible)
-            {
-                DisplayArtWindow();
-            }
-            else
-            {
-                SetMainDisplay(CanvasPanel);
-            }
+            UOEditorCore.Session.CanvasUI.OpenEditor(ElementTypes.Html);
         }
 
         private void RaiseLayerButton_Click(object sender, EventArgs e)
         {
-            if (!IsSingleSelected())
+            if (!UOEditorCore.Session.IsSingleSelected())
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;
             }
 
-            int index = (ElementListbox.SelectedIndex + 1);
+            int index = (UOEditorCore.Session.ElementUI.ElementListbox.SelectedIndex + 1);
 
             if (UOEditorCore.MoveLayerUp())
             {
-                ReloadListBox(index);
+                UOEditorCore.Session.ReloadListBox(index);
             }
         }
 
         private void LowerLayerButton_Click(object sender, EventArgs e)
         {
-            if (!IsSingleSelected())
+            if (!UOEditorCore.Session.IsSingleSelected())
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;
             }
 
-            int index = (ElementListbox.SelectedIndex - 1);
+            int index = (UOEditorCore.Session.ElementUI.ElementListbox.SelectedIndex - 1);
 
             if (UOEditorCore.MoveLayerDown())
             {
-                ReloadListBox(index);
+                UOEditorCore.Session.ReloadListBox(index);
+            }
+        }
+
+        private void ElementStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Point mousePosition = UOEditorCore.Session.CanvasUI.PointToClient(Cursor.Position);
+
+            if (!UOEditorCore.Session.CanvasUI.ClientRectangle.Contains(mousePosition))
+            {
+                e.Cancel = true;
             }
         }
     }

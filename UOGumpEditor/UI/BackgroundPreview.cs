@@ -33,7 +33,7 @@
 
         private void BackgroundPreview_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ArtPictureBox.PreviewBox = null;
+            UOGEArtPictureBox.PreviewBox = null;
         }
     }
 }

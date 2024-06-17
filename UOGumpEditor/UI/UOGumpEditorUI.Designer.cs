@@ -33,26 +33,6 @@
             BottomStatusStrip = new StatusStrip();
             UOProgressBar = new ToolStripProgressBar();
             GumpInfoLabel = new ToolStripStatusLabel();
-            ElementStrip = new ContextMenuStrip(components);
-            AddLabelButton = new ToolStripMenuItem();
-            AddHTMLButton = new ToolStripMenuItem();
-            RaiseLayerButton = new ToolStripMenuItem();
-            LowerLayerButton = new ToolStripMenuItem();
-            ArtPanel = new Panel();
-            HistoryListbox = new ListBox();
-            ClearHistoryButton = new Button();
-            HistoryLabel = new Label();
-            SizePanel = new Panel();
-            ArtHeightSearchBox = new TextBox();
-            ArtWidthSearchBox = new TextBox();
-            ArtNameSearchBox = new TextBox();
-            ArtIDSearchBox = new TextBox();
-            AllArtButton = new Button();
-            ArtPicturebox = new PictureBox();
-            ArtSelectPanel = new Panel();
-            ItemArtButton = new Button();
-            GumpArtButton = new Button();
-            SearchFlowPanel = new FlowLayoutPanel();
             TopMenuStrip = new ToolStrip();
             NewButton = new ToolStripButton();
             SaveButton = new ToolStripButton();
@@ -61,25 +41,14 @@
             SettingsButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
             ModeButton = new ToolStripButton();
-            CanvasPanel = new Panel();
-            NextButton = new Button();
-            PreviousButton = new Button();
-            SearchPanel = new Panel();
-            FocusPanel = new Panel();
-            ElementListbox = new ListBox();
-            SelectAllButton = new Button();
-            ClearSelectedButton = new Button();
-            ElementLabel = new Label();
-            ArtRangeSearchTextbox = new TextBox();
+            ElementStrip = new ContextMenuStrip(components);
+            AddLabelButton = new ToolStripMenuItem();
+            AddHTMLButton = new ToolStripMenuItem();
+            RaiseLayerButton = new ToolStripMenuItem();
+            LowerLayerButton = new ToolStripMenuItem();
             BottomStatusStrip.SuspendLayout();
-            ElementStrip.SuspendLayout();
-            ArtPanel.SuspendLayout();
-            SizePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ArtPicturebox).BeginInit();
-            ArtSelectPanel.SuspendLayout();
             TopMenuStrip.SuspendLayout();
-            SearchPanel.SuspendLayout();
-            FocusPanel.SuspendLayout();
+            ElementStrip.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -104,188 +73,6 @@
             GumpInfoLabel.LinkBehavior = LinkBehavior.NeverUnderline;
             GumpInfoLabel.Margin = new Padding(2, 3, 0, 2);
             GumpInfoLabel.Name = "GumpInfoLabel";
-            // 
-            // ElementStrip
-            // 
-            ElementStrip.BackColor = Color.FromArgb(32, 32, 32);
-            resources.ApplyResources(ElementStrip, "ElementStrip");
-            ElementStrip.DropShadowEnabled = false;
-            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton, RaiseLayerButton, LowerLayerButton });
-            ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
-            ElementStrip.Name = "ElementStrip";
-            ElementStrip.ShowItemToolTips = false;
-            // 
-            // AddLabelButton
-            // 
-            resources.ApplyResources(AddLabelButton, "AddLabelButton");
-            AddLabelButton.ForeColor = Color.WhiteSmoke;
-            AddLabelButton.Image = GumpRes.MenuIcon;
-            AddLabelButton.Name = "AddLabelButton";
-            AddLabelButton.Click += AddLabelButton_Click;
-            // 
-            // AddHTMLButton
-            // 
-            resources.ApplyResources(AddHTMLButton, "AddHTMLButton");
-            AddHTMLButton.ForeColor = Color.WhiteSmoke;
-            AddHTMLButton.Image = GumpRes.MenuOpenIcon;
-            AddHTMLButton.Name = "AddHTMLButton";
-            AddHTMLButton.Click += AddHTMLButton_Click;
-            // 
-            // RaiseLayerButton
-            // 
-            resources.ApplyResources(RaiseLayerButton, "RaiseLayerButton");
-            RaiseLayerButton.ForeColor = Color.WhiteSmoke;
-            RaiseLayerButton.Image = GumpRes.Add;
-            RaiseLayerButton.Name = "RaiseLayerButton";
-            RaiseLayerButton.Click += RaiseLayerButton_Click;
-            // 
-            // LowerLayerButton
-            // 
-            resources.ApplyResources(LowerLayerButton, "LowerLayerButton");
-            LowerLayerButton.ForeColor = Color.WhiteSmoke;
-            LowerLayerButton.Image = GumpRes.Minus;
-            LowerLayerButton.Name = "LowerLayerButton";
-            LowerLayerButton.Click += LowerLayerButton_Click;
-            // 
-            // ArtPanel
-            // 
-            ArtPanel.BackColor = Color.FromArgb(32, 32, 32);
-            ArtPanel.Controls.Add(HistoryListbox);
-            ArtPanel.Controls.Add(ClearHistoryButton);
-            ArtPanel.Controls.Add(HistoryLabel);
-            ArtPanel.Controls.Add(SizePanel);
-            ArtPanel.Controls.Add(ArtNameSearchBox);
-            ArtPanel.Controls.Add(ArtIDSearchBox);
-            ArtPanel.Controls.Add(AllArtButton);
-            ArtPanel.Controls.Add(ArtPicturebox);
-            ArtPanel.Controls.Add(ArtSelectPanel);
-            resources.ApplyResources(ArtPanel, "ArtPanel");
-            ArtPanel.Name = "ArtPanel";
-            // 
-            // HistoryListbox
-            // 
-            HistoryListbox.BackColor = Color.WhiteSmoke;
-            HistoryListbox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(HistoryListbox, "HistoryListbox");
-            HistoryListbox.ForeColor = Color.Black;
-            HistoryListbox.FormattingEnabled = true;
-            HistoryListbox.Name = "HistoryListbox";
-            HistoryListbox.SelectedIndexChanged += HistoryListbox_SelectedIndexChanged;
-            // 
-            // ClearHistoryButton
-            // 
-            ClearHistoryButton.BackColor = Color.Brown;
-            resources.ApplyResources(ClearHistoryButton, "ClearHistoryButton");
-            ClearHistoryButton.FlatAppearance.BorderSize = 0;
-            ClearHistoryButton.Name = "ClearHistoryButton";
-            ClearHistoryButton.UseVisualStyleBackColor = false;
-            ClearHistoryButton.Click += ClearHistoryButton_Click;
-            // 
-            // HistoryLabel
-            // 
-            HistoryLabel.BackColor = Color.Indigo;
-            resources.ApplyResources(HistoryLabel, "HistoryLabel");
-            HistoryLabel.ForeColor = Color.WhiteSmoke;
-            HistoryLabel.Name = "HistoryLabel";
-            // 
-            // SizePanel
-            // 
-            SizePanel.Controls.Add(ArtWidthSearchBox);
-            SizePanel.Controls.Add(ArtHeightSearchBox);
-            SizePanel.Controls.Add(ArtRangeSearchTextbox);
-            resources.ApplyResources(SizePanel, "SizePanel");
-            SizePanel.Name = "SizePanel";
-            // 
-            // ArtHeightSearchBox
-            // 
-            ArtHeightSearchBox.BackColor = Color.Khaki;
-            ArtHeightSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtHeightSearchBox, "ArtHeightSearchBox");
-            ArtHeightSearchBox.ForeColor = Color.Black;
-            ArtHeightSearchBox.Name = "ArtHeightSearchBox";
-            ArtHeightSearchBox.MouseClick += ArtSearchBox_MouseClick;
-            ArtHeightSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
-            // 
-            // ArtWidthSearchBox
-            // 
-            ArtWidthSearchBox.BackColor = Color.Khaki;
-            ArtWidthSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtWidthSearchBox, "ArtWidthSearchBox");
-            ArtWidthSearchBox.ForeColor = Color.Black;
-            ArtWidthSearchBox.Name = "ArtWidthSearchBox";
-            ArtWidthSearchBox.MouseClick += ArtSearchBox_MouseClick;
-            ArtWidthSearchBox.TextChanged += ArtSizeSearchBox_TextChanged;
-            // 
-            // ArtNameSearchBox
-            // 
-            ArtNameSearchBox.BackColor = Color.PaleGoldenrod;
-            ArtNameSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtNameSearchBox, "ArtNameSearchBox");
-            ArtNameSearchBox.ForeColor = Color.Black;
-            ArtNameSearchBox.Name = "ArtNameSearchBox";
-            ArtNameSearchBox.MouseClick += ArtSearchBox_MouseClick;
-            ArtNameSearchBox.TextChanged += ArtNameSearchBox_TextChanged;
-            // 
-            // ArtIDSearchBox
-            // 
-            ArtIDSearchBox.BackColor = Color.LightGoldenrodYellow;
-            ArtIDSearchBox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtIDSearchBox, "ArtIDSearchBox");
-            ArtIDSearchBox.ForeColor = Color.Black;
-            ArtIDSearchBox.Name = "ArtIDSearchBox";
-            ArtIDSearchBox.MouseClick += ArtSearchBox_MouseClick;
-            ArtIDSearchBox.TextChanged += ArtIDSearchBox_TextChanged;
-            // 
-            // AllArtButton
-            // 
-            AllArtButton.BackColor = Color.Goldenrod;
-            resources.ApplyResources(AllArtButton, "AllArtButton");
-            AllArtButton.FlatAppearance.BorderSize = 0;
-            AllArtButton.Name = "AllArtButton";
-            AllArtButton.UseVisualStyleBackColor = false;
-            AllArtButton.Click += AllArtButton_Click;
-            // 
-            // ArtPicturebox
-            // 
-            ArtPicturebox.BackColor = Color.Black;
-            resources.ApplyResources(ArtPicturebox, "ArtPicturebox");
-            ArtPicturebox.BorderStyle = BorderStyle.FixedSingle;
-            ArtPicturebox.Name = "ArtPicturebox";
-            ArtPicturebox.TabStop = false;
-            ArtPicturebox.MouseDown += ArtPicturebox_MouseDown;
-            // 
-            // ArtSelectPanel
-            // 
-            ArtSelectPanel.Controls.Add(ItemArtButton);
-            ArtSelectPanel.Controls.Add(GumpArtButton);
-            resources.ApplyResources(ArtSelectPanel, "ArtSelectPanel");
-            ArtSelectPanel.Name = "ArtSelectPanel";
-            // 
-            // ItemArtButton
-            // 
-            ItemArtButton.BackColor = Color.RoyalBlue;
-            resources.ApplyResources(ItemArtButton, "ItemArtButton");
-            ItemArtButton.FlatAppearance.BorderSize = 0;
-            ItemArtButton.ForeColor = Color.Black;
-            ItemArtButton.Name = "ItemArtButton";
-            ItemArtButton.UseVisualStyleBackColor = false;
-            ItemArtButton.Click += ItemArtButton_Click;
-            // 
-            // GumpArtButton
-            // 
-            GumpArtButton.BackColor = Color.DodgerBlue;
-            resources.ApplyResources(GumpArtButton, "GumpArtButton");
-            GumpArtButton.FlatAppearance.BorderSize = 0;
-            GumpArtButton.ForeColor = Color.WhiteSmoke;
-            GumpArtButton.Name = "GumpArtButton";
-            GumpArtButton.UseVisualStyleBackColor = false;
-            GumpArtButton.Click += GumpArtButton_Click;
-            // 
-            // SearchFlowPanel
-            // 
-            resources.ApplyResources(SearchFlowPanel, "SearchFlowPanel");
-            SearchFlowPanel.BackColor = Color.FromArgb(64, 64, 64);
-            SearchFlowPanel.Name = "SearchFlowPanel";
             // 
             // TopMenuStrip
             // 
@@ -370,154 +157,74 @@
             ModeButton.Name = "ModeButton";
             ModeButton.Click += ModeButton_Click;
             // 
-            // CanvasPanel
+            // ElementStrip
             // 
-            CanvasPanel.AllowDrop = true;
-            CanvasPanel.BackColor = Color.Black;
-            CanvasPanel.BackgroundImage = GumpRes.UOGSLogo;
-            resources.ApplyResources(CanvasPanel, "CanvasPanel");
-            CanvasPanel.Name = "CanvasPanel";
-            CanvasPanel.ControlAdded += CanvasPanel_ControlAdded;
-            CanvasPanel.ControlRemoved += CanvasPanel_ControlRemoved;
-            CanvasPanel.DragDrop += CanvasPanel_DragDrop;
-            CanvasPanel.DragEnter += CanvasPanel_DragEnter;
+            ElementStrip.BackColor = Color.FromArgb(32, 32, 32);
+            resources.ApplyResources(ElementStrip, "ElementStrip");
+            ElementStrip.DropShadowEnabled = false;
+            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton, RaiseLayerButton, LowerLayerButton });
+            ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
+            ElementStrip.Name = "ElementStrip";
+            ElementStrip.ShowItemToolTips = false;
+            ElementStrip.Opening += ElementStrip_Opening;
             // 
-            // NextButton
+            // AddLabelButton
             // 
-            NextButton.BackColor = Color.Goldenrod;
-            resources.ApplyResources(NextButton, "NextButton");
-            NextButton.FlatAppearance.BorderSize = 0;
-            NextButton.ForeColor = Color.Black;
-            NextButton.Name = "NextButton";
-            NextButton.UseVisualStyleBackColor = false;
-            NextButton.Click += NextButton_Click;
+            resources.ApplyResources(AddLabelButton, "AddLabelButton");
+            AddLabelButton.ForeColor = Color.WhiteSmoke;
+            AddLabelButton.Image = GumpRes.MenuIcon;
+            AddLabelButton.Name = "AddLabelButton";
+            AddLabelButton.Click += AddLabelButton_Click;
             // 
-            // PreviousButton
+            // AddHTMLButton
             // 
-            PreviousButton.BackColor = Color.Goldenrod;
-            resources.ApplyResources(PreviousButton, "PreviousButton");
-            PreviousButton.FlatAppearance.BorderSize = 0;
-            PreviousButton.ForeColor = Color.Black;
-            PreviousButton.Name = "PreviousButton";
-            PreviousButton.UseVisualStyleBackColor = false;
-            PreviousButton.Click += PreviousButton_Click;
+            resources.ApplyResources(AddHTMLButton, "AddHTMLButton");
+            AddHTMLButton.ForeColor = Color.WhiteSmoke;
+            AddHTMLButton.Image = GumpRes.MenuOpenIcon;
+            AddHTMLButton.Name = "AddHTMLButton";
+            AddHTMLButton.Click += AddHTMLButton_Click;
             // 
-            // SearchPanel
+            // RaiseLayerButton
             // 
-            SearchPanel.BackColor = Color.FromArgb(32, 32, 32);
-            SearchPanel.Controls.Add(SearchFlowPanel);
-            SearchPanel.Controls.Add(PreviousButton);
-            SearchPanel.Controls.Add(NextButton);
-            resources.ApplyResources(SearchPanel, "SearchPanel");
-            SearchPanel.Name = "SearchPanel";
+            resources.ApplyResources(RaiseLayerButton, "RaiseLayerButton");
+            RaiseLayerButton.ForeColor = Color.WhiteSmoke;
+            RaiseLayerButton.Image = GumpRes.Add;
+            RaiseLayerButton.Name = "RaiseLayerButton";
+            RaiseLayerButton.Click += RaiseLayerButton_Click;
             // 
-            // FocusPanel
+            // LowerLayerButton
             // 
-            FocusPanel.BackColor = Color.FromArgb(32, 32, 32);
-            resources.ApplyResources(FocusPanel, "FocusPanel");
-            FocusPanel.Controls.Add(ElementListbox);
-            FocusPanel.Controls.Add(SelectAllButton);
-            FocusPanel.Controls.Add(ClearSelectedButton);
-            FocusPanel.Controls.Add(ElementLabel);
-            FocusPanel.Name = "FocusPanel";
-            // 
-            // ElementListbox
-            // 
-            ElementListbox.BackColor = Color.FromArgb(64, 64, 64);
-            ElementListbox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ElementListbox, "ElementListbox");
-            ElementListbox.ForeColor = Color.White;
-            ElementListbox.FormattingEnabled = true;
-            ElementListbox.Name = "ElementListbox";
-            ElementListbox.SelectionMode = SelectionMode.MultiSimple;
-            ElementListbox.TabStop = false;
-            ElementListbox.SelectedIndexChanged += ElementListbox_SelectedIndexChanged;
-            ElementListbox.MouseDoubleClick += ElementListbox_MouseDoubleClick;
-            // 
-            // SelectAllButton
-            // 
-            SelectAllButton.BackColor = Color.Goldenrod;
-            resources.ApplyResources(SelectAllButton, "SelectAllButton");
-            SelectAllButton.FlatAppearance.BorderSize = 0;
-            SelectAllButton.Name = "SelectAllButton";
-            SelectAllButton.UseVisualStyleBackColor = false;
-            SelectAllButton.Click += SelectAllButton_Click;
-            // 
-            // ClearSelectedButton
-            // 
-            ClearSelectedButton.BackColor = Color.Brown;
-            resources.ApplyResources(ClearSelectedButton, "ClearSelectedButton");
-            ClearSelectedButton.FlatAppearance.BorderSize = 0;
-            ClearSelectedButton.Name = "ClearSelectedButton";
-            ClearSelectedButton.UseVisualStyleBackColor = false;
-            ClearSelectedButton.Click += ClearSelectedButton_Click;
-            // 
-            // ElementLabel
-            // 
-            ElementLabel.BackColor = Color.DarkMagenta;
-            resources.ApplyResources(ElementLabel, "ElementLabel");
-            ElementLabel.Name = "ElementLabel";
-            // 
-            // ArtRangeSearchTextbox
-            // 
-            ArtRangeSearchTextbox.BackColor = Color.PaleGoldenrod;
-            ArtRangeSearchTextbox.BorderStyle = BorderStyle.FixedSingle;
-            resources.ApplyResources(ArtRangeSearchTextbox, "ArtRangeSearchTextbox");
-            ArtRangeSearchTextbox.ForeColor = Color.Black;
-            ArtRangeSearchTextbox.Name = "ArtRangeSearchTextbox";
+            resources.ApplyResources(LowerLayerButton, "LowerLayerButton");
+            LowerLayerButton.ForeColor = Color.WhiteSmoke;
+            LowerLayerButton.Image = GumpRes.Minus;
+            LowerLayerButton.Name = "LowerLayerButton";
+            LowerLayerButton.Click += LowerLayerButton_Click;
             // 
             // UOGumpEditorUI
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.White;
-            BackgroundImage = GumpRes.UOScreen;
+            BackColor = Color.Tan;
+            BackgroundImage = GumpRes.UOGSLogo;
             ContextMenuStrip = ElementStrip;
-            Controls.Add(FocusPanel);
-            Controls.Add(SearchPanel);
-            Controls.Add(CanvasPanel);
-            Controls.Add(ArtPanel);
             Controls.Add(BottomStatusStrip);
             Controls.Add(TopMenuStrip);
-            DoubleBuffered = true;
             ForeColor = Color.WhiteSmoke;
             Name = "UOGumpEditorUI";
             Load += UOGumpEditorUI_Load;
             Resize += UOGumpEditorUI_Resize;
             BottomStatusStrip.ResumeLayout(false);
             BottomStatusStrip.PerformLayout();
-            ElementStrip.ResumeLayout(false);
-            ArtPanel.ResumeLayout(false);
-            ArtPanel.PerformLayout();
-            SizePanel.ResumeLayout(false);
-            SizePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ArtPicturebox).EndInit();
-            ArtSelectPanel.ResumeLayout(false);
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
-            SearchPanel.ResumeLayout(false);
-            FocusPanel.ResumeLayout(false);
+            ElementStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private StatusStrip BottomStatusStrip;
-        private ToolStripStatusLabel GumpInfoLabel;
         private ToolStripProgressBar UOProgressBar;
-        private ContextMenuStrip ElementStrip;
-        private ToolStripMenuItem AddLabelButton;
-        private Panel ArtPanel;
-        private PictureBox ArtPicturebox;
-        private TextBox ArtIDSearchBox;
-        private Label HistoryLabel;
-        private Panel ArtSelectPanel;
-        private Button ItemArtButton;
-        private Button GumpArtButton;
-        private Button ClearHistoryButton;
-        private TextBox ArtWidthSearchBox;
-        private TextBox ArtNameSearchBox;
-        private FlowLayoutPanel SearchFlowPanel;
         private ToolStrip TopMenuStrip;
         private ToolStripButton NewButton;
         private ToolStripButton SaveButton;
@@ -525,23 +232,12 @@
         private ToolStripButton SettingsButton;
         private ToolStripButton GetHelpButton;
         private ToolStripButton ExportButton;
-        private Panel SizePanel;
-        private TextBox ArtHeightSearchBox;
         private ToolStripButton ModeButton;
+        internal ToolStripStatusLabel GumpInfoLabel;
+        private ContextMenuStrip ElementStrip;
+        private ToolStripMenuItem AddLabelButton;
         private ToolStripMenuItem AddHTMLButton;
-        private Button PreviousButton;
-        private Button NextButton;
         private ToolStripMenuItem RaiseLayerButton;
         private ToolStripMenuItem LowerLayerButton;
-        private Panel SearchPanel;
-        internal Panel CanvasPanel;
-        private Panel FocusPanel;
-        private Label ElementLabel;
-        private Button ClearSelectedButton;
-        internal ListBox HistoryListbox;
-        internal ListBox ElementListbox;
-        private Button AllArtButton;
-        private Button SelectAllButton;
-        private TextBox ArtRangeSearchTextbox;
     }
 }

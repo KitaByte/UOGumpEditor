@@ -1,6 +1,6 @@
 ﻿namespace UOGumpEditor
 {
-    public class ArtPictureBox : PictureBox
+    public class UOGEArtPictureBox : UOGEPictureBox
     {
         private readonly ArtEntity _ArtEntity;
 
@@ -10,7 +10,7 @@
         
         public static Form? PreviewBox { get; set; }
 
-        public ArtPictureBox(ArtEntity entity, Image? image, Color color)
+        public UOGEArtPictureBox(ArtEntity entity, Image? image, Color color)
         {
             _ArtEntity = entity;
 
@@ -23,8 +23,6 @@
 
         private void InitializePictureBox()
         {
-            BorderStyle = BorderStyle.FixedSingle;
-
             BackColor = _Color;
 
             Image = _Image;
@@ -46,13 +44,13 @@
         {
             if (Image != null)
             {
-                UOEditorCore.MainUI.DisplayArt(_ArtEntity);
+                UOEditorCore.Session.SearchUI.DisplayArt(_ArtEntity);
             }
         }
 
         private async void ArtPictureBox_MouseHover(object? sender, EventArgs e)
         {
-            UOEditorCore.MainUI.UpdateElementInfo(_ArtEntity);
+            UOEditorCore.Session.UpdateElementInfo(_ArtEntity);
 
             if (_ArtEntity.Name.StartsWith("Background"))
             {

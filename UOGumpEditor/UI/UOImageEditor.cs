@@ -95,7 +95,7 @@ namespace UOGumpEditor
             {
                 if (_ElementControl == null)
                 {
-                    UOEditorCore.MainUI.AddTextElement(TextTextbox.Text, Color.White, _ElementType);
+                    UOEditorCore.Session.AddTextElement(TextTextbox.Text, Color.White, _ElementType);
 
                     Close();
                 }
@@ -186,11 +186,11 @@ namespace UOGumpEditor
         {
             if (_ElementControl != null)
             {
-                if (UOEditorCore.MainUI.CanvasPanel.Controls.Contains(_ElementControl))
+                if (UOEditorCore.Session.CanvasUI.Controls.Contains(_ElementControl))
                 {
                     if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     {
-                        UOEditorCore.MainUI.RemoveFromCanvas(_ElementControl);
+                        UOEditorCore.Session.RemoveFromCanvas(_ElementControl);
 
                         Close();
                     }
