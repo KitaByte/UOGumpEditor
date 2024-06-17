@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-using UOGumpEditor.UOElements;
 using UOGumpEditor.UOGumps;
+using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -12,7 +12,11 @@ namespace UOGumpEditor
 
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
+        private static readonly Dictionary<ElementControl, int> elementIndices = [];
+
         private static Point CurrentPosition = new(0,0);
+
+        private const string LineBreakMarker = "*BR*";
 
         private static int moveAmount = 1;
 
@@ -71,8 +75,6 @@ namespace UOGumpEditor
         {
             return new Point(element.Location.X + dx, element.Location.Y + dy);
         }
-
-        private static readonly Dictionary<ElementControl, int> elementIndices = [];
 
         public static void StoreElementIndices()
         {
@@ -559,8 +561,6 @@ namespace UOGumpEditor
                 MessageBox.Show("Could not open the website. Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private const string LineBreakMarker = "*BR*";
 
         public static string CombineMultiString(string multiLine, bool useMarker = true)
         {

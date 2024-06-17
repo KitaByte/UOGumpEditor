@@ -8,6 +8,8 @@ namespace UOGumpEditor
 
         public ArtCache? ArtCacheHandle { get; set; } = null;
 
+        public ExportUI? ExportUIHandle { get; set; }
+
         public UOGECanvasPanel CanvasUI { get; init; } = new UOGECanvasPanel();
 
         public UOGEDisplayPanel DisplayUI { get; init; } = new UOGEDisplayPanel();
@@ -18,15 +20,55 @@ namespace UOGumpEditor
 
         public readonly Dictionary<ElementControl, Point> SelectedElements = [];
 
+        private readonly Dictionary<ElementControl, Point> ElementCopyList = [];
+
+        private ElementControl? _CopyiedElement;
+
         public void UpdateSelected(ElementControl control, Point point)
         {
-            if (SelectedElements.ContainsKey(control))
+            if (control.IsSelected)
             {
-                SelectedElements.Remove(control);
+                SelectedElements.TryAdd(control, point);
             }
             else
             {
-                SelectedElements.Add(control, point);
+                SelectedElements.Remove(control);
+            }
+        }
+
+        public void UpdateCopyList()
+        {
+            if (ElementUI.ElementListbox.SelectedItems.Count > 0)
+            {
+                ElementCopyList.Clear();
+
+                foreach (ElementEntity entity in ElementUI.ElementListbox.SelectedItems)
+                {
+                    if (entity != null && entity.Element != null)
+                    {
+                        _CopyiedElement = entity.Element.Copy();
+
+                        if (_CopyiedElement != null)
+                        {
+                            ElementCopyList.TryAdd(_CopyiedElement, new Point(entity.Element.Location.X - 1, entity.Element.Location.Y - 1));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void PlaceCopyList()
+        {
+            if (ElementCopyList.Count > 0)
+            {
+                ElementUI.ElementListbox.ClearSelected();
+
+                foreach (var kvp in ElementCopyList)
+                {
+                    AddToCanvas(kvp.Key, kvp.Value);
+                }
+
+                UpdateCopyList();
             }
         }
 

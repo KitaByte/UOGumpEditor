@@ -4,13 +4,11 @@ namespace UOGumpEditor
 {
     public partial class UOGumpEditorUI : Form
     {
-        private ElementControl? _ElementCopy = null;
-
         private GumpHandler? _Handler;
 
-        public ExportUI? ExportUIHandle { get; set; }
-
         private SettingsUI? _Settings;
+
+        private bool isMoving = false;
 
         public UOGumpEditorUI()
         {
@@ -86,8 +84,6 @@ namespace UOGumpEditor
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
 
-        private bool isMoving = false;
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -107,40 +103,37 @@ namespace UOGumpEditor
 
                 case (Keys.Control | Keys.C):
                     {
-                        if (UOEditorCore.Session.IsSingleSelected() && UOEditorCore.Session.ElementUI.ElementListbox.SelectedItem is ElementEntity entity)
-                        {
-                            if (UOEditorCore.Session.CanvasUI.Controls.Contains(entity.Element))
-                            {
-                                _ElementCopy = entity.Element.Copy();
-                            }
-                        }
+                        UOEditorCore.Session.UpdateCopyList();
 
                         return true;
                     }
 
                 case (Keys.Control | Keys.V):
                     {
-                        if (_ElementCopy != null)
-                        {
-                            Panel panel = UOEditorCore.Session.CanvasUI;
-
-                            UOEditorCore.Session.AddToCanvas(_ElementCopy, new(panel.Location.X + (panel.Width / 2), panel.Location.Y + (panel.Height / 2)));
-
-                            _ElementCopy = _ElementCopy.Copy();
-                        }
+                        UOEditorCore.Session.PlaceCopyList();
 
                         return true;
                     }
 
                 case Keys.Delete:
                     {
-                        if (UOEditorCore.Session.IsSingleSelected() && UOEditorCore.Session.ElementUI.ElementListbox.SelectedItem is ElementEntity entity)
+                        if (UOEditorCore.Session.SelectedElements.Count > 0)
                         {
-                            if (UOEditorCore.Session.CanvasUI.Controls.Contains(entity.Element))
+                            if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {
-                                if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                                List<ElementControl> removeList = [];
+
+                                foreach (ElementControl element in UOEditorCore.Session.CanvasUI.Controls)
                                 {
-                                    UOEditorCore.Session.RemoveFromCanvas(entity.Element);
+                                    if (element.IsSelected)
+                                    {
+                                        removeList.Add(element);
+                                    }
+                                }
+
+                                foreach (ElementControl element in removeList)
+                                {
+                                    UOEditorCore.Session.RemoveFromCanvas(element);
                                 }
                             }
                         }
@@ -236,7 +229,7 @@ namespace UOGumpEditor
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-            if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && ExportUIHandle == null)
+            if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && UOEditorCore.Session.ExportUIHandle == null)
             {
                 List<ElementControl> elementList = [];
 
@@ -250,19 +243,19 @@ namespace UOGumpEditor
 
                 ElementControl[] elements = [.. elementList];
 
-                ExportUIHandle = new ExportUI(elements);
+                UOEditorCore.Session.ExportUIHandle = new ExportUI(elements);
 
-                ExportUIHandle.Show();
+                UOEditorCore.Session.ExportUIHandle.Show();
             }
             else
             {
-                if (ExportUIHandle == null)
+                if (UOEditorCore.Session.ExportUIHandle == null)
                 {
                     MessageBox.Show("Gump Missing!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    ExportUIHandle.Close();
+                    UOEditorCore.Session.ExportUIHandle.Close();
                 }
             }
         }

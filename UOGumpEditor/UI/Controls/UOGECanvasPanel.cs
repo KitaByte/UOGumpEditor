@@ -44,8 +44,6 @@ namespace UOGumpEditor
         {
             if (e.Control is ElementControl ec)
             {
-                UOEditorCore.Session.ElementUI.ElementListbox.ClearSelected();
-
                 UOEditorCore.Session.ElementUI.ElementListbox.Items.Add(new ElementEntity(ec));
 
                 UOEditorCore.Session.ElementUI.ElementListbox.SelectedIndex = UOEditorCore.Session.ElementUI.ElementListbox.Items.Count - 1;
