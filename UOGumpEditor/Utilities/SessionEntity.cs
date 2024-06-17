@@ -16,6 +16,20 @@ namespace UOGumpEditor
 
         public UOGESearchPanel SearchUI { get; init; } = new UOGESearchPanel();
 
+        public readonly Dictionary<ElementControl, Point> SelectedElements = [];
+
+        public void UpdateSelected(ElementControl control, Point point)
+        {
+            if (SelectedElements.ContainsKey(control))
+            {
+                SelectedElements.Remove(control);
+            }
+            else
+            {
+                SelectedElements.Add(control, point);
+            }
+        }
+
         public void LoadMainControls()
         {
             MainUI.Controls.Add(ElementUI);

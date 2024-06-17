@@ -88,8 +88,6 @@ namespace UOGumpEditor
 
         private bool isMoving = false;
 
-        private readonly Dictionary<ElementControl, Point> moveElements = [];
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -152,18 +150,13 @@ namespace UOGumpEditor
 
                 default:
                     {
-                        if (!isMoving && UOEditorCore.Session.CanvasUI.Controls.Count > 0)
+                        if (!isMoving && UOEditorCore.Session.SelectedElements.Count > 0)
                         {
                             isMoving = true;
 
-                            moveElements.Clear();
-
-                            for (int i = 0; i < UOEditorCore.Session.CanvasUI.Controls.Count; i++)
+                            foreach (ElementControl element in UOEditorCore.Session.SelectedElements.Keys)
                             {
-                                if (UOEditorCore.Session.CanvasUI.Controls[i] is ElementControl ec && ec.IsSelected)
-                                {
-                                    moveElements[ec] = UOEditorCore.GetMoveAction(keyData, ec);
-                                }
+                                UOEditorCore.Session.SelectedElements[element] = UOEditorCore.GetMoveAction(keyData, element);
                             }
 
                             UOEditorCore.Session.CanvasUI.SuspendLayout();
@@ -172,7 +165,7 @@ namespace UOGumpEditor
                             {
                                 UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
                                 {
-                                    foreach (var kvp in moveElements)
+                                    foreach (var kvp in UOEditorCore.Session.SelectedElements)
                                     {
                                         kvp.Key.Location = kvp.Value;
                                     }

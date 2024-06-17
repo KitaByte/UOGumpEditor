@@ -418,6 +418,8 @@
         {
             IsSelected = isSelected;
 
+            UOEditorCore.Session.UpdateSelected(this, Location);
+
             Update();
         }
 
