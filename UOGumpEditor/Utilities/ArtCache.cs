@@ -12,11 +12,7 @@
         {
             if (flowControl.Width > 100)
             {
-                int w_Size = flowControl.Width / 100;
-
-                int diff = _windowSize % w_Size;
-
-                _windowSize -= diff;
+                _windowSize -= _windowSize % (flowControl.Width / 100);
             }
 
             return _allItems.Skip(_currentStartIndex).Take(_windowSize).ToList();

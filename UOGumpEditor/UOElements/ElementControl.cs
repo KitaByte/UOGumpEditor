@@ -138,9 +138,7 @@
 
             if (!string.IsNullOrEmpty(Text))
             {
-                var textSize = e.Graphics.MeasureString(Text, _font);
-
-                PointF textLocation = GetTextLocation(textSize);
+                PointF textLocation = GetTextLocation(e.Graphics.MeasureString(Text, _font));
 
                 e.Graphics.DrawString(Text, _font, _textBrush, textLocation);
             }
@@ -496,7 +494,7 @@
 
             if (Image != null)
             {
-                copy.Image = new Bitmap(Image); // Copy the image
+                copy.Image = new Bitmap(Image); 
             }
 
             if (Tag is ArtEntity entity)

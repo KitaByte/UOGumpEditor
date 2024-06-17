@@ -125,6 +125,7 @@ namespace UOGumpEditor
                 else if (c == ',' && !inQuotes)
                 {
                     values.Add(value);
+
                     value = string.Empty;
                 }
                 else

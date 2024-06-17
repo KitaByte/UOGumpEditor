@@ -303,8 +303,6 @@
 
             ArtHeightSearchBox.Clear();
 
-            ArtRangeSearchBox.Clear();
-
             UOEditorCore.Session.DisplayUI.DisplayFlowPanel.Visible = false;
         }
     }

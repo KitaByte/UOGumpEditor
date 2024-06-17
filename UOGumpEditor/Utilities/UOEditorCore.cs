@@ -487,8 +487,8 @@ namespace UOGumpEditor
             return Color.Black;
         }
 
-        private static readonly Color[] TextColors =
-        {
+        private static readonly List<Color> _TextColors =
+        [
             Color.Blue,
             Color.Purple,
             Color.Pink,
@@ -500,7 +500,7 @@ namespace UOGumpEditor
             Color.Cyan,
             Color.SteelBlue,
             Color.White
-        };
+        ];
 
         public static Color GetColorFromNumber(int number)
         {
@@ -517,23 +517,23 @@ namespace UOGumpEditor
                     colorIndex = 0;
                 }
 
-                if (colorIndex >= TextColors.Length)
+                if (colorIndex >= _TextColors.Count)
                 {
-                    colorIndex = TextColors.Length - 1;
+                    colorIndex = _TextColors.Count - 1;
                 }
 
-                return TextColors[colorIndex];
+                return _TextColors[colorIndex];
             }
         }
 
         public static int GetNumberFromColor(Color color)
         {
-            if (color == Color.Black || !TextColors.Contains(color))
+            if (color == Color.Black || !_TextColors.Contains(color))
             {
                 return 0;
             }
 
-            return TextColors.ToList().IndexOf(color) * 10;
+            return _TextColors.IndexOf(color) * 10;
         }
 
         public static void OpenWebsite(string url)

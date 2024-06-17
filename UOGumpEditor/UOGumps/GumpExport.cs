@@ -32,15 +32,21 @@ namespace UOGumpEditor.UOGumps
             }
         }
 
+        private static StringBuilder sb = new();
+
+        private static ArtEntity? entity;
+
+        private static int counter = 1;
+
+        private static int txtCounter = 1;
+
         private static void ExportToCSharp(ElementControl[] elements, string gumpName)
         {
-            StringBuilder sb = new();
+            sb.Clear();
 
-            ArtEntity? entity;
+            counter = 1;
 
-            int counter = 1;
-
-            int txtCounter = 1;
+            txtCounter = 1;
 
             sb.AppendLine("using System;");
             sb.AppendLine("using Server;");
@@ -170,11 +176,9 @@ namespace UOGumpEditor.UOGumps
 
         private static void ExportToSphere(ElementControl[] elements, string gumpName)
         {
-            StringBuilder sb = new();
+            sb.Clear();
 
-            ArtEntity? entity;
-
-            int buttonCounter = 1; 
+            counter = 1; 
 
             sb.AppendLine($"[DIALOG d_{gumpName}_gump]");
             sb.AppendLine("0,0");
@@ -205,18 +209,18 @@ namespace UOGumpEditor.UOGumps
 
                         case ElementTypes.Button:
                             {
-                                sb.AppendLine($"button {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 1 0 {buttonCounter}");
+                                sb.AppendLine($"button {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 1 0 {counter}");
 
-                                buttonCounter++;
+                                counter++;
 
                                 break;
                             }
 
                         case ElementTypes.CheckBox:
                             {
-                                sb.AppendLine($"checkbox {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {buttonCounter}");
+                                sb.AppendLine($"checkbox {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {counter}");
 
-                                buttonCounter++;
+                                counter++;
 
                                 break;
                             }
@@ -237,9 +241,9 @@ namespace UOGumpEditor.UOGumps
 
                         case ElementTypes.RadioButton:
                             {
-                                sb.AppendLine($"radio {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {buttonCounter}");
+                                sb.AppendLine($"radio {element.Location.X} {element.Location.Y} {entity.ID} {entity.ID + 1} 0 {counter}");
 
-                                buttonCounter++;
+                                counter++;
 
                                 break;
                             }
@@ -252,9 +256,9 @@ namespace UOGumpEditor.UOGumps
                         case ElementTypes.TextEntry:
                             {
                                 sb.AppendLine($"gumppic {element.Location.X} {element.Location.Y} {entity.ID}");
-                                sb.AppendLine($"dtextentry {element.Location.X} {element.Location.Y} {element.Width} {element.Height} 0 {buttonCounter} {element.Text}");
+                                sb.AppendLine($"dtextentry {element.Location.X} {element.Location.Y} {element.Width} {element.Height} 0 {counter} {element.Text}");
 
-                                buttonCounter++;
+                                counter++;
 
                                 break;
                             }
@@ -285,7 +289,7 @@ namespace UOGumpEditor.UOGumps
             sb.AppendLine("on=0 // Exit");
             sb.AppendLine();
 
-            for (int i = 1; i < buttonCounter; i++)
+            for (int i = 1; i < counter; i++)
             {
                 sb.AppendLine($"on={i} // Button {i}");
                 sb.AppendLine();
@@ -298,12 +302,10 @@ namespace UOGumpEditor.UOGumps
 
         private static void ExportToMUO(ElementControl[] elements, string gumpName)
         {
-            StringBuilder sb = new();
+            sb.Clear();
 
-            ArtEntity? entity;
-
-            int counter = 1;
-            int txtCounter = 1;
+            counter = 1;
+            txtCounter = 1;
 
             sb.AppendLine("using System;");
             sb.AppendLine("using Server;");

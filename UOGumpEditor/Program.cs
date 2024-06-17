@@ -2,7 +2,9 @@ namespace UOGumpEditor
 {
     internal static class Program
     {
-        internal static SessionEntity Session { get; private set; } = new SessionEntity(new UOGumpEditorUI());
+        private static readonly SessionEntity _Session = new(new UOGumpEditorUI());
+
+        internal static SessionEntity Session { get { return _Session; } }
 
         [STAThread]
         static void Main()
