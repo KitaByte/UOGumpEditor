@@ -217,15 +217,20 @@
             }
         }
 
-        public (int X, int Y, int Z) GetLocation()
+        public (int X, int Y, int Z) GetLocation(int z = -1)
         {
+            if (z == -1)
+            {
+                z = GetLayer();
+            }
+
             if (Parent is Panel panel)
             {
-                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y, GetLayer());
+                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y, z);
             }
             else
             {
-                return (Location.X, Location.Y + 26, GetLayer());
+                return (Location.X, Location.Y + 26, z);
             }
         }
 
