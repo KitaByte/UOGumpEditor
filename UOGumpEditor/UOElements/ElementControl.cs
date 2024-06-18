@@ -15,6 +15,15 @@
 
         public bool IsSelected { get; private set; }
 
+        public void SetSelected(bool isSelected)
+        {
+            IsSelected = isSelected;
+
+            UOEditorCore.Session.UpdateSelected(this, Location);
+
+            Update();
+        }
+
         public ElementTypes ElementType { get; set; }
 
         public ImageLayout BGImageLayout { get; set; }
@@ -100,7 +109,6 @@
 
             _textAlign = ContentAlignment.MiddleCenter;
 
-            // Events
             MouseDown += ElementControl_MouseDown;
             MouseMove += ElementControl_MouseMove;
             MouseUp += ElementControl_MouseUp;
@@ -219,15 +227,6 @@
             {
                 return (Location.X, Location.Y + 26, GetLayer());
             }
-        }
-
-        public void SetSelected(bool isSelected)
-        {
-            IsSelected = isSelected;
-
-            UOEditorCore.Session.UpdateSelected(this, Location);
-
-            Update();
         }
 
         private PointF GetTextLocation(SizeF textSize)
