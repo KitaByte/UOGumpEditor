@@ -76,6 +76,74 @@ namespace UOGumpEditor
             return new Point(element.Location.X + dx, element.Location.Y + dy);
         }
 
+        public static bool IsValidMoveKey(Keys keyData)
+        {
+            switch (keyData)
+            {
+                case (Keys.Up):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.Up):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Shift | Keys.Up):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Down):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.Down):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Shift | Keys.Down):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Left):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.Left):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Shift | Keys.Left):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Right):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Control | Keys.Right):
+                    {
+                        return true;
+                    }
+
+                case (Keys.Shift | Keys.Right):
+                    {
+                        return true;
+                    }
+            }
+
+            return false;
+        }
+
         public static void StoreElementIndices()
         {
             elementIndices.Clear();

@@ -91,6 +91,7 @@ namespace UOGumpEditor
                 case (Keys.Control | Keys.S):
                     {
                         SaveButton_Click(this, EventArgs.Empty);
+
                         return true;
                     }
 
@@ -143,33 +144,36 @@ namespace UOGumpEditor
 
                 default:
                     {
-                        if (!isMoving && UOEditorCore.Session.SelectedElements.Count > 0)
+                        if (UOEditorCore.IsValidMoveKey(keyData))
                         {
-                            isMoving = true;
-
-                            foreach (ElementControl element in UOEditorCore.Session.SelectedElements.Keys)
+                            if (!isMoving && UOEditorCore.Session.SelectedElements.Count > 0)
                             {
-                                UOEditorCore.Session.SelectedElements[element] = UOEditorCore.GetMoveAction(keyData, element);
-                            }
+                                isMoving = true;
 
-                            UOEditorCore.Session.CanvasUI.SuspendLayout();
-
-                            Task.Run(() =>
-                            {
-                                UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
+                                foreach (ElementControl element in UOEditorCore.Session.SelectedElements.Keys)
                                 {
-                                    foreach (var kvp in UOEditorCore.Session.SelectedElements)
+                                    UOEditorCore.Session.SelectedElements[element] = UOEditorCore.GetMoveAction(keyData, element);
+                                }
+
+                                UOEditorCore.Session.CanvasUI.SuspendLayout();
+
+                                Task.Run(() =>
+                                {
+                                    UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
                                     {
-                                        kvp.Key.Location = kvp.Value;
-                                    }
-                                }));
-                            });
+                                        foreach (var kvp in UOEditorCore.Session.SelectedElements)
+                                        {
+                                            kvp.Key.Location = kvp.Value;
+                                        }
+                                    }));
+                                });
 
-                            UOEditorCore.Session.CanvasUI.Invalidate();
+                                UOEditorCore.Session.CanvasUI.Invalidate();
 
-                            isMoving = false;
+                                isMoving = false;
 
-                            return true;
+                                return true;
+                            }
                         }
 
                         break;
