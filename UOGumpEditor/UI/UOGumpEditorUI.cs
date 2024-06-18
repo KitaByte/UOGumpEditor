@@ -166,6 +166,8 @@ namespace UOGumpEditor
 
                                     UOEditorCore.Session.CanvasUI.ResumeLayout(true);
 
+                                    UOEditorCore.Session.CanvasUI.Invalidate();
+
                                     isMoving = false;
                                 }));
 
