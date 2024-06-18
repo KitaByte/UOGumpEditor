@@ -53,7 +53,7 @@
         {
             if (ElementListbox.SelectedItem != null && ElementListbox.SelectedItem is ElementEntity ee)
             {
-                UOEditorCore.Session.CanvasUI.OpenEditor(ee.Element.ElementType, ee.Element);
+                UOEditorCore.OpenElementEditor(ee.Element.ElementType, ee.Element);
             }
         }
 

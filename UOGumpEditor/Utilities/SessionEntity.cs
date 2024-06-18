@@ -1,4 +1,5 @@
-﻿using UOGumpEditor.UOElements;
+﻿using UOGumpEditor.Assets;
+using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -23,6 +24,8 @@ namespace UOGumpEditor
         private readonly Dictionary<ElementControl, Point> ElementCopyList = [];
 
         private ElementControl? _CopyiedElement;
+        public ElementTypes CurrentElementType { get; set; } = ElementTypes.AlphaRegion;
+        public ElementControl? CurrentElement { get; set; }
 
         public void UpdateSelected(ElementControl control, Point point)
         {
@@ -243,6 +246,119 @@ namespace UOGumpEditor
             }
 
             ElementUI.ElementListbox.SelectedIndex = index;
+        }
+
+        public void SetElementID(string text)
+        {
+            if (CurrentElement?.Tag is ArtEntity)
+            {
+                if (int.TryParse(text, out int id))
+                {
+                    CurrentElement.Tag = UOArtLoader.GetArtEntity(id, CurrentElementType != ElementTypes.Item);
+
+                    if (CurrentElement.Tag is ArtEntity ae)
+                    {
+                        CurrentElement.SetImage(ae);
+                    }
+                }
+            }
+        }
+
+        public void SetElementText(string text, Color color)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                if (CurrentElement == null)
+                {
+                    AddTextElement(text, Color.White, CurrentElementType);
+                }
+                else
+                {
+                    CurrentElement.Text = text;
+
+                    CurrentElement.TextColor = color;
+                }
+            }
+        }
+
+        public void SetElementHue(string text, out Color color)
+        {
+            if (CurrentElement != null && int.TryParse(text, out int hue))
+            {
+                if (CurrentElement.Tag is ArtEntity ae && hue != 0)
+                {
+                    Bitmap? image = ae.GetImage();
+
+                    if (image != null)
+                    {
+                        ae.Hue = hue;
+
+                        AssetData.Hues.ApplyTo(image, hue, false);
+
+                        CurrentElement.Image = image;
+                    }
+                }
+                else
+                {
+                    CurrentElement.TextColor = UOEditorCore.GetColorFromNumber(hue);
+
+                    color = CurrentElement.TextColor;
+
+                    return;
+                }
+            }
+
+            color = Color.WhiteSmoke;
+        }
+
+        public void UpdateElementSize(string inWidth, string inHeight)
+        {
+            if (CurrentElement != null && int.TryParse(inWidth, out int width))
+            {
+                CurrentElement.Width = width;
+            }
+
+            if (CurrentElement != null && int.TryParse(inHeight, out int height))
+            {
+                CurrentElement.Height = height;
+            }
+
+            if (CurrentElement?.Tag is ArtEntity entity)
+            {
+                if (CurrentElement.ElementType == ElementTypes.Image && (entity.Width < CurrentElement.Width || entity.Height < CurrentElement.Height))
+                {
+                    CurrentElement.ElementType = ElementTypes.TiledImage;
+                }
+                else if (CurrentElement.ElementType == ElementTypes.TiledImage && (entity.Width >= CurrentElement.Width && entity.Height >= CurrentElement.Height))
+                {
+                    CurrentElement.ElementType = ElementTypes.Image;
+                }
+            }
+
+            SendElementUpdatedMsg();
+        }
+
+        public void DeleteElement()
+        {
+            if (CurrentElement != null)
+            {
+                if (CanvasUI.Controls.Contains(CurrentElement))
+                {
+                    if (MessageBox.Show("Delete element?", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                    {
+                        RemoveFromCanvas(CurrentElement);
+                    }
+                }
+            }
+        }
+
+        private void SendElementUpdatedMsg()
+        {
+            CurrentElement?.Invalidate();
+
+            UOEditorCore.Session.CanvasUI.Update();
+
+            MessageBox.Show($"Element Updated!", "Element Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

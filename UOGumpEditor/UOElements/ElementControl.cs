@@ -374,7 +374,7 @@
 
         private void ElementControl_MouseDoubleClick(object? sender, MouseEventArgs e)
         {
-            UOEditorCore.Session.CanvasUI.OpenEditor(ElementType, this);
+            UOEditorCore.OpenElementEditor(ElementType, this);
         }
 
         public void SetImage(ArtEntity entity)

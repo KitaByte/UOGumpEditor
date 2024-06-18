@@ -46,9 +46,24 @@
             AddHTMLButton = new ToolStripMenuItem();
             RaiseLayerButton = new ToolStripMenuItem();
             LowerLayerButton = new ToolStripMenuItem();
+            ElementToolStrip = new ToolStrip();
+            ElementInfoLabel = new ToolStripLabel();
+            ElementIDLabel = new ToolStripLabel();
+            ElementIDTextbox = new ToolStripTextBox();
+            ElementTextLabel = new ToolStripLabel();
+            ElementTextTextbox = new ToolStripTextBox();
+            ElementWidthLabel = new ToolStripLabel();
+            ElementWidthTextbox = new ToolStripTextBox();
+            ElementHeightLabel = new ToolStripLabel();
+            ElementHeightTextbox = new ToolStripTextBox();
+            ElementHueLabel = new ToolStripLabel();
+            ElementHueTextbox = new ToolStripTextBox();
+            ElementDeleteButton = new ToolStripButton();
+            ElementApplyButton = new ToolStripButton();
             BottomStatusStrip.SuspendLayout();
             TopMenuStrip.SuspendLayout();
             ElementStrip.SuspendLayout();
+            ElementToolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -85,7 +100,7 @@
             // 
             // TopMenuStrip
             // 
-            TopMenuStrip.BackColor = Color.WhiteSmoke;
+            TopMenuStrip.BackColor = Color.White;
             TopMenuStrip.BackgroundImageLayout = ImageLayout.None;
             TopMenuStrip.Items.AddRange(new ToolStripItem[] { NewButton, SaveButton, LoadButton, GetHelpButton, SettingsButton, ExportButton, ModeButton });
             TopMenuStrip.Location = new Point(0, 0);
@@ -261,6 +276,166 @@
             LowerLayerButton.Text = "Lower Selected";
             LowerLayerButton.Click += LowerLayerButton_Click;
             // 
+            // ElementToolStrip
+            // 
+            ElementToolStrip.BackColor = Color.OldLace;
+            ElementToolStrip.BackgroundImageLayout = ImageLayout.None;
+            ElementToolStrip.GripStyle = ToolStripGripStyle.Hidden;
+            ElementToolStrip.Items.AddRange(new ToolStripItem[] { ElementInfoLabel, ElementIDLabel, ElementIDTextbox, ElementTextLabel, ElementTextTextbox, ElementWidthLabel, ElementWidthTextbox, ElementHeightLabel, ElementHeightTextbox, ElementHueLabel, ElementHueTextbox, ElementDeleteButton, ElementApplyButton });
+            ElementToolStrip.Location = new Point(0, 25);
+            ElementToolStrip.Name = "ElementToolStrip";
+            ElementToolStrip.Padding = new Padding(0, 0, 5, 0);
+            ElementToolStrip.Size = new Size(884, 28);
+            ElementToolStrip.TabIndex = 2;
+            ElementToolStrip.Text = "MainMenuStrip";
+            ElementToolStrip.Visible = false;
+            ElementToolStrip.VisibleChanged += ElementToolStrip_VisibleChanged;
+            // 
+            // ElementInfoLabel
+            // 
+            ElementInfoLabel.AutoSize = false;
+            ElementInfoLabel.BackColor = Color.WhiteSmoke;
+            ElementInfoLabel.BackgroundImageLayout = ImageLayout.None;
+            ElementInfoLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementInfoLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementInfoLabel.ForeColor = Color.Goldenrod;
+            ElementInfoLabel.Name = "ElementInfoLabel";
+            ElementInfoLabel.Size = new Size(100, 25);
+            ElementInfoLabel.Text = "Element Info";
+            ElementInfoLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementIDLabel
+            // 
+            ElementIDLabel.BackColor = Color.WhiteSmoke;
+            ElementIDLabel.BackgroundImageLayout = ImageLayout.None;
+            ElementIDLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementIDLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementIDLabel.ForeColor = Color.Black;
+            ElementIDLabel.Name = "ElementIDLabel";
+            ElementIDLabel.Size = new Size(58, 25);
+            ElementIDLabel.Text = "Image ID";
+            ElementIDLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementIDTextbox
+            // 
+            ElementIDTextbox.BackColor = Color.FromArgb(32, 32, 32);
+            ElementIDTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementIDTextbox.ForeColor = Color.WhiteSmoke;
+            ElementIDTextbox.MaxLength = 6;
+            ElementIDTextbox.Name = "ElementIDTextbox";
+            ElementIDTextbox.Size = new Size(45, 28);
+            ElementIDTextbox.Text = "99999";
+            // 
+            // ElementTextLabel
+            // 
+            ElementTextLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementTextLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementTextLabel.ForeColor = Color.Black;
+            ElementTextLabel.Name = "ElementTextLabel";
+            ElementTextLabel.Size = new Size(32, 25);
+            ElementTextLabel.Text = "Text";
+            ElementTextLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementTextTextbox
+            // 
+            ElementTextTextbox.BackColor = Color.FromArgb(32, 32, 32);
+            ElementTextTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementTextTextbox.ForeColor = Color.WhiteSmoke;
+            ElementTextTextbox.MaxLength = 250;
+            ElementTextTextbox.Name = "ElementTextTextbox";
+            ElementTextTextbox.Size = new Size(150, 28);
+            // 
+            // ElementWidthLabel
+            // 
+            ElementWidthLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementWidthLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementWidthLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            ElementWidthLabel.Name = "ElementWidthLabel";
+            ElementWidthLabel.Size = new Size(41, 25);
+            ElementWidthLabel.Text = "Width";
+            ElementWidthLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementWidthTextbox
+            // 
+            ElementWidthTextbox.BackColor = Color.Gray;
+            ElementWidthTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementWidthTextbox.ForeColor = Color.WhiteSmoke;
+            ElementWidthTextbox.MaxLength = 4;
+            ElementWidthTextbox.Name = "ElementWidthTextbox";
+            ElementWidthTextbox.Size = new Size(35, 28);
+            ElementWidthTextbox.Text = "9999";
+            // 
+            // ElementHeightLabel
+            // 
+            ElementHeightLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementHeightLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementHeightLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            ElementHeightLabel.Name = "ElementHeightLabel";
+            ElementHeightLabel.Size = new Size(45, 25);
+            ElementHeightLabel.Text = "Height";
+            ElementHeightLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementHeightTextbox
+            // 
+            ElementHeightTextbox.BackColor = Color.Gray;
+            ElementHeightTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementHeightTextbox.ForeColor = Color.WhiteSmoke;
+            ElementHeightTextbox.MaxLength = 4;
+            ElementHeightTextbox.Name = "ElementHeightTextbox";
+            ElementHeightTextbox.Size = new Size(35, 28);
+            ElementHeightTextbox.Text = "9999";
+            // 
+            // ElementHueLabel
+            // 
+            ElementHueLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementHueLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementHueLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            ElementHueLabel.Name = "ElementHueLabel";
+            ElementHueLabel.Size = new Size(30, 25);
+            ElementHueLabel.Text = "Hue";
+            ElementHueLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            // 
+            // ElementHueTextbox
+            // 
+            ElementHueTextbox.BackColor = Color.Gray;
+            ElementHueTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementHueTextbox.ForeColor = Color.WhiteSmoke;
+            ElementHueTextbox.MaxLength = 4;
+            ElementHueTextbox.Name = "ElementHueTextbox";
+            ElementHueTextbox.Size = new Size(35, 28);
+            ElementHueTextbox.Text = "9999";
+            // 
+            // ElementDeleteButton
+            // 
+            ElementDeleteButton.Alignment = ToolStripItemAlignment.Right;
+            ElementDeleteButton.AutoSize = false;
+            ElementDeleteButton.BackColor = Color.Brown;
+            ElementDeleteButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementDeleteButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementDeleteButton.Image = (Image)resources.GetObject("ElementDeleteButton.Image");
+            ElementDeleteButton.ImageTransparentColor = Color.Magenta;
+            ElementDeleteButton.Name = "ElementDeleteButton";
+            ElementDeleteButton.Size = new Size(95, 25);
+            ElementDeleteButton.Text = "DELETE";
+            ElementDeleteButton.TextImageRelation = TextImageRelation.TextAboveImage;
+            ElementDeleteButton.ToolTipText = "Delete Element";
+            ElementDeleteButton.Click += ElementDeleteButton_Click;
+            // 
+            // ElementApplyButton
+            // 
+            ElementApplyButton.Alignment = ToolStripItemAlignment.Right;
+            ElementApplyButton.AutoSize = false;
+            ElementApplyButton.BackColor = Color.SteelBlue;
+            ElementApplyButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementApplyButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementApplyButton.Image = (Image)resources.GetObject("ElementApplyButton.Image");
+            ElementApplyButton.ImageTransparentColor = Color.Magenta;
+            ElementApplyButton.Name = "ElementApplyButton";
+            ElementApplyButton.Size = new Size(95, 25);
+            ElementApplyButton.Text = "APPLY";
+            ElementApplyButton.ToolTipText = "Apply Changes";
+            ElementApplyButton.Click += ElementApplyButton_Click;
+            // 
             // UOGumpEditorUI
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -270,6 +445,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(884, 661);
             ContextMenuStrip = ElementStrip;
+            Controls.Add(ElementToolStrip);
             Controls.Add(BottomStatusStrip);
             Controls.Add(TopMenuStrip);
             Font = new Font("Segoe UI", 9.75F);
@@ -286,6 +462,8 @@
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
             ElementStrip.ResumeLayout(false);
+            ElementToolStrip.ResumeLayout(false);
+            ElementToolStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -307,5 +485,19 @@
         private ToolStripMenuItem AddHTMLButton;
         private ToolStripMenuItem RaiseLayerButton;
         private ToolStripMenuItem LowerLayerButton;
+        private ToolStripLabel ElementIDLabel;
+        private ToolStripTextBox ElementIDTextbox;
+        private ToolStripLabel ElementWidthLabel;
+        private ToolStripLabel ElementInfoLabel;
+        private ToolStripLabel ElementTextLabel;
+        private ToolStripTextBox ElementTextTextbox;
+        private ToolStripTextBox ElementWidthTextbox;
+        private ToolStripLabel ElementHeightLabel;
+        private ToolStripTextBox ElementHeightTextbox;
+        private ToolStripLabel ElementHueLabel;
+        private ToolStripTextBox ElementHueTextbox;
+        private ToolStripButton ElementDeleteButton;
+        private ToolStripButton ElementApplyButton;
+        internal ToolStrip ElementToolStrip;
     }
 }

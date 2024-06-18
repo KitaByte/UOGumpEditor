@@ -6,8 +6,6 @@ namespace UOGumpEditor
     {
         private readonly Image _ModeImage;
 
-        private UOImageEditor? _Editor;
-
         public UOGECanvasPanel()
         {
             BackColor = Color.Black;
@@ -38,6 +36,16 @@ namespace UOGumpEditor
             DragDrop += UOGECanvasPanel_DragDrop;
 
             DragEnter += UOGECanvasPanel_DragEnter;
+
+            MouseClick += UOGECanvasPanel_MouseClick;
+        }
+
+        private void UOGECanvasPanel_MouseClick(object? sender, MouseEventArgs e)
+        {
+            if (UOEditorCore.Session.MainUI.ElementToolStrip.Visible)
+            {
+                UOEditorCore.Session.MainUI.ElementToolStrip.Visible = false;
+            }
         }
 
         private void UOGECanvasPanel_ControlAdded(object? sender, ControlEventArgs e)
@@ -129,25 +137,6 @@ namespace UOGumpEditor
             {
                 BackgroundImage = null;
             }
-        }
-
-        internal void OpenEditor(ElementTypes element, ElementControl? elementControl = null)
-        {
-            if (_Editor != null && _Editor.Visible)
-            {
-                return;
-            }
-
-            if (elementControl != null)
-            {
-                _Editor = new(element, elementControl);
-            }
-            else
-            {
-                _Editor = new(element);
-            }
-
-            _Editor.Show();
         }
     }
 }

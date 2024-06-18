@@ -192,6 +192,15 @@ namespace UOGumpEditor
             return false;
         }
 
+        public static void OpenElementEditor(ElementTypes element, ElementControl? elementControl = null)
+        {
+            Session.CurrentElementType = element;
+
+            Session.CurrentElement = elementControl;
+
+            Session.MainUI.ElementToolStrip.Visible = true;
+        }
+
         public static void ResetEditor()
         {
             if (Session.CanvasUI.BackgroundImage != null)
@@ -337,64 +346,73 @@ namespace UOGumpEditor
             }
         }
 
-        public static void InitElement(ElementTypes element, Panel id, Panel text, Panel hue)
+        public static void InitElement(ElementTypes element, out bool isID, out bool isText, out bool isHue)
         {
             if (element == ElementTypes.Label || element == ElementTypes.Html)
             {
-                text.Visible = true;
+                isID = false;
+                isText = true;
             }
             else
             {
-                id.Visible = true;
+                isID = true;
+                isText = false;
             }
 
             switch (element)
             {
                 case ElementTypes.Background:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.Image:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.Item:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.TiledImage:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.Label:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.TextEntry:
                     {
-                        hue.Visible = true;
+                        isHue = true;
 
                         break;
                     }
 
                 case ElementTypes.Html:
                     {
-                        hue.Visible = true;
+                        isHue = true;
+
+                        break;
+                    }
+
+                default:
+                    {
+                        isHue = false;
 
                         break;
                     }

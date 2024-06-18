@@ -1,4 +1,5 @@
-﻿using UOGumpEditor.UOElements;
+﻿using UOGumpEditor.Assets;
+using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -297,12 +298,12 @@ namespace UOGumpEditor
 
         private void AddLabelButton_Click(object sender, EventArgs e)
         {
-            UOEditorCore.Session.CanvasUI.OpenEditor(ElementTypes.Label);
+            UOEditorCore.OpenElementEditor(ElementTypes.Label);
         }
 
         private void AddHTMLButton_Click(object sender, EventArgs e)
         {
-            UOEditorCore.Session.CanvasUI.OpenEditor(ElementTypes.Html);
+            UOEditorCore.OpenElementEditor(ElementTypes.Html);
         }
 
         private void RaiseLayerButton_Click(object sender, EventArgs e)
@@ -347,6 +348,100 @@ namespace UOGumpEditor
             {
                 e.Cancel = true;
             }
+        }
+
+        private void ElementToolStrip_VisibleChanged(object sender, EventArgs e)
+        {
+            if (ElementToolStrip.Visible)
+            {
+                UOEditorCore.InitElement(UOEditorCore.Session.CurrentElementType, out bool isID, out bool isText, out bool isHue);
+
+                ElementIDLabel.Visible = isID;
+
+                ElementIDTextbox.Visible = isID;
+
+                ElementTextLabel.Visible = isText;
+
+                ElementTextTextbox.Visible = isText;
+
+                ElementHueLabel.Visible = isHue;
+
+                ElementHueTextbox.Visible = isHue;
+
+                if (UOEditorCore.Session.CurrentElementType == ElementTypes.Html)
+                {
+                    ElementTextTextbox.AcceptsReturn = true;
+
+                    ElementTextTextbox.Multiline = true;
+
+                    ElementTextTextbox.MaxLength *= 10;
+
+                    ElementTextTextbox.Text = "HTML";
+                }
+
+                if (UOEditorCore.Session.CurrentElementType == ElementTypes.Label || UOEditorCore.Session.CurrentElementType == ElementTypes.TextEntry)
+                {
+                    ElementTextTextbox.Text = "Content";
+                }
+
+                if (UOEditorCore.Session.CurrentElement != null)
+                {
+                    if (UOEditorCore.Session.CurrentElement.Tag is ArtEntity entity)
+                    {
+                        ElementIDTextbox.Text = entity.ID.ToString();
+
+                        ElementHueTextbox.Text = entity.Hue.ToString();
+                    }
+                    else
+                    {
+                        ElementTextTextbox.Text = UOEditorCore.Session.CurrentElement.Text;
+
+                        ElementTextTextbox.ForeColor = UOEditorCore.Session.CurrentElement.TextColor;
+
+                        ElementHueTextbox.Text = UOEditorCore.GetNumberFromColor(UOEditorCore.Session.CurrentElement.TextColor).ToString();
+
+                        if (UOEditorCore.Session.CurrentElement.TextColor == Color.White)
+                        {
+                            ElementTextTextbox.BackColor = Color.Black;
+                        }
+                    }
+
+                    ElementWidthTextbox.Text = UOEditorCore.Session.CurrentElement.Width.ToString();
+
+                    ElementHeightTextbox.Text = UOEditorCore.Session.CurrentElement.Height.ToString();
+                }
+            }
+        }
+
+        private void ElementApplyButton_Click(object sender, EventArgs e)
+        {
+            if (ElementIDLabel.Visible)
+            {
+                UOEditorCore.Session.SetElementID(ElementIDTextbox.Text);
+            }
+
+            if (ElementTextLabel.Visible)
+            {
+                UOEditorCore.Session.SetElementText(ElementTextTextbox.Text, ElementTextTextbox.ForeColor);
+            }
+
+            if (ElementHueLabel.Visible)
+            {
+                UOEditorCore.Session.SetElementHue(ElementHueTextbox.Text, out Color color);
+
+                ElementHueTextbox.ForeColor = color;
+            }
+
+            UOEditorCore.Session.UpdateElementSize(ElementWidthTextbox.Text, ElementHeightTextbox.Text);
+
+            ElementToolStrip.Visible = false;
+        }
+
+        private void ElementDeleteButton_Click(object sender, EventArgs e)
+        {
+            UOEditorCore.Session.DeleteElement();
+
+            ElementToolStrip.Visible = false;
         }
     }
 }
