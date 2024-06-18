@@ -1,5 +1,4 @@
-﻿using UOGumpEditor.Assets;
-using UOGumpEditor.UOElements;
+﻿using UOGumpEditor.UOElements;
 
 namespace UOGumpEditor
 {
@@ -17,7 +16,7 @@ namespace UOGumpEditor
 
             KeyPreview = true;
 
-            Text = $"{Text} - Ver 1.0.0.12";
+            Text = $"{Text} - Ver 1.0.0.13";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
