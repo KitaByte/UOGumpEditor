@@ -5,17 +5,75 @@
         private Image? _image;
         private Font _font;
         private Brush _textBrush;
-        private Point _dragStartPoint;
-        private Point _startingPoint;
         private ContentAlignment _textAlign;
 
         private bool _isDragging;
+        private Point _dragStartPoint;
+        private Point _startingPoint;
+
+        private Bitmap? tempBitmap;
 
         public bool IsSelected { get; private set; }
 
         public ElementTypes ElementType { get; set; }
 
         public ImageLayout BGImageLayout { get; set; }
+
+        public List<ArtEntity>? BackgroundList { get; private set; }
+
+        public List<ArtEntity>? ButtonList { get; private set; }
+
+        public Image? Image
+        {
+            get
+            {
+                if (_image != null && (Width > _image.Width || Height > _image.Height) && ElementType != ElementTypes.Background)
+                {
+                    return UOEditorCore.TileImage((Bitmap)_image, new Size(Width, Height));
+                }
+
+                return _image;
+            }
+            set
+            {
+                _image = value;
+
+                Update();
+            }
+        }
+
+        public Font TextFont
+        {
+            get { return _font; }
+            set
+            {
+                _font = value;
+
+                Update();
+            }
+        }
+
+        public Brush TextBrush
+        {
+            get { return _textBrush; }
+            set
+            {
+                _textBrush = value;
+
+                Update();
+            }
+        }
+
+        public ContentAlignment TextAlign
+        {
+            get { return _textAlign; }
+            set
+            {
+                _textAlign = value;
+
+                Update();
+            }
+        }
 
         public Color TextColor
         {
@@ -27,18 +85,6 @@
                 ForeColor = value;
 
                 Invalidate();
-            }
-        }
-
-        public int GetLayer()
-        {
-            if (UOEditorCore.Session.CanvasUI.Controls.Contains(this))
-            {
-                return UOEditorCore.Session.CanvasUI.Controls.IndexOf(this);
-            }
-            else
-            {
-                return 0;
             }
         }
 
@@ -151,6 +197,39 @@
             }
         }
 
+        public int GetLayer()
+        {
+            if (UOEditorCore.Session.CanvasUI.Controls.Contains(this))
+            {
+                return UOEditorCore.Session.CanvasUI.Controls.IndexOf(this);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public (int X, int Y, int Z) GetLocation()
+        {
+            if (Parent is Panel panel)
+            {
+                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y, GetLayer());
+            }
+            else
+            {
+                return (Location.X, Location.Y + 26, GetLayer());
+            }
+        }
+
+        public void SetSelected(bool isSelected)
+        {
+            IsSelected = isSelected;
+
+            UOEditorCore.Session.UpdateSelected(this, Location);
+
+            Update();
+        }
+
         private PointF GetTextLocation(SizeF textSize)
         {
             float x = 0;
@@ -239,58 +318,6 @@
             // Do not paint background
         }
 
-        public Image? Image
-        {
-            get
-            {
-                if (_image != null && (Width > _image.Width || Height > _image.Height) && ElementType != ElementTypes.Background)
-                {
-                    return UOEditorCore.TileImage((Bitmap)_image, new Size(Width, Height));
-                }
-
-                return _image;
-            }
-            set
-            {
-                _image = value;
-
-                Update();
-            }
-        }
-
-        public Font TextFont
-        {
-            get { return _font; }
-            set
-            {
-                _font = value;
-
-                Update();
-            }
-        }
-
-        public Brush TextBrush
-        {
-            get { return _textBrush; }
-            set
-            {
-                _textBrush = value;
-
-                Update();
-            }
-        }
-
-        public ContentAlignment TextAlign
-        {
-            get { return _textAlign; }
-            set
-            {
-                _textAlign = value;
-
-                Update();
-            }
-        }
-
         private static void MakeTransparent(Bitmap bitmap)
         {
             bitmap.MakeTransparent(Color.Black);
@@ -346,8 +373,6 @@
             UOEditorCore.Session.CanvasUI.OpenEditor(ElementType, this);
         }
 
-        Bitmap? tempBitmap;
-
         public void SetImage(ArtEntity entity)
         {
             tempBitmap = entity.GetImage();
@@ -391,37 +416,9 @@
             Height = size.Height + 10;
         }
 
-        public (int X, int Y) GetLocation()
-        {
-            if (Parent is Panel panel)
-            {
-                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y);
-            }
-            else
-            {
-                return (Location.X, Location.Y + 26);
-            }
-        }
-
-        public Image? GetImage()
-        {
-            return Image;
-        }
-
-        public void SetSelected(bool isSelected)
-        {
-            IsSelected = isSelected;
-
-            UOEditorCore.Session.UpdateSelected(this, Location);
-
-            Update();
-        }
-
-        public List<ArtEntity>? BackgroundArt { get; private set; }
-
         public async void LoadBackground()
         {
-            BackgroundArt = [];
+            BackgroundList = [];
 
             if (Tag is ArtEntity entity)
             {
@@ -433,15 +430,15 @@
                     {
                         if (entity.Name.Length == ae.Name.Length)
                         {
-                            BackgroundArt.Add(ae);
+                            BackgroundList.Add(ae);
                         }
                     }
 
-                    if (BackgroundArt.Count > 0)
+                    if (BackgroundList.Count > 0)
                     {
-                        BackgroundArt.Sort();
+                        BackgroundList.Sort();
 
-                        Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundArt));
+                        Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundList));
 
                         BGImageLayout = ImageLayout.Stretch;
                     }
@@ -449,17 +446,15 @@
             }
         }
 
-        public List<ArtEntity>? ButtonArt { get; private set; }
-
         public void LoadButton()
         {
-            ButtonArt = [];
+            ButtonList = [];
 
             if (Tag is ArtEntity entity)
             {
-                ButtonArt.Add(entity);
+                ButtonList.Add(entity);
 
-                ButtonArt.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
+                ButtonList.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
             }
         }
 
