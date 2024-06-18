@@ -155,24 +155,19 @@ namespace UOGumpEditor
                                     UOEditorCore.Session.SelectedElements[element] = UOEditorCore.GetMoveAction(keyData, element);
                                 }
 
-                                UOEditorCore.Session.CanvasUI.SuspendLayout();
-
-                                Task.Run(() =>
+                                UOEditorCore.Session.CanvasUI.BeginInvoke(new Action(() =>
                                 {
-                                    UOEditorCore.Session.CanvasUI.Invoke(new Action(() =>
+                                    UOEditorCore.Session.CanvasUI.SuspendLayout();
+
+                                    foreach (var kvp in UOEditorCore.Session.SelectedElements)
                                     {
-                                        foreach (var kvp in UOEditorCore.Session.SelectedElements)
-                                        {
-                                            kvp.Key.Location = kvp.Value;
-                                        }
-                                    }));
-                                });
+                                        kvp.Key.Location = kvp.Value;
+                                    }
 
-                                UOEditorCore.Session.CanvasUI.ResumeLayout();
+                                    UOEditorCore.Session.CanvasUI.ResumeLayout(true);
 
-                                UOEditorCore.Session.CanvasUI.Invalidate();
-
-                                isMoving = false;
+                                    isMoving = false;
+                                }));
 
                                 return true;
                             }
