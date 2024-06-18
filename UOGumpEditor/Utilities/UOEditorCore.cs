@@ -12,8 +12,6 @@ namespace UOGumpEditor
 
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
-        private static readonly Dictionary<ElementControl, int> elementIndices = [];
-
         private static Point CurrentPosition = new(0,0);
 
         private const string LineBreakMarker = "*BR*";
@@ -142,29 +140,6 @@ namespace UOGumpEditor
             }
 
             return false;
-        }
-
-        public static void StoreElementIndices()
-        {
-            elementIndices.Clear();
-
-            for (int i = 0; i < Session.CanvasUI.Controls.Count; i++)
-            {
-                if (Session.CanvasUI.Controls[i] is ElementControl ec)
-                {
-                    elementIndices[ec] = i;
-                }
-            }
-        }
-
-        public static void RestoreElementIndices()
-        {
-            foreach (var pair in elementIndices)
-            {
-                Session.CanvasUI.Controls.SetChildIndex(pair.Key, pair.Value);
-            }
-
-            Session.CanvasUI.Invalidate();
         }
 
         public static bool MoveLayerUp()

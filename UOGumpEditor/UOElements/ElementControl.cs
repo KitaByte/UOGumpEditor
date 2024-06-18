@@ -305,10 +305,6 @@
                 _startingPoint = Location;
 
                 _isDragging = true;
-
-                UOEditorCore.StoreElementIndices();
-
-                BringToFront();
             }
         }
 
@@ -325,8 +321,6 @@
             if (e.Button == MouseButtons.Left)
             {
                 _isDragging = false;
-
-                UOEditorCore.RestoreElementIndices();
 
                 if (_startingPoint != Location)
                 {
