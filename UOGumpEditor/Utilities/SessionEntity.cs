@@ -50,7 +50,15 @@ namespace UOGumpEditor
 
                         if (_CopyiedElement != null)
                         {
-                            ElementCopyList.TryAdd(_CopyiedElement, new Point(entity.Element.Location.X - 1, entity.Element.Location.Y - 1));
+                            ElementCopyList.TryAdd
+                                (
+                                    _CopyiedElement, 
+                                    new Point
+                                    (
+                                        entity.Element.Location.X + (entity.Element.Width / 2) + 5, 
+                                        entity.Element.Location.Y + (entity.Element.Height / 2) + 5
+                                    )
+                                );
                         }
                     }
                 }
