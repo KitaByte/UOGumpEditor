@@ -170,6 +170,11 @@ namespace UOGumpEditor
 
                                     UOEditorCore.Session.CanvasUI.ResumeLayout(true);
 
+                                    if (UOEditorCore.Session.IsSingleSelected(out ElementControl? ec) && ec != null)
+                                    {
+                                        UOEditorCore.Session.UpdateElementPosition(ec);
+                                    }
+
                                     UOEditorCore.Session.CanvasUI.Invalidate();
 
                                     isMoving = false;
@@ -315,35 +320,31 @@ namespace UOGumpEditor
 
         private void RaiseLayerButton_Click(object sender, EventArgs e)
         {
-            if (!UOEditorCore.Session.IsSingleSelected())
+            if (!UOEditorCore.Session.IsSingleSelected(out _))
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;
             }
 
-            int index = (UOEditorCore.Session.ElementUI.ElementListbox.SelectedIndex + 1);
-
             if (UOEditorCore.MoveLayerUp())
             {
-                UOEditorCore.Session.ReloadListBox(index);
+                UOEditorCore.Session.ReloadListBox(true);
             }
         }
 
         private void LowerLayerButton_Click(object sender, EventArgs e)
         {
-            if (!UOEditorCore.Session.IsSingleSelected())
+            if (!UOEditorCore.Session.IsSingleSelected(out _))
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;
             }
 
-            int index = (UOEditorCore.Session.ElementUI.ElementListbox.SelectedIndex - 1);
-
             if (UOEditorCore.MoveLayerDown())
             {
-                UOEditorCore.Session.ReloadListBox(index);
+                UOEditorCore.Session.ReloadListBox(false);
             }
         }
 

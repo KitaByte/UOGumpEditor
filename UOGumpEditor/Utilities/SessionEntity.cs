@@ -181,9 +181,20 @@ namespace UOGumpEditor
             return SearchUI.GumpArtButton.BackColor == Color.DodgerBlue;
         }
 
-        public bool IsSingleSelected()
+        public bool IsSingleSelected(out ElementControl? element)
         {
-            return ElementUI.ElementListbox.SelectedItems.Count == 1;
+            if (ElementUI.ElementListbox.SelectedItems.Count == 1 && ElementUI.ElementListbox.SelectedItem is ElementEntity ee)
+            {
+                element = ee.Element;
+
+                return true;
+            }
+            else
+            {
+                element = null;
+
+                return false;
+            }
         }
 
         public void AddTextElement(string text, Color hue, ElementTypes textType)
@@ -246,19 +257,29 @@ namespace UOGumpEditor
             MainUI.ElementLocationLabel.Text = $"Position [ X {_elementPos.x} | Y {_elementPos.y} | Z {_elementPos.z} ]";
         }
 
-        public void ReloadListBox(int index)
+        public void ReloadListBox(bool raise)
         {
-            ElementUI.ElementListbox.Items.Clear();
+            int index;
 
-            foreach (Control control in CanvasUI.Controls)
+            if (raise)
             {
-                if (control is ElementControl ec)
-                {
-                    ElementUI.ElementListbox.Items.Add(new ElementEntity(ec));
-                }
+                index = ElementUI.ElementListbox.SelectedIndex + 1;
+            }
+            else
+            {
+                index = ElementUI.ElementListbox.SelectedIndex - 1;
             }
 
-            ElementUI.ElementListbox.SelectedIndex = index;
+            if (ElementUI.ElementListbox.SelectedItem != null && ElementUI.ElementListbox.SelectedItem is ElementEntity ee)
+            {
+                ElementEntity tempEntity = ee;
+
+                ElementUI.ElementListbox.Items.Remove(tempEntity);
+
+                ElementUI.ElementListbox.Items.Insert(index, tempEntity);
+
+                ElementUI.ElementListbox.SelectedIndex = index;
+            }
         }
 
         public void SetElementID(string text)

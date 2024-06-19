@@ -63,6 +63,8 @@ namespace UOGumpEditor
                     UOEditorCore.Session.AddToHistory(entity);
                 }
 
+                UOEditorCore.Session.UpdateElementPosition(ec);
+
                 Invalidate();
             }
         }
