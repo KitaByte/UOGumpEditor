@@ -19,13 +19,17 @@ namespace UOGumpEditor
 
         public UOGESearchPanel SearchUI { get; init; } = new UOGESearchPanel();
 
+        public ElementControl? CurrentElement { get; set; } = null;
+
+        public ElementTypes CurrentElementType { get; set; } = ElementTypes.AlphaRegion;
+
         public readonly Dictionary<ElementControl, Point> SelectedElements = [];
 
         private readonly Dictionary<ElementControl, Point> ElementCopyList = [];
 
         private ElementControl? _CopyiedElement;
-        public ElementTypes CurrentElementType { get; set; } = ElementTypes.AlphaRegion;
-        public ElementControl? CurrentElement { get; set; }
+
+        private (int x, int y, int z) _elementPos;
 
         public void UpdateSelected(ElementControl control, Point point)
         {
@@ -230,7 +234,16 @@ namespace UOGumpEditor
             if (element != null)
             {
                 MainUI.GumpInfoLabel.Text += $" | width: {element.Width} / height: {element.Height}";
+
+                UpdateElementPosition(element);
             }
+        }
+
+        public void UpdateElementPosition(ElementControl element)
+        {
+            _elementPos = element.GetLocation();
+
+            MainUI.ElementLocationLabel.Text = $"Position [ X {_elementPos.x} | Y {_elementPos.y} | Z {_elementPos.z} ]";
         }
 
         public void ReloadListBox(int index)
@@ -325,7 +338,7 @@ namespace UOGumpEditor
 
             if (CurrentElement?.Tag is ArtEntity entity)
             {
-                if (CurrentElement.ElementType == ElementTypes.Image && (entity.Width < CurrentElement.Width || entity.Height < CurrentElement.Height))
+                if (CurrentElementType == ElementTypes.Image && (entity.Width < CurrentElement.Width || entity.Height < CurrentElement.Height))
                 {
                     CurrentElement.ElementType = ElementTypes.TiledImage;
                 }
@@ -334,7 +347,7 @@ namespace UOGumpEditor
                     CurrentElement.ElementType = ElementTypes.Image;
                 }
 
-                if (CurrentElement.ElementType == ElementTypes.Background)
+                if (CurrentElementType == ElementTypes.Background)
                 {
                     CurrentElement.LoadBackground();
                 }

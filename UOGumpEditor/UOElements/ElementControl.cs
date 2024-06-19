@@ -224,14 +224,7 @@
                 z = GetLayer();
             }
 
-            if (Parent is Panel panel)
-            {
-                return (Location.X + panel.Location.X, Location.Y + panel.Location.Y, z);
-            }
-            else
-            {
-                return (Location.X, Location.Y + 26, z);
-            }
+            return (Location.X, Location.Y, z);
         }
 
         private PointF GetTextLocation(SizeF textSize)
@@ -361,6 +354,8 @@
                 {
                     UOEditorCore.Session.ElementUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
                 }
+
+                UOEditorCore.Session.UpdateElementPosition(this);
 
                 Invalidate();
             }

@@ -33,6 +33,8 @@
             BottomStatusStrip = new StatusStrip();
             UOProgressBar = new ToolStripProgressBar();
             GumpInfoLabel = new ToolStripStatusLabel();
+            SpacerLabel = new ToolStripStatusLabel();
+            ElementLocationLabel = new ToolStripStatusLabel();
             TopMenuStrip = new ToolStrip();
             NewButton = new ToolStripButton();
             SaveButton = new ToolStripButton();
@@ -76,7 +78,7 @@
             BottomStatusStrip.BackColor = Color.WhiteSmoke;
             BottomStatusStrip.BackgroundImageLayout = ImageLayout.None;
             BottomStatusStrip.GripMargin = new Padding(0);
-            BottomStatusStrip.Items.AddRange(new ToolStripItem[] { UOProgressBar, GumpInfoLabel });
+            BottomStatusStrip.Items.AddRange(new ToolStripItem[] { UOProgressBar, GumpInfoLabel, SpacerLabel, ElementLocationLabel });
             BottomStatusStrip.Location = new Point(0, 639);
             BottomStatusStrip.Margin = new Padding(5, 0, 5, 0);
             BottomStatusStrip.Name = "BottomStatusStrip";
@@ -100,8 +102,26 @@
             GumpInfoLabel.LinkBehavior = LinkBehavior.NeverUnderline;
             GumpInfoLabel.Margin = new Padding(2, 3, 0, 2);
             GumpInfoLabel.Name = "GumpInfoLabel";
-            GumpInfoLabel.Size = new Size(64, 17);
-            GumpInfoLabel.Text = "Gump X/Y";
+            GumpInfoLabel.Size = new Size(55, 17);
+            GumpInfoLabel.Text = "ID : W/H";
+            // 
+            // SpacerLabel
+            // 
+            SpacerLabel.Name = "SpacerLabel";
+            SpacerLabel.Size = new Size(519, 17);
+            SpacerLabel.Spring = true;
+            // 
+            // ElementLocationLabel
+            // 
+            ElementLocationLabel.BackgroundImageLayout = ImageLayout.None;
+            ElementLocationLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ElementLocationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ElementLocationLabel.ForeColor = Color.Black;
+            ElementLocationLabel.Name = "ElementLocationLabel";
+            ElementLocationLabel.RightToLeft = RightToLeft.No;
+            ElementLocationLabel.Size = new Size(140, 17);
+            ElementLocationLabel.Text = "Position [ X 0 | Y 0 | Z 0 ]";
+            ElementLocationLabel.TextImageRelation = TextImageRelation.Overlay;
             // 
             // TopMenuStrip
             // 
@@ -571,5 +591,7 @@
         private Panel ElementTextEditPanel;
         private Button UpdateElementTextButton;
         private TextBox ElementEditTextbox;
+        internal ToolStripStatusLabel ElementLocationLabel;
+        private ToolStripStatusLabel SpacerLabel;
     }
 }
