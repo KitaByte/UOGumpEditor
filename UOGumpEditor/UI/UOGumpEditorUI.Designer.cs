@@ -41,7 +41,7 @@
             SettingsButton = new ToolStripButton();
             ExportButton = new ToolStripButton();
             ModeButton = new ToolStripButton();
-            ElementStrip = new ContextMenuStrip(components);
+            ElementContextStrip = new ContextMenuStrip(components);
             AddLabelButton = new ToolStripMenuItem();
             AddHTMLButton = new ToolStripMenuItem();
             RaiseLayerButton = new ToolStripMenuItem();
@@ -52,6 +52,7 @@
             ElementIDTextbox = new ToolStripTextBox();
             ElementTextLabel = new ToolStripLabel();
             ElementTextTextbox = new ToolStripTextBox();
+            MultiTextEditButton = new ToolStripButton();
             ElementWidthLabel = new ToolStripLabel();
             ElementWidthTextbox = new ToolStripTextBox();
             ElementHeightLabel = new ToolStripLabel();
@@ -60,10 +61,14 @@
             ElementHueTextbox = new ToolStripTextBox();
             ElementDeleteButton = new ToolStripButton();
             ElementApplyButton = new ToolStripButton();
+            ElementTextEditPanel = new Panel();
+            ElementEditTextbox = new TextBox();
+            UpdateElementTextButton = new Button();
             BottomStatusStrip.SuspendLayout();
             TopMenuStrip.SuspendLayout();
-            ElementStrip.SuspendLayout();
+            ElementContextStrip.SuspendLayout();
             ElementToolStrip.SuspendLayout();
+            ElementTextEditPanel.SuspendLayout();
             SuspendLayout();
             // 
             // BottomStatusStrip
@@ -219,18 +224,18 @@
             ModeButton.ToolTipText = "Canvas Mode";
             ModeButton.Click += ModeButton_Click;
             // 
-            // ElementStrip
+            // ElementContextStrip
             // 
-            ElementStrip.BackColor = Color.FromArgb(32, 32, 32);
-            ElementStrip.BackgroundImageLayout = ImageLayout.None;
-            ElementStrip.DropShadowEnabled = false;
-            ElementStrip.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            ElementStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton, RaiseLayerButton, LowerLayerButton });
-            ElementStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
-            ElementStrip.Name = "ElementStrip";
-            ElementStrip.ShowItemToolTips = false;
-            ElementStrip.Size = new Size(168, 92);
-            ElementStrip.Opening += ElementStrip_Opening;
+            ElementContextStrip.BackColor = Color.FromArgb(32, 32, 32);
+            ElementContextStrip.BackgroundImageLayout = ImageLayout.None;
+            ElementContextStrip.DropShadowEnabled = false;
+            ElementContextStrip.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ElementContextStrip.Items.AddRange(new ToolStripItem[] { AddLabelButton, AddHTMLButton, RaiseLayerButton, LowerLayerButton });
+            ElementContextStrip.LayoutStyle = ToolStripLayoutStyle.VerticalStackWithOverflow;
+            ElementContextStrip.Name = "ElementStrip";
+            ElementContextStrip.ShowItemToolTips = false;
+            ElementContextStrip.Size = new Size(168, 92);
+            ElementContextStrip.Opening += ElementStrip_Opening;
             // 
             // AddLabelButton
             // 
@@ -278,31 +283,30 @@
             // 
             // ElementToolStrip
             // 
-            ElementToolStrip.BackColor = Color.OldLace;
+            ElementToolStrip.BackColor = Color.Silver;
             ElementToolStrip.BackgroundImageLayout = ImageLayout.None;
             ElementToolStrip.GripStyle = ToolStripGripStyle.Hidden;
-            ElementToolStrip.Items.AddRange(new ToolStripItem[] { ElementInfoLabel, ElementIDLabel, ElementIDTextbox, ElementTextLabel, ElementTextTextbox, ElementWidthLabel, ElementWidthTextbox, ElementHeightLabel, ElementHeightTextbox, ElementHueLabel, ElementHueTextbox, ElementDeleteButton, ElementApplyButton });
+            ElementToolStrip.Items.AddRange(new ToolStripItem[] { ElementInfoLabel, ElementIDLabel, ElementIDTextbox, ElementTextLabel, ElementTextTextbox, MultiTextEditButton, ElementWidthLabel, ElementWidthTextbox, ElementHeightLabel, ElementHeightTextbox, ElementHueLabel, ElementHueTextbox, ElementDeleteButton, ElementApplyButton });
             ElementToolStrip.Location = new Point(0, 25);
             ElementToolStrip.Name = "ElementToolStrip";
             ElementToolStrip.Padding = new Padding(0, 0, 5, 0);
             ElementToolStrip.Size = new Size(884, 28);
             ElementToolStrip.TabIndex = 2;
             ElementToolStrip.Text = "MainMenuStrip";
-            ElementToolStrip.Visible = false;
             ElementToolStrip.VisibleChanged += ElementToolStrip_VisibleChanged;
             // 
             // ElementInfoLabel
             // 
-            ElementInfoLabel.AutoSize = false;
-            ElementInfoLabel.BackColor = Color.WhiteSmoke;
+            ElementInfoLabel.BackColor = Color.DarkSlateBlue;
             ElementInfoLabel.BackgroundImageLayout = ImageLayout.None;
             ElementInfoLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
             ElementInfoLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ElementInfoLabel.ForeColor = Color.Goldenrod;
+            ElementInfoLabel.ForeColor = Color.RoyalBlue;
             ElementInfoLabel.Name = "ElementInfoLabel";
-            ElementInfoLabel.Size = new Size(100, 25);
-            ElementInfoLabel.Text = "Element Info";
-            ElementInfoLabel.TextImageRelation = TextImageRelation.TextAboveImage;
+            ElementInfoLabel.Overflow = ToolStripItemOverflow.Never;
+            ElementInfoLabel.Size = new Size(106, 25);
+            ElementInfoLabel.Text = "     ELEMENT     ";
+            ElementInfoLabel.TextImageRelation = TextImageRelation.Overlay;
             // 
             // ElementIDLabel
             // 
@@ -310,7 +314,7 @@
             ElementIDLabel.BackgroundImageLayout = ImageLayout.None;
             ElementIDLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
             ElementIDLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ElementIDLabel.ForeColor = Color.Black;
+            ElementIDLabel.ForeColor = Color.FromArgb(32, 32, 32);
             ElementIDLabel.Name = "ElementIDLabel";
             ElementIDLabel.Size = new Size(58, 25);
             ElementIDLabel.Text = "Image ID";
@@ -318,19 +322,19 @@
             // 
             // ElementIDTextbox
             // 
-            ElementIDTextbox.BackColor = Color.FromArgb(32, 32, 32);
+            ElementIDTextbox.BackColor = Color.FromArgb(64, 64, 64);
             ElementIDTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementIDTextbox.ForeColor = Color.WhiteSmoke;
             ElementIDTextbox.MaxLength = 6;
             ElementIDTextbox.Name = "ElementIDTextbox";
-            ElementIDTextbox.Size = new Size(45, 28);
+            ElementIDTextbox.Size = new Size(40, 28);
             ElementIDTextbox.Text = "99999";
             // 
             // ElementTextLabel
             // 
             ElementTextLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
             ElementTextLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ElementTextLabel.ForeColor = Color.Black;
+            ElementTextLabel.ForeColor = Color.FromArgb(32, 32, 32);
             ElementTextLabel.Name = "ElementTextLabel";
             ElementTextLabel.Size = new Size(32, 25);
             ElementTextLabel.Text = "Text";
@@ -338,15 +342,30 @@
             // 
             // ElementTextTextbox
             // 
-            ElementTextTextbox.BackColor = Color.FromArgb(32, 32, 32);
+            ElementTextTextbox.BackColor = Color.FromArgb(64, 64, 64);
             ElementTextTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementTextTextbox.ForeColor = Color.WhiteSmoke;
             ElementTextTextbox.MaxLength = 250;
             ElementTextTextbox.Name = "ElementTextTextbox";
             ElementTextTextbox.Size = new Size(150, 28);
             // 
+            // MultiTextEditButton
+            // 
+            MultiTextEditButton.BackgroundImageLayout = ImageLayout.Stretch;
+            MultiTextEditButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            MultiTextEditButton.ForeColor = Color.RoyalBlue;
+            MultiTextEditButton.Image = GumpRes.SingleDisplayIcon;
+            MultiTextEditButton.ImageTransparentColor = Color.Magenta;
+            MultiTextEditButton.Name = "MultiTextEditButton";
+            MultiTextEditButton.Size = new Size(23, 25);
+            MultiTextEditButton.Text = "T";
+            MultiTextEditButton.TextImageRelation = TextImageRelation.Overlay;
+            MultiTextEditButton.ToolTipText = "Text Editor";
+            MultiTextEditButton.Click += MultiTextEditButton_Click;
+            // 
             // ElementWidthLabel
             // 
+            ElementWidthLabel.BackColor = Color.Silver;
             ElementWidthLabel.DisplayStyle = ToolStripItemDisplayStyle.Text;
             ElementWidthLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementWidthLabel.ForeColor = Color.FromArgb(64, 64, 64);
@@ -357,7 +376,7 @@
             // 
             // ElementWidthTextbox
             // 
-            ElementWidthTextbox.BackColor = Color.Gray;
+            ElementWidthTextbox.BackColor = Color.DimGray;
             ElementWidthTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementWidthTextbox.ForeColor = Color.WhiteSmoke;
             ElementWidthTextbox.MaxLength = 4;
@@ -377,7 +396,7 @@
             // 
             // ElementHeightTextbox
             // 
-            ElementHeightTextbox.BackColor = Color.Gray;
+            ElementHeightTextbox.BackColor = Color.DimGray;
             ElementHeightTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementHeightTextbox.ForeColor = Color.WhiteSmoke;
             ElementHeightTextbox.MaxLength = 4;
@@ -397,7 +416,7 @@
             // 
             // ElementHueTextbox
             // 
-            ElementHueTextbox.BackColor = Color.Gray;
+            ElementHueTextbox.BackColor = Color.DimGray;
             ElementHueTextbox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ElementHueTextbox.ForeColor = Color.WhiteSmoke;
             ElementHueTextbox.MaxLength = 4;
@@ -436,15 +455,62 @@
             ElementApplyButton.ToolTipText = "Apply Changes";
             ElementApplyButton.Click += ElementApplyButton_Click;
             // 
+            // ElementTextEditPanel
+            // 
+            ElementTextEditPanel.BackColor = Color.Silver;
+            ElementTextEditPanel.Controls.Add(ElementEditTextbox);
+            ElementTextEditPanel.Controls.Add(UpdateElementTextButton);
+            ElementTextEditPanel.Dock = DockStyle.Top;
+            ElementTextEditPanel.Location = new Point(0, 53);
+            ElementTextEditPanel.Margin = new Padding(0);
+            ElementTextEditPanel.Name = "ElementTextEditPanel";
+            ElementTextEditPanel.Padding = new Padding(5);
+            ElementTextEditPanel.Size = new Size(884, 100);
+            ElementTextEditPanel.TabIndex = 3;
+            // 
+            // ElementEditTextbox
+            // 
+            ElementEditTextbox.BackColor = Color.FromArgb(64, 64, 64);
+            ElementEditTextbox.BorderStyle = BorderStyle.FixedSingle;
+            ElementEditTextbox.Dock = DockStyle.Fill;
+            ElementEditTextbox.ForeColor = Color.WhiteSmoke;
+            ElementEditTextbox.Location = new Point(5, 5);
+            ElementEditTextbox.Margin = new Padding(0);
+            ElementEditTextbox.MaxLength = 1000;
+            ElementEditTextbox.Multiline = true;
+            ElementEditTextbox.Name = "ElementEditTextbox";
+            ElementEditTextbox.ScrollBars = ScrollBars.Vertical;
+            ElementEditTextbox.Size = new Size(874, 65);
+            ElementEditTextbox.TabIndex = 0;
+            // 
+            // UpdateElementTextButton
+            // 
+            UpdateElementTextButton.BackColor = Color.SteelBlue;
+            UpdateElementTextButton.BackgroundImageLayout = ImageLayout.None;
+            UpdateElementTextButton.Dock = DockStyle.Bottom;
+            UpdateElementTextButton.FlatAppearance.BorderSize = 0;
+            UpdateElementTextButton.FlatStyle = FlatStyle.Flat;
+            UpdateElementTextButton.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            UpdateElementTextButton.Location = new Point(5, 70);
+            UpdateElementTextButton.Margin = new Padding(0);
+            UpdateElementTextButton.Name = "UpdateElementTextButton";
+            UpdateElementTextButton.Size = new Size(874, 25);
+            UpdateElementTextButton.TabIndex = 1;
+            UpdateElementTextButton.Text = "UPDATE TEXT";
+            UpdateElementTextButton.UseVisualStyleBackColor = false;
+            UpdateElementTextButton.Click += UpdateElementTextButton_Click;
+            // 
             // UOGumpEditorUI
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            AutoSize = true;
             BackColor = Color.Tan;
             BackgroundImage = GumpRes.UOGSLogo;
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(884, 661);
-            ContextMenuStrip = ElementStrip;
+            ContextMenuStrip = ElementContextStrip;
+            Controls.Add(ElementTextEditPanel);
             Controls.Add(ElementToolStrip);
             Controls.Add(BottomStatusStrip);
             Controls.Add(TopMenuStrip);
@@ -461,9 +527,11 @@
             BottomStatusStrip.PerformLayout();
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
-            ElementStrip.ResumeLayout(false);
+            ElementContextStrip.ResumeLayout(false);
             ElementToolStrip.ResumeLayout(false);
             ElementToolStrip.PerformLayout();
+            ElementTextEditPanel.ResumeLayout(false);
+            ElementTextEditPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -480,7 +548,7 @@
         private ToolStripButton ExportButton;
         private ToolStripButton ModeButton;
         internal ToolStripStatusLabel GumpInfoLabel;
-        private ContextMenuStrip ElementStrip;
+        private ContextMenuStrip ElementContextStrip;
         private ToolStripMenuItem AddLabelButton;
         private ToolStripMenuItem AddHTMLButton;
         private ToolStripMenuItem RaiseLayerButton;
@@ -499,5 +567,9 @@
         private ToolStripButton ElementDeleteButton;
         private ToolStripButton ElementApplyButton;
         internal ToolStrip ElementToolStrip;
+        private ToolStripButton MultiTextEditButton;
+        private Panel ElementTextEditPanel;
+        private Button UpdateElementTextButton;
+        private TextBox ElementEditTextbox;
     }
 }

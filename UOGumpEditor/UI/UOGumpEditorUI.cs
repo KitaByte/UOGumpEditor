@@ -21,6 +21,10 @@ namespace UOGumpEditor
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
         {
+            ElementToolStrip.Visible = false;
+
+            ElementTextEditPanel.Visible = false;
+
             if (UOEditorCore.ArtLoader == null && !string.IsNullOrEmpty(UOSettings.Default.UO_Folder))
             {
                 UOEditorCore.LoadArt();
@@ -79,7 +83,7 @@ namespace UOGumpEditor
             ExportButton.Enabled = !isLoading;
             ModeButton.Enabled = !isLoading;
             SettingsButton.Enabled = !isLoading;
-            ElementStrip.Enabled = !isLoading;
+            ElementContextStrip.Enabled = !isLoading;
 
             UOProgressBar.Value = isLoading ? 10 : 100;
         }
@@ -297,11 +301,15 @@ namespace UOGumpEditor
 
         private void AddLabelButton_Click(object sender, EventArgs e)
         {
+            ElementToolStrip.Visible = false;
+
             UOEditorCore.OpenElementEditor(ElementTypes.Label);
         }
 
         private void AddHTMLButton_Click(object sender, EventArgs e)
         {
+            ElementToolStrip.Visible = false;
+
             UOEditorCore.OpenElementEditor(ElementTypes.Html);
         }
 
@@ -353,6 +361,8 @@ namespace UOGumpEditor
         {
             if (ElementToolStrip.Visible)
             {
+                ElementInfoLabel.Text = $"  {UOEditorCore.Session.CurrentElementType} Element  ";
+
                 UOEditorCore.InitElement(UOEditorCore.Session.CurrentElementType, out bool isID, out bool isText, out bool isHue);
 
                 ElementIDLabel.Visible = isID;
@@ -363,9 +373,13 @@ namespace UOGumpEditor
 
                 ElementTextTextbox.Visible = isText;
 
+                MultiTextEditButton.Visible = isText;
+
                 ElementHueLabel.Visible = isHue;
 
                 ElementHueTextbox.Visible = isHue;
+
+                ElementDeleteButton.Visible = UOEditorCore.Session.CurrentElement != null;
 
                 if (UOEditorCore.Session.CurrentElementType == ElementTypes.Html)
                 {
@@ -410,6 +424,15 @@ namespace UOGumpEditor
                     ElementHeightTextbox.Text = UOEditorCore.Session.CurrentElement.Height.ToString();
                 }
             }
+
+            ElementTextEditPanel.Visible = false;
+        }
+
+        private void MultiTextEditButton_Click(object sender, EventArgs e)
+        {
+            ElementTextEditPanel.Visible = !ElementTextEditPanel.Visible;
+
+            ElementEditTextbox.Text = ElementTextTextbox.Text;
         }
 
         private void ElementApplyButton_Click(object sender, EventArgs e)
@@ -441,6 +464,13 @@ namespace UOGumpEditor
             UOEditorCore.Session.DeleteElement();
 
             ElementToolStrip.Visible = false;
+        }
+
+        private void UpdateElementTextButton_Click(object sender, EventArgs e)
+        {
+            ElementTextTextbox.Text = ElementEditTextbox.Text;
+
+            ElementTextEditPanel.Visible = false;
         }
     }
 }
