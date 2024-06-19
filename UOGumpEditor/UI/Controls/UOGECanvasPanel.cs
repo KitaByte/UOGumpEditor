@@ -62,6 +62,8 @@ namespace UOGumpEditor
                 {
                     UOEditorCore.Session.AddToHistory(entity);
                 }
+
+                Invalidate();
             }
         }
 
@@ -83,6 +85,8 @@ namespace UOGumpEditor
                 {
                     UOEditorCore.Session.ElementUI.ElementListbox.Items.Remove(ee);
                 }
+
+                Invalidate();
             }
         }
 

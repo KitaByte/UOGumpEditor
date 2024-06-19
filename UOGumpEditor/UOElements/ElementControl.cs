@@ -361,6 +361,8 @@
                 {
                     UOEditorCore.Session.ElementUI.ElementListbox.SetSelected(GetLayer(), !IsSelected);
                 }
+
+                Invalidate();
             }
         }
 
@@ -418,6 +420,8 @@
             Width = size.Width + 20;
 
             Height = size.Height + 10;
+
+            Invalidate();
         }
 
         public async void LoadBackground()
@@ -448,6 +452,8 @@
                     }
                 }
             }
+
+            Invalidate();
         }
 
         public void LoadButton()
@@ -460,6 +466,8 @@
 
                 ButtonList.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
             }
+
+            Invalidate();
         }
 
         public override string ToString()

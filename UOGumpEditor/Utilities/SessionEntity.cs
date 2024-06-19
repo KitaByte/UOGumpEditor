@@ -333,9 +333,14 @@ namespace UOGumpEditor
                 {
                     CurrentElement.ElementType = ElementTypes.Image;
                 }
+
+                if (CurrentElement.ElementType == ElementTypes.Background)
+                {
+                    CurrentElement.LoadBackground();
+                }
             }
 
-            SendElementUpdatedMsg();
+            CurrentElement?.Invalidate();
         }
 
         public void DeleteElement()
@@ -350,15 +355,6 @@ namespace UOGumpEditor
                     }
                 }
             }
-        }
-
-        private void SendElementUpdatedMsg()
-        {
-            CurrentElement?.Invalidate();
-
-            UOEditorCore.Session.CanvasUI.Update();
-
-            MessageBox.Show($"Element Updated!", "Element Editor", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
