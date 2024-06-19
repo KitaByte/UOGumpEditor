@@ -16,7 +16,7 @@ namespace UOGumpEditor
 
             KeyPreview = true;
 
-            Text = $"{Text} - Ver 1.0.0.13";
+            Text = $"{Text} - Ver 1.0.0.14";
         }
 
         private void UOGumpEditorUI_Load(object sender, EventArgs e)
