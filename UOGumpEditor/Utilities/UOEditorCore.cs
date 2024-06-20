@@ -217,6 +217,8 @@ namespace UOGumpEditor
             Session.SearchUI.HistoryListbox.Items.Clear();
 
             Session.ElementUI.ElementListbox.Items.Clear();
+
+            Session.MainUI.Refresh();
         }
 
         public static string? FindDataFile(string dataPath, string search)
