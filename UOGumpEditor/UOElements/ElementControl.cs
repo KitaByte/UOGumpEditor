@@ -21,7 +21,7 @@
 
             UOEditorCore.Session.UpdateSelected(this, Location);
 
-            Update();
+            Refresh();
         }
 
         public ElementTypes ElementType { get; set; }
@@ -47,7 +47,7 @@
             {
                 _image = value;
 
-                Update();
+                Refresh();
             }
         }
 
@@ -58,7 +58,7 @@
             {
                 _font = value;
 
-                Update();
+                Refresh();
             }
         }
 
@@ -69,7 +69,7 @@
             {
                 _textBrush = value;
 
-                Update();
+                Refresh();
             }
         }
 
@@ -80,7 +80,7 @@
             {
                 _textAlign = value;
 
-                Update();
+                Refresh();
             }
         }
 
@@ -93,7 +93,7 @@
 
                 ForeColor = value;
 
-                Invalidate();
+                Refresh();
             }
         }
 
@@ -217,14 +217,9 @@
             }
         }
 
-        public (int X, int Y, int Z) GetLocation(int z = -1)
+        public (int X, int Y, int Z) GetLocation()
         {
-            if (z == -1)
-            {
-                z = GetLayer();
-            }
-
-            return (Location.X, Location.Y, z);
+            return (Location.X, Location.Y, GetLayer());
         }
 
         private PointF GetTextLocation(SizeF textSize)
@@ -356,8 +351,6 @@
                 }
 
                 UOEditorCore.Session.UpdateElementPosition(this);
-
-                Invalidate();
             }
         }
 
@@ -395,9 +388,9 @@
                 }
 
                 tempBitmap = null;
-            }
 
-            Invalidate();
+                Refresh();
+            }
         }
 
         public void SetText(string text, Color hue)
@@ -416,7 +409,7 @@
 
             Height = size.Height + 10;
 
-            Invalidate();
+            Refresh();
         }
 
         public async void LoadBackground()
@@ -444,11 +437,11 @@
                         Image = UOEditorCore.CombineBitmaps(UOEditorCore.GetImages(BackgroundList));
 
                         BGImageLayout = ImageLayout.Stretch;
+
+                        Refresh();
                     }
                 }
             }
-
-            Invalidate();
         }
 
         public void LoadButton()
@@ -461,8 +454,6 @@
 
                 ButtonList.Add(UOArtLoader.GetArtEntity(entity.ID + 1, true));
             }
-
-            Invalidate();
         }
 
         public override string ToString()
