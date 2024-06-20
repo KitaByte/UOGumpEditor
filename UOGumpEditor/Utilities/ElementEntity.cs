@@ -10,10 +10,10 @@ namespace UOGumpEditor
         {
             if (Element.Tag is ArtEntity artEntity)
             {
-                return $"{Element.GetLayer()} : {artEntity.ToString().Split(':').Last().Trim()}";
+                return $"{artEntity.ToString().Split('-').Last().Trim()} : {artEntity.ID}";
             }
 
-            return $"{Element.GetLayer()} : {Element.ElementType}";
+            return $"{Element.ElementType} : {Element.Text.Length}";
         }
     }
 }

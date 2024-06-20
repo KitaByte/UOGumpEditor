@@ -108,7 +108,7 @@
             // SpacerLabel
             // 
             SpacerLabel.Name = "SpacerLabel";
-            SpacerLabel.Size = new Size(519, 17);
+            SpacerLabel.Size = new Size(550, 17);
             SpacerLabel.Spring = true;
             // 
             // ElementLocationLabel
@@ -348,7 +348,7 @@
             ElementIDTextbox.MaxLength = 6;
             ElementIDTextbox.Name = "ElementIDTextbox";
             ElementIDTextbox.Size = new Size(40, 28);
-            ElementIDTextbox.Text = "99999";
+            ElementIDTextbox.Text = "0";
             // 
             // ElementTextLabel
             // 
@@ -402,7 +402,7 @@
             ElementWidthTextbox.MaxLength = 4;
             ElementWidthTextbox.Name = "ElementWidthTextbox";
             ElementWidthTextbox.Size = new Size(35, 28);
-            ElementWidthTextbox.Text = "9999";
+            ElementWidthTextbox.Text = "50";
             // 
             // ElementHeightLabel
             // 
@@ -422,7 +422,7 @@
             ElementHeightTextbox.MaxLength = 4;
             ElementHeightTextbox.Name = "ElementHeightTextbox";
             ElementHeightTextbox.Size = new Size(35, 28);
-            ElementHeightTextbox.Text = "9999";
+            ElementHeightTextbox.Text = "25";
             // 
             // ElementHueLabel
             // 
@@ -442,7 +442,7 @@
             ElementHueTextbox.MaxLength = 4;
             ElementHueTextbox.Name = "ElementHueTextbox";
             ElementHueTextbox.Size = new Size(35, 28);
-            ElementHueTextbox.Text = "9999";
+            ElementHueTextbox.Text = "0";
             // 
             // ElementDeleteButton
             // 

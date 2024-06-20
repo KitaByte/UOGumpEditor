@@ -73,19 +73,14 @@ namespace UOGumpEditor
         {
             if (e.Control is ElementControl ec)
             {
-                ElementEntity? ee = null;
-
-                foreach (var entity in UOEditorCore.Session.ElementUI.ElementListbox.Items)
+                for (int i = 0; i < UOEditorCore.Session.ElementUI.ElementListbox.Items.Count; i++)
                 {
-                    if (entity is ElementEntity elementEntity && elementEntity.Element == ec)
+                    if (UOEditorCore.Session.ElementUI.ElementListbox.Items[i] is ElementEntity ee && ee.Element == ec)
                     {
-                        ee = elementEntity;
-                    }
-                }
+                        UOEditorCore.Session.ElementUI.ElementListbox.Items.Remove(ee);
 
-                if (ee != null)
-                {
-                    UOEditorCore.Session.ElementUI.ElementListbox.Items.Remove(ee);
+                        break;
+                    }
                 }
 
                 Invalidate();

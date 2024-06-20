@@ -393,6 +393,13 @@ namespace UOGumpEditor
                     ElementTextTextbox.Text = "HTML";
                 }
 
+                if (UOEditorCore.Session.CurrentElementType == ElementTypes.Label || UOEditorCore.Session.CurrentElementType == ElementTypes.Html)
+                {
+                    ElementWidthTextbox.Text = "50";
+
+                    ElementHeightTextbox.Text = "25";
+                }
+
                 if (UOEditorCore.Session.CurrentElementType == ElementTypes.Label || UOEditorCore.Session.CurrentElementType == ElementTypes.TextEntry)
                 {
                     ElementTextTextbox.Text = "Content";
