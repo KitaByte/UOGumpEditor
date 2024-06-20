@@ -379,12 +379,12 @@
 
                 if (Width < entity.Width)
                 {
-                    Width = entity.Width;
+                    Size = new Size(entity.Width, Height);
                 }
 
                 if (Height < entity.Height)
                 {
-                    Height = entity.Height;
+                    Size = new Size(Width, entity.Height);
                 }
 
                 tempBitmap = null;
@@ -405,9 +405,7 @@
 
             Size size = UOEditorCore.GetTextSize(text, Font);
 
-            Width = size.Width + 20;
-
-            Height = size.Height + 10;
+            Size = new Size(size.Width + 20, size.Height + 10);
 
             Refresh();
         }

@@ -445,6 +445,8 @@ namespace UOGumpEditor
 
         private void ElementApplyButton_Click(object sender, EventArgs e)
         {
+            UOEditorCore.Session.UpdateElementSize(ElementWidthTextbox.Text, ElementHeightTextbox.Text);
+
             if (ElementIDLabel.Visible)
             {
                 UOEditorCore.Session.SetElementID(ElementIDTextbox.Text);
@@ -462,9 +464,11 @@ namespace UOGumpEditor
                 ElementHueTextbox.ForeColor = color;
             }
 
-            UOEditorCore.Session.UpdateElementSize(ElementWidthTextbox.Text, ElementHeightTextbox.Text);
-
             ElementToolStrip.Visible = false;
+
+            UOEditorCore.Session.CurrentElement?.Refresh();
+
+            UOEditorCore.Session.CanvasUI.Refresh();
         }
 
         private void ElementDeleteButton_Click(object sender, EventArgs e)

@@ -377,8 +377,6 @@ namespace UOGumpEditor
                     CurrentElement.LoadBackground();
                 }
             }
-
-            CurrentElement?.Invalidate();
         }
 
         public void DeleteElement()
