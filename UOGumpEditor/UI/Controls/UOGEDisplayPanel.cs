@@ -41,6 +41,8 @@
             PrevButton.Click += PrevButton_Click;
 
             NextButton.Click += NextButton_Click;
+
+            Visible = false;
         }
 
         private void PrevButton_Click(object? sender, EventArgs e)
@@ -51,7 +53,7 @@
             {
                 UOEditorCore.Session.ArtCacheHandle.ScrollPrev();
 
-                UOEditorCore.Session.DisplayArtWindow();
+                UOEditorCore.Session.SetSearchDisplay();
             }
         }
 
@@ -63,7 +65,7 @@
             {
                 UOEditorCore.Session.ArtCacheHandle.ScrollNext();
 
-                UOEditorCore.Session.DisplayArtWindow();
+                UOEditorCore.Session.SetSearchDisplay();
             }
         }
     }

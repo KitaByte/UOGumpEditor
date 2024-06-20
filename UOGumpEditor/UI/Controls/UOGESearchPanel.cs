@@ -175,11 +175,13 @@
                         ArtPicturebox.DoDragDrop(entity, DragDropEffects.Copy);
                     }
 
-                    if (e.Button == MouseButtons.Right)
+                    if (e.Button == MouseButtons.Right && !UOEditorCore.IsSearching)
                     {
+                        UOEditorCore.IsSearching = true;
+
                         UOEditorCore.Session.ArtCacheHandle = new ArtCache(await UOArtLoader.SearchArtByIDAsync(entity.ID, UOEditorCore.Session.IsGump()));
 
-                        UOEditorCore.Session.DisplayArtWindow();
+                        UOEditorCore.Session.SetSearchDisplay();
                     }
                 }
             }
@@ -187,11 +189,16 @@
 
         private void SearchAllButton_Click(object? sender, EventArgs e)
         {
+            if (UOEditorCore.IsSearching)
+            {
+                return;
+            }
+
             if (UOArtLoader.GetAllArt(UOEditorCore.Session.IsGump(), out List<ArtEntity> results))
             {
                 UOEditorCore.Session.ArtCacheHandle = new ArtCache(results);
 
-                UOEditorCore.Session.DisplayArtWindow();
+                UOEditorCore.Session.SetSearchDisplay();
             }
             else
             {
@@ -201,13 +208,18 @@
 
         private async void ArtIDSearchBox_TextChanged(object? sender, EventArgs e)
         {
+            if (UOEditorCore.IsSearching)
+            {
+                return;
+            }
+
             if (!string.IsNullOrEmpty(ArtIDSearchBox.Text) && ArtIDSearchBox.Text.Length < 6)
             {
                 if (int.TryParse(ArtIDSearchBox.Text, out int val))
                 {
                     UOEditorCore.Session.ArtCacheHandle = new ArtCache(await UOArtLoader.SearchArtByIDAsync(val, UOEditorCore.Session.IsGump()));
 
-                    UOEditorCore.Session.DisplayArtWindow();
+                    UOEditorCore.Session.SetSearchDisplay();
                 }
             }
             else
@@ -218,11 +230,16 @@
 
         private async void ArtNameSearchBox_TextChanged(object? sender, EventArgs e)
         {
+            if (UOEditorCore.IsSearching)
+            {
+                return;
+            }
+
             if (!string.IsNullOrEmpty(ArtNameSearchBox.Text) && ArtNameSearchBox.Text.Length < 25)
             {
                 UOEditorCore.Session.ArtCacheHandle = new ArtCache(await UOArtLoader.SearchArtByNameAsync(ArtNameSearchBox.Text, UOEditorCore.Session.IsGump()));
 
-                UOEditorCore.Session.DisplayArtWindow();
+                UOEditorCore.Session.SetSearchDisplay();
             }
             else
             {
@@ -232,6 +249,11 @@
 
         private async void ArtSizeSearchBox_TextChanged(object? sender, EventArgs e)
         {
+            if (UOEditorCore.IsSearching)
+            {
+                return;
+            }
+
             if (sender is TextBox tb)
             {
                 if (!string.IsNullOrEmpty(tb.Text) && tb.Text.Length < 6)
@@ -253,7 +275,7 @@
                                 await UOArtLoader.SearchArtBySizeAsync(size, _SizeRange, UOEditorCore.Session.IsGump(), sender == ArtWidthSearchBox)
                             );
 
-                        UOEditorCore.Session.DisplayArtWindow();
+                        UOEditorCore.Session.SetSearchDisplay();
                     }
                 }
                 else

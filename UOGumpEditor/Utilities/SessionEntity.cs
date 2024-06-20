@@ -128,20 +128,20 @@ namespace UOGumpEditor
             panel.BringToFront();
         }
 
-        public void DisplayArtWindow()
+        public void SetSearchDisplay()
         {
             if (ArtCacheHandle != null)
             {
-                var results = ArtCacheHandle.GetCurrentWindow(DisplayUI.DisplayFlowPanel);
-
                 DisplayUI.PrevButton.Visible = ArtCacheHandle.CanScrollPrev();
 
                 DisplayUI.NextButton.Visible = ArtCacheHandle.CanScrollNext();
 
-                DisplaySearchResults(results);
+                DisplaySearchResults(ArtCacheHandle.GetCurrentWindow(DisplayUI.DisplayFlowPanel));
 
                 SetMainDisplay(DisplayUI);
             }
+
+            UOEditorCore.IsSearching = false;
         }
 
         private void DisplaySearchResults(List<ArtEntity> results)
@@ -149,6 +149,8 @@ namespace UOGumpEditor
             if (results.Count > 0)
             {
                 DisplayUI.DisplayFlowPanel.Controls.Clear();
+
+                DisplayUI.DisplayFlowPanel.SuspendLayout();
 
                 Color color;
 
@@ -171,6 +173,8 @@ namespace UOGumpEditor
 
                     image = null;
                 }
+
+                DisplayUI.DisplayFlowPanel.ResumeLayout();
 
                 DisplayUI.DisplayFlowPanel.Visible = true;
             }

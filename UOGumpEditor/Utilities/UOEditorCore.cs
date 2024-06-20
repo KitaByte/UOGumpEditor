@@ -12,6 +12,8 @@ namespace UOGumpEditor
 
         public static ArtEntity? CurrentArtDisplayed { get; private set; }
 
+        public static bool IsSearching { get; set; } = false;
+
         private static Point CurrentPosition = new(0,0);
 
         private const string LineBreakMarker = "*BR*";

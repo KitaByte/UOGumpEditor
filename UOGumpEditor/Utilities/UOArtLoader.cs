@@ -299,11 +299,11 @@ namespace UOGumpEditor
             {
                 if (isGump)
                 {
-                    tempEntityList = GumpArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                    tempEntityList = GumpArtDict.Values.Where(a => a.Name.StartsWith(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
                 }
                 else
                 {
-                    tempEntityList = ItemArtDict.Values.Where(a => a.Name.Contains(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                    tempEntityList = ItemArtDict.Values.Where(a => a.Name.StartsWith(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
                 }
 
                 return LoadList(tempEntityList);

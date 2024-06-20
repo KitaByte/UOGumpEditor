@@ -300,7 +300,7 @@ namespace UOGumpEditor
         {
             if (UOEditorCore.Session.DisplayUI.Visible)
             {
-                UOEditorCore.Session.DisplayArtWindow();
+                UOEditorCore.Session.SetSearchDisplay();
             }
         }
 
