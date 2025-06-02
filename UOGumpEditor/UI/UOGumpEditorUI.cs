@@ -293,7 +293,7 @@ namespace UOGumpEditor
 
         private void EditorHelpButton_Click(object sender, EventArgs e)
         {
-            UOEditorCore.OpenWebsite("https://www.uoopenai.com/uo_gump_editor");
+            UOEditorCore.OpenWebsite("https://sites.google.com/view/uoopenai/uo_gump_editor?authuser=1");
         }
 
         private void UOGumpEditorUI_Resize(object sender, EventArgs e)
