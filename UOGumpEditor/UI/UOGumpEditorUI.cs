@@ -66,9 +66,9 @@ namespace UOGumpEditor
 
             SetLoadingState(false);
 
-            UOEditorCore.Session.LoadMainControls();
+            UOEditorCore.Session?.LoadMainControls();
 
-            UOEditorCore.Session.SetMainDisplay(UOEditorCore.Session.CanvasUI);
+            UOEditorCore.Session?.SetMainDisplay(UOEditorCore.Session.CanvasUI);
 
             UOEditorCore.ResetEditor();
 
@@ -90,6 +90,8 @@ namespace UOGumpEditor
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (UOEditorCore.Session == null) return;
+
             switch (keyData)
             {
                 case (Keys.Control | Keys.S):
@@ -206,6 +208,8 @@ namespace UOGumpEditor
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
             {
                 CheckHandler();
@@ -222,6 +226,8 @@ namespace UOGumpEditor
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (UOEditorCore.Session.CanvasUI.Controls.Count > 0)
             {
                 if (MessageBox.Show("Clearing Canvas, Proceed?", "Load Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
@@ -241,6 +247,8 @@ namespace UOGumpEditor
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (UOEditorCore.Session.CanvasUI.Controls.Count > 0 && UOEditorCore.Session.ExportUIHandle == null)
             {
                 List<ElementControl> elementList = [];
@@ -298,6 +306,8 @@ namespace UOGumpEditor
 
         private void UOGumpEditorUI_Resize(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (UOEditorCore.Session.DisplayUI.Visible)
             {
                 UOEditorCore.Session.SetSearchDisplay();
@@ -320,6 +330,8 @@ namespace UOGumpEditor
 
         private void RaiseLayerButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (!UOEditorCore.Session.IsSingleSelected(out _))
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -335,6 +347,8 @@ namespace UOGumpEditor
 
         private void LowerLayerButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (!UOEditorCore.Session.IsSingleSelected(out _))
             {
                 MessageBox.Show("Select one element!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -350,6 +364,8 @@ namespace UOGumpEditor
 
         private void ElementStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             Point mousePosition = UOEditorCore.Session.CanvasUI.PointToClient(Cursor.Position);
 
             if (!UOEditorCore.Session.CanvasUI.ClientRectangle.Contains(mousePosition))
@@ -360,6 +376,8 @@ namespace UOGumpEditor
 
         private void ElementToolStrip_VisibleChanged(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             if (ElementToolStrip.Visible)
             {
                 ElementInfoLabel.Text = $"  {UOEditorCore.Session.CurrentElementType} Element  ";
@@ -445,6 +463,8 @@ namespace UOGumpEditor
 
         private void ElementApplyButton_Click(object sender, EventArgs e)
         {
+            if (UOEditorCore.Session == null) return;
+
             UOEditorCore.Session.UpdateElementSize(ElementWidthTextbox.Text, ElementHeightTextbox.Text);
 
             if (ElementIDLabel.Visible)
@@ -473,7 +493,7 @@ namespace UOGumpEditor
 
         private void ElementDeleteButton_Click(object sender, EventArgs e)
         {
-            UOEditorCore.Session.DeleteElement();
+            UOEditorCore.Session?.DeleteElement();
 
             ElementToolStrip.Visible = false;
         }
