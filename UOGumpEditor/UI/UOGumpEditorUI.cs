@@ -90,7 +90,7 @@ namespace UOGumpEditor
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (UOEditorCore.Session == null) return;
+            if (UOEditorCore.Session == null) return false;
 
             switch (keyData)
             {
